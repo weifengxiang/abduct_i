@@ -1,8 +1,8 @@
 package org.sky.sys.service;
-
-import java.util.List;
-
 import org.apache.log4j.Logger;
+import java.sql.Timestamp;
+import java.util.List;
+import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.client.SysLogMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysLog;
@@ -11,12 +11,16 @@ import org.sky.sys.utils.PageListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.sky.sys.utils.BspUtils;
+import org.sky.sys.utils.CommonUtils;
+import org.sky.sys.utils.StringUtils;
 @Service
 public class SysLogService {
 	private final Logger logger=Logger.getLogger(SysLogService.class);
 	@Autowired
 	private SysLogMapper syslogmapper;
+	@Autowired
+	private SysCommonMapper syscommonmapper;
 	/**
 	*分页查询
 	**/
@@ -46,7 +50,7 @@ public class SysLogService {
 				}
 			}
 		}catch(Exception e){
-			logger.error(e);
+			logger.error("保存列表新增及修改执行失败",e);
 			if(e.getMessage().contains("的值太大")){
 				throw new ServiceException("输入的字段值过长！");
 			}
@@ -61,7 +65,7 @@ public class SysLogService {
 		try{
 			syslogmapper.insertSelective(add);
 		}catch(Exception e){
-			logger.error(e);
+			logger.error("保存添加单个对象执行失败",e);
 			if(e.getMessage().contains("违反唯一约束条件")){
 				throw new ServiceException("违反唯一约束条件");
 			}else{
@@ -70,14 +74,22 @@ public class SysLogService {
 		}
 	}
 	/**
-	*保存编辑单个对象
+	*保存新增/编辑单个对象
 	**/
 	@Transactional
-	public void saveEditSysLog(SysLog edit) throws ServiceException{
+	public void saveAddEditSysLog(SysLog edit) throws ServiceException{
 		try{
-			syslogmapper.updateByPrimaryKeySelective(edit);
+			Timestamp ts = syscommonmapper.queryTimestamp();
+			if(StringUtils.isNull(edit.getId())){
+				//新增
+				edit.setId(CommonUtils.getUUID(32));
+				syslogmapper.insertSelective(edit);
+			}else{
+				//修改
+				syslogmapper.updateByPrimaryKeySelective(edit);
+			}
 		}catch(Exception e){
-			logger.error(e);
+			logger.error("保存新增/编辑单个对象执行失败",e);
 			throw new ServiceException(e.getMessage());
 		}
 	}

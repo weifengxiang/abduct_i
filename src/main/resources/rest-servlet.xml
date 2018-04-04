@@ -25,6 +25,7 @@
 	</bean>
 	
 	<!-- 扫描action spring容器-->
+	<context:component-scan base-package="org.sky.log"/>
 	<context:component-scan base-package="org.sky.*.action"/>
 	<context:component-scan base-package="org.sky.sys.security"/>
 	<context:component-scan base-package="org.sky.websocket"/>

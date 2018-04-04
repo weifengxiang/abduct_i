@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.model.SysUser;
 import org.sky.sys.model.SysWidget;
 import org.sky.sys.security.MyUserDetails;
@@ -130,6 +132,7 @@ public class SysController {
 			HttpServletRequest request, HttpServletResponse response) {
 		return "login";
 	}
+	@SysControllerLog(desc = "跳转登录成功页面")
 	@RequestMapping(value = "/loginsuccess", method = { RequestMethod.GET })
 	public String loginsuccess(Map<String, Object> map,
 			HttpServletRequest request, HttpServletResponse response) {

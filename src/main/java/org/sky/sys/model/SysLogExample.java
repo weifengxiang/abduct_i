@@ -83,11 +83,11 @@ public class SysLogExample {
     for(Object key : queryCondationMap.keySet()) {
 		String field = ((String)key).split("@")[0];
 		String opt = ((String)key).split("@")[1];
-		if(((String)key).contains("between")){
+		if(((String)key).toUpperCase().contains("BETWEEN")){
          criteria.addCriterion(BeanUtils.camelToUnderline(field)+" "+opt,((String)queryCondationMap.get(key)).split(",")[0],((String)queryCondationMap.get(key)).split(",")[1],(String)key);
-		}else if(((String)key).contains("IS NULL")||((String)key).contains("IS NOT NULL")){
+		}else if(((String)key).toUpperCase().contains("IS NULL")||((String)key).toUpperCase().contains("IS NOT NULL")){
          criteria.addCriterion(BeanUtils.camelToUnderline(field)+" "+opt);
-		}else if(((String)key).contains("@IN")||((String)key).contains("@NOT IN")){
+		}else if(((String)key).toUpperCase().contains("@IN")||((String)key).toUpperCase().contains("@NOT IN")){
          String values = (String)queryCondationMap.get(key);
  		  List val=Arrays.asList(values.split(","));
  		  criteria.addCriterion(BeanUtils.camelToUnderline(field)+" "+opt,val,(String)key);

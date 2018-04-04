@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysLog;
@@ -32,12 +31,12 @@ public class SysLogController extends BaseController{
 		// TODO Auto-generated constructor stub
 	}
 	/**
-	*显示日志表页面
+	*显示日志表列表页面
 	**/
-	@RequestMapping(value = "/sys/SysLog/initSysLog", method = { RequestMethod.GET })
-	public String initSysLog(Map<String, Object> map,
+	@RequestMapping(value = "/base/SysLog/initSysLogListPage", method = { RequestMethod.GET })
+	public String initSysLogListPage(
 			HttpServletRequest request, HttpServletResponse response) {
-		return "jsp/xxcl/listsyslog";
+		return "jsp/sys/log/listsyslog";
 	}
 	/**
 	 * 日志表分页查询
@@ -45,7 +44,7 @@ public class SysLogController extends BaseController{
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/sys/SysLog/getSysLogByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/base/SysLog/getSysLogByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysLogByPage(
 			HttpServletRequest request, 
 			HttpServletResponse response){
@@ -58,7 +57,6 @@ public class SysLogController extends BaseController{
 			pote.createCriteria();
 			pote.integratedQuery(filterMap);
 		}
-		
 		if(!StringUtils.isNull(sortfield)){
 			pote.setOrderByClause(sortfield);
 		}
@@ -66,39 +64,41 @@ public class SysLogController extends BaseController{
 		PageListData pageData = syslogService.getSysLogByPage(pote);
 		return JsonUtils.obj2json(pageData);
 	}
-	
 	/**
-	*保存新增日志表
+	*显示日志表新增页面
 	**/
-	@RequestMapping(value = "/sys/SysLog/saveAddSysLog", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
-	public @ResponseBody String saveAddSysLog(@ModelAttribute SysLog add,
-			HttpServletRequest request, 
-			HttpServletResponse response){
-		ResultData rd= new ResultData();
-		try {
-			syslogService.saveAddSysLog(add);
-			rd.setCode(ResultData.code_success);
-			rd.setName("保存成功");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			rd.setCode(ResultData.code_error);
-			rd.setName("保存失败<br>"+e.getMessage());
-		}
-		return JsonUtils.obj2json(rd);
+	@RequestMapping(value = "/base/SysLog/initAddSysLogPage", method = { RequestMethod.GET })
+	public String initAddSysLogPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/sys/log/editsyslog";
 	}
-	
 	/**
-	*保存修改日志表
+	*显示日志表修改页面
 	**/
-	@RequestMapping(value = "/sys/SysLog/saveEditSysLog", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
-	public @ResponseBody String saveEditSysLog(
+	@RequestMapping(value = "/base/SysLog/initEditSysLogPage", method = { RequestMethod.GET })
+	public String initEditSysLogPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/sys/log/editsyslog";
+	}
+	/**
+	*显示日志表详细页面
+	**/
+	@RequestMapping(value = "/base/SysLog/initDetailSysLogPage", method = { RequestMethod.GET })
+	public String initDetailSysLogPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/sys/log/detailsyslog";
+	}
+	/**
+	*保存新增/修改日志表
+	**/
+	@RequestMapping(value = "/base/SysLog/saveAddEditSysLog", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String saveAddEditSysLog(
 			HttpServletRequest request, 
 			HttpServletResponse response){
 		ResultData rd= new ResultData();
 		try {
 			SysLog edit = (SysLog) getEntityBean(request,SysLog.class);
-			syslogService.saveEditSysLog(edit);
+			syslogService.saveAddEditSysLog(edit);
 			rd.setCode(ResultData.code_success);
 			rd.setName("保存成功");
 		} catch (Exception e) {
@@ -112,7 +112,7 @@ public class SysLogController extends BaseController{
 	/**
 	*删除日志表
 	**/
-	@RequestMapping(value = "/sys/SysLog/delSysLog", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/base/SysLog/delSysLog", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysLog(
 			HttpServletRequest request, 
 			HttpServletResponse response){
@@ -134,7 +134,7 @@ public class SysLogController extends BaseController{
 	/**
 	*根据主键查询日志表
 	**/
-	@RequestMapping(value = "/sys/SysLog/getSysLogById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/base/SysLog/getSysLogById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysLogById(
 			HttpServletRequest request, 
 			HttpServletResponse response){
