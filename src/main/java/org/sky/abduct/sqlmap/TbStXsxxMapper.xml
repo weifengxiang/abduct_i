@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sky.abduct.client.TbStXsxxMapper">
+  <resultMap id="BaseResultMap" type="org.sky.abduct.model.TbStXsxx">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
+    <result column="JBR" jdbcType="VARCHAR" property="jbr" />
+    <result column="ZJLX" jdbcType="VARCHAR" property="zjlx" />
+    <result column="ZJHM" jdbcType="VARCHAR" property="zjhm" />
+    <result column="DH" jdbcType="VARCHAR" property="dh" />
+    <result column="SFD" jdbcType="VARCHAR" property="sfd" />
+    <result column="SJXQ" jdbcType="VARCHAR" property="sjxq" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="XSLY" jdbcType="VARCHAR" property="xsly" />
+    <result column="DJR" jdbcType="VARCHAR" property="djr" />
+    <result column="DJDW" jdbcType="VARCHAR" property="djdw" />
+    <result column="DJSJ" jdbcType="DATE" property="djsj" />
+    <result column="ZT" jdbcType="VARCHAR" property="zt" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, AJBH, JBR, ZJLX, ZJHM, DH, SFD, SJXQ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, 
+    XSLY, DJR, DJDW, DJSJ, ZT, BZ
+  </sql>
+  <select id="selectByExample" parameterType="org.sky.abduct.model.TbStXsxxExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_st_xsxx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="MySqlPaginationSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_st_xsxx
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_st_xsxx
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.sky.abduct.model.TbStXsxxExample">
+    delete from tb_st_xsxx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.sky.abduct.model.TbStXsxx">
+    insert into tb_st_xsxx (ID, AJBH, JBR, 
+      ZJLX, ZJHM, DH, SFD, 
+      SJXQ, CREATER, CREATE_TIME, 
+      UPDATER, UPDATE_TIME, XSLY, 
+      DJR, DJDW, DJSJ, ZT, 
+      BZ)
+    values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{jbr,jdbcType=VARCHAR}, 
+      #{zjlx,jdbcType=VARCHAR}, #{zjhm,jdbcType=VARCHAR}, #{dh,jdbcType=VARCHAR}, #{sfd,jdbcType=VARCHAR}, 
+      #{sjxq,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{xsly,jdbcType=VARCHAR}, 
+      #{djr,jdbcType=VARCHAR}, #{djdw,jdbcType=VARCHAR}, #{djsj,jdbcType=DATE}, #{zt,jdbcType=VARCHAR}, 
+      #{bz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sky.abduct.model.TbStXsxx">
+    insert into tb_st_xsxx
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="ajbh != null">
+        AJBH,
+      </if>
+      <if test="jbr != null">
+        JBR,
+      </if>
+      <if test="zjlx != null">
+        ZJLX,
+      </if>
+      <if test="zjhm != null">
+        ZJHM,
+      </if>
+      <if test="dh != null">
+        DH,
+      </if>
+      <if test="sfd != null">
+        SFD,
+      </if>
+      <if test="sjxq != null">
+        SJXQ,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="xsly != null">
+        XSLY,
+      </if>
+      <if test="djr != null">
+        DJR,
+      </if>
+      <if test="djdw != null">
+        DJDW,
+      </if>
+      <if test="djsj != null">
+        DJSJ,
+      </if>
+      <if test="zt != null">
+        ZT,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ajbh != null">
+        #{ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jbr != null">
+        #{jbr,jdbcType=VARCHAR},
+      </if>
+      <if test="zjlx != null">
+        #{zjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="zjhm != null">
+        #{zjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="dh != null">
+        #{dh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfd != null">
+        #{sfd,jdbcType=VARCHAR},
+      </if>
+      <if test="sjxq != null">
+        #{sjxq,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xsly != null">
+        #{xsly,jdbcType=VARCHAR},
+      </if>
+      <if test="djr != null">
+        #{djr,jdbcType=VARCHAR},
+      </if>
+      <if test="djdw != null">
+        #{djdw,jdbcType=VARCHAR},
+      </if>
+      <if test="djsj != null">
+        #{djsj,jdbcType=DATE},
+      </if>
+      <if test="zt != null">
+        #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.sky.abduct.model.TbStXsxxExample" resultType="java.lang.Long">
+    select count(*) from tb_st_xsxx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_st_xsxx
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ajbh != null">
+        AJBH = #{record.ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jbr != null">
+        JBR = #{record.jbr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjlx != null">
+        ZJLX = #{record.zjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjhm != null">
+        ZJHM = #{record.zjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dh != null">
+        DH = #{record.dh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfd != null">
+        SFD = #{record.sfd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sjxq != null">
+        SJXQ = #{record.sjxq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creater != null">
+        CREATER = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null">
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.xsly != null">
+        XSLY = #{record.xsly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.djr != null">
+        DJR = #{record.djr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.djdw != null">
+        DJDW = #{record.djdw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.djsj != null">
+        DJSJ = #{record.djsj,jdbcType=DATE},
+      </if>
+      <if test="record.zt != null">
+        ZT = #{record.zt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bz != null">
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_st_xsxx
+    set ID = #{record.id,jdbcType=VARCHAR},
+      AJBH = #{record.ajbh,jdbcType=VARCHAR},
+      JBR = #{record.jbr,jdbcType=VARCHAR},
+      ZJLX = #{record.zjlx,jdbcType=VARCHAR},
+      ZJHM = #{record.zjhm,jdbcType=VARCHAR},
+      DH = #{record.dh,jdbcType=VARCHAR},
+      SFD = #{record.sfd,jdbcType=VARCHAR},
+      SJXQ = #{record.sjxq,jdbcType=VARCHAR},
+      CREATER = #{record.creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      XSLY = #{record.xsly,jdbcType=VARCHAR},
+      DJR = #{record.djr,jdbcType=VARCHAR},
+      DJDW = #{record.djdw,jdbcType=VARCHAR},
+      DJSJ = #{record.djsj,jdbcType=DATE},
+      ZT = #{record.zt,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.abduct.model.TbStXsxx">
+    update tb_st_xsxx
+    <set>
+      <if test="ajbh != null">
+        AJBH = #{ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jbr != null">
+        JBR = #{jbr,jdbcType=VARCHAR},
+      </if>
+      <if test="zjlx != null">
+        ZJLX = #{zjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="zjhm != null">
+        ZJHM = #{zjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="dh != null">
+        DH = #{dh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfd != null">
+        SFD = #{sfd,jdbcType=VARCHAR},
+      </if>
+      <if test="sjxq != null">
+        SJXQ = #{sjxq,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xsly != null">
+        XSLY = #{xsly,jdbcType=VARCHAR},
+      </if>
+      <if test="djr != null">
+        DJR = #{djr,jdbcType=VARCHAR},
+      </if>
+      <if test="djdw != null">
+        DJDW = #{djdw,jdbcType=VARCHAR},
+      </if>
+      <if test="djsj != null">
+        DJSJ = #{djsj,jdbcType=DATE},
+      </if>
+      <if test="zt != null">
+        ZT = #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sky.abduct.model.TbStXsxx">
+    update tb_st_xsxx
+    set AJBH = #{ajbh,jdbcType=VARCHAR},
+      JBR = #{jbr,jdbcType=VARCHAR},
+      ZJLX = #{zjlx,jdbcType=VARCHAR},
+      ZJHM = #{zjhm,jdbcType=VARCHAR},
+      DH = #{dh,jdbcType=VARCHAR},
+      SFD = #{sfd,jdbcType=VARCHAR},
+      SJXQ = #{sjxq,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      XSLY = #{xsly,jdbcType=VARCHAR},
+      DJR = #{djr,jdbcType=VARCHAR},
+      DJDW = #{djdw,jdbcType=VARCHAR},
+      DJSJ = #{djsj,jdbcType=DATE},
+      ZT = #{zt,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="MySqlPaginationSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin},#{page.rows} ]]>
+    </if>
+  </sql>
+</mapper>

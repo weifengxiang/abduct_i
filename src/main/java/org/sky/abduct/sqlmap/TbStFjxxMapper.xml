@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sky.abduct.client.TbStFjxxMapper">
+  <resultMap id="BaseResultMap" type="org.sky.abduct.model.TbStFjxx">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
+    <result column="FJMC" jdbcType="VARCHAR" property="fjmc" />
+    <result column="FJLX" jdbcType="VARCHAR" property="fjlx" />
+    <result column="FJDX" jdbcType="INTEGER" property="fjdx" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="CREATR_TIME" jdbcType="TIMESTAMP" property="creatrTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.sky.abduct.model.TbStFjxx">
+    <result column="FJNR" jdbcType="LONGVARBINARY" property="fjnr" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, AJBH, FJMC, FJLX, FJDX, CREATER, CREATR_TIME
+  </sql>
+  <sql id="Blob_Column_List">
+    FJNR
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="org.sky.abduct.model.TbStFjxxExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_st_fjxx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="org.sky.abduct.model.TbStFjxxExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_st_fjxx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="MySqlPaginationSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_st_fjxx
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_st_fjxx
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.sky.abduct.model.TbStFjxxExample">
+    delete from tb_st_fjxx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.sky.abduct.model.TbStFjxx">
+    insert into tb_st_fjxx (ID, AJBH, FJMC, 
+      FJLX, FJDX, CREATER, 
+      CREATR_TIME, FJNR)
+    values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{fjmc,jdbcType=VARCHAR}, 
+      #{fjlx,jdbcType=VARCHAR}, #{fjdx,jdbcType=INTEGER}, #{creater,jdbcType=VARCHAR}, 
+      #{creatrTime,jdbcType=TIMESTAMP}, #{fjnr,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sky.abduct.model.TbStFjxx">
+    insert into tb_st_fjxx
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="ajbh != null">
+        AJBH,
+      </if>
+      <if test="fjmc != null">
+        FJMC,
+      </if>
+      <if test="fjlx != null">
+        FJLX,
+      </if>
+      <if test="fjdx != null">
+        FJDX,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="creatrTime != null">
+        CREATR_TIME,
+      </if>
+      <if test="fjnr != null">
+        FJNR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ajbh != null">
+        #{ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="fjmc != null">
+        #{fjmc,jdbcType=VARCHAR},
+      </if>
+      <if test="fjlx != null">
+        #{fjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="fjdx != null">
+        #{fjdx,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="creatrTime != null">
+        #{creatrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fjnr != null">
+        #{fjnr,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.sky.abduct.model.TbStFjxxExample" resultType="java.lang.Long">
+    select count(*) from tb_st_fjxx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_st_fjxx
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ajbh != null">
+        AJBH = #{record.ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fjmc != null">
+        FJMC = #{record.fjmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fjlx != null">
+        FJLX = #{record.fjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fjdx != null">
+        FJDX = #{record.fjdx,jdbcType=INTEGER},
+      </if>
+      <if test="record.creater != null">
+        CREATER = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatrTime != null">
+        CREATR_TIME = #{record.creatrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fjnr != null">
+        FJNR = #{record.fjnr,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update tb_st_fjxx
+    set ID = #{record.id,jdbcType=VARCHAR},
+      AJBH = #{record.ajbh,jdbcType=VARCHAR},
+      FJMC = #{record.fjmc,jdbcType=VARCHAR},
+      FJLX = #{record.fjlx,jdbcType=VARCHAR},
+      FJDX = #{record.fjdx,jdbcType=INTEGER},
+      CREATER = #{record.creater,jdbcType=VARCHAR},
+      CREATR_TIME = #{record.creatrTime,jdbcType=TIMESTAMP},
+      FJNR = #{record.fjnr,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_st_fjxx
+    set ID = #{record.id,jdbcType=VARCHAR},
+      AJBH = #{record.ajbh,jdbcType=VARCHAR},
+      FJMC = #{record.fjmc,jdbcType=VARCHAR},
+      FJLX = #{record.fjlx,jdbcType=VARCHAR},
+      FJDX = #{record.fjdx,jdbcType=INTEGER},
+      CREATER = #{record.creater,jdbcType=VARCHAR},
+      CREATR_TIME = #{record.creatrTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.abduct.model.TbStFjxx">
+    update tb_st_fjxx
+    <set>
+      <if test="ajbh != null">
+        AJBH = #{ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="fjmc != null">
+        FJMC = #{fjmc,jdbcType=VARCHAR},
+      </if>
+      <if test="fjlx != null">
+        FJLX = #{fjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="fjdx != null">
+        FJDX = #{fjdx,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="creatrTime != null">
+        CREATR_TIME = #{creatrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fjnr != null">
+        FJNR = #{fjnr,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.sky.abduct.model.TbStFjxx">
+    update tb_st_fjxx
+    set AJBH = #{ajbh,jdbcType=VARCHAR},
+      FJMC = #{fjmc,jdbcType=VARCHAR},
+      FJLX = #{fjlx,jdbcType=VARCHAR},
+      FJDX = #{fjdx,jdbcType=INTEGER},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATR_TIME = #{creatrTime,jdbcType=TIMESTAMP},
+      FJNR = #{fjnr,jdbcType=LONGVARBINARY}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sky.abduct.model.TbStFjxx">
+    update tb_st_fjxx
+    set AJBH = #{ajbh,jdbcType=VARCHAR},
+      FJMC = #{fjmc,jdbcType=VARCHAR},
+      FJLX = #{fjlx,jdbcType=VARCHAR},
+      FJDX = #{fjdx,jdbcType=INTEGER},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATR_TIME = #{creatrTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="MySqlPaginationSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin},#{page.rows} ]]>
+    </if>
+  </sql>
+</mapper>
