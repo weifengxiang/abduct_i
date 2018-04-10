@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sky.ywbl.client.TbStAjlcjlMapper">
+  <resultMap id="BaseResultMap" type="org.sky.ywbl.model.TbStAjlcjl">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
+    <result column="AJZT" jdbcType="VARCHAR" property="ajzt" />
+    <result column="BLR" jdbcType="VARCHAR" property="blr" />
+    <result column="BLDW" jdbcType="VARCHAR" property="bldw" />
+    <result column="BLSJ" jdbcType="DATE" property="blsj" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, AJBH, AJZT, BLR, BLDW, BLSJ, BZ, CREATER, CREATE_TIME
+  </sql>
+  <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStAjlcjlExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_st_ajlcjl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="MySqlPaginationSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_st_ajlcjl
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_st_ajlcjl
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.sky.ywbl.model.TbStAjlcjlExample">
+    delete from tb_st_ajlcjl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.sky.ywbl.model.TbStAjlcjl">
+    insert into tb_st_ajlcjl (ID, AJBH, AJZT, 
+      BLR, BLDW, BLSJ, BZ, 
+      CREATER, CREATE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{ajzt,jdbcType=VARCHAR}, 
+      #{blr,jdbcType=VARCHAR}, #{bldw,jdbcType=VARCHAR}, #{blsj,jdbcType=DATE}, #{bz,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStAjlcjl">
+    insert into tb_st_ajlcjl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="ajbh != null">
+        AJBH,
+      </if>
+      <if test="ajzt != null">
+        AJZT,
+      </if>
+      <if test="blr != null">
+        BLR,
+      </if>
+      <if test="bldw != null">
+        BLDW,
+      </if>
+      <if test="blsj != null">
+        BLSJ,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ajbh != null">
+        #{ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="ajzt != null">
+        #{ajzt,jdbcType=VARCHAR},
+      </if>
+      <if test="blr != null">
+        #{blr,jdbcType=VARCHAR},
+      </if>
+      <if test="bldw != null">
+        #{bldw,jdbcType=VARCHAR},
+      </if>
+      <if test="blsj != null">
+        #{blsj,jdbcType=DATE},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.sky.ywbl.model.TbStAjlcjlExample" resultType="java.lang.Long">
+    select count(*) from tb_st_ajlcjl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_st_ajlcjl
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ajbh != null">
+        AJBH = #{record.ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ajzt != null">
+        AJZT = #{record.ajzt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blr != null">
+        BLR = #{record.blr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bldw != null">
+        BLDW = #{record.bldw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blsj != null">
+        BLSJ = #{record.blsj,jdbcType=DATE},
+      </if>
+      <if test="record.bz != null">
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creater != null">
+        CREATER = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_st_ajlcjl
+    set ID = #{record.id,jdbcType=VARCHAR},
+      AJBH = #{record.ajbh,jdbcType=VARCHAR},
+      AJZT = #{record.ajzt,jdbcType=VARCHAR},
+      BLR = #{record.blr,jdbcType=VARCHAR},
+      BLDW = #{record.bldw,jdbcType=VARCHAR},
+      BLSJ = #{record.blsj,jdbcType=DATE},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      CREATER = #{record.creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.ywbl.model.TbStAjlcjl">
+    update tb_st_ajlcjl
+    <set>
+      <if test="ajbh != null">
+        AJBH = #{ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="ajzt != null">
+        AJZT = #{ajzt,jdbcType=VARCHAR},
+      </if>
+      <if test="blr != null">
+        BLR = #{blr,jdbcType=VARCHAR},
+      </if>
+      <if test="bldw != null">
+        BLDW = #{bldw,jdbcType=VARCHAR},
+      </if>
+      <if test="blsj != null">
+        BLSJ = #{blsj,jdbcType=DATE},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sky.ywbl.model.TbStAjlcjl">
+    update tb_st_ajlcjl
+    set AJBH = #{ajbh,jdbcType=VARCHAR},
+      AJZT = #{ajzt,jdbcType=VARCHAR},
+      BLR = #{blr,jdbcType=VARCHAR},
+      BLDW = #{bldw,jdbcType=VARCHAR},
+      BLSJ = #{blsj,jdbcType=DATE},
+      BZ = #{bz,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="MySqlPaginationSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin},#{page.rows} ]]>
+    </if>
+  </sql>
+</mapper>
