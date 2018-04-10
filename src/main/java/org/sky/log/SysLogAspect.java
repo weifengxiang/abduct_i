@@ -7,6 +7,7 @@ import org.sky.sys.model.SysUser;
 import org.sky.sys.service.SysLogService;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
+import org.sky.sys.utils.ConfUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -104,12 +105,6 @@ public class SysLogAspect {
 			logger.error("==异常通知异常==");
 			logger.error("异常信息:{}", ex.getMessage());
 		}
-		/* ==========记录本地异常日志========== */
-		// logger.error("异常方法:{}异常代码:{}异常信息:{}参数:{}",
-		// joinPoint.getTarget().getClass().getName() +
-		// joinPoint.getSignature().getName(), e.getClass().getName(),
-		// e.getMessage(), params);
-
 	}
 
 	/**
@@ -218,7 +213,17 @@ public class SysLogAspect {
 			// 异常通知
 			log.setOptResult("执行失败："+e.getMessage());
 		}// 后置通知
-		syslogservice.saveAddSysLog(log);
+		String LOGTYPE = ConfUtils.getValue("LOGTYPE");
+		if("DB".equals(LOGTYPE)) {
+			syslogservice.saveAddSysLog(log);
+		}else if("FILE".equals(LOGTYPE)) {
+			logger.info(JsonUtils.obj2json(log));
+		}else if("NONE".equals(LOGTYPE)) {
+			
+		}else {
+			
+		}
+		
 		return result;
 	}
 }
