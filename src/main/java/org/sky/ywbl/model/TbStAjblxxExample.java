@@ -788,63 +788,63 @@ public class TbStAjblxxExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeIsNull() {
-            addCriterion("CREATER_TIME is null");
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("CREATE_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeIsNotNull() {
-            addCriterion("CREATER_TIME is not null");
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("CREATE_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeEqualTo(Date value) {
-            addCriterion("CREATER_TIME =", value, "createrTime");
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("CREATE_TIME =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeNotEqualTo(Date value) {
-            addCriterion("CREATER_TIME <>", value, "createrTime");
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("CREATE_TIME <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeGreaterThan(Date value) {
-            addCriterion("CREATER_TIME >", value, "createrTime");
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("CREATE_TIME >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("CREATER_TIME >=", value, "createrTime");
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeLessThan(Date value) {
-            addCriterion("CREATER_TIME <", value, "createrTime");
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("CREATE_TIME <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeLessThanOrEqualTo(Date value) {
-            addCriterion("CREATER_TIME <=", value, "createrTime");
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeIn(List<Date> values) {
-            addCriterion("CREATER_TIME in", values, "createrTime");
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("CREATE_TIME in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeNotIn(List<Date> values) {
-            addCriterion("CREATER_TIME not in", values, "createrTime");
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("CREATE_TIME not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeBetween(Date value1, Date value2) {
-            addCriterion("CREATER_TIME between", value1, value2, "createrTime");
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterTimeNotBetween(Date value1, Date value2) {
-            addCriterion("CREATER_TIME not between", value1, value2, "createrTime");
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME not between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
@@ -918,63 +918,63 @@ public class TbStAjblxxExample {
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeIsNull() {
-            addCriterion("UPDATER_TIME is null");
+        public Criteria andUpdateTimeIsNull() {
+            addCriterion("UPDATE_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeIsNotNull() {
-            addCriterion("UPDATER_TIME is not null");
+        public Criteria andUpdateTimeIsNotNull() {
+            addCriterion("UPDATE_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeEqualTo(Date value) {
-            addCriterion("UPDATER_TIME =", value, "updaterTime");
+        public Criteria andUpdateTimeEqualTo(Date value) {
+            addCriterion("UPDATE_TIME =", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeNotEqualTo(Date value) {
-            addCriterion("UPDATER_TIME <>", value, "updaterTime");
+        public Criteria andUpdateTimeNotEqualTo(Date value) {
+            addCriterion("UPDATE_TIME <>", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeGreaterThan(Date value) {
-            addCriterion("UPDATER_TIME >", value, "updaterTime");
+        public Criteria andUpdateTimeGreaterThan(Date value) {
+            addCriterion("UPDATE_TIME >", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("UPDATER_TIME >=", value, "updaterTime");
+        public Criteria andUpdateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("UPDATE_TIME >=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeLessThan(Date value) {
-            addCriterion("UPDATER_TIME <", value, "updaterTime");
+        public Criteria andUpdateTimeLessThan(Date value) {
+            addCriterion("UPDATE_TIME <", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeLessThanOrEqualTo(Date value) {
-            addCriterion("UPDATER_TIME <=", value, "updaterTime");
+        public Criteria andUpdateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("UPDATE_TIME <=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeIn(List<Date> values) {
-            addCriterion("UPDATER_TIME in", values, "updaterTime");
+        public Criteria andUpdateTimeIn(List<Date> values) {
+            addCriterion("UPDATE_TIME in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeNotIn(List<Date> values) {
-            addCriterion("UPDATER_TIME not in", values, "updaterTime");
+        public Criteria andUpdateTimeNotIn(List<Date> values) {
+            addCriterion("UPDATE_TIME not in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeBetween(Date value1, Date value2) {
-            addCriterion("UPDATER_TIME between", value1, value2, "updaterTime");
+        public Criteria andUpdateTimeBetween(Date value1, Date value2) {
+            addCriterion("UPDATE_TIME between", value1, value2, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdaterTimeNotBetween(Date value1, Date value2) {
-            addCriterion("UPDATER_TIME not between", value1, value2, "updaterTime");
+        public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("UPDATE_TIME not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
     }

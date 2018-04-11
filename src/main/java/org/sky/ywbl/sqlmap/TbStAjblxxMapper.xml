@@ -11,9 +11,9 @@
     <result column="BLDW" jdbcType="VARCHAR" property="bldw" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
-    <result column="CREATER_TIME" jdbcType="TIMESTAMP" property="createrTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
-    <result column="UPDATER_TIME" jdbcType="TIMESTAMP" property="updaterTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AJBH, BLJG, BLYJ, BLSJ, BLR, BLDW, BZ, CREATER, CREATER_TIME, UPDATER, UPDATER_TIME
+    ID, AJBH, BLJG, BLYJ, BLSJ, BLR, BLDW, BZ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
   </sql>
   <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStAjblxxExample" resultMap="BaseResultMap">
     select
@@ -110,12 +110,12 @@
   <insert id="insert" parameterType="org.sky.ywbl.model.TbStAjblxx">
     insert into tb_st_ajblxx (ID, AJBH, BLJG, 
       BLYJ, BLSJ, BLR, BLDW, 
-      BZ, CREATER, CREATER_TIME, 
-      UPDATER, UPDATER_TIME)
+      BZ, CREATER, CREATE_TIME, 
+      UPDATER, UPDATE_TIME)
     values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{bljg,jdbcType=CHAR}, 
       #{blyj,jdbcType=VARCHAR}, #{blsj,jdbcType=DATE}, #{blr,jdbcType=VARCHAR}, #{bldw,jdbcType=VARCHAR}, 
-      #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createrTime,jdbcType=TIMESTAMP}, 
-      #{updater,jdbcType=VARCHAR}, #{updaterTime,jdbcType=TIMESTAMP})
+      #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStAjblxx">
     insert into tb_st_ajblxx
@@ -147,14 +147,14 @@
       <if test="creater != null">
         CREATER,
       </if>
-      <if test="createrTime != null">
-        CREATER_TIME,
+      <if test="createTime != null">
+        CREATE_TIME,
       </if>
       <if test="updater != null">
         UPDATER,
       </if>
-      <if test="updaterTime != null">
-        UPDATER_TIME,
+      <if test="updateTime != null">
+        UPDATE_TIME,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -185,14 +185,14 @@
       <if test="creater != null">
         #{creater,jdbcType=VARCHAR},
       </if>
-      <if test="createrTime != null">
-        #{createrTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updater != null">
         #{updater,jdbcType=VARCHAR},
       </if>
-      <if test="updaterTime != null">
-        #{updaterTime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -232,14 +232,14 @@
       <if test="record.creater != null">
         CREATER = #{record.creater,jdbcType=VARCHAR},
       </if>
-      <if test="record.createrTime != null">
-        CREATER_TIME = #{record.createrTime,jdbcType=TIMESTAMP},
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updater != null">
         UPDATER = #{record.updater,jdbcType=VARCHAR},
       </if>
-      <if test="record.updaterTime != null">
-        UPDATER_TIME = #{record.updaterTime,jdbcType=TIMESTAMP},
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -257,9 +257,9 @@
       BLDW = #{record.bldw,jdbcType=VARCHAR},
       BZ = #{record.bz,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
-      CREATER_TIME = #{record.createrTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       UPDATER = #{record.updater,jdbcType=VARCHAR},
-      UPDATER_TIME = #{record.updaterTime,jdbcType=TIMESTAMP}
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -291,14 +291,14 @@
       <if test="creater != null">
         CREATER = #{creater,jdbcType=VARCHAR},
       </if>
-      <if test="createrTime != null">
-        CREATER_TIME = #{createrTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updater != null">
         UPDATER = #{updater,jdbcType=VARCHAR},
       </if>
-      <if test="updaterTime != null">
-        UPDATER_TIME = #{updaterTime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
@@ -313,9 +313,9 @@
       BLDW = #{bldw,jdbcType=VARCHAR},
       BZ = #{bz,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},
-      CREATER_TIME = #{createrTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATER = #{updater,jdbcType=VARCHAR},
-      UPDATER_TIME = #{updaterTime,jdbcType=TIMESTAMP}
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">

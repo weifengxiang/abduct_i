@@ -21,11 +21,11 @@ public class TbStAjblxx {
 
     private String creater;
 
-    private Date createrTime;
+    private Date createTime;
 
     private String updater;
 
-    private Date updaterTime;
+    private Date updateTime;
 
     public String getId() {
         return id;
@@ -99,12 +99,12 @@ public class TbStAjblxx {
         this.creater = creater;
     }
 
-    public Date getCreaterTime() {
-        return createrTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreaterTime(Date createrTime) {
-        this.createrTime = createrTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public String getUpdater() {
@@ -115,11 +115,11 @@ public class TbStAjblxx {
         this.updater = updater;
     }
 
-    public Date getUpdaterTime() {
-        return updaterTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdaterTime(Date updaterTime) {
-        this.updaterTime = updaterTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }
