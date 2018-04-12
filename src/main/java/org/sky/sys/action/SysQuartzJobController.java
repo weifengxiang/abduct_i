@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysDict;
@@ -43,12 +44,13 @@ public class SysQuartzJobController extends BaseController{
 		// TODO Auto-generated constructor stub
 	}
 	/**
-	 *  "显示定时任务页面"
+	 * 显示定时任务页面
 	 * @param map
 	 * @param request
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "显示定时任务页面")
 	@RequestMapping(value = "/sys/SysQuartzJob/initSysQuartzJob", method = { RequestMethod.GET })
 	public String initSysQuartzJob(Map<String, Object> map,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -60,6 +62,7 @@ public class SysQuartzJobController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "定时任务分页查询")
 	@RequestMapping(value = "/sys/SysQuartzJob/getSysQuartzJobByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysQuartzJobByPage(
 			HttpServletRequest request, 
@@ -82,12 +85,13 @@ public class SysQuartzJobController extends BaseController{
 	}
 	
 	/**
-	 * "保存新增定时任务"
+	 * 保存新增定时任务
 	 * @param add
 	 * @param request
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "保存新增定时任务")
 	@RequestMapping(value = "/sys/SysQuartzJob/saveAddSysQuartzJob", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddSysQuartzJob(@ModelAttribute SysQuartzJob add,
 			HttpServletRequest request, 
@@ -107,11 +111,12 @@ public class SysQuartzJobController extends BaseController{
 	}
 	
 	/**
-	 * "保存定时任务"
+	 * 保存定时任务
 	 * @param request
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "保存定时任务")
 	@RequestMapping(value = "/sys/SysQuartzJob/saveSysQuartzJob", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveSysQuartzJob(
 			HttpServletRequest request, 
@@ -134,11 +139,12 @@ public class SysQuartzJobController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	 * "删除定时任务"
+	 * 删除定时任务
 	 * @param request
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "删除定时任务")
 	@RequestMapping(value = "/sys/SysQuartzJob/delSysQuartzJob", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysQuartzJob(
 			HttpServletRequest request, 
@@ -159,11 +165,12 @@ public class SysQuartzJobController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	 * "根据主键查询定时任务"
+	 * 根据主键查询定时任务
 	 * @param request
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "根据主键查询定时任务")
 	@RequestMapping(value = "/sys/SysQuartzJob/getSysQuartzJobById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysQuartzJobById(
 			HttpServletRequest request, 
@@ -173,11 +180,12 @@ public class SysQuartzJobController extends BaseController{
 		return JsonUtils.obj2json(bean);
 	}
 	/**
-	 * "启动定时任务"
+	 * 启动定时任务
 	 * @param request
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "启动定时任务")
 	@RequestMapping(value = "/sys/SysQuartzJob/runSysQuartzJob", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String runSysQuartzJob(
 			HttpServletRequest request, 
@@ -201,11 +209,12 @@ public class SysQuartzJobController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	 * "停止定时任务"
+	 * 停止定时任务
 	 * @param request
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "停止定时任务")
 	@RequestMapping(value = "/sys/SysQuartzJob/stopSysQuartzJob", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String stopSysQuartzJob(
 			HttpServletRequest request, 
@@ -229,11 +238,12 @@ public class SysQuartzJobController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	 * "暂停定时任务"
+	 * 暂停定时任务
 	 * @param request
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "暂停定时任务")
 	@RequestMapping(value = "/sys/SysQuartzJob/pauseSysQuartzJob", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String pauseSysQuartzJob(
 			HttpServletRequest request, 
@@ -256,11 +266,12 @@ public class SysQuartzJobController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	 * "恢复定时任务"
+	 * 恢复定时任务
 	 * @param request
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "恢复定时任务")
 	@RequestMapping(value = "/sys/SysQuartzJob/resumeSysQuartzJob", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String resumeSysQuartzJob(
 			HttpServletRequest request, 
@@ -283,11 +294,12 @@ public class SysQuartzJobController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	 * "立即执行定时任务"
+	 * 立即执行定时任务
 	 * @param request
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "立即执行定时任务")
 	@RequestMapping(value = "/sys/SysQuartzJob/triggerSysQuartzJob", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String triggerSysQuartzJob(
 			HttpServletRequest request, 

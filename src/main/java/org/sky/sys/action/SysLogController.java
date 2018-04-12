@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysLog;
@@ -33,6 +35,7 @@ public class SysLogController extends BaseController{
 	/**
 	*显示日志表列表页面
 	**/
+	@SysControllerLog(desc = "显示日志表列表页面")
 	@RequestMapping(value = "/base/SysLog/initSysLogListPage", method = { RequestMethod.GET })
 	public String initSysLogListPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -44,6 +47,7 @@ public class SysLogController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "日志表分页查询")
 	@RequestMapping(value = "/base/SysLog/getSysLogByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysLogByPage(
 			HttpServletRequest request, 
@@ -67,6 +71,7 @@ public class SysLogController extends BaseController{
 	/**
 	*显示日志表新增页面
 	**/
+	@SysControllerLog(desc = "显示日志表新增页面")
 	@RequestMapping(value = "/base/SysLog/initAddSysLogPage", method = { RequestMethod.GET })
 	public String initAddSysLogPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -75,6 +80,7 @@ public class SysLogController extends BaseController{
 	/**
 	*显示日志表修改页面
 	**/
+	@SysControllerLog(desc = "显示日志表修改页面")
 	@RequestMapping(value = "/base/SysLog/initEditSysLogPage", method = { RequestMethod.GET })
 	public String initEditSysLogPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -83,6 +89,7 @@ public class SysLogController extends BaseController{
 	/**
 	*显示日志表详细页面
 	**/
+	@SysControllerLog(desc = "显示日志表详细页面")
 	@RequestMapping(value = "/base/SysLog/initDetailSysLogPage", method = { RequestMethod.GET })
 	public String initDetailSysLogPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -91,6 +98,7 @@ public class SysLogController extends BaseController{
 	/**
 	*保存新增/修改日志表
 	**/
+	@SysControllerLog(desc = "保存新增/修改日志表")
 	@RequestMapping(value = "/base/SysLog/saveAddEditSysLog", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysLog(
 			HttpServletRequest request, 
@@ -112,6 +120,7 @@ public class SysLogController extends BaseController{
 	/**
 	*删除日志表
 	**/
+	@SysControllerLog(desc = "删除日志表")
 	@RequestMapping(value = "/base/SysLog/delSysLog", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysLog(
 			HttpServletRequest request, 
@@ -134,6 +143,7 @@ public class SysLogController extends BaseController{
 	/**
 	*根据主键查询日志表
 	**/
+	@SysControllerLog(desc = "根据主键查询日志表")
 	@RequestMapping(value = "/base/SysLog/getSysLogById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysLogById(
 			HttpServletRequest request, 

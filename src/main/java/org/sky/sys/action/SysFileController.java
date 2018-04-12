@@ -19,6 +19,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysFile;
@@ -57,6 +59,7 @@ public class SysFileController extends BaseController{
 	/**
 	*显示附件表列表页面
 	**/
+	@SysControllerLog(desc = "显示附件表列表页面")
 	@RequestMapping(value = "/sys/SysFile/initSysFileListPage", method = { RequestMethod.GET })
 	public String initSysFileListPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -65,6 +68,7 @@ public class SysFileController extends BaseController{
 	/**
 	 * 附件上传
 	 */
+	@SysControllerLog(desc = "附件上传")
 	@RequestMapping(value = "/sys/SysFile/initSysFileUploadPage", method = { RequestMethod.GET })
 	public String initSysFileUploadPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -76,6 +80,7 @@ public class SysFileController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "附件表分页查询")
 	@RequestMapping(value = "/sys/SysFile/getSysFileByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysFileByPage(
 			HttpServletRequest request, 
@@ -100,6 +105,7 @@ public class SysFileController extends BaseController{
 	/**
 	*显示附件表新增页面
 	**/
+	@SysControllerLog(desc = "显示附件表新增页面")
 	@RequestMapping(value = "/sys/SysFile/initAddSysFilePage", method = { RequestMethod.GET })
 	public String initAddSysFilePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -108,6 +114,7 @@ public class SysFileController extends BaseController{
 	/**
 	*显示附件表修改页面
 	**/
+	@SysControllerLog(desc = "显示附件表修改页面")
 	@RequestMapping(value = "/sys/SysFile/initEditSysFilePage", method = { RequestMethod.GET })
 	public String initEditSysFilePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -116,6 +123,7 @@ public class SysFileController extends BaseController{
 	/**
 	*显示附件表详细页面
 	**/
+	@SysControllerLog(desc = "显示附件表详细页面")
 	@RequestMapping(value = "/sys/SysFile/initDetailSysFilePage", method = { RequestMethod.GET })
 	public String initDetailSysFilePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -124,6 +132,7 @@ public class SysFileController extends BaseController{
 	/**
 	*保存新增/修改附件表
 	**/
+	@SysControllerLog(desc = "保存新增/修改附件表")
 	@RequestMapping(value = "/sys/SysFile/saveAddEditSysFile", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysFile(
 			HttpServletRequest request, 
@@ -145,6 +154,7 @@ public class SysFileController extends BaseController{
 	/**
 	*删除附件表
 	**/
+	@SysControllerLog(desc = "删除附件表")
 	@RequestMapping(value = "/sys/SysFile/delSysFile", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysFile(
 			HttpServletRequest request, 
@@ -167,6 +177,7 @@ public class SysFileController extends BaseController{
 	/**
 	*根据主键查询附件表
 	**/
+	@SysControllerLog(desc = "根据主键查询附件表")
 	@RequestMapping(value = "/sys/SysFile/getSysFileById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysFileById(
 			HttpServletRequest request, 
@@ -182,6 +193,7 @@ public class SysFileController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SysControllerLog(desc = "下载zip格式的文件")
 	@RequestMapping(value = "/sys/SysFile/downexcelzip")
 	public void downexcelzip(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		BufferedInputStream bis = null;
@@ -235,6 +247,7 @@ public class SysFileController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SysControllerLog(desc = "下载zip格式的文件")
 	@RequestMapping(value = "/sys/SysFile/downzip", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public void downZip(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -316,6 +329,7 @@ public class SysFileController extends BaseController{
 		}
 		return filename;
 	}
+	@SysControllerLog(desc = "上传文件")
 	@RequestMapping(value = "/sys/SysFile/upLoadFiles", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public @ResponseBody
 	ResultData upLoadFiles(HttpServletRequest request, HttpServletResponse response)
@@ -383,7 +397,7 @@ public class SysFileController extends BaseController{
 		rd.setName("上传成功");
 		return rd;
 	}
-	
+	@SysControllerLog(desc = "上传文件")
 	@RequestMapping(value = "/sys/fileupload", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public void uploadFile(HttpServletRequest request,
 			HttpServletResponse response, @RequestParam("rm") String redirect) {
@@ -472,6 +486,7 @@ public class SysFileController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
+	@SysControllerLog(desc = "下载格式的文件")
 	@RequestMapping(value = "/sys/SysFile/downfile", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public  @ResponseBody
 	ResultData downfile(HttpServletRequest request, HttpServletResponse response)

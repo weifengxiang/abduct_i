@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.ywbl.model.TbStXsxx;
@@ -33,6 +35,7 @@ public class TbStXsxxController extends BaseController{
 	/**
 	*显示线索信息列表页面
 	**/
+	@SysControllerLog(desc = "显示线索信息列表页面")
 	@RequestMapping(value = "/ywbl/TbStXsxx/initTbStXsxxListPage", method = { RequestMethod.GET })
 	public String initTbStXsxxListPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -44,6 +47,7 @@ public class TbStXsxxController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "线索信息分页查询")
 	@RequestMapping(value = "/ywbl/TbStXsxx/getTbStXsxxByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getTbStXsxxByPage(
 			HttpServletRequest request, 
@@ -67,6 +71,7 @@ public class TbStXsxxController extends BaseController{
 	/**
 	*显示线索信息新增页面
 	**/
+	@SysControllerLog(desc = "显示线索信息新增页面")
 	@RequestMapping(value = "/ywbl/TbStXsxx/initAddTbStXsxxPage", method = { RequestMethod.GET })
 	public String initAddTbStXsxxPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -75,6 +80,7 @@ public class TbStXsxxController extends BaseController{
 	/**
 	*显示线索信息修改页面
 	**/
+	@SysControllerLog(desc = "显示线索信息修改页面")
 	@RequestMapping(value = "/ywbl/TbStXsxx/initEditTbStXsxxPage", method = { RequestMethod.GET })
 	public String initEditTbStXsxxPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -83,6 +89,7 @@ public class TbStXsxxController extends BaseController{
 	/**
 	*显示线索信息详细页面
 	**/
+	@SysControllerLog(desc = "显示线索信息详细页面")
 	@RequestMapping(value = "/ywbl/TbStXsxx/initDetailTbStXsxxPage", method = { RequestMethod.GET })
 	public String initDetailTbStXsxxPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -91,6 +98,7 @@ public class TbStXsxxController extends BaseController{
 	/**
 	*保存新增/修改线索信息
 	**/
+	@SysControllerLog(desc = "保存新增/修改线索信息")
 	@RequestMapping(value = "/ywbl/TbStXsxx/saveAddEditTbStXsxx", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditTbStXsxx(
 			HttpServletRequest request, 
@@ -112,6 +120,7 @@ public class TbStXsxxController extends BaseController{
 	/**
 	*删除线索信息
 	**/
+	@SysControllerLog(desc = "删除线索信息")
 	@RequestMapping(value = "/ywbl/TbStXsxx/delTbStXsxx", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delTbStXsxx(
 			HttpServletRequest request, 
@@ -134,6 +143,7 @@ public class TbStXsxxController extends BaseController{
 	/**
 	*根据主键查询线索信息
 	**/
+	@SysControllerLog(desc = "根据主键查询线索信息")
 	@RequestMapping(value = "/ywbl/TbStXsxx/getTbStXsxxById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getTbStXsxxById(
 			HttpServletRequest request, 

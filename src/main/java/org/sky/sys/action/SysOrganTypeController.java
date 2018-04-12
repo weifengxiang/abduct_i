@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysOrganType;
@@ -33,6 +35,7 @@ public class SysOrganTypeController extends BaseController{
 	/**
 	*显示组织机构类型列表页面
 	**/
+	@SysControllerLog(desc = "显示组织机构类型列表页面")
 	@RequestMapping(value = "/sys/SysOrganType/initSysOrganTypeListPage", method = { RequestMethod.GET })
 	public String initSysOrganTypeListPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -44,6 +47,7 @@ public class SysOrganTypeController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "组织机构类型分页查询")
 	@RequestMapping(value = "/sys/SysOrganType/getSysOrganTypeByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysOrganTypeByPage(
 			HttpServletRequest request, 
@@ -68,6 +72,7 @@ public class SysOrganTypeController extends BaseController{
 	/**
 	*显示组织机构类型新增页面
 	**/
+	@SysControllerLog(desc = "显示组织机构类型新增页面")
 	@RequestMapping(value = "/sys/SysOrganType/initAddSysOrganTypePage", method = { RequestMethod.GET })
 	public String initAddSysOrganTypePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -76,6 +81,7 @@ public class SysOrganTypeController extends BaseController{
 	/**
 	*显示组织机构类型修改页面
 	**/
+	@SysControllerLog(desc = "显示组织机构类型修改页面")
 	@RequestMapping(value = "/sys/SysOrganType/initEditSysOrganTypePage", method = { RequestMethod.GET })
 	public String initEditSysOrganTypePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -84,6 +90,7 @@ public class SysOrganTypeController extends BaseController{
 	/**
 	*显示组织机构类型详细页面
 	**/
+	@SysControllerLog(desc = "显示组织机构类型详细页面")
 	@RequestMapping(value = "/sys/SysOrganType/initDetailSysOrganTypePage", method = { RequestMethod.GET })
 	public String initDetailSysOrganTypePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -92,6 +99,7 @@ public class SysOrganTypeController extends BaseController{
 	/**
 	*保存新增/修改组织机构类型
 	**/
+	@SysControllerLog(desc = "保存新增/修改组织机构类型")
 	@RequestMapping(value = "/sys/SysOrganType/saveAddEditSysOrganType", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysOrganType(
 			HttpServletRequest request, 
@@ -113,6 +121,7 @@ public class SysOrganTypeController extends BaseController{
 	/**
 	*删除组织机构类型
 	**/
+	@SysControllerLog(desc = "删除组织机构类型")
 	@RequestMapping(value = "/sys/SysOrganType/delSysOrganType", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysOrganType(
 			HttpServletRequest request, 
@@ -135,6 +144,7 @@ public class SysOrganTypeController extends BaseController{
 	/**
 	*根据主键查询组织机构类型
 	**/
+	@SysControllerLog(desc = "根据主键查询组织机构类型")
 	@RequestMapping(value = "/sys/SysOrganType/getSysOrganTypeById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysOrganTypeById(
 			HttpServletRequest request, 

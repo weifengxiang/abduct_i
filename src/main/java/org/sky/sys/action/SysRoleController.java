@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysOperation;
@@ -42,6 +44,7 @@ public class SysRoleController extends BaseController{
 	/**
 	*显示角色表管理页面
 	**/
+	@SysControllerLog(desc = "显示角色表管理页面")
 	@RequestMapping(value = "/sys/SysRole/initSysRoleManagePage", method = { RequestMethod.GET })
 	public String initSysRoleManagePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -53,6 +56,7 @@ public class SysRoleController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "角色表分页查询")
 	@RequestMapping(value = "/sys/SysRole/getSysRoleByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysRoleByPage(
 			HttpServletRequest request, 
@@ -77,6 +81,7 @@ public class SysRoleController extends BaseController{
 	/**
 	*显示角色表新增页面
 	**/
+	@SysControllerLog(desc = "显示角色表新增页面")
 	@RequestMapping(value = "/sys/SysRole/initAddSysRolePage", method = { RequestMethod.GET })
 	public String initAddSysRolePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -85,6 +90,7 @@ public class SysRoleController extends BaseController{
 	/**
 	*显示角色表修改页面
 	**/
+	@SysControllerLog(desc = "显示角色表修改页面")
 	@RequestMapping(value = "/sys/SysRole/initEditSysRolePage", method = { RequestMethod.GET })
 	public String initEditSysRolePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -93,6 +99,7 @@ public class SysRoleController extends BaseController{
 	/**
 	*显示角色表详细页面
 	**/
+	@SysControllerLog(desc = "显示角色表详细页面")
 	@RequestMapping(value = "/sys/SysRole/initDetailSysRolePage", method = { RequestMethod.GET })
 	public String initDetailSysRolePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -101,6 +108,7 @@ public class SysRoleController extends BaseController{
 	/**
 	*保存新增/修改角色表
 	**/
+	@SysControllerLog(desc = "保存新增/修改角色表")
 	@RequestMapping(value = "/sys/SysRole/saveAddEditSysRole", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysRole(
 			HttpServletRequest request, 
@@ -122,6 +130,7 @@ public class SysRoleController extends BaseController{
 	/**
 	*删除角色表
 	**/
+	@SysControllerLog(desc = "删除角色表")
 	@RequestMapping(value = "/sys/SysRole/delSysRole", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysRole(
 			HttpServletRequest request, 
@@ -144,6 +153,7 @@ public class SysRoleController extends BaseController{
 	/**
 	*根据主键查询角色表
 	**/
+	@SysControllerLog(desc = "根据主键查询角色表")
 	@RequestMapping(value = "/sys/SysRole/getSysRoleById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysRoleById(
 			HttpServletRequest request, 
@@ -158,6 +168,7 @@ public class SysRoleController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "角色操作树页面")
 	@RequestMapping(value = "/sys/SysRole/initRoleOpeTreePage", method = { RequestMethod.GET })
 	public String initRoleOpeTreePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -170,6 +181,7 @@ public class SysRoleController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "根据角色编码查询功能树")
 	@RequestMapping(value = "/sys/SysRole/getRoleOpeTree/{roleCode}", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody List<TreeStru> getRoleOpeTree(
 			@PathVariable String roleCode,
@@ -183,6 +195,7 @@ public class SysRoleController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "保存角色操作")
 	@RequestMapping(value = "/sys/SysRole/saveRoleOperation", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveRoleOperation(
 			HttpServletRequest request, 
@@ -207,6 +220,7 @@ public class SysRoleController extends BaseController{
 	/**
 	*显示角色微件列表页面
 	**/
+	@SysControllerLog(desc = "显示角色微件列表页面")
 	@RequestMapping(value = "/sys/SysRole/initSysRoleWidgetPage", method = { RequestMethod.GET })
 	public String initSysRoleWidgetPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -218,6 +232,7 @@ public class SysRoleController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "角色微件分页查询")
 	@RequestMapping(value = "/sys/SysRole/getSysRoleWidgetByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysRoleWidgetByPage(
 			HttpServletRequest request, 
@@ -239,6 +254,7 @@ public class SysRoleController extends BaseController{
 		PageListData pageData = sysrolewidgetService.getSysRoleWidgetByPage(pote);
 		return JsonUtils.obj2json(pageData);
 	}
+	@SysControllerLog(desc = "保存增加/修改角色微件")
 	@RequestMapping(value = "/sys/SysRole/saveAddEditSysRoleWidgetList", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysRoleWidgetList(
 			HttpServletRequest request, 
@@ -269,6 +285,7 @@ public class SysRoleController extends BaseController{
 	/**
 	*删除角色微件
 	**/
+	@SysControllerLog(desc = "删除角色微件")
 	@RequestMapping(value = "/sys/SysRole/delSysRoleWidget", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysRoleWidget(
 			HttpServletRequest request, 

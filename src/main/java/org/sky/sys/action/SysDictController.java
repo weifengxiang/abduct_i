@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysDict;
@@ -38,6 +40,7 @@ public class SysDictController extends BaseController{
 	/**
 	*显示字典表列表页面
 	**/
+	@SysControllerLog(desc = "显示字典表列表页面")
 	@RequestMapping(value = "/sys/SysDict/initSysDictListPage", method = { RequestMethod.GET })
 	public String initSysDictListPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -49,6 +52,7 @@ public class SysDictController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "字典表分页查询")
 	@RequestMapping(value = "/sys/SysDict/getSysDictByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysDictByPage(
 			HttpServletRequest request, 
@@ -73,6 +77,7 @@ public class SysDictController extends BaseController{
 	/**
 	*显示字典表新增页面
 	**/
+	@SysControllerLog(desc = "显示字典表新增页面")
 	@RequestMapping(value = "/sys/SysDict/initAddSysDictPage", method = { RequestMethod.GET })
 	public String initAddSysDictPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -89,6 +94,7 @@ public class SysDictController extends BaseController{
 	/**
 	*显示字典表详细页面
 	**/
+	@SysControllerLog(desc = "显示字典表详细页面")
 	@RequestMapping(value = "/sys/SysDict/initDetailSysDictPage", method = { RequestMethod.GET })
 	public String initDetailSysDictPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -97,6 +103,7 @@ public class SysDictController extends BaseController{
 	/**
 	*保存新增/修改字典表
 	**/
+	@SysControllerLog(desc = "保存新增/修改字典表")
 	@RequestMapping(value = "/sys/SysDict/saveAddEditSysDict", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysDict(
 			HttpServletRequest request, 
@@ -118,6 +125,7 @@ public class SysDictController extends BaseController{
 	/**
 	*删除字典表
 	**/
+	@SysControllerLog(desc = "删除字典表")
 	@RequestMapping(value = "/sys/SysDict/delSysDict", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysDict(
 			HttpServletRequest request, 
@@ -140,6 +148,7 @@ public class SysDictController extends BaseController{
 	/**
 	*根据主键查询字典表
 	**/
+	@SysControllerLog(desc = "根据主键查询字典表")
 	@RequestMapping(value = "/sys/SysDict/getSysDictById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysDictById(
 			HttpServletRequest request, 
@@ -154,6 +163,7 @@ public class SysDictController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "字典项表分页查询")
 	@RequestMapping(value = "/sys/SysDict/getSysDictItemByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysDictItemByPage(
 			HttpServletRequest request, 
@@ -179,6 +189,7 @@ public class SysDictController extends BaseController{
 	/**
 	*显示字典项表新增页面
 	**/
+	@SysControllerLog(desc = "显示字典项表新增页面")
 	@RequestMapping(value = "/sys/SysDict/initAddSysDictItemPage", method = { RequestMethod.GET })
 	public String initAddSysDictItemPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -187,6 +198,7 @@ public class SysDictController extends BaseController{
 	/**
 	*显示字典项表修改页面
 	**/
+	@SysControllerLog(desc = "显示字典项表修改页面")
 	@RequestMapping(value = "/sys/SysDict/initEditSysDictItemPage", method = { RequestMethod.GET })
 	public String initEditSysDictItemPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -195,6 +207,7 @@ public class SysDictController extends BaseController{
 	/**
 	*显示字典项表详细页面
 	**/
+	@SysControllerLog(desc = "显示字典项表详细页面")
 	@RequestMapping(value = "/sys/SysDict/initDetailSysDictItemPage", method = { RequestMethod.GET })
 	public String initDetailSysDictItemPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -203,6 +216,7 @@ public class SysDictController extends BaseController{
 	/**
 	*保存新增/修改字典项表
 	**/
+	@SysControllerLog(desc = "保存新增/修改字典项表")
 	@RequestMapping(value = "/sys/SysDict/saveAddEditSysDictItem", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysDictItem(
 			HttpServletRequest request, 
@@ -224,6 +238,7 @@ public class SysDictController extends BaseController{
 	/**
 	*删除字典项表
 	**/
+	@SysControllerLog(desc = "删除字典项表")
 	@RequestMapping(value = "/sys/SysDict/delSysDictItem", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysDictItem(
 			HttpServletRequest request, 
@@ -246,6 +261,7 @@ public class SysDictController extends BaseController{
 	/**
 	*根据主键查询字典项表
 	**/
+	@SysControllerLog(desc = "根据主键查询字典项表")
 	@RequestMapping(value = "/sys/SysDict/getSysDictItemById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysDictItemById(
 			HttpServletRequest request, 

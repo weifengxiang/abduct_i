@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysWidget;
@@ -33,6 +35,7 @@ public class SysWidgetController extends BaseController{
 	/**
 	*显示微件列表页面
 	**/
+	@SysControllerLog(desc = "显示微件列表页面")
 	@RequestMapping(value = "/sys/SysWidget/initSysWidgetListPage", method = { RequestMethod.GET })
 	public String initSysWidgetListPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -44,6 +47,7 @@ public class SysWidgetController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "微件分页查询")
 	@RequestMapping(value = "/sys/SysWidget/getSysWidgetByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysWidgetByPage(
 			HttpServletRequest request, 
@@ -67,6 +71,7 @@ public class SysWidgetController extends BaseController{
 	/**
 	*显示微件新增页面
 	**/
+	@SysControllerLog(desc = "显示微件新增页面")
 	@RequestMapping(value = "/sys/SysWidget/initAddSysWidgetPage", method = { RequestMethod.GET })
 	public String initAddSysWidgetPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -75,6 +80,7 @@ public class SysWidgetController extends BaseController{
 	/**
 	*显示微件修改页面
 	**/
+	@SysControllerLog(desc = "显示微件修改页面")
 	@RequestMapping(value = "/sys/SysWidget/initEditSysWidgetPage", method = { RequestMethod.GET })
 	public String initEditSysWidgetPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -83,6 +89,7 @@ public class SysWidgetController extends BaseController{
 	/**
 	*显示微件详细页面
 	**/
+	@SysControllerLog(desc = "显示微件详细页面")
 	@RequestMapping(value = "/sys/SysWidget/initDetailSysWidgetPage", method = { RequestMethod.GET })
 	public String initDetailSysWidgetPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -91,6 +98,7 @@ public class SysWidgetController extends BaseController{
 	/**
 	*保存新增/修改微件
 	**/
+	@SysControllerLog(desc = "保存新增/修改微件")
 	@RequestMapping(value = "/sys/SysWidget/saveAddEditSysWidget", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysWidget(
 			HttpServletRequest request, 
@@ -112,6 +120,7 @@ public class SysWidgetController extends BaseController{
 	/**
 	*删除微件
 	**/
+	@SysControllerLog(desc = "删除微件")
 	@RequestMapping(value = "/sys/SysWidget/delSysWidget", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysWidget(
 			HttpServletRequest request, 
@@ -134,6 +143,7 @@ public class SysWidgetController extends BaseController{
 	/**
 	*根据主键查询微件
 	**/
+	@SysControllerLog(desc = "根据主键查询微件")
 	@RequestMapping(value = "/sys/SysWidget/getSysWidgetById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysWidgetById(
 			HttpServletRequest request, 

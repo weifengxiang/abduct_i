@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.sky.log.SysControllerLog;
 import org.sky.sys.model.SysMenu;
 import org.sky.sys.model.SysOperation;
 import org.sky.sys.service.SysFunctionService;
@@ -27,6 +28,7 @@ public class SysFunctionController extends BaseController {
 	/**
 	*显示功能管理
 	**/
+	@SysControllerLog(desc = "显示功能管理")
 	@RequestMapping(value = "/sys/function/initSysFunctionManangePage", method = { RequestMethod.GET })
 	public String initSysFunctionManangePage(HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/sys/function/sysfunmanage";
@@ -37,6 +39,7 @@ public class SysFunctionController extends BaseController {
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "功能管理树数据查询")
 	@RequestMapping(value = "/sys/function/getSysFunctionTree", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody List<TreeStru> getSysFunctionTree(HttpServletRequest request, 
 			HttpServletResponse response){
@@ -54,6 +57,7 @@ public class SysFunctionController extends BaseController {
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "打开菜单添加页面")
 	@RequestMapping(value = "/sys/function/initAddSysMenuPage", method = { RequestMethod.GET })
 	public String initAddSysMenu(HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/sys/function/editsysmenu";
@@ -65,6 +69,7 @@ public class SysFunctionController extends BaseController {
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "打开菜单修改页面")
 	@RequestMapping(value = "/sys/function/initEditSysMenuPage", method = { RequestMethod.GET })
 	public String initEditSysMenu(HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/sys/function/editsysmenu";
@@ -72,6 +77,7 @@ public class SysFunctionController extends BaseController {
 	/**
 	*根据主键查询菜单表
 	**/
+	@SysControllerLog(desc = "根据主键查询菜单表")
 	@RequestMapping(value = "/sys/function/getSysMenuById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysMenuById(
 			HttpServletRequest request, 
@@ -83,6 +89,7 @@ public class SysFunctionController extends BaseController {
 	/**
 	*保存添加/修改菜单表
 	**/
+	@SysControllerLog(desc = "保存添加/修改菜单表")
 	@RequestMapping(value = "/sys/function/saveAddEditSysMenu", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysMenu(
 			HttpServletRequest request, 
@@ -108,6 +115,7 @@ public class SysFunctionController extends BaseController {
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "打开操作添加页面")
 	@RequestMapping(value = "/sys/function/initAddSysOperationPage", method = { RequestMethod.GET })
 	public String initAddSysOperation(HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/sys/function/editsysoperation";
@@ -119,6 +127,7 @@ public class SysFunctionController extends BaseController {
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "打开操作修改页面")
 	@RequestMapping(value = "/sys/function/initEditSysOperationPage", method = { RequestMethod.GET })
 	public String initEditSysOperation(HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/sys/function/editsysoperation";
@@ -126,6 +135,7 @@ public class SysFunctionController extends BaseController {
 	/**
 	*根据主键查询操作表
 	**/
+	@SysControllerLog(desc = "根据主键查询操作表")
 	@RequestMapping(value = "/sys/function/getSysOperationById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysOperationById(
 			HttpServletRequest request, 
@@ -137,6 +147,7 @@ public class SysFunctionController extends BaseController {
 	/**
 	*保存添加/修改操作表
 	**/
+	@SysControllerLog(desc = "保存添加/修改操作表")
 	@RequestMapping(value = "/sys/function/saveAddEditSysOperation", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveEditSysOperation(
 			HttpServletRequest request, 
@@ -158,6 +169,7 @@ public class SysFunctionController extends BaseController {
 	/**
 	 * 删除菜单
 	 */
+	@SysControllerLog(desc = "删除菜单")
 	@RequestMapping(value = "/sys/function/delSysMenu", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody ResultData delSysMenu(
 			HttpServletRequest request, 
@@ -181,6 +193,7 @@ public class SysFunctionController extends BaseController {
 	/**
 	 * 删除操作
 	 */
+	@SysControllerLog(desc = "删除操作")
 	@RequestMapping(value = "/sys/function/delSysOperation", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody ResultData delSysOperation(
 			HttpServletRequest request, 

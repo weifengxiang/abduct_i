@@ -115,18 +115,6 @@ public class SysController {
 			HttpServletRequest request, HttpServletResponse response) {
 		return "login";
 	}
-	/**
-	 * 钉钉login
-	 * @param map
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	@RequestMapping(value = "/dingding/login", method = { RequestMethod.GET })
-	public String dingdingLogin(Map<String, Object> map,
-			HttpServletRequest request, HttpServletResponse response) {
-		return "jsp/dingding/login";
-	}
 	@RequestMapping(value = "/loginfailed", method = { RequestMethod.GET })
 	public String loginfailed(Map<String, Object> map,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -150,7 +138,7 @@ public class SysController {
 			return "jsp/main/main";
 		}
 	}
-	
+	@SysControllerLog(desc = "用户退出系统")
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET })
 	public String logout(Map<String, Object> map,
 			HttpServletRequest request, HttpServletResponse response) {

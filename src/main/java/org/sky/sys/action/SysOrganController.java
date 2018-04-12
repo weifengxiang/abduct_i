@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysOrgan;
@@ -34,11 +36,13 @@ public class SysOrganController extends BaseController{
 	/**
 	*显示组织机构管理页面
 	**/
+	@SysControllerLog(desc = "显示组织机构管理页面")
 	@RequestMapping(value = "/sys/SysOrgan/initSysOrganManagePage", method = { RequestMethod.GET })
 	public String initSysOrganListPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/sys/organ/sysorganmanage";
 	}
+	@SysControllerLog(desc = "查询组织机构树")
 	@RequestMapping(value = "/sys/SysOrgan/getSysOrganTree", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody List<TreeStru> getSysOrganTree(HttpServletRequest request, 
 			HttpServletResponse response){
@@ -55,6 +59,7 @@ public class SysOrganController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "组织机构表分页查询")
 	@RequestMapping(value = "/sys/SysOrgan/getSysOrganByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysOrganByPage(
 			HttpServletRequest request, 
@@ -79,6 +84,7 @@ public class SysOrganController extends BaseController{
 	/**
 	*显示组织机构表新增页面
 	**/
+	@SysControllerLog(desc = "显示组织机构表新增页面")
 	@RequestMapping(value = "/sys/SysOrgan/initAddSysOrganPage", method = { RequestMethod.GET })
 	public String initAddSysOrganPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -87,6 +93,7 @@ public class SysOrganController extends BaseController{
 	/**
 	*显示组织机构表修改页面
 	**/
+	@SysControllerLog(desc = "显示组织机构表修改页面")
 	@RequestMapping(value = "/sys/SysOrgan/initEditSysOrganPage", method = { RequestMethod.GET })
 	public String initEditSysOrganPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -95,6 +102,7 @@ public class SysOrganController extends BaseController{
 	/**
 	*显示组织机构表详细页面
 	**/
+	@SysControllerLog(desc = "显示组织机构表详细页面")
 	@RequestMapping(value = "/sys/SysOrgan/initDetailSysOrganPage", method = { RequestMethod.GET })
 	public String initDetailSysOrganPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -103,6 +111,7 @@ public class SysOrganController extends BaseController{
 	/**
 	*保存新增/修改组织机构表
 	**/
+	@SysControllerLog(desc = "保存新增/修改组织机构表")
 	@RequestMapping(value = "/sys/SysOrgan/saveAddEditSysOrgan", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysOrgan(
 			HttpServletRequest request, 
@@ -124,6 +133,7 @@ public class SysOrganController extends BaseController{
 	/**
 	*删除组织机构表
 	**/
+	@SysControllerLog(desc = "删除组织机构表")
 	@RequestMapping(value = "/sys/SysOrgan/delSysOrgan", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysOrgan(
 			HttpServletRequest request, 
@@ -146,6 +156,7 @@ public class SysOrganController extends BaseController{
 	/**
 	*根据主键查询组织机构表
 	**/
+	@SysControllerLog(desc = "根据主键查询组织机构表")
 	@RequestMapping(value = "/sys/SysOrgan/getSysOrganById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysOrganById(
 			HttpServletRequest request, 

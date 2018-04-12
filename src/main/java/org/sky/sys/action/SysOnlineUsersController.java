@@ -19,6 +19,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.sky.log.SysControllerLog;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.security.MyUserDetails;
 import org.sky.sys.utils.JsonUtils;
@@ -43,12 +44,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SysOnlineUsersController {
 	@Autowired
 	private SessionRegistry sessionRegistry;
-
+	@SysControllerLog(desc = "打开在线用户页面")
 	@RequestMapping(value = "/sys/onlineuser/initOnlineUserListPage", method = { RequestMethod.GET })
 	public String initOnlineUserListPage(Map<String, Object> map,
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/sys/onlineuser/onlineuser";
 	}
+	@SysControllerLog(desc = "查询在线用户")
 	@RequestMapping(value = "/sys/onlineuser/getOnlineUser", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getOnlineUser(
 			HttpServletRequest request, 
@@ -80,6 +82,7 @@ public class SysOnlineUsersController {
         pageData.setRows(rows);
         return JsonUtils.obj2json(pageData);
 	}
+	@SysControllerLog(desc = "强制用户下线成功")
 	@RequestMapping(value = "/sys/onlineuser/kickOut", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String kickOut(
 			HttpServletRequest request, 

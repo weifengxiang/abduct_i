@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysNotice;
@@ -33,6 +35,7 @@ public class SysNoticeController extends BaseController{
 	/**
 	*显示通知列表页面
 	**/
+	@SysControllerLog(desc = "显示通知列表页面")
 	@RequestMapping(value = "/base/SysNotice/initSysNoticeListPage", method = { RequestMethod.GET })
 	public String initSysNoticeListPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -44,6 +47,7 @@ public class SysNoticeController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "通知分页查询")
 	@RequestMapping(value = "/base/SysNotice/getSysNoticeByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysNoticeByPage(
 			HttpServletRequest request, 
@@ -67,6 +71,7 @@ public class SysNoticeController extends BaseController{
 	/**
 	*显示通知新增页面
 	**/
+	@SysControllerLog(desc = "显示通知新增页面")
 	@RequestMapping(value = "/base/SysNotice/initAddSysNoticePage", method = { RequestMethod.GET })
 	public String initAddSysNoticePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -75,6 +80,7 @@ public class SysNoticeController extends BaseController{
 	/**
 	*显示通知修改页面
 	**/
+	@SysControllerLog(desc = "显示通知修改页面")
 	@RequestMapping(value = "/base/SysNotice/initEditSysNoticePage", method = { RequestMethod.GET })
 	public String initEditSysNoticePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -83,6 +89,7 @@ public class SysNoticeController extends BaseController{
 	/**
 	*显示通知详细页面
 	**/
+	@SysControllerLog(desc = "显示通知详细页面")
 	@RequestMapping(value = "/base/SysNotice/initDetailSysNoticePage", method = { RequestMethod.GET })
 	public String initDetailSysNoticePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -91,6 +98,7 @@ public class SysNoticeController extends BaseController{
 	/**
 	*保存新增/修改通知
 	**/
+	@SysControllerLog(desc = "保存新增/修改通知")
 	@RequestMapping(value = "/base/SysNotice/saveAddEditSysNotice", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysNotice(
 			HttpServletRequest request, 
@@ -112,6 +120,7 @@ public class SysNoticeController extends BaseController{
 	/**
 	*删除通知
 	**/
+	@SysControllerLog(desc = "删除通知")
 	@RequestMapping(value = "/base/SysNotice/delSysNotice", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysNotice(
 			HttpServletRequest request, 
@@ -134,6 +143,7 @@ public class SysNoticeController extends BaseController{
 	/**
 	*根据主键查询通知
 	**/
+	@SysControllerLog(desc = "根据主键查询通知")
 	@RequestMapping(value = "/base/SysNotice/getSysNoticeById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysNoticeById(
 			HttpServletRequest request, 
@@ -145,6 +155,7 @@ public class SysNoticeController extends BaseController{
 	/**
 	*查询最新的消息通知
 	**/
+	@SysControllerLog(desc = "查询最新的消息通知")
 	@RequestMapping(value = "/base/SysNotice/getLasterSysNotice", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getLasterSysNotice(
 			HttpServletRequest request, 

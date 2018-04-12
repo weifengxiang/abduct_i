@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.ywbl.model.TbStAjjaxx;
@@ -33,6 +35,7 @@ public class TbStAjjaxxController extends BaseController{
 	/**
 	*显示案件结案信息列表页面
 	**/
+	@SysControllerLog(desc = "显示案件结案信息列表页面")
 	@RequestMapping(value = "/ywbl/TbStAjjaxx/initTbStAjjaxxListPage", method = { RequestMethod.GET })
 	public String initTbStAjjaxxListPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -44,6 +47,7 @@ public class TbStAjjaxxController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "案件结案信息分页查询")
 	@RequestMapping(value = "/ywbl/TbStAjjaxx/getTbStAjjaxxByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getTbStAjjaxxByPage(
 			HttpServletRequest request, 
@@ -67,6 +71,7 @@ public class TbStAjjaxxController extends BaseController{
 	/**
 	*显示案件结案信息新增页面
 	**/
+	@SysControllerLog(desc = "显示案件结案信息新增页面")
 	@RequestMapping(value = "/ywbl/TbStAjjaxx/initAddTbStAjjaxxPage", method = { RequestMethod.GET })
 	public String initAddTbStAjjaxxPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -75,6 +80,7 @@ public class TbStAjjaxxController extends BaseController{
 	/**
 	*显示案件结案信息修改页面
 	**/
+	@SysControllerLog(desc = "显示案件结案信息修改页面")
 	@RequestMapping(value = "/ywbl/TbStAjjaxx/initEditTbStAjjaxxPage", method = { RequestMethod.GET })
 	public String initEditTbStAjjaxxPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -83,6 +89,7 @@ public class TbStAjjaxxController extends BaseController{
 	/**
 	*显示案件结案信息详细页面
 	**/
+	@SysControllerLog(desc = "显示案件结案信息详细页面")
 	@RequestMapping(value = "/ywbl/TbStAjjaxx/initDetailTbStAjjaxxPage", method = { RequestMethod.GET })
 	public String initDetailTbStAjjaxxPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -91,6 +98,7 @@ public class TbStAjjaxxController extends BaseController{
 	/**
 	*保存新增/修改案件结案信息
 	**/
+	@SysControllerLog(desc = "保存新增/修改案件结案信息")
 	@RequestMapping(value = "/ywbl/TbStAjjaxx/saveAddEditTbStAjjaxx", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditTbStAjjaxx(
 			HttpServletRequest request, 
@@ -112,6 +120,7 @@ public class TbStAjjaxxController extends BaseController{
 	/**
 	*删除案件结案信息
 	**/
+	@SysControllerLog(desc = "删除案件结案信息")
 	@RequestMapping(value = "/ywbl/TbStAjjaxx/delTbStAjjaxx", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delTbStAjjaxx(
 			HttpServletRequest request, 
@@ -134,6 +143,7 @@ public class TbStAjjaxxController extends BaseController{
 	/**
 	*根据主键查询案件结案信息
 	**/
+	@SysControllerLog(desc = "根据主键查询案件结案信息")
 	@RequestMapping(value = "/ywbl/TbStAjjaxx/getTbStAjjaxxById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getTbStAjjaxxById(
 			HttpServletRequest request, 

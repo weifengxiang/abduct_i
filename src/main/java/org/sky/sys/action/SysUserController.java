@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysUser;
@@ -44,6 +46,7 @@ public class SysUserController extends BaseController{
 	/**
 	*显示用户表管理页面
 	**/
+	@SysControllerLog(desc = "显示用户表管理页面")
 	@RequestMapping(value = "/sys/SysUser/initSysUserManagePage", method = { RequestMethod.GET })
 	public String initSysUserManagePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -55,6 +58,7 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "用户表分页查询")
 	@RequestMapping(value = "/sys/SysUser/getSysUserByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysUserByPage(
 			HttpServletRequest request, 
@@ -79,6 +83,7 @@ public class SysUserController extends BaseController{
 	/**
 	*显示用户表新增页面
 	**/
+	@SysControllerLog(desc = "显示用户表新增页面")
 	@RequestMapping(value = "/sys/SysUser/initAddSysUserPage", method = { RequestMethod.GET })
 	public String initAddSysUserPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -87,6 +92,7 @@ public class SysUserController extends BaseController{
 	/**
 	*显示用户表修改页面
 	**/
+	@SysControllerLog(desc = "显示用户表修改页面")
 	@RequestMapping(value = "/sys/SysUser/initEditSysUserPage", method = { RequestMethod.GET })
 	public String initEditSysUserPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -95,6 +101,7 @@ public class SysUserController extends BaseController{
 	/**
 	*显示用户表详细页面
 	**/
+	@SysControllerLog(desc = "显示用户表详细页面")
 	@RequestMapping(value = "/sys/SysUser/initDetailSysUserPage", method = { RequestMethod.GET })
 	public String initDetailSysUserPage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -103,6 +110,7 @@ public class SysUserController extends BaseController{
 	/**
 	*保存新增/修改用户表
 	**/
+	@SysControllerLog(desc = "保存新增/修改用户表")
 	@RequestMapping(value = "/sys/SysUser/saveAddEditSysUser", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysUser(
 			HttpServletRequest request, 
@@ -124,6 +132,7 @@ public class SysUserController extends BaseController{
 	/**
 	*删除用户表
 	**/
+	@SysControllerLog(desc = "删除用户表")
 	@RequestMapping(value = "/sys/SysUser/delSysUser", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysUser(
 			HttpServletRequest request, 
@@ -146,6 +155,7 @@ public class SysUserController extends BaseController{
 	/**
 	*根据主键查询用户表
 	**/
+	@SysControllerLog(desc = "根据主键查询用户表")
 	@RequestMapping(value = "/sys/SysUser/getSysUserById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysUserById(
 			HttpServletRequest request, 
@@ -157,6 +167,7 @@ public class SysUserController extends BaseController{
 	/**
 	 * 用户角色管理页面
 	 */
+	@SysControllerLog(desc = "用户角色管理页面")
 	@RequestMapping(value = "/sys/SysUser/initSysUserRoleManagePage", method = { RequestMethod.GET })
 	public String initSysUserRoleManagePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -165,6 +176,7 @@ public class SysUserController extends BaseController{
 	/**
 	 * 用户数据权限管理页面
 	 */
+	@SysControllerLog(desc = "用户数据权限管理页面")
 	@RequestMapping(value = "/sys/SysUser/initSysUserDataAccessManagePage", method = { RequestMethod.GET })
 	public String initSysUserDataAccessManagePage(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -176,6 +188,7 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "用户角色列表新增修改")
 	@RequestMapping(value = "/sys/SysUser/saveAddEditSysUserRoleList", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysUserRoleList(
 			HttpServletRequest request, 
@@ -209,6 +222,7 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "用户角色表分页查询")
 	@RequestMapping(value = "/sys/SysUser/getSysUserRoleByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysUserRoleByPage(
 			HttpServletRequest request, 
@@ -233,6 +247,7 @@ public class SysUserController extends BaseController{
 	/**
 	*删除用户角色表
 	**/
+	@SysControllerLog(desc = "删除用户角色表")
 	@RequestMapping(value = "/sys/SysUser/delSysUserRole", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysUserRole(
 			HttpServletRequest request, 
@@ -258,6 +273,7 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "保存用户数据权限")
 	@RequestMapping(value = "/sys/SysUser/saveAddEditSysUserDataAccessList", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysUserDataAccessList(
 			HttpServletRequest request, 
@@ -291,6 +307,7 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "用户数据权限表分页查询")
 	@RequestMapping(value = "/sys/SysUser/getSysUserDataAccessByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysUserDataAccessByPage(
 			HttpServletRequest request, 
@@ -315,6 +332,7 @@ public class SysUserController extends BaseController{
 	/**
 	*删除用户数据权限表
 	**/
+	@SysControllerLog(desc = "删除用户数据权限表")
 	@RequestMapping(value = "/sys/SysUser/delSysUserDataAccess", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysUserDataAccess(
 			HttpServletRequest request, 
@@ -334,6 +352,7 @@ public class SysUserController extends BaseController{
 		}
 		return JsonUtils.obj2json(rd);
 	}
+	@SysControllerLog(desc = "用户修改密码")
 	@RequestMapping(value = "/sys/SysUser/updatePwd", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String updatePwd(
 			HttpServletRequest request, 
@@ -361,6 +380,7 @@ public class SysUserController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@SysControllerLog(desc = "密码重置")
 	@RequestMapping(value = "/sys/SysUser/resetPwd", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String resetPwd(
 			HttpServletRequest request, 
