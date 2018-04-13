@@ -5,7 +5,7 @@
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
     <result column="JADW" jdbcType="VARCHAR" property="jadw" />
-    <result column="JASJ" jdbcType="DATE" property="jasj" />
+    <result column="JASJ" jdbcType="TIMESTAMP" property="jasj" />
     <result column="JAR" jdbcType="VARCHAR" property="jar" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
@@ -111,7 +111,7 @@
       CREATE_TIME, UPDATER, UPDATE_TIME
       )
     values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{jadw,jdbcType=VARCHAR}, 
-      #{jasj,jdbcType=DATE}, #{jar,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
+      #{jasj,jdbcType=TIMESTAMP}, #{jar,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -160,7 +160,7 @@
         #{jadw,jdbcType=VARCHAR},
       </if>
       <if test="jasj != null">
-        #{jasj,jdbcType=DATE},
+        #{jasj,jdbcType=TIMESTAMP},
       </if>
       <if test="jar != null">
         #{jar,jdbcType=VARCHAR},
@@ -201,7 +201,7 @@
         JADW = #{record.jadw,jdbcType=VARCHAR},
       </if>
       <if test="record.jasj != null">
-        JASJ = #{record.jasj,jdbcType=DATE},
+        JASJ = #{record.jasj,jdbcType=TIMESTAMP},
       </if>
       <if test="record.jar != null">
         JAR = #{record.jar,jdbcType=VARCHAR},
@@ -231,7 +231,7 @@
     set ID = #{record.id,jdbcType=VARCHAR},
       AJBH = #{record.ajbh,jdbcType=VARCHAR},
       JADW = #{record.jadw,jdbcType=VARCHAR},
-      JASJ = #{record.jasj,jdbcType=DATE},
+      JASJ = #{record.jasj,jdbcType=TIMESTAMP},
       JAR = #{record.jar,jdbcType=VARCHAR},
       BZ = #{record.bz,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
@@ -252,7 +252,7 @@
         JADW = #{jadw,jdbcType=VARCHAR},
       </if>
       <if test="jasj != null">
-        JASJ = #{jasj,jdbcType=DATE},
+        JASJ = #{jasj,jdbcType=TIMESTAMP},
       </if>
       <if test="jar != null">
         JAR = #{jar,jdbcType=VARCHAR},
@@ -279,7 +279,7 @@
     update tb_st_ajjaxx
     set AJBH = #{ajbh,jdbcType=VARCHAR},
       JADW = #{jadw,jdbcType=VARCHAR},
-      JASJ = #{jasj,jdbcType=DATE},
+      JASJ = #{jasj,jdbcType=TIMESTAMP},
       JAR = #{jar,jdbcType=VARCHAR},
       BZ = #{bz,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},

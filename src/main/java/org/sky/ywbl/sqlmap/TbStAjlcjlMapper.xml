@@ -7,7 +7,7 @@
     <result column="AJZT" jdbcType="VARCHAR" property="ajzt" />
     <result column="BLR" jdbcType="VARCHAR" property="blr" />
     <result column="BLDW" jdbcType="VARCHAR" property="bldw" />
-    <result column="BLSJ" jdbcType="DATE" property="blsj" />
+    <result column="BLSJ" jdbcType="TIMESTAMP" property="blsj" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
@@ -106,11 +106,13 @@
   </delete>
   <insert id="insert" parameterType="org.sky.ywbl.model.TbStAjlcjl">
     insert into tb_st_ajlcjl (ID, AJBH, AJZT, 
-      BLR, BLDW, BLSJ, BZ, 
-      CREATER, CREATE_TIME)
+      BLR, BLDW, BLSJ, 
+      BZ, CREATER, CREATE_TIME
+      )
     values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{ajzt,jdbcType=VARCHAR}, 
-      #{blr,jdbcType=VARCHAR}, #{bldw,jdbcType=VARCHAR}, #{blsj,jdbcType=DATE}, #{bz,jdbcType=VARCHAR}, 
-      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+      #{blr,jdbcType=VARCHAR}, #{bldw,jdbcType=VARCHAR}, #{blsj,jdbcType=TIMESTAMP}, 
+      #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStAjlcjl">
     insert into tb_st_ajlcjl
@@ -160,7 +162,7 @@
         #{bldw,jdbcType=VARCHAR},
       </if>
       <if test="blsj != null">
-        #{blsj,jdbcType=DATE},
+        #{blsj,jdbcType=TIMESTAMP},
       </if>
       <if test="bz != null">
         #{bz,jdbcType=VARCHAR},
@@ -198,7 +200,7 @@
         BLDW = #{record.bldw,jdbcType=VARCHAR},
       </if>
       <if test="record.blsj != null">
-        BLSJ = #{record.blsj,jdbcType=DATE},
+        BLSJ = #{record.blsj,jdbcType=TIMESTAMP},
       </if>
       <if test="record.bz != null">
         BZ = #{record.bz,jdbcType=VARCHAR},
@@ -221,7 +223,7 @@
       AJZT = #{record.ajzt,jdbcType=VARCHAR},
       BLR = #{record.blr,jdbcType=VARCHAR},
       BLDW = #{record.bldw,jdbcType=VARCHAR},
-      BLSJ = #{record.blsj,jdbcType=DATE},
+      BLSJ = #{record.blsj,jdbcType=TIMESTAMP},
       BZ = #{record.bz,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
@@ -245,7 +247,7 @@
         BLDW = #{bldw,jdbcType=VARCHAR},
       </if>
       <if test="blsj != null">
-        BLSJ = #{blsj,jdbcType=DATE},
+        BLSJ = #{blsj,jdbcType=TIMESTAMP},
       </if>
       <if test="bz != null">
         BZ = #{bz,jdbcType=VARCHAR},
@@ -265,7 +267,7 @@
       AJZT = #{ajzt,jdbcType=VARCHAR},
       BLR = #{blr,jdbcType=VARCHAR},
       BLDW = #{bldw,jdbcType=VARCHAR},
-      BLSJ = #{blsj,jdbcType=DATE},
+      BLSJ = #{blsj,jdbcType=TIMESTAMP},
       BZ = #{bz,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}

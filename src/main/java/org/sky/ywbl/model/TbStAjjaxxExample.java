@@ -3,7 +3,6 @@ package org.sky.ywbl.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.sky.sys.utils.BeanUtils;
@@ -140,32 +139,6 @@ public class TbStAjjaxxExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value.getTime()), property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
-            if (values == null || values.size() == 0) {
-                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
-            }
-            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
-            Iterator<Date> iter = values.iterator();
-            while (iter.hasNext()) {
-                dateList.add(new java.sql.Date(iter.next().getTime()));
-            }
-            addCriterion(condition, dateList, property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andIdIsNull() {
@@ -389,52 +362,52 @@ public class TbStAjjaxxExample {
         }
 
         public Criteria andJasjEqualTo(Date value) {
-            addCriterionForJDBCDate("JASJ =", value, "jasj");
+            addCriterion("JASJ =", value, "jasj");
             return (Criteria) this;
         }
 
         public Criteria andJasjNotEqualTo(Date value) {
-            addCriterionForJDBCDate("JASJ <>", value, "jasj");
+            addCriterion("JASJ <>", value, "jasj");
             return (Criteria) this;
         }
 
         public Criteria andJasjGreaterThan(Date value) {
-            addCriterionForJDBCDate("JASJ >", value, "jasj");
+            addCriterion("JASJ >", value, "jasj");
             return (Criteria) this;
         }
 
         public Criteria andJasjGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("JASJ >=", value, "jasj");
+            addCriterion("JASJ >=", value, "jasj");
             return (Criteria) this;
         }
 
         public Criteria andJasjLessThan(Date value) {
-            addCriterionForJDBCDate("JASJ <", value, "jasj");
+            addCriterion("JASJ <", value, "jasj");
             return (Criteria) this;
         }
 
         public Criteria andJasjLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("JASJ <=", value, "jasj");
+            addCriterion("JASJ <=", value, "jasj");
             return (Criteria) this;
         }
 
         public Criteria andJasjIn(List<Date> values) {
-            addCriterionForJDBCDate("JASJ in", values, "jasj");
+            addCriterion("JASJ in", values, "jasj");
             return (Criteria) this;
         }
 
         public Criteria andJasjNotIn(List<Date> values) {
-            addCriterionForJDBCDate("JASJ not in", values, "jasj");
+            addCriterion("JASJ not in", values, "jasj");
             return (Criteria) this;
         }
 
         public Criteria andJasjBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("JASJ between", value1, value2, "jasj");
+            addCriterion("JASJ between", value1, value2, "jasj");
             return (Criteria) this;
         }
 
         public Criteria andJasjNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("JASJ not between", value1, value2, "jasj");
+            addCriterion("JASJ not between", value1, value2, "jasj");
             return (Criteria) this;
         }
 

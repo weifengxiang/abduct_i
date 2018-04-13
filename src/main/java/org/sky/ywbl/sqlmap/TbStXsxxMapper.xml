@@ -119,14 +119,14 @@
       ZJLX, ZJHM, DH, SFD, 
       SJXQ, CREATER, CREATE_TIME, 
       UPDATER, UPDATE_TIME, XSLY, 
-      DJR, DJDW, DJSJ, ZT, 
-      BZ)
+      DJR, DJDW, DJSJ, 
+      ZT, BZ)
     values (#{id,jdbcType=VARCHAR}, #{xsbh,jdbcType=VARCHAR}, #{jbr,jdbcType=VARCHAR}, 
       #{zjlx,jdbcType=VARCHAR}, #{zjhm,jdbcType=VARCHAR}, #{dh,jdbcType=VARCHAR}, #{sfd,jdbcType=VARCHAR}, 
       #{sjxq,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{xsly,jdbcType=VARCHAR}, 
-      #{djr,jdbcType=VARCHAR}, #{djdw,jdbcType=VARCHAR}, #{djsj,jdbcType=DATE}, #{zt,jdbcType=VARCHAR}, 
-      #{bz,jdbcType=VARCHAR})
+      #{djr,jdbcType=VARCHAR}, #{djdw,jdbcType=VARCHAR}, #{djsj,jdbcType=TIMESTAMP}, 
+      #{zt,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStXsxx">
     insert into tb_st_xsxx
@@ -233,7 +233,7 @@
         #{djdw,jdbcType=VARCHAR},
       </if>
       <if test="djsj != null">
-        #{djsj,jdbcType=DATE},
+        #{djsj,jdbcType=TIMESTAMP},
       </if>
       <if test="zt != null">
         #{zt,jdbcType=VARCHAR},
@@ -298,7 +298,7 @@
         DJDW = #{record.djdw,jdbcType=VARCHAR},
       </if>
       <if test="record.djsj != null">
-        DJSJ = #{record.djsj,jdbcType=DATE},
+        DJSJ = #{record.djsj,jdbcType=TIMESTAMP},
       </if>
       <if test="record.zt != null">
         ZT = #{record.zt,jdbcType=VARCHAR},
@@ -328,7 +328,7 @@
       XSLY = #{record.xsly,jdbcType=VARCHAR},
       DJR = #{record.djr,jdbcType=VARCHAR},
       DJDW = #{record.djdw,jdbcType=VARCHAR},
-      DJSJ = #{record.djsj,jdbcType=DATE},
+      DJSJ = #{record.djsj,jdbcType=TIMESTAMP},
       ZT = #{record.zt,jdbcType=VARCHAR},
       BZ = #{record.bz,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -381,7 +381,7 @@
         DJDW = #{djdw,jdbcType=VARCHAR},
       </if>
       <if test="djsj != null">
-        DJSJ = #{djsj,jdbcType=DATE},
+        DJSJ = #{djsj,jdbcType=TIMESTAMP},
       </if>
       <if test="zt != null">
         ZT = #{zt,jdbcType=VARCHAR},
@@ -408,7 +408,7 @@
       XSLY = #{xsly,jdbcType=VARCHAR},
       DJR = #{djr,jdbcType=VARCHAR},
       DJDW = #{djdw,jdbcType=VARCHAR},
-      DJSJ = #{djsj,jdbcType=DATE},
+      DJSJ = #{djsj,jdbcType=TIMESTAMP},
       ZT = #{zt,jdbcType=VARCHAR},
       BZ = #{bz,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}

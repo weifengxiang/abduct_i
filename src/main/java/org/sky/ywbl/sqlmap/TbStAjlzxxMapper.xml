@@ -11,7 +11,7 @@
     <result column="LZDW" jdbcType="VARCHAR" property="lzdw" />
     <result column="LZYY" jdbcType="VARCHAR" property="lzyy" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
-    <result column="LZSJ" jdbcType="DATE" property="lzsj" />
+    <result column="LZSJ" jdbcType="TIMESTAMP" property="lzsj" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATER_TIME" jdbcType="TIMESTAMP" property="createrTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
@@ -118,7 +118,7 @@
       UPDATE_TIME)
     values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{lzbh,jdbcType=VARCHAR}, 
       #{dqdw,jdbcType=VARCHAR}, #{sblzbh,jdbcType=VARCHAR}, #{lzr,jdbcType=VARCHAR}, 
-      #{lzdw,jdbcType=VARCHAR}, #{lzyy,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{lzsj,jdbcType=DATE}, 
+      #{lzdw,jdbcType=VARCHAR}, #{lzyy,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{lzsj,jdbcType=TIMESTAMP}, 
       #{creater,jdbcType=VARCHAR}, #{createrTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -197,7 +197,7 @@
         #{bz,jdbcType=VARCHAR},
       </if>
       <if test="lzsj != null">
-        #{lzsj,jdbcType=DATE},
+        #{lzsj,jdbcType=TIMESTAMP},
       </if>
       <if test="creater != null">
         #{creater,jdbcType=VARCHAR},
@@ -250,7 +250,7 @@
         BZ = #{record.bz,jdbcType=VARCHAR},
       </if>
       <if test="record.lzsj != null">
-        LZSJ = #{record.lzsj,jdbcType=DATE},
+        LZSJ = #{record.lzsj,jdbcType=TIMESTAMP},
       </if>
       <if test="record.creater != null">
         CREATER = #{record.creater,jdbcType=VARCHAR},
@@ -280,7 +280,7 @@
       LZDW = #{record.lzdw,jdbcType=VARCHAR},
       LZYY = #{record.lzyy,jdbcType=VARCHAR},
       BZ = #{record.bz,jdbcType=VARCHAR},
-      LZSJ = #{record.lzsj,jdbcType=DATE},
+      LZSJ = #{record.lzsj,jdbcType=TIMESTAMP},
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATER_TIME = #{record.createrTime,jdbcType=TIMESTAMP},
       UPDATER = #{record.updater,jdbcType=VARCHAR},
@@ -317,7 +317,7 @@
         BZ = #{bz,jdbcType=VARCHAR},
       </if>
       <if test="lzsj != null">
-        LZSJ = #{lzsj,jdbcType=DATE},
+        LZSJ = #{lzsj,jdbcType=TIMESTAMP},
       </if>
       <if test="creater != null">
         CREATER = #{creater,jdbcType=VARCHAR},
@@ -344,7 +344,7 @@
       LZDW = #{lzdw,jdbcType=VARCHAR},
       LZYY = #{lzyy,jdbcType=VARCHAR},
       BZ = #{bz,jdbcType=VARCHAR},
-      LZSJ = #{lzsj,jdbcType=DATE},
+      LZSJ = #{lzsj,jdbcType=TIMESTAMP},
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATER_TIME = #{createrTime,jdbcType=TIMESTAMP},
       UPDATER = #{updater,jdbcType=VARCHAR},

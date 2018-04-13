@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="org.sky.ywbl.model.TbStAjdjxx">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
-    <result column="BJSJ" jdbcType="DATE" property="bjsj" />
+    <result column="BJSJ" jdbcType="TIMESTAMP" property="bjsj" />
     <result column="SSFJ" jdbcType="VARCHAR" property="ssfj" />
     <result column="LXDH" jdbcType="VARCHAR" property="lxdh" />
     <result column="BJFS" jdbcType="VARCHAR" property="bjfs" />
@@ -18,7 +18,7 @@
     <result column="XQDW" jdbcType="VARCHAR" property="xqdw" />
     <result column="XZQH" jdbcType="VARCHAR" property="xzqh" />
     <result column="CJR" jdbcType="VARCHAR" property="cjr" />
-    <result column="DCSJ" jdbcType="DATE" property="dcsj" />
+    <result column="DCSJ" jdbcType="TIMESTAMP" property="dcsj" />
     <result column="DCQK" jdbcType="VARCHAR" property="dcqk" />
     <result column="FKNR" jdbcType="VARCHAR" property="fknr" />
     <result column="CLJG" jdbcType="VARCHAR" property="cljg" />
@@ -30,7 +30,7 @@
     <result column="AJLY" jdbcType="VARCHAR" property="ajly" />
     <result column="DJR" jdbcType="VARCHAR" property="djr" />
     <result column="DJDW" jdbcType="VARCHAR" property="djdw" />
-    <result column="DJSJ" jdbcType="DATE" property="djsj" />
+    <result column="DJSJ" jdbcType="TIMESTAMP" property="djsj" />
     <result column="XSBH" jdbcType="VARCHAR" property="xsbh" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
@@ -137,22 +137,24 @@
       SSFJ, LXDH, BJFS, BJLB, 
       BJLX, BJXL, SFDZ, LHLB, 
       BJR, SJXQ, XQDW, XZQH, 
-      CJR, DCSJ, DCQK, FKNR, 
-      CLJG, SJZT, JWQ, AFDZLB, 
-      SJFSDZ, DQDW, AJLY, 
-      DJR, DJDW, DJSJ, XSBH, 
-      CREATER, CREATE_TIME, UPDATER, 
-      UPDATE_TIME, BZ)
-    values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{bjsj,jdbcType=DATE}, 
+      CJR, DCSJ, DCQK, 
+      FKNR, CLJG, SJZT, JWQ, 
+      AFDZLB, SJFSDZ, DQDW, 
+      AJLY, DJR, DJDW, DJSJ, 
+      XSBH, CREATER, CREATE_TIME, 
+      UPDATER, UPDATE_TIME, BZ
+      )
+    values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{bjsj,jdbcType=TIMESTAMP}, 
       #{ssfj,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, #{bjfs,jdbcType=VARCHAR}, #{bjlb,jdbcType=VARCHAR}, 
       #{bjlx,jdbcType=VARCHAR}, #{bjxl,jdbcType=VARCHAR}, #{sfdz,jdbcType=VARCHAR}, #{lhlb,jdbcType=VARCHAR}, 
       #{bjr,jdbcType=VARCHAR}, #{sjxq,jdbcType=VARCHAR}, #{xqdw,jdbcType=VARCHAR}, #{xzqh,jdbcType=VARCHAR}, 
-      #{cjr,jdbcType=VARCHAR}, #{dcsj,jdbcType=DATE}, #{dcqk,jdbcType=VARCHAR}, #{fknr,jdbcType=VARCHAR}, 
-      #{cljg,jdbcType=VARCHAR}, #{sjzt,jdbcType=VARCHAR}, #{jwq,jdbcType=VARCHAR}, #{afdzlb,jdbcType=VARCHAR}, 
-      #{sjfsdz,jdbcType=VARCHAR}, #{dqdw,jdbcType=VARCHAR}, #{ajly,jdbcType=VARCHAR}, 
-      #{djr,jdbcType=VARCHAR}, #{djdw,jdbcType=VARCHAR}, #{djsj,jdbcType=DATE}, #{xsbh,jdbcType=VARCHAR}, 
-      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{bz,jdbcType=VARCHAR})
+      #{cjr,jdbcType=VARCHAR}, #{dcsj,jdbcType=TIMESTAMP}, #{dcqk,jdbcType=VARCHAR}, 
+      #{fknr,jdbcType=VARCHAR}, #{cljg,jdbcType=VARCHAR}, #{sjzt,jdbcType=VARCHAR}, #{jwq,jdbcType=VARCHAR}, 
+      #{afdzlb,jdbcType=VARCHAR}, #{sjfsdz,jdbcType=VARCHAR}, #{dqdw,jdbcType=VARCHAR}, 
+      #{ajly,jdbcType=VARCHAR}, #{djr,jdbcType=VARCHAR}, #{djdw,jdbcType=VARCHAR}, #{djsj,jdbcType=TIMESTAMP}, 
+      #{xsbh,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{bz,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStAjdjxx">
     insert into tb_st_ajdjxx
@@ -271,7 +273,7 @@
         #{ajbh,jdbcType=VARCHAR},
       </if>
       <if test="bjsj != null">
-        #{bjsj,jdbcType=DATE},
+        #{bjsj,jdbcType=TIMESTAMP},
       </if>
       <if test="ssfj != null">
         #{ssfj,jdbcType=VARCHAR},
@@ -313,7 +315,7 @@
         #{cjr,jdbcType=VARCHAR},
       </if>
       <if test="dcsj != null">
-        #{dcsj,jdbcType=DATE},
+        #{dcsj,jdbcType=TIMESTAMP},
       </if>
       <if test="dcqk != null">
         #{dcqk,jdbcType=VARCHAR},
@@ -349,7 +351,7 @@
         #{djdw,jdbcType=VARCHAR},
       </if>
       <if test="djsj != null">
-        #{djsj,jdbcType=DATE},
+        #{djsj,jdbcType=TIMESTAMP},
       </if>
       <if test="xsbh != null">
         #{xsbh,jdbcType=VARCHAR},
@@ -387,7 +389,7 @@
         AJBH = #{record.ajbh,jdbcType=VARCHAR},
       </if>
       <if test="record.bjsj != null">
-        BJSJ = #{record.bjsj,jdbcType=DATE},
+        BJSJ = #{record.bjsj,jdbcType=TIMESTAMP},
       </if>
       <if test="record.ssfj != null">
         SSFJ = #{record.ssfj,jdbcType=VARCHAR},
@@ -429,7 +431,7 @@
         CJR = #{record.cjr,jdbcType=VARCHAR},
       </if>
       <if test="record.dcsj != null">
-        DCSJ = #{record.dcsj,jdbcType=DATE},
+        DCSJ = #{record.dcsj,jdbcType=TIMESTAMP},
       </if>
       <if test="record.dcqk != null">
         DCQK = #{record.dcqk,jdbcType=VARCHAR},
@@ -465,7 +467,7 @@
         DJDW = #{record.djdw,jdbcType=VARCHAR},
       </if>
       <if test="record.djsj != null">
-        DJSJ = #{record.djsj,jdbcType=DATE},
+        DJSJ = #{record.djsj,jdbcType=TIMESTAMP},
       </if>
       <if test="record.xsbh != null">
         XSBH = #{record.xsbh,jdbcType=VARCHAR},
@@ -494,7 +496,7 @@
     update tb_st_ajdjxx
     set ID = #{record.id,jdbcType=VARCHAR},
       AJBH = #{record.ajbh,jdbcType=VARCHAR},
-      BJSJ = #{record.bjsj,jdbcType=DATE},
+      BJSJ = #{record.bjsj,jdbcType=TIMESTAMP},
       SSFJ = #{record.ssfj,jdbcType=VARCHAR},
       LXDH = #{record.lxdh,jdbcType=VARCHAR},
       BJFS = #{record.bjfs,jdbcType=VARCHAR},
@@ -508,7 +510,7 @@
       XQDW = #{record.xqdw,jdbcType=VARCHAR},
       XZQH = #{record.xzqh,jdbcType=VARCHAR},
       CJR = #{record.cjr,jdbcType=VARCHAR},
-      DCSJ = #{record.dcsj,jdbcType=DATE},
+      DCSJ = #{record.dcsj,jdbcType=TIMESTAMP},
       DCQK = #{record.dcqk,jdbcType=VARCHAR},
       FKNR = #{record.fknr,jdbcType=VARCHAR},
       CLJG = #{record.cljg,jdbcType=VARCHAR},
@@ -520,7 +522,7 @@
       AJLY = #{record.ajly,jdbcType=VARCHAR},
       DJR = #{record.djr,jdbcType=VARCHAR},
       DJDW = #{record.djdw,jdbcType=VARCHAR},
-      DJSJ = #{record.djsj,jdbcType=DATE},
+      DJSJ = #{record.djsj,jdbcType=TIMESTAMP},
       XSBH = #{record.xsbh,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -538,7 +540,7 @@
         AJBH = #{ajbh,jdbcType=VARCHAR},
       </if>
       <if test="bjsj != null">
-        BJSJ = #{bjsj,jdbcType=DATE},
+        BJSJ = #{bjsj,jdbcType=TIMESTAMP},
       </if>
       <if test="ssfj != null">
         SSFJ = #{ssfj,jdbcType=VARCHAR},
@@ -580,7 +582,7 @@
         CJR = #{cjr,jdbcType=VARCHAR},
       </if>
       <if test="dcsj != null">
-        DCSJ = #{dcsj,jdbcType=DATE},
+        DCSJ = #{dcsj,jdbcType=TIMESTAMP},
       </if>
       <if test="dcqk != null">
         DCQK = #{dcqk,jdbcType=VARCHAR},
@@ -616,7 +618,7 @@
         DJDW = #{djdw,jdbcType=VARCHAR},
       </if>
       <if test="djsj != null">
-        DJSJ = #{djsj,jdbcType=DATE},
+        DJSJ = #{djsj,jdbcType=TIMESTAMP},
       </if>
       <if test="xsbh != null">
         XSBH = #{xsbh,jdbcType=VARCHAR},
@@ -642,7 +644,7 @@
   <update id="updateByPrimaryKey" parameterType="org.sky.ywbl.model.TbStAjdjxx">
     update tb_st_ajdjxx
     set AJBH = #{ajbh,jdbcType=VARCHAR},
-      BJSJ = #{bjsj,jdbcType=DATE},
+      BJSJ = #{bjsj,jdbcType=TIMESTAMP},
       SSFJ = #{ssfj,jdbcType=VARCHAR},
       LXDH = #{lxdh,jdbcType=VARCHAR},
       BJFS = #{bjfs,jdbcType=VARCHAR},
@@ -656,7 +658,7 @@
       XQDW = #{xqdw,jdbcType=VARCHAR},
       XZQH = #{xzqh,jdbcType=VARCHAR},
       CJR = #{cjr,jdbcType=VARCHAR},
-      DCSJ = #{dcsj,jdbcType=DATE},
+      DCSJ = #{dcsj,jdbcType=TIMESTAMP},
       DCQK = #{dcqk,jdbcType=VARCHAR},
       FKNR = #{fknr,jdbcType=VARCHAR},
       CLJG = #{cljg,jdbcType=VARCHAR},
@@ -668,7 +670,7 @@
       AJLY = #{ajly,jdbcType=VARCHAR},
       DJR = #{djr,jdbcType=VARCHAR},
       DJDW = #{djdw,jdbcType=VARCHAR},
-      DJSJ = #{djsj,jdbcType=DATE},
+      DJSJ = #{djsj,jdbcType=TIMESTAMP},
       XSBH = #{xsbh,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
