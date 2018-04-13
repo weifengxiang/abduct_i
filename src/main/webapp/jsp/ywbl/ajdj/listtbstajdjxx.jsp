@@ -21,62 +21,10 @@ $(function() {
 		<td><input  class="easyui-textbox" data-options="prompt:'输入案件编号'" name="q_ajbh"  id="q_ajbh" ></input></td>				
 		<th><label>报警时间:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入报警时间'" name="q_bjsj"  id="q_bjsj" ></input></td>				
-		<th><label>所属分局:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入所属分局'" name="q_ssfj"  id="q_ssfj" ></input></td>				
 		<th><label>联系电话:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入联系电话'" name="q_lxdh"  id="q_lxdh" ></input></td>				
-		<th><label>报警方式:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入报警方式'" name="q_bjfs"  id="q_bjfs" ></input></td>				
-		<th><label>报警类别:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入报警类别'" name="q_bjlb"  id="q_bjlb" ></input></td>				
-		<th><label>报警类型:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入报警类型'" name="q_bjlx"  id="q_bjlx" ></input></td>				
-		<th><label>报警细类:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入报警细类'" name="q_bjxl"  id="q_bjxl" ></input></td>				
-		<th><label>事发地址:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入事发地址'" name="q_sfdz"  id="q_sfdz" ></input></td>				
-		<th><label>来话类别:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入来话类别'" name="q_lhlb"  id="q_lhlb" ></input></td>				
-		<th><label>报警人:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入报警人'" name="q_bjr"  id="q_bjr" ></input></td>				
-		<th><label>事件详情:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入事件详情'" name="q_sjxq"  id="q_sjxq" ></input></td>				
-		<th><label>辖区单位:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入辖区单位'" name="q_xqdw"  id="q_xqdw" ></input></td>				
-		<th><label>行政区划:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入行政区划'" name="q_xzqh"  id="q_xzqh" ></input></td>				
-		<th><label>出警人:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入出警人'" name="q_cjr"  id="q_cjr" ></input></td>				
-		<th><label>到场时间:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入到场时间'" name="q_dcsj"  id="q_dcsj" ></input></td>				
-		<th><label>到场情况:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入到场情况'" name="q_dcqk"  id="q_dcqk" ></input></td>				
-		<th><label>反馈内容:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入反馈内容'" name="q_fknr"  id="q_fknr" ></input></td>				
-		<th><label>处理结果:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入处理结果'" name="q_cljg"  id="q_cljg" ></input></td>				
-		<th><label>事件状态(-1:无效;0:登记;1:分流:2:受理;3:办结;4:结案):</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入事件状态(-1:无效;0:登记;1:分流:2:受理;3:办结;4:结案)'" name="q_sjzt"  id="q_sjzt" ></input></td>				
-		<th><label>警务区:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入警务区'" name="q_jwq"  id="q_jwq" ></input></td>				
-		<th><label>案发地址类别:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入案发地址类别'" name="q_afdzlb"  id="q_afdzlb" ></input></td>				
-		<th><label>事件发生地址:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入事件发生地址'" name="q_sjfsdz"  id="q_sjfsdz" ></input></td>				
-		<th><label>当前单位:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入当前单位'" name="q_dqdw"  id="q_dqdw" ></input></td>				
-		<th><label>案件来源:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入案件来源'" name="q_ajly"  id="q_ajly" ></input></td>				
-		<th><label>登记人:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入登记人'" name="q_djr"  id="q_djr" ></input></td>				
-		<th><label>登记单位:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入登记单位'" name="q_djdw"  id="q_djdw" ></input></td>				
 		<th><label>登记时间:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入登记时间'" name="q_djsj"  id="q_djsj" ></input></td>				
-		<th><label>线索编号:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入线索编号'" name="q_xsbh"  id="q_xsbh" ></input></td>				
-		<th><label>备注:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入备注'" name="q_bz"  id="q_bz" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>

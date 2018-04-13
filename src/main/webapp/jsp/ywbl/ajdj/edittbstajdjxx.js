@@ -6,6 +6,16 @@ function initAddTbStAjdjxxPage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
+	$('#ajbh').textbox('setValue',ajbh);
+	$('#bjsj').datetimebox('setValue',djsj);
+	$('#djsj').datetimebox('setValue',djsj);
+	$('#dcsj').datetimebox('setValue',djsj);
+	$('#djr').val(djr);
+	$('#djrName').textbox('setValue',djrName);
+	$('#djdw').val(djdw);
+	$('#djdwName').textbox('setValue',djdwName);
+	$('#dqdw').val(djdw);
+	$('#dqdwName').textbox('setValue',djdwName);
 }
 /**
  * 初始化编辑案件登记信息页面

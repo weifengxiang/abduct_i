@@ -12,7 +12,9 @@ import org.sky.sys.exception.ServiceException;
 import org.sky.ywbl.model.TbStAjdjxx;
 import org.sky.ywbl.model.TbStAjdjxxExample;
 import org.sky.ywbl.model.TbStAjdjxxExample.Criteria;
+import org.sky.ywbl.service.ComService;
 import org.sky.ywbl.service.TbStAjdjxxService;
+import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
@@ -23,12 +25,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class TbStAjdjxxController extends BaseController{
 	@Autowired
 	private TbStAjdjxxService tbstajdjxxService;
-	
+	@Autowired
+	private ComService comService;
 	public TbStAjdjxxController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -73,9 +77,13 @@ public class TbStAjdjxxController extends BaseController{
 	**/
 	@SysControllerLog(desc = "显示案件登记信息新增页面")
 	@RequestMapping(value = "/ywbl/TbStAjdjxx/initAddTbStAjdjxxPage", method = { RequestMethod.GET })
-	public String initAddTbStAjdjxxPage(
+	public ModelAndView initAddTbStAjdjxxPage(
 			HttpServletRequest request, HttpServletResponse response) {
-		return "jsp/ywbl/ajdj/edittbstajdjxx";
+		String ajbh = comService.getYwbh("A", BspUtils.getLoginUser().getOrganCode());
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("ajbh", ajbh);
+		mv.setViewName("jsp/ywbl/ajdj/edittbstajdjxx");
+		return mv;
 	}
 	/**
 	*显示案件登记信息修改页面
