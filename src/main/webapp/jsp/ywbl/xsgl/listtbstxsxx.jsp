@@ -63,24 +63,9 @@ $(function() {
 						  	 return SKY.formatterDict(value,row,zjlx);
 						 }">举报人证件类型</th>
 				<th data-options="field:'zjhm',width:180">举报人证件号码</th>
-				<th data-options="field:'dh',width:100,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">电话</th>
-				<th data-options="field:'sfd',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">事发地</th>
-				<th data-options="field:'sjxq',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">事件详情</th>
+				<th data-options="field:'dh',width:100">电话</th>
+				<th data-options="field:'sfd',width:180">事发地</th>
+				<th data-options="field:'sjxq',width:180">事件详情</th>
 				<th data-options="field:'xsly',width:180,
 				formatter:function(value,row){
 						  	 return SKY.formatterDict(value,row,xsly);

@@ -52,12 +52,18 @@ public class TbStAjdjxx {
     private String sjfsdz;
 
     private String dqdw;
+    
+    private String dqdwName;
 
     private String ajly;
 
     private String djr;
+    
+    private String djrName;
 
     private String djdw;
+    
+    private String djdwName;
 
     private Date djsj;
 
@@ -352,4 +358,28 @@ public class TbStAjdjxx {
     public void setBz(String bz) {
         this.bz = bz;
     }
+
+	public String getDqdwName() {
+		return dqdwName;
+	}
+
+	public void setDqdwName(String dqdwName) {
+		this.dqdwName = dqdwName;
+	}
+
+	public String getDjrName() {
+		return djrName;
+	}
+
+	public void setDjrName(String djrName) {
+		this.djrName = djrName;
+	}
+
+	public String getDjdwName() {
+		return djdwName;
+	}
+
+	public void setDjdwName(String djdwName) {
+		this.djdwName = djdwName;
+	}
 }

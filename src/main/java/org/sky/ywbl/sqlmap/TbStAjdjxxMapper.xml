@@ -27,9 +27,11 @@
     <result column="AFDZLB" jdbcType="VARCHAR" property="afdzlb" />
     <result column="SJFSDZ" jdbcType="VARCHAR" property="sjfsdz" />
     <result column="DQDW" jdbcType="VARCHAR" property="dqdw" />
+    <result column="DQDW_NAME" jdbcType="VARCHAR" property="dqdwName" />
     <result column="AJLY" jdbcType="VARCHAR" property="ajly" />
     <result column="DJR" jdbcType="VARCHAR" property="djr" />
-    <result column="DJDW" jdbcType="VARCHAR" property="djdw" />
+    <result column="DJR_NAME" jdbcType="VARCHAR" property="djrName" />
+    <result column="DJDW_NAME" jdbcType="VARCHAR" property="djdwName" />
     <result column="DJSJ" jdbcType="TIMESTAMP" property="djsj" />
     <result column="XSBH" jdbcType="VARCHAR" property="xsbh" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
@@ -99,7 +101,10 @@
   <sql id="Base_Column_List">
     ID, AJBH, BJSJ, SSFJ, LXDH, BJFS, BJLB, BJLX, BJXL, SFDZ, LHLB, BJR, SJXQ, XQDW, 
     XZQH, CJR, DCSJ, DCQK, FKNR, CLJG, SJZT, JWQ, AFDZLB, SJFSDZ, DQDW, AJLY, DJR, DJDW, 
-    DJSJ, XSBH, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, BZ
+    DJSJ, XSBH, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, BZ,
+    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=DQDW) AS DQDW_NAME,
+    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=DJDW) AS DJDW_NAME,
+    (SELECT NAME FROM SYS_USER U WHERE U.CODE = DJR) AS DJR_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStAjdjxxExample" resultMap="BaseResultMap">
     select
