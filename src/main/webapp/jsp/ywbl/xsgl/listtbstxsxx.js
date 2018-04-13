@@ -150,7 +150,7 @@ function searchButton(){
 			}
 			var djsj =$('#q_djsj').textbox("getValue");
 			if(djsj){
-				ft.put("djsj@=", djsj);
+				ft.put("date_format(djsj,concat(upper('%y'),'-%m-%d'))@<=@=", djsj);
 			}
 			return ft.getJSON();
 		}

@@ -16,7 +16,9 @@
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="XSLY" jdbcType="VARCHAR" property="xsly" />
     <result column="DJR" jdbcType="VARCHAR" property="djr" />
+    <result column="DJR_NAME" jdbcType="VARCHAR" property="djrName" />
     <result column="DJDW" jdbcType="VARCHAR" property="djdw" />
+    <result column="DJDW_NAME" jdbcType="VARCHAR" property="djdwName" />
     <result column="DJSJ" jdbcType="TIMESTAMP" property="djsj" />
     <result column="ZT" jdbcType="VARCHAR" property="zt" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
@@ -81,7 +83,9 @@
   </sql>
   <sql id="Base_Column_List">
     ID, XSBH, JBR, ZJLX, ZJHM, DH, SFD, SJXQ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, 
-    XSLY, DJR, DJDW, DJSJ, ZT, BZ
+    XSLY, DJR, DJDW, DJSJ, ZT, BZ,
+    (SELECT NAME FROM SYS_USER U WHERE U.CODE=DJR) AS DJR_NAME,
+    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=DJDW) AS DJDW_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStXsxxExample" resultMap="BaseResultMap">
     select

@@ -1,3 +1,4 @@
+<%@page import="org.sky.sys.utils.DictUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/jsp/inc/include.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,6 +7,9 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/ywbl/xsgl/listtbstxsxx.js'></script>
 <script type="text/javascript">
+var zjlx = <%=DictUtils.getDictItem("017") %>;
+var xsly = <%=DictUtils.getDictItem("XSLY") %>;
+var xszt = <%=DictUtils.getDictItem("XSZT") %>;
 $(function() {
 	init();
 });
@@ -52,31 +56,14 @@ $(function() {
 	<thead>
 		<tr>
 			<th data-options="field: 'checked', checkbox:true"></th>
-				<th data-options="field:'xsbh',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">线索编号</th>
-				<th data-options="field:'jbr',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">举报人</th>
-				<th data-options="field:'zjlx',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">举报人证件类型</th>
-				<th data-options="field:'zjhm',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">举报人证件号码</th>
-				<th data-options="field:'dh',width:180,
+				<th data-options="field:'xsbh',width:180">线索编号</th>
+				<th data-options="field:'jbr',width:100">举报人</th>
+				<th data-options="field:'zjlx',width:100,
+				formatter:function(value,row){
+						  	 return SKY.formatterDict(value,row,zjlx);
+						 }">举报人证件类型</th>
+				<th data-options="field:'zjhm',width:180">举报人证件号码</th>
+				<th data-options="field:'dh',width:100,
 				editor:{
 						type:'textbox',
 						options:{
@@ -95,18 +82,16 @@ $(function() {
 							required:true
 						}}">事件详情</th>
 				<th data-options="field:'xsly',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">线索来源</th>
-				<th data-options="field:'djr',width:180,
+				formatter:function(value,row){
+						  	 return SKY.formatterDict(value,row,xsly);
+						 }">线索来源</th>
+				<th data-options="field:'djrName',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">登记人</th>
-				<th data-options="field:'djdw',width:180,
+				<th data-options="field:'djdwName',width:180,
 				editor:{
 						type:'textbox',
 						options:{
@@ -118,12 +103,10 @@ $(function() {
 						options:{
 							required:true
 						}}">登记时间</th>
-				<th data-options="field:'zt',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">状态</th>
+				<th data-options="field:'zt',width:80,
+				formatter:function(value,row){
+						  	 return SKY.formatterDict(value,row,xszt);
+						 }">状态</th>
 				<th data-options="field:'bz',width:180,
 				editor:{
 						type:'textbox',

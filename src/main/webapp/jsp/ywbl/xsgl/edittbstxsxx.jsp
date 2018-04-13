@@ -80,16 +80,16 @@ $(function() {
 			
 					<th><label>登记人:</label></th>
 					<td><input class="easyui-textbox" name="djrName" id="djrName"
-						data-options="required:true"></input></td>
+						data-options="required:true,readonly:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>登记单位:</label></th>
 					<td><input class="easyui-textbox" name="djdwName" id="djdwName"
-						data-options="required:true"></input></td>
+						data-options="required:true,readonly:true"></input></td>
 				 
 					<th><label>登记时间:</label></th>
 					<td><input class="easyui-datetimebox" name="djsj" id='djsj'
-						data-options="required:true"></input></td>
+						data-options="required:true,readonly:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>状态:</label></th>
