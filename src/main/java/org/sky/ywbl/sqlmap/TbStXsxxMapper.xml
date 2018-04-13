@@ -17,7 +17,7 @@
     <result column="XSLY" jdbcType="VARCHAR" property="xsly" />
     <result column="DJR" jdbcType="VARCHAR" property="djr" />
     <result column="DJDW" jdbcType="VARCHAR" property="djdw" />
-    <result column="DJSJ" jdbcType="DATE" property="djsj" />
+    <result column="DJSJ" jdbcType="TIMESTAMP" property="djsj" />
     <result column="ZT" jdbcType="VARCHAR" property="zt" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
   </resultMap>

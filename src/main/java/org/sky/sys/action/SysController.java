@@ -138,7 +138,6 @@ public class SysController {
 			return "jsp/main/main";
 		}
 	}
-	@SysControllerLog(desc = "用户退出系统")
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET })
 	public String logout(Map<String, Object> map,
 			HttpServletRequest request, HttpServletResponse response) {

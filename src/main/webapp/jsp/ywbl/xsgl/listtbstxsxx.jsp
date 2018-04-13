@@ -52,7 +52,7 @@ $(function() {
 	<thead>
 		<tr>
 			<th data-options="field: 'checked', checkbox:true"></th>
-				<th data-options="field:'ajbh',width:180,
+				<th data-options="field:'xsbh',width:180,
 				editor:{
 						type:'textbox',
 						options:{

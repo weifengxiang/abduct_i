@@ -22,6 +22,8 @@ public class SysUser {
     private Date expiredTime;
 
     private String organCode;
+    
+    private String organName;
 
     private String mobeltel;
 
@@ -119,7 +121,15 @@ public class SysUser {
         this.organCode = organCode;
     }
 
-    public String getMobeltel() {
+    public String getOrganName() {
+		return organName;
+	}
+
+	public void setOrganName(String organName) {
+		this.organName = organName;
+	}
+
+	public String getMobeltel() {
         return mobeltel;
     }
 

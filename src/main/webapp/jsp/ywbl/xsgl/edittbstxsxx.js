@@ -6,6 +6,12 @@ function initAddTbStXsxxPage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
+	$('#xsbh').textbox('setValue',xsbh);
+	$('#djr').val(djr);
+	$('#djrName').textbox('setValue',djrName);
+	$('#djdw').val(djdw);
+	$('#djdwName').textbox('setValue',djdwName);
+	$('#djsj').datetimebox('setValue',djsj);
 }
 /**
  * 初始化编辑线索信息页面

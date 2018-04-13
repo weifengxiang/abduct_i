@@ -12,7 +12,9 @@ import org.sky.sys.exception.ServiceException;
 import org.sky.ywbl.model.TbStXsxx;
 import org.sky.ywbl.model.TbStXsxxExample;
 import org.sky.ywbl.model.TbStXsxxExample.Criteria;
+import org.sky.ywbl.service.ComService;
 import org.sky.ywbl.service.TbStXsxxService;
+import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
@@ -23,11 +25,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
+/**
+ * 
+ * @ClassName:  TbStXsxxController   
+ * @Description:TODO(线索管理服务层)   
+ * @author: weifx 
+ * @date:   2018年4月13日 下午3:05:33   
+ * @version V1.0    
+ * @Copyright: 2018 XXX. All rights reserved.
+ */
 @Controller
 public class TbStXsxxController extends BaseController{
 	@Autowired
 	private TbStXsxxService tbstxsxxService;
+	@Autowired
+	private ComService comService;
 	
 	public TbStXsxxController() {
 		// TODO Auto-generated constructor stub
@@ -73,9 +87,13 @@ public class TbStXsxxController extends BaseController{
 	**/
 	@SysControllerLog(desc = "显示线索信息新增页面")
 	@RequestMapping(value = "/ywbl/TbStXsxx/initAddTbStXsxxPage", method = { RequestMethod.GET })
-	public String initAddTbStXsxxPage(
+	public ModelAndView initAddTbStXsxxPage(
 			HttpServletRequest request, HttpServletResponse response) {
-		return "jsp/ywbl/xsgl/edittbstxsxx";
+		String xsbh = comService.getYwbh("X", BspUtils.getLoginUser().getOrganCode());
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("xsbh", xsbh);
+		mv.setViewName("jsp/ywbl/xsgl/edittbstxsxx");
+		return mv;
 	}
 	/**
 	*显示线索信息修改页面

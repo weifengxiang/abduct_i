@@ -12,6 +12,7 @@
     <result column="LOCK_TIME" jdbcType="TIMESTAMP" property="lockTime" />
     <result column="EXPIRED_TIME" jdbcType="TIMESTAMP" property="expiredTime" />
     <result column="ORGAN_CODE" jdbcType="VARCHAR" property="organCode" />
+    <result column="ORGAN_NAME" jdbcType="VARCHAR" property="organName" />
     <result column="MOBELTEL" jdbcType="VARCHAR" property="mobeltel" />
     <result column="WORKTEL" jdbcType="VARCHAR" property="worktel" />
     <result column="EMAIL" jdbcType="VARCHAR" property="email" />
@@ -81,7 +82,8 @@
   </sql>
   <sql id="Base_Column_List">
     ID, CODE, NAME, PASSWORD, STATUS, IS_SYS, SEX, LOCK_TIME, EXPIRED_TIME, ORGAN_CODE, 
-    MOBELTEL, WORKTEL, EMAIL, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    MOBELTEL, WORKTEL, EMAIL, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
+    (SELECT NAME FROM SYS_ORGAN WHERE SYS_ORGAN.CODE=ORGAN_CODE) AS ORGAN_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.sys.model.SysUserExample" resultMap="BaseResultMap">
     select
