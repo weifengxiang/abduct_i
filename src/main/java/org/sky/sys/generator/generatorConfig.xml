@@ -23,7 +23,7 @@
 		<!-- 生成DAO的包名和位置--> 
 		<javaClientGenerator targetPackage="org.sky.ywbl.client"	targetProject="src\main\java" type="XMLMAPPER" />
 		
-
+<!-- 
 		<table tableName="TB_ST_AJBLXX"></table>
 		<table tableName="TB_ST_AJDJXX"></table>
 		<table tableName="TB_ST_AJJAXX"></table>
@@ -31,5 +31,8 @@
 		<table tableName="TB_ST_AJLZXX"></table>
 		<table tableName="TB_ST_FJXX"></table>
 		<table tableName="TB_ST_XSXX"></table>
+ -->
+		<table tableName="TB_ST_YWBH"></table>
+		
 	</context>
 </generatorConfiguration>

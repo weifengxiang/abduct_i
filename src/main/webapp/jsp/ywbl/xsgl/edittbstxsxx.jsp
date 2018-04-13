@@ -23,8 +23,7 @@ $(function() {
 					<th><label>线索编号:</label></th>
 					<td><input class="easyui-textbox" name="ajbh"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+		
 					<th><label>举报人:</label></th>
 					<td><input class="easyui-textbox" name="jbr"
 						data-options="required:true"></input></td>
@@ -33,33 +32,31 @@ $(function() {
 					<th><label>举报人证件类型:</label></th>
 					<td><input class="easyui-textbox" name="zjlx"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+			
 					<th><label>举报人证件号码:</label></th>
 					<td><input class="easyui-textbox" name="zjhm"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>电话:</label></th>
-					<td><input class="easyui-textbox" name="dh"
+					<th><label>举报人电话:</label></th>
+					<td colspan='3'><input class="easyui-textbox" name="dh" style='width:300'
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>事发地:</label></th>
-					<td><input class="easyui-textbox" name="sfd"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="sfd" style='width:300;height:50'
+						data-options="required:true,multiline:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>事件详情:</label></th>
-					<td><input class="easyui-textbox" name="sjxq"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="sjxq" style='width:300;height:50'
+						data-options="required:true,multiline:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>线索来源:</label></th>
 					<td><input class="easyui-textbox" name="xsly"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+			
 					<th><label>登记人:</label></th>
 					<td><input class="easyui-textbox" name="djr"
 						data-options="required:true"></input></td>
@@ -68,8 +65,7 @@ $(function() {
 					<th><label>登记单位:</label></th>
 					<td><input class="easyui-textbox" name="djdw"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+				 
 					<th><label>登记时间:</label></th>
 					<td><input class="easyui-textbox" name="djsj"
 						data-options="required:true"></input></td>
@@ -81,8 +77,8 @@ $(function() {
 				  </tr>
 				  <tr>
 					<th><label>备注:</label></th>
-					<td><input class="easyui-textbox" name="bz"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="bz" style='width:300;height:50'
+						data-options="required:true,multiline:true"></input></td>
 				  </tr>
 			</table>
 		</form>

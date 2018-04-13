@@ -5,7 +5,7 @@ import java.util.Date;
 public class TbStXsxx {
     private String id;
 
-    private String ajbh;
+    private String xsbh;
 
     private String jbr;
 
@@ -47,12 +47,12 @@ public class TbStXsxx {
         this.id = id;
     }
 
-    public String getAjbh() {
-        return ajbh;
+    public String getXsbh() {
+        return xsbh;
     }
 
-    public void setAjbh(String ajbh) {
-        this.ajbh = ajbh;
+    public void setXsbh(String xsbh) {
+        this.xsbh = xsbh;
     }
 
     public String getJbr() {

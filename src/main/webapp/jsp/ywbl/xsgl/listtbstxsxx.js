@@ -140,57 +140,17 @@ function searchButton(){
 	$('#listtbstxsxxdg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();
-			var ajbh =$('#q_ajbh').textbox("getValue");
-			if(ajbh){
-				ft.put("ajbh@=", ajbh);
+			var xsbh =$('#q_xsbh').textbox("getValue");
+			if(xsbh){
+				ft.put("xsbh@=", xsbh);
 			}
 			var jbr =$('#q_jbr').textbox("getValue");
 			if(jbr){
 				ft.put("jbr@=", jbr);
 			}
-			var zjlx =$('#q_zjlx').textbox("getValue");
-			if(zjlx){
-				ft.put("zjlx@=", zjlx);
-			}
-			var zjhm =$('#q_zjhm').textbox("getValue");
-			if(zjhm){
-				ft.put("zjhm@=", zjhm);
-			}
-			var dh =$('#q_dh').textbox("getValue");
-			if(dh){
-				ft.put("dh@=", dh);
-			}
-			var sfd =$('#q_sfd').textbox("getValue");
-			if(sfd){
-				ft.put("sfd@=", sfd);
-			}
-			var sjxq =$('#q_sjxq').textbox("getValue");
-			if(sjxq){
-				ft.put("sjxq@=", sjxq);
-			}
-			var xsly =$('#q_xsly').textbox("getValue");
-			if(xsly){
-				ft.put("xsly@=", xsly);
-			}
-			var djr =$('#q_djr').textbox("getValue");
-			if(djr){
-				ft.put("djr@=", djr);
-			}
-			var djdw =$('#q_djdw').textbox("getValue");
-			if(djdw){
-				ft.put("djdw@=", djdw);
-			}
 			var djsj =$('#q_djsj').textbox("getValue");
 			if(djsj){
 				ft.put("djsj@=", djsj);
-			}
-			var zt =$('#q_zt').textbox("getValue");
-			if(zt){
-				ft.put("zt@=", zt);
-			}
-			var bz =$('#q_bz').textbox("getValue");
-			if(bz){
-				ft.put("bz@=", bz);
 			}
 			return ft.getJSON();
 		}

@@ -238,73 +238,73 @@ public class TbStXsxxExample {
             return (Criteria) this;
         }
 
-        public Criteria andAjbhIsNull() {
-            addCriterion("AJBH is null");
+        public Criteria andXsbhIsNull() {
+            addCriterion("XSBH is null");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhIsNotNull() {
-            addCriterion("AJBH is not null");
+        public Criteria andXsbhIsNotNull() {
+            addCriterion("XSBH is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhEqualTo(String value) {
-            addCriterion("AJBH =", value, "ajbh");
+        public Criteria andXsbhEqualTo(String value) {
+            addCriterion("XSBH =", value, "xsbh");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhNotEqualTo(String value) {
-            addCriterion("AJBH <>", value, "ajbh");
+        public Criteria andXsbhNotEqualTo(String value) {
+            addCriterion("XSBH <>", value, "xsbh");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhGreaterThan(String value) {
-            addCriterion("AJBH >", value, "ajbh");
+        public Criteria andXsbhGreaterThan(String value) {
+            addCriterion("XSBH >", value, "xsbh");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhGreaterThanOrEqualTo(String value) {
-            addCriterion("AJBH >=", value, "ajbh");
+        public Criteria andXsbhGreaterThanOrEqualTo(String value) {
+            addCriterion("XSBH >=", value, "xsbh");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhLessThan(String value) {
-            addCriterion("AJBH <", value, "ajbh");
+        public Criteria andXsbhLessThan(String value) {
+            addCriterion("XSBH <", value, "xsbh");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhLessThanOrEqualTo(String value) {
-            addCriterion("AJBH <=", value, "ajbh");
+        public Criteria andXsbhLessThanOrEqualTo(String value) {
+            addCriterion("XSBH <=", value, "xsbh");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhLike(String value) {
-            addCriterion("AJBH like", value, "ajbh");
+        public Criteria andXsbhLike(String value) {
+            addCriterion("XSBH like", value, "xsbh");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhNotLike(String value) {
-            addCriterion("AJBH not like", value, "ajbh");
+        public Criteria andXsbhNotLike(String value) {
+            addCriterion("XSBH not like", value, "xsbh");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhIn(List<String> values) {
-            addCriterion("AJBH in", values, "ajbh");
+        public Criteria andXsbhIn(List<String> values) {
+            addCriterion("XSBH in", values, "xsbh");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhNotIn(List<String> values) {
-            addCriterion("AJBH not in", values, "ajbh");
+        public Criteria andXsbhNotIn(List<String> values) {
+            addCriterion("XSBH not in", values, "xsbh");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhBetween(String value1, String value2) {
-            addCriterion("AJBH between", value1, value2, "ajbh");
+        public Criteria andXsbhBetween(String value1, String value2) {
+            addCriterion("XSBH between", value1, value2, "xsbh");
             return (Criteria) this;
         }
 
-        public Criteria andAjbhNotBetween(String value1, String value2) {
-            addCriterion("AJBH not between", value1, value2, "ajbh");
+        public Criteria andXsbhNotBetween(String value1, String value2) {
+            addCriterion("XSBH not between", value1, value2, "xsbh");
             return (Criteria) this;
         }
 

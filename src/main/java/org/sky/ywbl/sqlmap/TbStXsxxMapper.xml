@@ -3,7 +3,7 @@
 <mapper namespace="org.sky.ywbl.client.TbStXsxxMapper">
   <resultMap id="BaseResultMap" type="org.sky.ywbl.model.TbStXsxx">
     <id column="ID" jdbcType="VARCHAR" property="id" />
-    <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
+    <result column="XSBH" jdbcType="VARCHAR" property="xsbh" />
     <result column="JBR" jdbcType="VARCHAR" property="jbr" />
     <result column="ZJLX" jdbcType="VARCHAR" property="zjlx" />
     <result column="ZJHM" jdbcType="VARCHAR" property="zjhm" />
@@ -80,7 +80,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AJBH, JBR, ZJLX, ZJHM, DH, SFD, SJXQ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, 
+    ID, XSBH, JBR, ZJLX, ZJHM, DH, SFD, SJXQ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, 
     XSLY, DJR, DJDW, DJSJ, ZT, BZ
   </sql>
   <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStXsxxExample" resultMap="BaseResultMap">
@@ -115,13 +115,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.sky.ywbl.model.TbStXsxx">
-    insert into tb_st_xsxx (ID, AJBH, JBR, 
+    insert into tb_st_xsxx (ID, XSBH, JBR, 
       ZJLX, ZJHM, DH, SFD, 
       SJXQ, CREATER, CREATE_TIME, 
       UPDATER, UPDATE_TIME, XSLY, 
       DJR, DJDW, DJSJ, ZT, 
       BZ)
-    values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{jbr,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{xsbh,jdbcType=VARCHAR}, #{jbr,jdbcType=VARCHAR}, 
       #{zjlx,jdbcType=VARCHAR}, #{zjhm,jdbcType=VARCHAR}, #{dh,jdbcType=VARCHAR}, #{sfd,jdbcType=VARCHAR}, 
       #{sjxq,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{xsly,jdbcType=VARCHAR}, 
@@ -134,8 +134,8 @@
       <if test="id != null">
         ID,
       </if>
-      <if test="ajbh != null">
-        AJBH,
+      <if test="xsbh != null">
+        XSBH,
       </if>
       <if test="jbr != null">
         JBR,
@@ -190,8 +190,8 @@
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="ajbh != null">
-        #{ajbh,jdbcType=VARCHAR},
+      <if test="xsbh != null">
+        #{xsbh,jdbcType=VARCHAR},
       </if>
       <if test="jbr != null">
         #{jbr,jdbcType=VARCHAR},
@@ -255,8 +255,8 @@
       <if test="record.id != null">
         ID = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.ajbh != null">
-        AJBH = #{record.ajbh,jdbcType=VARCHAR},
+      <if test="record.xsbh != null">
+        XSBH = #{record.xsbh,jdbcType=VARCHAR},
       </if>
       <if test="record.jbr != null">
         JBR = #{record.jbr,jdbcType=VARCHAR},
@@ -314,7 +314,7 @@
   <update id="updateByExample" parameterType="map">
     update tb_st_xsxx
     set ID = #{record.id,jdbcType=VARCHAR},
-      AJBH = #{record.ajbh,jdbcType=VARCHAR},
+      XSBH = #{record.xsbh,jdbcType=VARCHAR},
       JBR = #{record.jbr,jdbcType=VARCHAR},
       ZJLX = #{record.zjlx,jdbcType=VARCHAR},
       ZJHM = #{record.zjhm,jdbcType=VARCHAR},
@@ -338,8 +338,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="org.sky.ywbl.model.TbStXsxx">
     update tb_st_xsxx
     <set>
-      <if test="ajbh != null">
-        AJBH = #{ajbh,jdbcType=VARCHAR},
+      <if test="xsbh != null">
+        XSBH = #{xsbh,jdbcType=VARCHAR},
       </if>
       <if test="jbr != null">
         JBR = #{jbr,jdbcType=VARCHAR},
@@ -394,7 +394,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="org.sky.ywbl.model.TbStXsxx">
     update tb_st_xsxx
-    set AJBH = #{ajbh,jdbcType=VARCHAR},
+    set XSBH = #{xsbh,jdbcType=VARCHAR},
       JBR = #{jbr,jdbcType=VARCHAR},
       ZJLX = #{zjlx,jdbcType=VARCHAR},
       ZJHM = #{zjhm,jdbcType=VARCHAR},
