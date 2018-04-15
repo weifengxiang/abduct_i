@@ -631,6 +631,66 @@ public class TbStXsxxExample {
             return (Criteria) this;
         }
 
+        public Criteria andSfsjIsNull() {
+            addCriterion("SFSJ is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSfsjIsNotNull() {
+            addCriterion("SFSJ is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSfsjEqualTo(Date value) {
+            addCriterion("SFSJ =", value, "sfsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andSfsjNotEqualTo(Date value) {
+            addCriterion("SFSJ <>", value, "sfsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andSfsjGreaterThan(Date value) {
+            addCriterion("SFSJ >", value, "sfsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andSfsjGreaterThanOrEqualTo(Date value) {
+            addCriterion("SFSJ >=", value, "sfsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andSfsjLessThan(Date value) {
+            addCriterion("SFSJ <", value, "sfsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andSfsjLessThanOrEqualTo(Date value) {
+            addCriterion("SFSJ <=", value, "sfsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andSfsjIn(List<Date> values) {
+            addCriterion("SFSJ in", values, "sfsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andSfsjNotIn(List<Date> values) {
+            addCriterion("SFSJ not in", values, "sfsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andSfsjBetween(Date value1, Date value2) {
+            addCriterion("SFSJ between", value1, value2, "sfsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andSfsjNotBetween(Date value1, Date value2) {
+            addCriterion("SFSJ not between", value1, value2, "sfsj");
+            return (Criteria) this;
+        }
+
         public Criteria andSjxqIsNull() {
             addCriterion("SJXQ is null");
             return (Criteria) this;

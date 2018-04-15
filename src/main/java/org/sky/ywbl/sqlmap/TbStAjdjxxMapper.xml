@@ -6,7 +6,6 @@
     <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
     <result column="BJSJ" jdbcType="TIMESTAMP" property="bjsj" />
     <result column="SSFJ" jdbcType="VARCHAR" property="ssfj" />
-    <result column="LXDH" jdbcType="VARCHAR" property="lxdh" />
     <result column="BJFS" jdbcType="VARCHAR" property="bjfs" />
     <result column="BJLB" jdbcType="VARCHAR" property="bjlb" />
     <result column="BJLX" jdbcType="VARCHAR" property="bjlx" />
@@ -14,6 +13,15 @@
     <result column="SFDZ" jdbcType="VARCHAR" property="sfdz" />
     <result column="LHLB" jdbcType="VARCHAR" property="lhlb" />
     <result column="BJR" jdbcType="VARCHAR" property="bjr" />
+    <result column="BJRXB" jdbcType="VARCHAR" property="bjrxb" />
+    <result column="BJRNL" jdbcType="INTEGER" property="bjrnl" />
+    <result column="BJRDH" jdbcType="VARCHAR" property="bjrdh" />
+    <result column="BJRZJHM" jdbcType="VARCHAR" property="bjrzjhm" />
+    <result column="SZR" jdbcType="VARCHAR" property="szr" />
+    <result column="SZRXB" jdbcType="VARCHAR" property="szrxb" />
+    <result column="SZRNL" jdbcType="INTEGER" property="szrnl" />
+    <result column="SZRDH" jdbcType="VARCHAR" property="szrdh" />
+    <result column="SZRZJHM" jdbcType="VARCHAR" property="szrzjhm" />
     <result column="SJXQ" jdbcType="VARCHAR" property="sjxq" />
     <result column="XQDW" jdbcType="VARCHAR" property="xqdw" />
     <result column="XZQH" jdbcType="VARCHAR" property="xzqh" />
@@ -27,11 +35,9 @@
     <result column="AFDZLB" jdbcType="VARCHAR" property="afdzlb" />
     <result column="SJFSDZ" jdbcType="VARCHAR" property="sjfsdz" />
     <result column="DQDW" jdbcType="VARCHAR" property="dqdw" />
-    <result column="DQDW_NAME" jdbcType="VARCHAR" property="dqdwName" />
     <result column="AJLY" jdbcType="VARCHAR" property="ajly" />
     <result column="DJR" jdbcType="VARCHAR" property="djr" />
-    <result column="DJR_NAME" jdbcType="VARCHAR" property="djrName" />
-    <result column="DJDW_NAME" jdbcType="VARCHAR" property="djdwName" />
+    <result column="DJDW" jdbcType="VARCHAR" property="djdw" />
     <result column="DJSJ" jdbcType="TIMESTAMP" property="djsj" />
     <result column="XSBH" jdbcType="VARCHAR" property="xsbh" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
@@ -99,12 +105,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AJBH, BJSJ, SSFJ, LXDH, BJFS, BJLB, BJLX, BJXL, SFDZ, LHLB, BJR, SJXQ, XQDW, 
-    XZQH, CJR, DCSJ, DCQK, FKNR, CLJG, SJZT, JWQ, AFDZLB, SJFSDZ, DQDW, AJLY, DJR, DJDW, 
-    DJSJ, XSBH, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, BZ,
-    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=DQDW) AS DQDW_NAME,
-    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=DJDW) AS DJDW_NAME,
-    (SELECT NAME FROM SYS_USER U WHERE U.CODE = DJR) AS DJR_NAME
+    ID, AJBH, BJSJ, SSFJ, BJFS, BJLB, BJLX, BJXL, SFDZ, LHLB, BJR, BJRXB, BJRNL, BJRDH, 
+    BJRZJHM, SZR, SZRXB, SZRNL, SZRDH, SZRZJHM, SJXQ, XQDW, XZQH, CJR, DCSJ, DCQK, FKNR, 
+    CLJG, SJZT, JWQ, AFDZLB, SJFSDZ, DQDW, AJLY, DJR, DJDW, DJSJ, XSBH, CREATER, CREATE_TIME, 
+    UPDATER, UPDATE_TIME, BZ
   </sql>
   <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStAjdjxxExample" resultMap="BaseResultMap">
     select
@@ -139,24 +143,30 @@
   </delete>
   <insert id="insert" parameterType="org.sky.ywbl.model.TbStAjdjxx">
     insert into tb_st_ajdjxx (ID, AJBH, BJSJ, 
-      SSFJ, LXDH, BJFS, BJLB, 
-      BJLX, BJXL, SFDZ, LHLB, 
-      BJR, SJXQ, XQDW, XZQH, 
-      CJR, DCSJ, DCQK, 
-      FKNR, CLJG, SJZT, JWQ, 
-      AFDZLB, SJFSDZ, DQDW, 
-      AJLY, DJR, DJDW, DJSJ, 
+      SSFJ, BJFS, BJLB, BJLX, 
+      BJXL, SFDZ, LHLB, BJR, 
+      BJRXB, BJRNL, BJRDH, 
+      BJRZJHM, SZR, SZRXB, 
+      SZRNL, SZRDH, SZRZJHM, 
+      SJXQ, XQDW, XZQH, CJR, 
+      DCSJ, DCQK, FKNR, 
+      CLJG, SJZT, JWQ, AFDZLB, 
+      SJFSDZ, DQDW, AJLY, 
+      DJR, DJDW, DJSJ, 
       XSBH, CREATER, CREATE_TIME, 
       UPDATER, UPDATE_TIME, BZ
       )
     values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{bjsj,jdbcType=TIMESTAMP}, 
-      #{ssfj,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, #{bjfs,jdbcType=VARCHAR}, #{bjlb,jdbcType=VARCHAR}, 
-      #{bjlx,jdbcType=VARCHAR}, #{bjxl,jdbcType=VARCHAR}, #{sfdz,jdbcType=VARCHAR}, #{lhlb,jdbcType=VARCHAR}, 
-      #{bjr,jdbcType=VARCHAR}, #{sjxq,jdbcType=VARCHAR}, #{xqdw,jdbcType=VARCHAR}, #{xzqh,jdbcType=VARCHAR}, 
-      #{cjr,jdbcType=VARCHAR}, #{dcsj,jdbcType=TIMESTAMP}, #{dcqk,jdbcType=VARCHAR}, 
-      #{fknr,jdbcType=VARCHAR}, #{cljg,jdbcType=VARCHAR}, #{sjzt,jdbcType=VARCHAR}, #{jwq,jdbcType=VARCHAR}, 
-      #{afdzlb,jdbcType=VARCHAR}, #{sjfsdz,jdbcType=VARCHAR}, #{dqdw,jdbcType=VARCHAR}, 
-      #{ajly,jdbcType=VARCHAR}, #{djr,jdbcType=VARCHAR}, #{djdw,jdbcType=VARCHAR}, #{djsj,jdbcType=TIMESTAMP}, 
+      #{ssfj,jdbcType=VARCHAR}, #{bjfs,jdbcType=VARCHAR}, #{bjlb,jdbcType=VARCHAR}, #{bjlx,jdbcType=VARCHAR}, 
+      #{bjxl,jdbcType=VARCHAR}, #{sfdz,jdbcType=VARCHAR}, #{lhlb,jdbcType=VARCHAR}, #{bjr,jdbcType=VARCHAR}, 
+      #{bjrxb,jdbcType=VARCHAR}, #{bjrnl,jdbcType=INTEGER}, #{bjrdh,jdbcType=VARCHAR}, 
+      #{bjrzjhm,jdbcType=VARCHAR}, #{szr,jdbcType=VARCHAR}, #{szrxb,jdbcType=VARCHAR}, 
+      #{szrnl,jdbcType=INTEGER}, #{szrdh,jdbcType=VARCHAR}, #{szrzjhm,jdbcType=VARCHAR}, 
+      #{sjxq,jdbcType=VARCHAR}, #{xqdw,jdbcType=VARCHAR}, #{xzqh,jdbcType=VARCHAR}, #{cjr,jdbcType=VARCHAR}, 
+      #{dcsj,jdbcType=TIMESTAMP}, #{dcqk,jdbcType=VARCHAR}, #{fknr,jdbcType=VARCHAR}, 
+      #{cljg,jdbcType=VARCHAR}, #{sjzt,jdbcType=VARCHAR}, #{jwq,jdbcType=VARCHAR}, #{afdzlb,jdbcType=VARCHAR}, 
+      #{sjfsdz,jdbcType=VARCHAR}, #{dqdw,jdbcType=VARCHAR}, #{ajly,jdbcType=VARCHAR}, 
+      #{djr,jdbcType=VARCHAR}, #{djdw,jdbcType=VARCHAR}, #{djsj,jdbcType=TIMESTAMP}, 
       #{xsbh,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{bz,jdbcType=VARCHAR}
       )
@@ -175,9 +185,6 @@
       </if>
       <if test="ssfj != null">
         SSFJ,
-      </if>
-      <if test="lxdh != null">
-        LXDH,
       </if>
       <if test="bjfs != null">
         BJFS,
@@ -199,6 +206,33 @@
       </if>
       <if test="bjr != null">
         BJR,
+      </if>
+      <if test="bjrxb != null">
+        BJRXB,
+      </if>
+      <if test="bjrnl != null">
+        BJRNL,
+      </if>
+      <if test="bjrdh != null">
+        BJRDH,
+      </if>
+      <if test="bjrzjhm != null">
+        BJRZJHM,
+      </if>
+      <if test="szr != null">
+        SZR,
+      </if>
+      <if test="szrxb != null">
+        SZRXB,
+      </if>
+      <if test="szrnl != null">
+        SZRNL,
+      </if>
+      <if test="szrdh != null">
+        SZRDH,
+      </if>
+      <if test="szrzjhm != null">
+        SZRZJHM,
       </if>
       <if test="sjxq != null">
         SJXQ,
@@ -283,9 +317,6 @@
       <if test="ssfj != null">
         #{ssfj,jdbcType=VARCHAR},
       </if>
-      <if test="lxdh != null">
-        #{lxdh,jdbcType=VARCHAR},
-      </if>
       <if test="bjfs != null">
         #{bjfs,jdbcType=VARCHAR},
       </if>
@@ -306,6 +337,33 @@
       </if>
       <if test="bjr != null">
         #{bjr,jdbcType=VARCHAR},
+      </if>
+      <if test="bjrxb != null">
+        #{bjrxb,jdbcType=VARCHAR},
+      </if>
+      <if test="bjrnl != null">
+        #{bjrnl,jdbcType=INTEGER},
+      </if>
+      <if test="bjrdh != null">
+        #{bjrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="bjrzjhm != null">
+        #{bjrzjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="szr != null">
+        #{szr,jdbcType=VARCHAR},
+      </if>
+      <if test="szrxb != null">
+        #{szrxb,jdbcType=VARCHAR},
+      </if>
+      <if test="szrnl != null">
+        #{szrnl,jdbcType=INTEGER},
+      </if>
+      <if test="szrdh != null">
+        #{szrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="szrzjhm != null">
+        #{szrzjhm,jdbcType=VARCHAR},
       </if>
       <if test="sjxq != null">
         #{sjxq,jdbcType=VARCHAR},
@@ -399,9 +457,6 @@
       <if test="record.ssfj != null">
         SSFJ = #{record.ssfj,jdbcType=VARCHAR},
       </if>
-      <if test="record.lxdh != null">
-        LXDH = #{record.lxdh,jdbcType=VARCHAR},
-      </if>
       <if test="record.bjfs != null">
         BJFS = #{record.bjfs,jdbcType=VARCHAR},
       </if>
@@ -422,6 +477,33 @@
       </if>
       <if test="record.bjr != null">
         BJR = #{record.bjr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bjrxb != null">
+        BJRXB = #{record.bjrxb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bjrnl != null">
+        BJRNL = #{record.bjrnl,jdbcType=INTEGER},
+      </if>
+      <if test="record.bjrdh != null">
+        BJRDH = #{record.bjrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bjrzjhm != null">
+        BJRZJHM = #{record.bjrzjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.szr != null">
+        SZR = #{record.szr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.szrxb != null">
+        SZRXB = #{record.szrxb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.szrnl != null">
+        SZRNL = #{record.szrnl,jdbcType=INTEGER},
+      </if>
+      <if test="record.szrdh != null">
+        SZRDH = #{record.szrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.szrzjhm != null">
+        SZRZJHM = #{record.szrzjhm,jdbcType=VARCHAR},
       </if>
       <if test="record.sjxq != null">
         SJXQ = #{record.sjxq,jdbcType=VARCHAR},
@@ -503,7 +585,6 @@
       AJBH = #{record.ajbh,jdbcType=VARCHAR},
       BJSJ = #{record.bjsj,jdbcType=TIMESTAMP},
       SSFJ = #{record.ssfj,jdbcType=VARCHAR},
-      LXDH = #{record.lxdh,jdbcType=VARCHAR},
       BJFS = #{record.bjfs,jdbcType=VARCHAR},
       BJLB = #{record.bjlb,jdbcType=VARCHAR},
       BJLX = #{record.bjlx,jdbcType=VARCHAR},
@@ -511,6 +592,15 @@
       SFDZ = #{record.sfdz,jdbcType=VARCHAR},
       LHLB = #{record.lhlb,jdbcType=VARCHAR},
       BJR = #{record.bjr,jdbcType=VARCHAR},
+      BJRXB = #{record.bjrxb,jdbcType=VARCHAR},
+      BJRNL = #{record.bjrnl,jdbcType=INTEGER},
+      BJRDH = #{record.bjrdh,jdbcType=VARCHAR},
+      BJRZJHM = #{record.bjrzjhm,jdbcType=VARCHAR},
+      SZR = #{record.szr,jdbcType=VARCHAR},
+      SZRXB = #{record.szrxb,jdbcType=VARCHAR},
+      SZRNL = #{record.szrnl,jdbcType=INTEGER},
+      SZRDH = #{record.szrdh,jdbcType=VARCHAR},
+      SZRZJHM = #{record.szrzjhm,jdbcType=VARCHAR},
       SJXQ = #{record.sjxq,jdbcType=VARCHAR},
       XQDW = #{record.xqdw,jdbcType=VARCHAR},
       XZQH = #{record.xzqh,jdbcType=VARCHAR},
@@ -550,9 +640,6 @@
       <if test="ssfj != null">
         SSFJ = #{ssfj,jdbcType=VARCHAR},
       </if>
-      <if test="lxdh != null">
-        LXDH = #{lxdh,jdbcType=VARCHAR},
-      </if>
       <if test="bjfs != null">
         BJFS = #{bjfs,jdbcType=VARCHAR},
       </if>
@@ -573,6 +660,33 @@
       </if>
       <if test="bjr != null">
         BJR = #{bjr,jdbcType=VARCHAR},
+      </if>
+      <if test="bjrxb != null">
+        BJRXB = #{bjrxb,jdbcType=VARCHAR},
+      </if>
+      <if test="bjrnl != null">
+        BJRNL = #{bjrnl,jdbcType=INTEGER},
+      </if>
+      <if test="bjrdh != null">
+        BJRDH = #{bjrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="bjrzjhm != null">
+        BJRZJHM = #{bjrzjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="szr != null">
+        SZR = #{szr,jdbcType=VARCHAR},
+      </if>
+      <if test="szrxb != null">
+        SZRXB = #{szrxb,jdbcType=VARCHAR},
+      </if>
+      <if test="szrnl != null">
+        SZRNL = #{szrnl,jdbcType=INTEGER},
+      </if>
+      <if test="szrdh != null">
+        SZRDH = #{szrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="szrzjhm != null">
+        SZRZJHM = #{szrzjhm,jdbcType=VARCHAR},
       </if>
       <if test="sjxq != null">
         SJXQ = #{sjxq,jdbcType=VARCHAR},
@@ -651,7 +765,6 @@
     set AJBH = #{ajbh,jdbcType=VARCHAR},
       BJSJ = #{bjsj,jdbcType=TIMESTAMP},
       SSFJ = #{ssfj,jdbcType=VARCHAR},
-      LXDH = #{lxdh,jdbcType=VARCHAR},
       BJFS = #{bjfs,jdbcType=VARCHAR},
       BJLB = #{bjlb,jdbcType=VARCHAR},
       BJLX = #{bjlx,jdbcType=VARCHAR},
@@ -659,6 +772,15 @@
       SFDZ = #{sfdz,jdbcType=VARCHAR},
       LHLB = #{lhlb,jdbcType=VARCHAR},
       BJR = #{bjr,jdbcType=VARCHAR},
+      BJRXB = #{bjrxb,jdbcType=VARCHAR},
+      BJRNL = #{bjrnl,jdbcType=INTEGER},
+      BJRDH = #{bjrdh,jdbcType=VARCHAR},
+      BJRZJHM = #{bjrzjhm,jdbcType=VARCHAR},
+      SZR = #{szr,jdbcType=VARCHAR},
+      SZRXB = #{szrxb,jdbcType=VARCHAR},
+      SZRNL = #{szrnl,jdbcType=INTEGER},
+      SZRDH = #{szrdh,jdbcType=VARCHAR},
+      SZRZJHM = #{szrzjhm,jdbcType=VARCHAR},
       SJXQ = #{sjxq,jdbcType=VARCHAR},
       XQDW = #{xqdw,jdbcType=VARCHAR},
       XZQH = #{xzqh,jdbcType=VARCHAR},

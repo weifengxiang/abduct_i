@@ -9,6 +9,7 @@
     <result column="ZJHM" jdbcType="VARCHAR" property="zjhm" />
     <result column="DH" jdbcType="VARCHAR" property="dh" />
     <result column="SFD" jdbcType="VARCHAR" property="sfd" />
+    <result column="SFSJ" jdbcType="TIMESTAMP" property="sfsj" />
     <result column="SJXQ" jdbcType="VARCHAR" property="sjxq" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
@@ -16,9 +17,7 @@
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="XSLY" jdbcType="VARCHAR" property="xsly" />
     <result column="DJR" jdbcType="VARCHAR" property="djr" />
-    <result column="DJR_NAME" jdbcType="VARCHAR" property="djrName" />
     <result column="DJDW" jdbcType="VARCHAR" property="djdw" />
-    <result column="DJDW_NAME" jdbcType="VARCHAR" property="djdwName" />
     <result column="DJSJ" jdbcType="TIMESTAMP" property="djsj" />
     <result column="ZT" jdbcType="VARCHAR" property="zt" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
@@ -82,10 +81,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, XSBH, JBR, ZJLX, ZJHM, DH, SFD, SJXQ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, 
-    XSLY, DJR, DJDW, DJSJ, ZT, BZ,
-    (SELECT NAME FROM SYS_USER U WHERE U.CODE=DJR) AS DJR_NAME,
-    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=DJDW) AS DJDW_NAME
+    ID, XSBH, JBR, ZJLX, ZJHM, DH, SFD, SFSJ, SJXQ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, 
+    XSLY, DJR, DJDW, DJSJ, ZT, BZ
   </sql>
   <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStXsxxExample" resultMap="BaseResultMap">
     select
@@ -121,15 +118,15 @@
   <insert id="insert" parameterType="org.sky.ywbl.model.TbStXsxx">
     insert into tb_st_xsxx (ID, XSBH, JBR, 
       ZJLX, ZJHM, DH, SFD, 
-      SJXQ, CREATER, CREATE_TIME, 
-      UPDATER, UPDATE_TIME, XSLY, 
-      DJR, DJDW, DJSJ, 
+      SFSJ, SJXQ, CREATER, 
+      CREATE_TIME, UPDATER, UPDATE_TIME, 
+      XSLY, DJR, DJDW, DJSJ, 
       ZT, BZ)
     values (#{id,jdbcType=VARCHAR}, #{xsbh,jdbcType=VARCHAR}, #{jbr,jdbcType=VARCHAR}, 
       #{zjlx,jdbcType=VARCHAR}, #{zjhm,jdbcType=VARCHAR}, #{dh,jdbcType=VARCHAR}, #{sfd,jdbcType=VARCHAR}, 
-      #{sjxq,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{xsly,jdbcType=VARCHAR}, 
-      #{djr,jdbcType=VARCHAR}, #{djdw,jdbcType=VARCHAR}, #{djsj,jdbcType=TIMESTAMP}, 
+      #{sfsj,jdbcType=TIMESTAMP}, #{sjxq,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{xsly,jdbcType=VARCHAR}, #{djr,jdbcType=VARCHAR}, #{djdw,jdbcType=VARCHAR}, #{djsj,jdbcType=TIMESTAMP}, 
       #{zt,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStXsxx">
@@ -155,6 +152,9 @@
       </if>
       <if test="sfd != null">
         SFD,
+      </if>
+      <if test="sfsj != null">
+        SFSJ,
       </if>
       <if test="sjxq != null">
         SJXQ,
@@ -211,6 +211,9 @@
       </if>
       <if test="sfd != null">
         #{sfd,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsj != null">
+        #{sfsj,jdbcType=TIMESTAMP},
       </if>
       <if test="sjxq != null">
         #{sjxq,jdbcType=VARCHAR},
@@ -277,6 +280,9 @@
       <if test="record.sfd != null">
         SFD = #{record.sfd,jdbcType=VARCHAR},
       </if>
+      <if test="record.sfsj != null">
+        SFSJ = #{record.sfsj,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.sjxq != null">
         SJXQ = #{record.sjxq,jdbcType=VARCHAR},
       </if>
@@ -324,6 +330,7 @@
       ZJHM = #{record.zjhm,jdbcType=VARCHAR},
       DH = #{record.dh,jdbcType=VARCHAR},
       SFD = #{record.sfd,jdbcType=VARCHAR},
+      SFSJ = #{record.sfsj,jdbcType=TIMESTAMP},
       SJXQ = #{record.sjxq,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -359,6 +366,9 @@
       </if>
       <if test="sfd != null">
         SFD = #{sfd,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsj != null">
+        SFSJ = #{sfsj,jdbcType=TIMESTAMP},
       </if>
       <if test="sjxq != null">
         SJXQ = #{sjxq,jdbcType=VARCHAR},
@@ -404,6 +414,7 @@
       ZJHM = #{zjhm,jdbcType=VARCHAR},
       DH = #{dh,jdbcType=VARCHAR},
       SFD = #{sfd,jdbcType=VARCHAR},
+      SFSJ = #{sfsj,jdbcType=TIMESTAMP},
       SJXQ = #{sjxq,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},

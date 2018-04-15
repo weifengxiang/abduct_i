@@ -71,12 +71,9 @@ $(function() {
 						data-options="required:true,multiline:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>线索来源:</label></th>
-					<td><input class="easyui-combobox" name="xsly"
-						data-options="required:true,
-									  valueField:'code',
-									  textField:'name',
-									  data:xsly"></input></td>
+					<th><label>事发时间:</label></th>
+					<td><input class="easyui-datetimebox" name="sfsj"
+						data-options="required:true"></input></td>
 			
 					<th><label>登记人:</label></th>
 					<td><input class="easyui-textbox" name="djrName" id="djrName"
@@ -98,6 +95,12 @@ $(function() {
 									  valueField:'code',
 									  textField:'name',
 									  data:xszt"></input></td>
+					<th><label>线索来源:</label></th>
+					<td><input class="easyui-combobox" name="xsly"
+						data-options="required:true,
+									  valueField:'code',
+									  textField:'name',
+									  data:xsly"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>备注:</label></th>

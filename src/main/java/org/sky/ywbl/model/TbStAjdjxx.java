@@ -11,8 +11,6 @@ public class TbStAjdjxx {
 
     private String ssfj;
 
-    private String lxdh;
-
     private String bjfs;
 
     private String bjlb;
@@ -26,6 +24,24 @@ public class TbStAjdjxx {
     private String lhlb;
 
     private String bjr;
+
+    private String bjrxb;
+
+    private Integer bjrnl;
+
+    private String bjrdh;
+
+    private String bjrzjhm;
+
+    private String szr;
+
+    private String szrxb;
+
+    private Integer szrnl;
+
+    private String szrdh;
+
+    private String szrzjhm;
 
     private String sjxq;
 
@@ -52,18 +68,12 @@ public class TbStAjdjxx {
     private String sjfsdz;
 
     private String dqdw;
-    
-    private String dqdwName;
 
     private String ajly;
 
     private String djr;
-    
-    private String djrName;
 
     private String djdw;
-    
-    private String djdwName;
 
     private Date djsj;
 
@@ -109,14 +119,6 @@ public class TbStAjdjxx {
 
     public void setSsfj(String ssfj) {
         this.ssfj = ssfj;
-    }
-
-    public String getLxdh() {
-        return lxdh;
-    }
-
-    public void setLxdh(String lxdh) {
-        this.lxdh = lxdh;
     }
 
     public String getBjfs() {
@@ -173,6 +175,78 @@ public class TbStAjdjxx {
 
     public void setBjr(String bjr) {
         this.bjr = bjr;
+    }
+
+    public String getBjrxb() {
+        return bjrxb;
+    }
+
+    public void setBjrxb(String bjrxb) {
+        this.bjrxb = bjrxb;
+    }
+
+    public Integer getBjrnl() {
+        return bjrnl;
+    }
+
+    public void setBjrnl(Integer bjrnl) {
+        this.bjrnl = bjrnl;
+    }
+
+    public String getBjrdh() {
+        return bjrdh;
+    }
+
+    public void setBjrdh(String bjrdh) {
+        this.bjrdh = bjrdh;
+    }
+
+    public String getBjrzjhm() {
+        return bjrzjhm;
+    }
+
+    public void setBjrzjhm(String bjrzjhm) {
+        this.bjrzjhm = bjrzjhm;
+    }
+
+    public String getSzr() {
+        return szr;
+    }
+
+    public void setSzr(String szr) {
+        this.szr = szr;
+    }
+
+    public String getSzrxb() {
+        return szrxb;
+    }
+
+    public void setSzrxb(String szrxb) {
+        this.szrxb = szrxb;
+    }
+
+    public Integer getSzrnl() {
+        return szrnl;
+    }
+
+    public void setSzrnl(Integer szrnl) {
+        this.szrnl = szrnl;
+    }
+
+    public String getSzrdh() {
+        return szrdh;
+    }
+
+    public void setSzrdh(String szrdh) {
+        this.szrdh = szrdh;
+    }
+
+    public String getSzrzjhm() {
+        return szrzjhm;
+    }
+
+    public void setSzrzjhm(String szrzjhm) {
+        this.szrzjhm = szrzjhm;
     }
 
     public String getSjxq() {
@@ -358,28 +432,4 @@ public class TbStAjdjxx {
     public void setBz(String bz) {
         this.bz = bz;
     }
-
-	public String getDqdwName() {
-		return dqdwName;
-	}
-
-	public void setDqdwName(String dqdwName) {
-		this.dqdwName = dqdwName;
-	}
-
-	public String getDjrName() {
-		return djrName;
-	}
-
-	public void setDjrName(String djrName) {
-		this.djrName = djrName;
-	}
-
-	public String getDjdwName() {
-		return djdwName;
-	}
-
-	public void setDjdwName(String djdwName) {
-		this.djdwName = djdwName;
-	}
 }

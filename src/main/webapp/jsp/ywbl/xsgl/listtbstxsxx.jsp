@@ -65,6 +65,7 @@ $(function() {
 				<th data-options="field:'zjhm',width:180">举报人证件号码</th>
 				<th data-options="field:'dh',width:100">电话</th>
 				<th data-options="field:'sfd',width:180">事发地</th>
+				<th data-options="field:'sfsj',width:140">事发时间</th>
 				<th data-options="field:'sjxq',width:180">事件详情</th>
 				<th data-options="field:'xsly',width:180,
 				formatter:function(value,row){

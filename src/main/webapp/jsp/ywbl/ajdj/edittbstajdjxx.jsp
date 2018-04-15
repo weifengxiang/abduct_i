@@ -17,6 +17,7 @@ var bjxl = <%=DictUtils.getDictItem("BJXL") %>;
 var lhlb = <%=DictUtils.getDictItem("LHLB") %>;
 var sjzt = <%=DictUtils.getDictItem("SJZT") %>;
 var ajly = <%=DictUtils.getDictItem("AJLY") %>;
+var xb = <%=DictUtils.getDictItem("XB") %>;
 var djr  = '<%=BspUtils.getLoginUser().getCode() %>';
 var djrName = '<%=BspUtils.getLoginUser().getName() %>';
 var djdw = '<%=BspUtils.getLoginUser().getOrganCode() %>';
@@ -43,15 +44,6 @@ $(function() {
 						data-options="required:true"></input></td>
 					<th><label>报警时间:</label></th>
 					<td><input class="easyui-datetimebox" name="bjsj" id="bjsj"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>所属分局:</label></th>
-					<td><input class="easyui-textbox" name="ssfj"
-						data-options="required:true"></input></td>
-
-					<th><label>联系电话:</label></th>
-					<td><input class="easyui-textbox" name="lxdh"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
@@ -85,17 +77,60 @@ $(function() {
 									  data:bjxl"></input></td>
 				  </tr>
 				  <tr>
-				  	<th><label>报警人:</label></th>
-					<td><input class="easyui-textbox" name="bjr"
-						data-options="required:true"></input></td>
-					
-
 					<th><label>来话类别:</label></th>
 					<td><input class="easyui-combobox" name="lhlb"
 						data-options="required:true,
 									  valueField:'code',
 								      textField:'name',
 									  data:lhlb"></input></td>
+				  </tr>
+				  <tr>
+				  	<th><label>报警人:</label></th>
+					<td><input class="easyui-textbox" name="bjr"
+						data-options="required:true"></input></td>
+					<th><label>报警人性别:</label></th>
+					<td><input class="easyui-combobox" name="bjrxb"
+						data-options="required:true,
+									  valueField:'code',
+								      textField:'name',
+									  data:xb"></input></td>
+				  </tr>
+				  <tr>
+				  	<th><label>报警人证件号码:</label></th>
+					<td><input class="easyui-textbox" name="bjrzjhm"
+						data-options="required:true"></input></td>
+					<th><label>报警人年龄:</label></th>
+					<td><input class="easyui-textbox" name="bjrnl"
+						data-options="required:true"></input></td>
+				  </tr>
+				  <tr>
+					<th><label>报警人电话:</label></th>
+					<td><input class="easyui-textbox" name="bjrdh"
+						data-options="required:true"></input></td>
+				  </tr>
+				  <tr>
+				  	<th><label>失踪人:</label></th>
+					<td><input class="easyui-textbox" name="szr"
+						data-options="required:true"></input></td>
+					<th><label>失踪人性别:</label></th>
+					<td><input class="easyui-combobox" name="szrxb"
+						data-options="required:true,
+									  valueField:'code',
+								      textField:'name',
+									  data:xb"></input></td>
+				  </tr>
+				  <tr>
+				  	<th><label>失踪人证件号码:</label></th>
+					<td><input class="easyui-textbox" name="szrzjhm"
+						data-options="required:true"></input></td>
+					<th><label>失踪人年龄:</label></th>
+					<td><input class="easyui-textbox" name="szrnl"
+						data-options="required:true"></input></td>
+				  </tr>
+				  <tr>
+					<th><label>失踪人电话:</label></th>
+					<td><input class="easyui-textbox" name="szrdh"
+						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>事发地址:</label></th>

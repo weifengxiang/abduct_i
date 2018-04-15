@@ -15,8 +15,8 @@ function addTbStXsxx(){
 	var opts={
 				id:'addTbStXsxx',
 				title:'添加线索信息',
-				width:600,
-				height:450,
+				width:800,
+				height:600,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStXsxx/initAddTbStXsxxPage'),
 				onLoad: function(dialog){ 
@@ -83,8 +83,8 @@ function editTbStXsxx(){
 	var opts={
 				id:'editTbStXsxx',
 				title:'修改线索信息',
-				width:600,
-				height:450,
+				width:800,
+				height:600,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStXsxx/initEditTbStXsxxPage'),
 				onLoad: function(dialog){ 
@@ -114,8 +114,8 @@ function detailTbStXsxx(){
 	var opts={
 				id:'detailTbStXsxx',
 				title:'线索信息明细',
-				width:600,
-				height:450,
+				width:800,
+				height:600,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStXsxx/initDetailTbStXsxxPage'),
 				onLoad: function(dialog){ 
