@@ -64,7 +64,13 @@ public class MyCrawler {
                 System.out.println("下面将打印所有a标签： ");
                 System.out.println(es);
             }
-
+            //获取Page的文本信息
+            Elements reginfo = PageParserTool.select(page,"div[id='table_1_normaldivr']");
+            if(!reginfo.isEmpty()){
+                System.out.println("开始打印所有reginfo：------ ");
+                System.out.println(reginfo);
+                System.out.println("结束打印所有reginfo：------ ");
+            }
             //将保存文件
             FileTool.saveToLocal(page);
 
