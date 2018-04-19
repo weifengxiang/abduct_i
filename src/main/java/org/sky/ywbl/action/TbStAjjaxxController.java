@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
+import org.sky.ywbl.model.TbStAjdjxxExample;
 import org.sky.ywbl.model.TbStAjjaxx;
 import org.sky.ywbl.model.TbStAjjaxxExample;
 import org.sky.ywbl.model.TbStAjjaxxExample.Criteria;
+import org.sky.ywbl.service.TbStAjdjxxService;
 import org.sky.ywbl.service.TbStAjjaxxService;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
@@ -24,11 +26,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ModelAttribute;
+/**
+ * 
+ * @ClassName:  TbStAjjaxxController   
+ * @Description:TODO(案件结案信息)   
+ * @author: weifx 
+ * @date:   2018年4月19日 下午10:28:27   
+ * @version V1.0    
+ * @Copyright: 2018 XXX. All rights reserved.
+ */
 @Controller
 public class TbStAjjaxxController extends BaseController{
 	@Autowired
 	private TbStAjjaxxService tbstajjaxxService;
-	
+	@Autowired
+	private TbStAjdjxxService tbstajdjxxService;
 	public TbStAjjaxxController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -56,7 +68,7 @@ public class TbStAjjaxxController extends BaseController{
 		Map filterMap = JsonUtils.json2map(filter);
 		String sortfield=request.getParameter("sortfield");
 		Page p= super.getPage(request);
-		TbStAjjaxxExample pote= new TbStAjjaxxExample();
+		TbStAjdjxxExample pote= new TbStAjdjxxExample();
 		if(null!=filterMap){
 			pote.createCriteria();
 			pote.integratedQuery(filterMap);
@@ -65,7 +77,7 @@ public class TbStAjjaxxController extends BaseController{
 			pote.setOrderByClause(sortfield);
 		}
 		pote.setPage(p);
-		PageListData pageData = tbstajjaxxService.getTbStAjjaxxByPage(pote);
+		PageListData pageData = tbstajdjxxService.getTbStAjdjxxByPage(pote);
 		return JsonUtils.obj2json(pageData);
 	}
 	/**

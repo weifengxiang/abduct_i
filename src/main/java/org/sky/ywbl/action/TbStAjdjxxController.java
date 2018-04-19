@@ -27,6 +27,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
+/**
+ * 
+ * @ClassName:  TbStAjdjxxController   
+ * @Description:TODO(案件登记信息)   
+ * @author: weifx 
+ * @date:   2018年4月19日 下午9:49:01   
+ * @version V1.0    
+ * @Copyright: 2018 XXX. All rights reserved.
+ */
 @Controller
 public class TbStAjdjxxController extends BaseController{
 	@Autowired
