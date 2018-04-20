@@ -2,6 +2,15 @@
  * 初始化添加案件办理信息页面
  */
 function initAddTbStAjblxxPage(paramOpts){
+	var ajbh = paramOpts.data.ajbh;
+	var opt = paramOpts.data.opt;
+	$('#ajbh').textbox('setValue',ajbh);
+	$('#bljg').combobox('setValue',opt);
+	$('#blrName').textbox('setValue',blrName);
+	$('#blr').val(blr);
+	$('#bldwName').textbox('setValue',bldwName);
+	$('#bldw').val(bldw);
+	$('#blsj').datetimebox('setValue',blsj);
 	_callbacks.add(paramOpts.callBack);
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();

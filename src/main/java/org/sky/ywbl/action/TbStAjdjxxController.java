@@ -113,6 +113,15 @@ public class TbStAjdjxxController extends BaseController{
 		return "jsp/ywbl/ajdj/detailtbstajdjxx";
 	}
 	/**
+	*显示案件登记信息列表页面
+	**/
+	@SysControllerLog(desc = "显示案件登记Main页面")
+	@RequestMapping(value = "/ywbl/TbStAjdjxx/initAjxxmainPage", method = { RequestMethod.GET })
+	public String initAjxxmainPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/ywbl/ajdj/ajxxmain";
+	}
+	/**
 	*保存新增/修改案件登记信息
 	**/
 	@SysControllerLog(desc = "保存新增/修改案件登记信息")
@@ -167,6 +176,18 @@ public class TbStAjdjxxController extends BaseController{
 			HttpServletResponse response){
 		String id = request.getParameter("id");
 		TbStAjdjxx bean = tbstajdjxxService.getTbStAjdjxxById(id);
+		return JsonUtils.obj2json(bean);
+	}
+	/**
+	*根据主键查询案件登记信息
+	**/
+	@SysControllerLog(desc = "根据案件编号查询案件登记信息")
+	@RequestMapping(value = "/ywbl/TbStAjdjxx/getTbStAjdjxxByAjbh", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String getTbStAjdjxxByAjbh(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		String ajbh = request.getParameter("ajbh");
+		TbStAjdjxx bean = tbstajdjxxService.getTbStAjdjxxByAjbh(ajbh);
 		return JsonUtils.obj2json(bean);
 	}
 }

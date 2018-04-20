@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="org.sky.ywbl.model.TbStAjblxx">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
-    <result column="BLJG" jdbcType="CHAR" property="bljg" />
+    <result column="BLJG" jdbcType="VARCHAR" property="bljg" />
     <result column="BLYJ" jdbcType="VARCHAR" property="blyj" />
     <result column="BLSJ" jdbcType="TIMESTAMP" property="blsj" />
     <result column="BLR" jdbcType="VARCHAR" property="blr" />

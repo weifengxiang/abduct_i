@@ -68,7 +68,7 @@ public class TbStAjblxxController extends BaseController{
 		Map filterMap = JsonUtils.json2map(filter);
 		String sortfield=request.getParameter("sortfield");
 		Page p= super.getPage(request);
-		TbStAjdjxxExample pote= new TbStAjdjxxExample();
+		TbStAjblxxExample pote= new TbStAjblxxExample();
 		if(null!=filterMap){
 			pote.createCriteria();
 			pote.integratedQuery(filterMap);
@@ -77,7 +77,7 @@ public class TbStAjblxxController extends BaseController{
 			pote.setOrderByClause(sortfield);
 		}
 		pote.setPage(p);
-		PageListData pageData = tbstajdjxxService.getTbStAjdjxxByPage(pote);
+		PageListData pageData = tbstajblxxService.getTbStAjblxxByPage(pote);
 		return JsonUtils.obj2json(pageData);
 	}
 	/**

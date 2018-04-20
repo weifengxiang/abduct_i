@@ -115,4 +115,14 @@ public class TbStAjdjxxService {
 		TbStAjdjxx bean = tbstajdjxxmapper.selectByPrimaryKey(id);
 		return bean;
 	}
+	public TbStAjdjxx getTbStAjdjxxByAjbh(String ajbh){
+		TbStAjdjxxExample e = new TbStAjdjxxExample();
+		e.createCriteria().andAjbhEqualTo(ajbh);
+		List<TbStAjdjxx> list = tbstajdjxxmapper.selectByExample(e);
+		if(list.size()>0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
 }

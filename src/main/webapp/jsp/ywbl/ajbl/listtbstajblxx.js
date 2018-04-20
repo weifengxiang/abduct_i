@@ -8,31 +8,91 @@ function init(){
 		}
 	});
 }
- /**
- *添加案件登记信息
- **/
-function addTbStAjdjxx(){
-	var opts={
-				id:'addTbStAjdjxx',
-				title:'添加案件登记信息',
-				width:800,
-				height:600,
+/**
+ * 案件办理
+ * @returns
+ */
+function doAjbh(){
+	var checkeds=$('#listtbstajdjxxdg').datagrid('getChecked');
+	if(null==checkeds||checkeds.length!=1){
+		$.messager.alert('提示','请选择一条记录','info');
+		return;
+	}
+	//办理
+	var doBL=function(opt){
+		var opts={
+				id:'addTbStAjblxx',
+				title:'案件办理',
+				width:600,
+				height:450,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/initAddTbStAjdjxxPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjblxx/initAddTbStAjblxxPage'),
 				onLoad: function(dialog){ 
-		            if(this.content && this.content.initAddTbStAjdjxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		            if(this.content && this.content.initAddTbStAjblxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
+		                var data = new Object();
+		                data.ajbh = checkeds[0].ajbh;
+		                data.opt=opt;
+		                paramOpts.data=data;
 		                paramOpts.dialog=dialog;
 		                paramOpts.callBack=function(){
 		                	dialog.close();
 		                	searchButton();
 		                };
-		            	this.content.initAddTbStAjdjxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            	this.content.initAddTbStAjblxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 		            } 
 		        }
 			  };
+		SKY_EASYUI.open(opts);
+	};
+	var buttons = new Array();
+	var thButton = {
+			text: '退回',  
+            iconCls: 'icon-undo',  
+            handler:function(dialog){
+            	doBL('-1');
+            }};
+	var flButton = {
+			text: '分流',  
+            iconCls: 'icon-20130406125519344_easyicon_net_16',  
+            handler:function(dialog){
+            	doBL('0');
+            }}; 
+	var slButton = {
+			text: '受理',  
+            iconCls: 'icon-accept',  
+            handler:function(dialog){
+            	doBL('1');
+            }}; 
+	var bjButton = {
+			text: '办结',  
+            iconCls: 'icon-ok',  
+            handler:function(dialog){
+            	doBL('2');
+            }}; 
+	var gbButton = {
+			text: '关闭',  
+            iconCls: 'icon-cancel',  
+            handler:function(dialog){
+            	dialog.close();
+            }};
+	buttons.push(thButton);
+	buttons.push(flButton);
+	buttons.push(slButton);
+	buttons.push(bjButton);
+	buttons.push(gbButton);
+	var opts={
+			id:'doAjbl',
+			title:'案件办理',
+			width:800,
+			height:600,
+			modal:true,
+			content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/initAjxxmainPage?ajbh='+checkeds[0].ajbh),
+			buttons:buttons
+		  };
 	SKY_EASYUI.open(opts);
 }
+
  /**
  *删除案件登记信息
  **/

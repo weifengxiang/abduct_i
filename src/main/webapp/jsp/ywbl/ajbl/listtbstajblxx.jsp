@@ -117,11 +117,7 @@ $(function() {
 </div>
 <div id="tb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="addTbStAjdjxx()">增加</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-edit',plain:true" onclick="editTbStAjdjxx()">修改</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delTbStAjdjxx()">删除</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="doAjbh()">案件办理</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-06',plain:true" onclick="detailTbStAjdjxx()">查看明细</a>
 </div>
