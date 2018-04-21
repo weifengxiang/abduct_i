@@ -8,7 +8,7 @@ import java.util.Map;
 import org.sky.sys.utils.BeanUtils;
 import org.sky.sys.utils.Page;
 
-public class TbStAjjaxxExample {
+public class TbStAjjashxxExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -17,7 +17,7 @@ public class TbStAjjaxxExample {
 
     protected Page page;
 
-    public TbStAjjaxxExample() {
+    public TbStAjjashxxExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -281,203 +281,343 @@ public class TbStAjjaxxExample {
             return (Criteria) this;
         }
 
-        public Criteria andJadwIsNull() {
-            addCriterion("JADW is null");
+        public Criteria andShjgIsNull() {
+            addCriterion("SHJG is null");
             return (Criteria) this;
         }
 
-        public Criteria andJadwIsNotNull() {
-            addCriterion("JADW is not null");
+        public Criteria andShjgIsNotNull() {
+            addCriterion("SHJG is not null");
             return (Criteria) this;
         }
 
-        public Criteria andJadwEqualTo(String value) {
-            addCriterion("JADW =", value, "jadw");
+        public Criteria andShjgEqualTo(String value) {
+            addCriterion("SHJG =", value, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJadwNotEqualTo(String value) {
-            addCriterion("JADW <>", value, "jadw");
+        public Criteria andShjgNotEqualTo(String value) {
+            addCriterion("SHJG <>", value, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJadwGreaterThan(String value) {
-            addCriterion("JADW >", value, "jadw");
+        public Criteria andShjgGreaterThan(String value) {
+            addCriterion("SHJG >", value, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJadwGreaterThanOrEqualTo(String value) {
-            addCriterion("JADW >=", value, "jadw");
+        public Criteria andShjgGreaterThanOrEqualTo(String value) {
+            addCriterion("SHJG >=", value, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJadwLessThan(String value) {
-            addCriterion("JADW <", value, "jadw");
+        public Criteria andShjgLessThan(String value) {
+            addCriterion("SHJG <", value, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJadwLessThanOrEqualTo(String value) {
-            addCriterion("JADW <=", value, "jadw");
+        public Criteria andShjgLessThanOrEqualTo(String value) {
+            addCriterion("SHJG <=", value, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJadwLike(String value) {
-            addCriterion("JADW like", value, "jadw");
+        public Criteria andShjgLike(String value) {
+            addCriterion("SHJG like", value, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJadwNotLike(String value) {
-            addCriterion("JADW not like", value, "jadw");
+        public Criteria andShjgNotLike(String value) {
+            addCriterion("SHJG not like", value, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJadwIn(List<String> values) {
-            addCriterion("JADW in", values, "jadw");
+        public Criteria andShjgIn(List<String> values) {
+            addCriterion("SHJG in", values, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJadwNotIn(List<String> values) {
-            addCriterion("JADW not in", values, "jadw");
+        public Criteria andShjgNotIn(List<String> values) {
+            addCriterion("SHJG not in", values, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJadwBetween(String value1, String value2) {
-            addCriterion("JADW between", value1, value2, "jadw");
+        public Criteria andShjgBetween(String value1, String value2) {
+            addCriterion("SHJG between", value1, value2, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJadwNotBetween(String value1, String value2) {
-            addCriterion("JADW not between", value1, value2, "jadw");
+        public Criteria andShjgNotBetween(String value1, String value2) {
+            addCriterion("SHJG not between", value1, value2, "shjg");
             return (Criteria) this;
         }
 
-        public Criteria andJasjIsNull() {
-            addCriterion("JASJ is null");
+        public Criteria andShyjIsNull() {
+            addCriterion("SHYJ is null");
             return (Criteria) this;
         }
 
-        public Criteria andJasjIsNotNull() {
-            addCriterion("JASJ is not null");
+        public Criteria andShyjIsNotNull() {
+            addCriterion("SHYJ is not null");
             return (Criteria) this;
         }
 
-        public Criteria andJasjEqualTo(Date value) {
-            addCriterion("JASJ =", value, "jasj");
+        public Criteria andShyjEqualTo(String value) {
+            addCriterion("SHYJ =", value, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJasjNotEqualTo(Date value) {
-            addCriterion("JASJ <>", value, "jasj");
+        public Criteria andShyjNotEqualTo(String value) {
+            addCriterion("SHYJ <>", value, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJasjGreaterThan(Date value) {
-            addCriterion("JASJ >", value, "jasj");
+        public Criteria andShyjGreaterThan(String value) {
+            addCriterion("SHYJ >", value, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJasjGreaterThanOrEqualTo(Date value) {
-            addCriterion("JASJ >=", value, "jasj");
+        public Criteria andShyjGreaterThanOrEqualTo(String value) {
+            addCriterion("SHYJ >=", value, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJasjLessThan(Date value) {
-            addCriterion("JASJ <", value, "jasj");
+        public Criteria andShyjLessThan(String value) {
+            addCriterion("SHYJ <", value, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJasjLessThanOrEqualTo(Date value) {
-            addCriterion("JASJ <=", value, "jasj");
+        public Criteria andShyjLessThanOrEqualTo(String value) {
+            addCriterion("SHYJ <=", value, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJasjIn(List<Date> values) {
-            addCriterion("JASJ in", values, "jasj");
+        public Criteria andShyjLike(String value) {
+            addCriterion("SHYJ like", value, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJasjNotIn(List<Date> values) {
-            addCriterion("JASJ not in", values, "jasj");
+        public Criteria andShyjNotLike(String value) {
+            addCriterion("SHYJ not like", value, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJasjBetween(Date value1, Date value2) {
-            addCriterion("JASJ between", value1, value2, "jasj");
+        public Criteria andShyjIn(List<String> values) {
+            addCriterion("SHYJ in", values, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJasjNotBetween(Date value1, Date value2) {
-            addCriterion("JASJ not between", value1, value2, "jasj");
+        public Criteria andShyjNotIn(List<String> values) {
+            addCriterion("SHYJ not in", values, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJarIsNull() {
-            addCriterion("JAR is null");
+        public Criteria andShyjBetween(String value1, String value2) {
+            addCriterion("SHYJ between", value1, value2, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJarIsNotNull() {
-            addCriterion("JAR is not null");
+        public Criteria andShyjNotBetween(String value1, String value2) {
+            addCriterion("SHYJ not between", value1, value2, "shyj");
             return (Criteria) this;
         }
 
-        public Criteria andJarEqualTo(String value) {
-            addCriterion("JAR =", value, "jar");
+        public Criteria andShdwIsNull() {
+            addCriterion("SHDW is null");
             return (Criteria) this;
         }
 
-        public Criteria andJarNotEqualTo(String value) {
-            addCriterion("JAR <>", value, "jar");
+        public Criteria andShdwIsNotNull() {
+            addCriterion("SHDW is not null");
             return (Criteria) this;
         }
 
-        public Criteria andJarGreaterThan(String value) {
-            addCriterion("JAR >", value, "jar");
+        public Criteria andShdwEqualTo(String value) {
+            addCriterion("SHDW =", value, "shdw");
             return (Criteria) this;
         }
 
-        public Criteria andJarGreaterThanOrEqualTo(String value) {
-            addCriterion("JAR >=", value, "jar");
+        public Criteria andShdwNotEqualTo(String value) {
+            addCriterion("SHDW <>", value, "shdw");
             return (Criteria) this;
         }
 
-        public Criteria andJarLessThan(String value) {
-            addCriterion("JAR <", value, "jar");
+        public Criteria andShdwGreaterThan(String value) {
+            addCriterion("SHDW >", value, "shdw");
             return (Criteria) this;
         }
 
-        public Criteria andJarLessThanOrEqualTo(String value) {
-            addCriterion("JAR <=", value, "jar");
+        public Criteria andShdwGreaterThanOrEqualTo(String value) {
+            addCriterion("SHDW >=", value, "shdw");
             return (Criteria) this;
         }
 
-        public Criteria andJarLike(String value) {
-            addCriterion("JAR like", value, "jar");
+        public Criteria andShdwLessThan(String value) {
+            addCriterion("SHDW <", value, "shdw");
             return (Criteria) this;
         }
 
-        public Criteria andJarNotLike(String value) {
-            addCriterion("JAR not like", value, "jar");
+        public Criteria andShdwLessThanOrEqualTo(String value) {
+            addCriterion("SHDW <=", value, "shdw");
             return (Criteria) this;
         }
 
-        public Criteria andJarIn(List<String> values) {
-            addCriterion("JAR in", values, "jar");
+        public Criteria andShdwLike(String value) {
+            addCriterion("SHDW like", value, "shdw");
             return (Criteria) this;
         }
 
-        public Criteria andJarNotIn(List<String> values) {
-            addCriterion("JAR not in", values, "jar");
+        public Criteria andShdwNotLike(String value) {
+            addCriterion("SHDW not like", value, "shdw");
             return (Criteria) this;
         }
 
-        public Criteria andJarBetween(String value1, String value2) {
-            addCriterion("JAR between", value1, value2, "jar");
+        public Criteria andShdwIn(List<String> values) {
+            addCriterion("SHDW in", values, "shdw");
             return (Criteria) this;
         }
 
-        public Criteria andJarNotBetween(String value1, String value2) {
-            addCriterion("JAR not between", value1, value2, "jar");
+        public Criteria andShdwNotIn(List<String> values) {
+            addCriterion("SHDW not in", values, "shdw");
+            return (Criteria) this;
+        }
+
+        public Criteria andShdwBetween(String value1, String value2) {
+            addCriterion("SHDW between", value1, value2, "shdw");
+            return (Criteria) this;
+        }
+
+        public Criteria andShdwNotBetween(String value1, String value2) {
+            addCriterion("SHDW not between", value1, value2, "shdw");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjIsNull() {
+            addCriterion("SHSJ is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjIsNotNull() {
+            addCriterion("SHSJ is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjEqualTo(Date value) {
+            addCriterion("SHSJ =", value, "shsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjNotEqualTo(Date value) {
+            addCriterion("SHSJ <>", value, "shsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjGreaterThan(Date value) {
+            addCriterion("SHSJ >", value, "shsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjGreaterThanOrEqualTo(Date value) {
+            addCriterion("SHSJ >=", value, "shsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjLessThan(Date value) {
+            addCriterion("SHSJ <", value, "shsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjLessThanOrEqualTo(Date value) {
+            addCriterion("SHSJ <=", value, "shsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjIn(List<Date> values) {
+            addCriterion("SHSJ in", values, "shsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjNotIn(List<Date> values) {
+            addCriterion("SHSJ not in", values, "shsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjBetween(Date value1, Date value2) {
+            addCriterion("SHSJ between", value1, value2, "shsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andShsjNotBetween(Date value1, Date value2) {
+            addCriterion("SHSJ not between", value1, value2, "shsj");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrIsNull() {
+            addCriterion("SHR is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrIsNotNull() {
+            addCriterion("SHR is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrEqualTo(String value) {
+            addCriterion("SHR =", value, "shr");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrNotEqualTo(String value) {
+            addCriterion("SHR <>", value, "shr");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrGreaterThan(String value) {
+            addCriterion("SHR >", value, "shr");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrGreaterThanOrEqualTo(String value) {
+            addCriterion("SHR >=", value, "shr");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrLessThan(String value) {
+            addCriterion("SHR <", value, "shr");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrLessThanOrEqualTo(String value) {
+            addCriterion("SHR <=", value, "shr");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrLike(String value) {
+            addCriterion("SHR like", value, "shr");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrNotLike(String value) {
+            addCriterion("SHR not like", value, "shr");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrIn(List<String> values) {
+            addCriterion("SHR in", values, "shr");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrNotIn(List<String> values) {
+            addCriterion("SHR not in", values, "shr");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrBetween(String value1, String value2) {
+            addCriterion("SHR between", value1, value2, "shr");
+            return (Criteria) this;
+        }
+
+        public Criteria andShrNotBetween(String value1, String value2) {
+            addCriterion("SHR not between", value1, value2, "shr");
             return (Criteria) this;
         }
 

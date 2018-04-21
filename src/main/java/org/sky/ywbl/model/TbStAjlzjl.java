@@ -2,26 +2,24 @@ package org.sky.ywbl.model;
 
 import java.util.Date;
 
-public class TbStAjjaxx {
+public class TbStAjlzjl {
     private String id;
 
     private String ajbh;
 
-    private String jadw;
+    private String ajzt;
 
-    private Date jasj;
+    private String blr;
 
-    private String jar;
+    private String bldw;
+
+    private Date blsj;
 
     private String bz;
 
     private String creater;
 
     private Date createTime;
-
-    private String updater;
-
-    private Date updateTime;
 
     public String getId() {
         return id;
@@ -39,28 +37,36 @@ public class TbStAjjaxx {
         this.ajbh = ajbh;
     }
 
-    public String getJadw() {
-        return jadw;
+    public String getAjzt() {
+        return ajzt;
     }
 
-    public void setJadw(String jadw) {
-        this.jadw = jadw;
+    public void setAjzt(String ajzt) {
+        this.ajzt = ajzt;
     }
 
-    public Date getJasj() {
-        return jasj;
+    public String getBlr() {
+        return blr;
     }
 
-    public void setJasj(Date jasj) {
-        this.jasj = jasj;
+    public void setBlr(String blr) {
+        this.blr = blr;
     }
 
-    public String getJar() {
-        return jar;
+    public String getBldw() {
+        return bldw;
     }
 
-    public void setJar(String jar) {
-        this.jar = jar;
+    public void setBldw(String bldw) {
+        this.bldw = bldw;
+    }
+
+    public Date getBlsj() {
+        return blsj;
+    }
+
+    public void setBlsj(Date blsj) {
+        this.blsj = blsj;
     }
 
     public String getBz() {
@@ -85,21 +91,5 @@ public class TbStAjjaxx {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public String getUpdater() {
-        return updater;
-    }
-
-    public void setUpdater(String updater) {
-        this.updater = updater;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }

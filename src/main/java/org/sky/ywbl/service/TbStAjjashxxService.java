@@ -3,10 +3,10 @@ import org.apache.log4j.Logger;
 import java.sql.Timestamp;
 import java.util.List;
 import org.sky.sys.client.SysCommonMapper;
-import org.sky.ywbl.client.TbStAjjaxxMapper;
+import org.sky.ywbl.client.TbStAjjashxxMapper;
 import org.sky.sys.exception.ServiceException;
-import org.sky.ywbl.model.TbStAjjaxx;
-import org.sky.ywbl.model.TbStAjjaxxExample;
+import org.sky.ywbl.model.TbStAjjashxx;
+import org.sky.ywbl.model.TbStAjjashxxExample;
 import org.sky.sys.utils.PageListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +15,18 @@ import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.StringUtils;
 @Service
-public class TbStAjjaxxService {
-	private final Logger logger=Logger.getLogger(TbStAjjaxxService.class);
+public class TbStAjjashxxService {
+	private final Logger logger=Logger.getLogger(TbStAjjashxxService.class);
 	@Autowired
-	private TbStAjjaxxMapper tbstajjaxxmapper;
+	private TbStAjjashxxMapper tbstajjashxxmapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
 	/**
 	*分页查询
 	**/
-	public PageListData getTbStAjjaxxByPage(TbStAjjaxxExample ep){
-		long totalCount = tbstajjaxxmapper.countByExample(ep);
-		List list = tbstajjaxxmapper.selectByExample(ep);
+	public PageListData getTbStAjjashxxByPage(TbStAjjashxxExample ep){
+		long totalCount = tbstajjashxxmapper.countByExample(ep);
+		List list = tbstajjashxxmapper.selectByExample(ep);
 		PageListData pld = new PageListData();
 		pld.setTotal(totalCount);
 		pld.setRows(list);
@@ -36,17 +36,17 @@ public class TbStAjjaxxService {
 	*保存列表新增及修改
 	**/
 	@Transactional
-	public void saveTbStAjjaxx(List<TbStAjjaxx> addlist,
-			List<TbStAjjaxx> updatelist) throws ServiceException{
+	public void saveTbStAjjashxx(List<TbStAjjashxx> addlist,
+			List<TbStAjjashxx> updatelist) throws ServiceException{
 		try{
 			if(null!=addlist&&addlist.size()>0){
-				for(TbStAjjaxx add:addlist){
-					tbstajjaxxmapper.insertSelective(add);
+				for(TbStAjjashxx add:addlist){
+					tbstajjashxxmapper.insertSelective(add);
 				}
 			}
 			if(null!=updatelist&&updatelist.size()>0){
-				for(TbStAjjaxx update:updatelist){
-					tbstajjaxxmapper.updateByPrimaryKeySelective(update);
+				for(TbStAjjashxx update:updatelist){
+					tbstajjashxxmapper.updateByPrimaryKeySelective(update);
 				}
 			}
 		}catch(Exception e){
@@ -61,9 +61,9 @@ public class TbStAjjaxxService {
 	*保存添加单个对象
 	**/
 	@Transactional
-	public void saveAddTbStAjjaxx(TbStAjjaxx add) throws ServiceException{
+	public void saveAddTbStAjjashxx(TbStAjjashxx add) throws ServiceException{
 		try{
-			tbstajjaxxmapper.insertSelective(add);
+			tbstajjashxxmapper.insertSelective(add);
 		}catch(Exception e){
 			logger.error("保存添加单个对象执行失败",e);
 			if(e.getMessage().contains("违反唯一约束条件")){
@@ -77,7 +77,7 @@ public class TbStAjjaxxService {
 	*保存新增/编辑单个对象
 	**/
 	@Transactional
-	public void saveAddEditTbStAjjaxx(TbStAjjaxx edit) throws ServiceException{
+	public void saveAddEditTbStAjjashxx(TbStAjjashxx edit) throws ServiceException{
 		try{
 			Timestamp ts = syscommonmapper.queryTimestamp();
 			if(StringUtils.isNull(edit.getId())){
@@ -87,12 +87,12 @@ public class TbStAjjaxxService {
 				edit.setCreateTime(ts);
 				edit.setUpdater(BspUtils.getLoginUser().getCode());
 				edit.setUpdateTime(ts);
-				tbstajjaxxmapper.insertSelective(edit);
+				tbstajjashxxmapper.insertSelective(edit);
 			}else{
 				//修改
 				edit.setUpdater(BspUtils.getLoginUser().getCode());
 				edit.setUpdateTime(ts);
-				tbstajjaxxmapper.updateByPrimaryKeySelective(edit);
+				tbstajjashxxmapper.updateByPrimaryKeySelective(edit);
 			}
 		}catch(Exception e){
 			logger.error("保存新增/编辑单个对象执行失败",e);
@@ -103,16 +103,16 @@ public class TbStAjjaxxService {
 	*根据主键批量删除对象
 	**/
 	@Transactional
-	public void delTbStAjjaxxById(List<TbStAjjaxx> delList){
-		for(TbStAjjaxx del:delList){
-			tbstajjaxxmapper.deleteByPrimaryKey(del.getId());
+	public void delTbStAjjashxxById(List<TbStAjjashxx> delList){
+		for(TbStAjjashxx del:delList){
+			tbstajjashxxmapper.deleteByPrimaryKey(del.getId());
 		}
 	}
 	/**
 	*根据主键查询对象
 	**/
-	public TbStAjjaxx getTbStAjjaxxById(String id){
-		TbStAjjaxx bean = tbstajjaxxmapper.selectByPrimaryKey(id);
+	public TbStAjjashxx getTbStAjjashxxById(String id){
+		TbStAjjashxx bean = tbstajjashxxmapper.selectByPrimaryKey(id);
 		return bean;
 	}
 }

@@ -1,27 +1,27 @@
 /**
- * 初始化添加案件结案信息页面
+ * 初始化添加案件结案审核信息页面
  */
-function initAddTbStAjjaxxPage(paramOpts){
+function initAddTbStAjjashxxPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
 }
 /**
- * 初始化编辑案件结案信息页面
+ * 初始化编辑案件结案审核信息页面
  */
-function initEditTbStAjjaxxPage(paramOpts){
+function initEditTbStAjjashxxPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
-	var url=basepath+"ywbl/TbStAjjaxx/getTbStAjjaxxById?id="+paramOpts.data.id;
-	$('#addedittbstajjaxxform').form('load',SKY.urlCSRF(url));
+	var url=basepath+"ywbl/TbStAjjashxx/getTbStAjjashxxById?id="+paramOpts.data.id;
+	$('#addedittbstajjashxxform').form('load',SKY.urlCSRF(url));
 }
 /**
- * 保存添加/编辑案件结案信息
+ * 保存添加/编辑案件结案审核信息
  */
-function submitAddEditTbStAjjaxxForm() {
+function submitAddEditTbStAjjashxxForm() {
 	var options = { 
 	   data:{
     	   "data":function(){
@@ -29,7 +29,7 @@ function submitAddEditTbStAjjaxxForm() {
     	   }
        },   
        beforeSubmit:function(data){
-			return $('#addedittbstajjaxxform').form('enableValidation').form('validate');
+			return $('#addedittbstajjashxxform').form('enableValidation').form('validate');
        },   
        success:function(data){
     	    $.messager.alert('提示',data.name,'info',function(){
@@ -41,11 +41,11 @@ function submitAddEditTbStAjjaxxForm() {
        error:function(e){
     	   $.messager.alert('提示',JSON.stringify(e),'info');
        },
-       url:SKY.urlCSRF(basepath+'ywbl/TbStAjjaxx/saveAddEditTbStAjjaxx'), 
+       url:SKY.urlCSRF(basepath+'ywbl/TbStAjjashxx/saveAddEditTbStAjjashxx'), 
        type:'post',   
        dataType:'json',   
        timeout:-1    
 	};  
-	$('#addedittbstajjaxxform').ajaxSubmit(options);
+	$('#addedittbstajjashxxform').ajaxSubmit(options);
 	
 }

@@ -8,7 +8,7 @@ import java.util.Map;
 import org.sky.sys.utils.BeanUtils;
 import org.sky.sys.utils.Page;
 
-public class TbStAjlcjlExample {
+public class TbStAjlzjlExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -17,7 +17,7 @@ public class TbStAjlcjlExample {
 
     protected Page page;
 
-    public TbStAjlcjlExample() {
+    public TbStAjlzjlExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 <security:csrfMetaTags/>
-<script type="text/javascript" src='${basepath}jsp/ywbl/ajja/edittbstajjaxx.js'></script>
+<script type="text/javascript" src='${basepath}jsp/ywbl/jash/detailtbstajjashxx.js'></script>
 <script type="text/javascript">
 var _callbacks = $.Callbacks();
 $(function() {
@@ -14,8 +14,8 @@ $(function() {
 </head>
 <body>
 <div class="easyui-panel"  style="width:100%;height:100%;text-align: center;"
-	 data-options="footer:'#editPageButtonsFt'">
-		<form id="addedittbstajjaxxform" class="easyui-form" method="post" 
+	 data-options="footer:'#detailPageButtonsFt'">
+		<form id="detailtbstajjashxxform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
 			<table style="width:100%">
@@ -25,18 +25,28 @@ $(function() {
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>结案单位:</label></th>
-					<td><input class="easyui-textbox" name="jadw"
+					<th><label>审核结果:</label></th>
+					<td><input class="easyui-textbox" name="shjg"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>结案时间:</label></th>
-					<td><input class="easyui-textbox" name="jasj"
+					<th><label>审核意见:</label></th>
+					<td><input class="easyui-textbox" name="shyj"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>结案人:</label></th>
-					<td><input class="easyui-textbox" name="jar"
+					<th><label>审核单位:</label></th>
+					<td><input class="easyui-textbox" name="shdw"
+						data-options="required:true"></input></td>
+				  </tr>
+				  <tr>
+					<th><label>审核时间:</label></th>
+					<td><input class="easyui-textbox" name="shsj"
+						data-options="required:true"></input></td>
+				  </tr>
+				  <tr>
+					<th><label>审核人:</label></th>
+					<td><input class="easyui-textbox" name="shr"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
@@ -47,10 +57,8 @@ $(function() {
 			</table>
 		</form>
 </div>
-<div id='editPageButtonsFt' style="text-align:center; padding:0px; top:0px">
-	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls='icon-save'
-		onclick="submitAddEditTbStAjjaxxForm()">保存</a> 
-	<a href="javascript:void(0)" id='cloBtn' class="easyui-linkbutton" iconCls='icon-cancel'>关闭</a>
+<div id='detailPageButtonsFt' style="text-align:center; padding:2px; top:0px">
+	<a href="javascript:void(0)" id='cloBtn' class="easyui-linkbutton" iconCls='icon-cancel'">关闭</a>
 </div>
 </body>
 </html>

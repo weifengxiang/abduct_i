@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.sky.ywbl.client.TbStAjjaxxMapper">
-  <resultMap id="BaseResultMap" type="org.sky.ywbl.model.TbStAjjaxx">
+<mapper namespace="org.sky.ywbl.client.TbStAjlzjlMapper">
+  <resultMap id="BaseResultMap" type="org.sky.ywbl.model.TbStAjlzjl">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
-    <result column="JADW" jdbcType="VARCHAR" property="jadw" />
-    <result column="JASJ" jdbcType="TIMESTAMP" property="jasj" />
-    <result column="JAR" jdbcType="VARCHAR" property="jar" />
+    <result column="AJZT" jdbcType="VARCHAR" property="ajzt" />
+    <result column="BLR" jdbcType="VARCHAR" property="blr" />
+    <result column="BLDW" jdbcType="VARCHAR" property="bldw" />
+    <result column="BLSJ" jdbcType="TIMESTAMP" property="blsj" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
-    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,15 +71,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AJBH, JADW, JASJ, JAR, BZ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    ID, AJBH, AJZT, BLR, BLDW, BLSJ, BZ, CREATER, CREATE_TIME
   </sql>
-  <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStAjjaxxExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStAjlzjlExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tb_st_ajjaxx
+    from tb_st_ajlzjl
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -92,31 +91,31 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_st_ajjaxx
+    from tb_st_ajlzjl
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tb_st_ajjaxx
+    delete from tb_st_ajlzjl
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="org.sky.ywbl.model.TbStAjjaxxExample">
-    delete from tb_st_ajjaxx
+  <delete id="deleteByExample" parameterType="org.sky.ywbl.model.TbStAjlzjlExample">
+    delete from tb_st_ajlzjl
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.sky.ywbl.model.TbStAjjaxx">
-    insert into tb_st_ajjaxx (ID, AJBH, JADW, 
-      JASJ, JAR, BZ, CREATER, 
-      CREATE_TIME, UPDATER, UPDATE_TIME
+  <insert id="insert" parameterType="org.sky.ywbl.model.TbStAjlzjl">
+    insert into tb_st_ajlzjl (ID, AJBH, AJZT, 
+      BLR, BLDW, BLSJ, 
+      BZ, CREATER, CREATE_TIME
       )
-    values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{jadw,jdbcType=VARCHAR}, 
-      #{jasj,jdbcType=TIMESTAMP}, #{jar,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+    values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{ajzt,jdbcType=VARCHAR}, 
+      #{blr,jdbcType=VARCHAR}, #{bldw,jdbcType=VARCHAR}, #{blsj,jdbcType=TIMESTAMP}, 
+      #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStAjjaxx">
-    insert into tb_st_ajjaxx
+  <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStAjlzjl">
+    insert into tb_st_ajlzjl
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         ID,
@@ -124,14 +123,17 @@
       <if test="ajbh != null">
         AJBH,
       </if>
-      <if test="jadw != null">
-        JADW,
+      <if test="ajzt != null">
+        AJZT,
       </if>
-      <if test="jasj != null">
-        JASJ,
+      <if test="blr != null">
+        BLR,
       </if>
-      <if test="jar != null">
-        JAR,
+      <if test="bldw != null">
+        BLDW,
+      </if>
+      <if test="blsj != null">
+        BLSJ,
       </if>
       <if test="bz != null">
         BZ,
@@ -142,12 +144,6 @@
       <if test="createTime != null">
         CREATE_TIME,
       </if>
-      <if test="updater != null">
-        UPDATER,
-      </if>
-      <if test="updateTime != null">
-        UPDATE_TIME,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -156,14 +152,17 @@
       <if test="ajbh != null">
         #{ajbh,jdbcType=VARCHAR},
       </if>
-      <if test="jadw != null">
-        #{jadw,jdbcType=VARCHAR},
+      <if test="ajzt != null">
+        #{ajzt,jdbcType=VARCHAR},
       </if>
-      <if test="jasj != null">
-        #{jasj,jdbcType=TIMESTAMP},
+      <if test="blr != null">
+        #{blr,jdbcType=VARCHAR},
       </if>
-      <if test="jar != null">
-        #{jar,jdbcType=VARCHAR},
+      <if test="bldw != null">
+        #{bldw,jdbcType=VARCHAR},
+      </if>
+      <if test="blsj != null">
+        #{blsj,jdbcType=TIMESTAMP},
       </if>
       <if test="bz != null">
         #{bz,jdbcType=VARCHAR},
@@ -174,22 +173,16 @@
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updater != null">
-        #{updater,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.sky.ywbl.model.TbStAjjaxxExample" resultType="java.lang.Long">
-    select count(*) from tb_st_ajjaxx
+  <select id="countByExample" parameterType="org.sky.ywbl.model.TbStAjlzjlExample" resultType="java.lang.Long">
+    select count(*) from tb_st_ajlzjl
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update tb_st_ajjaxx
+    update tb_st_ajlzjl
     <set>
       <if test="record.id != null">
         ID = #{record.id,jdbcType=VARCHAR},
@@ -197,14 +190,17 @@
       <if test="record.ajbh != null">
         AJBH = #{record.ajbh,jdbcType=VARCHAR},
       </if>
-      <if test="record.jadw != null">
-        JADW = #{record.jadw,jdbcType=VARCHAR},
+      <if test="record.ajzt != null">
+        AJZT = #{record.ajzt,jdbcType=VARCHAR},
       </if>
-      <if test="record.jasj != null">
-        JASJ = #{record.jasj,jdbcType=TIMESTAMP},
+      <if test="record.blr != null">
+        BLR = #{record.blr,jdbcType=VARCHAR},
       </if>
-      <if test="record.jar != null">
-        JAR = #{record.jar,jdbcType=VARCHAR},
+      <if test="record.bldw != null">
+        BLDW = #{record.bldw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blsj != null">
+        BLSJ = #{record.blsj,jdbcType=TIMESTAMP},
       </if>
       <if test="record.bz != null">
         BZ = #{record.bz,jdbcType=VARCHAR},
@@ -215,47 +211,43 @@
       <if test="record.createTime != null">
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updater != null">
-        UPDATER = #{record.updater,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updateTime != null">
-        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update tb_st_ajjaxx
+    update tb_st_ajlzjl
     set ID = #{record.id,jdbcType=VARCHAR},
       AJBH = #{record.ajbh,jdbcType=VARCHAR},
-      JADW = #{record.jadw,jdbcType=VARCHAR},
-      JASJ = #{record.jasj,jdbcType=TIMESTAMP},
-      JAR = #{record.jar,jdbcType=VARCHAR},
+      AJZT = #{record.ajzt,jdbcType=VARCHAR},
+      BLR = #{record.blr,jdbcType=VARCHAR},
+      BLDW = #{record.bldw,jdbcType=VARCHAR},
+      BLSJ = #{record.blsj,jdbcType=TIMESTAMP},
       BZ = #{record.bz,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
-      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
-      UPDATER = #{record.updater,jdbcType=VARCHAR},
-      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.sky.ywbl.model.TbStAjjaxx">
-    update tb_st_ajjaxx
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.ywbl.model.TbStAjlzjl">
+    update tb_st_ajlzjl
     <set>
       <if test="ajbh != null">
         AJBH = #{ajbh,jdbcType=VARCHAR},
       </if>
-      <if test="jadw != null">
-        JADW = #{jadw,jdbcType=VARCHAR},
+      <if test="ajzt != null">
+        AJZT = #{ajzt,jdbcType=VARCHAR},
       </if>
-      <if test="jasj != null">
-        JASJ = #{jasj,jdbcType=TIMESTAMP},
+      <if test="blr != null">
+        BLR = #{blr,jdbcType=VARCHAR},
       </if>
-      <if test="jar != null">
-        JAR = #{jar,jdbcType=VARCHAR},
+      <if test="bldw != null">
+        BLDW = #{bldw,jdbcType=VARCHAR},
+      </if>
+      <if test="blsj != null">
+        BLSJ = #{blsj,jdbcType=TIMESTAMP},
       </if>
       <if test="bz != null">
         BZ = #{bz,jdbcType=VARCHAR},
@@ -266,26 +258,19 @@
       <if test="createTime != null">
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updater != null">
-        UPDATER = #{updater,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null">
-        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.sky.ywbl.model.TbStAjjaxx">
-    update tb_st_ajjaxx
+  <update id="updateByPrimaryKey" parameterType="org.sky.ywbl.model.TbStAjlzjl">
+    update tb_st_ajlzjl
     set AJBH = #{ajbh,jdbcType=VARCHAR},
-      JADW = #{jadw,jdbcType=VARCHAR},
-      JASJ = #{jasj,jdbcType=TIMESTAMP},
-      JAR = #{jar,jdbcType=VARCHAR},
+      AJZT = #{ajzt,jdbcType=VARCHAR},
+      BLR = #{blr,jdbcType=VARCHAR},
+      BLDW = #{bldw,jdbcType=VARCHAR},
+      BLSJ = #{blsj,jdbcType=TIMESTAMP},
       BZ = #{bz,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      UPDATER = #{updater,jdbcType=VARCHAR},
-      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">

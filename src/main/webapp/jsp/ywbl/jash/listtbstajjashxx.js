@@ -1,7 +1,7 @@
 //初始化
 function init(){
-	$('#listtbstajjaxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjjaxx/getTbStAjjaxxByPage');
-	$('#listtbstajjaxxdg').datagrid('load', {
+	$('#listtbstajjashxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjjashxx/getTbStAjjashxxByPage');
+	$('#listtbstajjashxxdg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();
 			return ft.getJSON();
@@ -9,35 +9,35 @@ function init(){
 	});
 }
  /**
- *添加案件结案信息
+ *添加案件结案审核信息
  **/
-function addTbStAjjaxx(){
+function addTbStAjjashxx(){
 	var opts={
-				id:'addTbStAjjaxx',
-				title:'添加案件结案信息',
+				id:'addTbStAjjashxx',
+				title:'添加案件结案审核信息',
 				width:600,
 				height:450,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjjaxx/initAddTbStAjjaxxPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjjashxx/initAddTbStAjjashxxPage'),
 				onLoad: function(dialog){ 
-		            if(this.content && this.content.initAddTbStAjjaxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		            if(this.content && this.content.initAddTbStAjjashxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
 		                paramOpts.dialog=dialog;
 		                paramOpts.callBack=function(){
 		                	dialog.close();
 		                	searchButton();
 		                };
-		            	this.content.initAddTbStAjjaxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            	this.content.initAddTbStAjjashxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 		            } 
 		        }
 			  };
 	SKY_EASYUI.open(opts);
 }
  /**
- *删除案件结案信息
+ *删除案件结案审核信息
  **/
-function delTbStAjjaxx(){
-	var checkeds=$('#listtbstajjaxxdg').datagrid('getChecked');
+function delTbStAjjashxx(){
+	var checkeds=$('#listtbstajjashxxdg').datagrid('getChecked');
 	if(null==checkeds||checkeds.length<1){
 		$.messager.alert('提示','请选择要删除的记录','info');
 		return;
@@ -47,7 +47,7 @@ function delTbStAjjaxx(){
 		function (r){
 			if(r){
 				SKY_EASYUI.mask('正在进行删除，请稍等...');
-				var url = SKY.urlCSRF(basepath+'ywbl/TbStAjjaxx/delTbStAjjaxx');
+				var url = SKY.urlCSRF(basepath+'ywbl/TbStAjjashxx/delTbStAjjashxx');
 				var params = {
 							"delRows":JSON.stringify(checkeds)
 						};
@@ -60,7 +60,7 @@ function delTbStAjjaxx(){
 		    			SKY_EASYUI.unmask();
 		    			$.messager.alert("提示",data.name,"info");
 		    			if(data.code != '0'){
-		    				$('#listtbstajjaxxdg').datagrid('reload');
+		    				$('#listtbstajjashxxdg').datagrid('reload');
 		    			}
 		    		}
 				});
@@ -72,23 +72,23 @@ function delTbStAjjaxx(){
 	}
 }
 /**
-*修改案件结案信息
+*修改案件结案审核信息
 **/
-function editTbStAjjaxx(){
-	var checkeds=$('#listtbstajjaxxdg').datagrid('getChecked');
+function editTbStAjjashxx(){
+	var checkeds=$('#listtbstajjashxxdg').datagrid('getChecked');
 	if(null==checkeds||checkeds.length!=1){
 		$.messager.alert('提示','请选择一条记录','info');
 		return;
 	}
 	var opts={
-				id:'editTbStAjjaxx',
-				title:'修改案件结案信息',
+				id:'editTbStAjjashxx',
+				title:'修改案件结案审核信息',
 				width:600,
 				height:450,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjjaxx/initEditTbStAjjaxxPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjjashxx/initEditTbStAjjashxxPage'),
 				onLoad: function(dialog){ 
-		            if(this.content && this.content.initEditTbStAjjaxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		            if(this.content && this.content.initEditTbStAjjashxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
 		                paramOpts.dialog=dialog;
 		                paramOpts.data=checkeds[0];
@@ -96,7 +96,7 @@ function editTbStAjjaxx(){
 		                	dialog.close();
 		                	searchButton();
 		                };
-		            	this.content.initEditTbStAjjaxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            	this.content.initEditTbStAjjashxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 		            } 
 		        }
 			  };
@@ -105,28 +105,28 @@ function editTbStAjjaxx(){
 /**
 *查看明细
 **/
-function detailTbStAjjaxx(){
-	var checkeds=$('#listtbstajjaxxdg').datagrid('getChecked');
+function detailTbStAjjashxx(){
+	var checkeds=$('#listtbstajjashxxdg').datagrid('getChecked');
 	if(null==checkeds||checkeds.length!=1){
 		$.messager.alert('提示','请选择一条记录','info');
 		return;
 	}
 	var opts={
-				id:'detailTbStAjjaxx',
-				title:'案件结案信息明细',
+				id:'detailTbStAjjashxx',
+				title:'案件结案审核信息明细',
 				width:600,
 				height:450,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjjaxx/initDetailTbStAjjaxxPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjjashxx/initDetailTbStAjjashxxPage'),
 				onLoad: function(dialog){ 
-		            if(this.content && this.content.initDetailTbStAjjaxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		            if(this.content && this.content.initDetailTbStAjjashxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
 		                paramOpts.dialog=dialog;
 		                paramOpts.data=checkeds[0];
 		                paramOpts.callBack=function(){
 		                	dialog.close();
 		                };
-		            	this.content.initDetailTbStAjjaxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            	this.content.initDetailTbStAjjashxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 		            } 
 		        }
 			  };
@@ -136,25 +136,33 @@ function detailTbStAjjaxx(){
  * 查询按钮
  */
 function searchButton(){
-	$('#listtbstajjaxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjjaxx/getTbStAjjaxxByPage');
-	$('#listtbstajjaxxdg').datagrid('load', {
+	$('#listtbstajjashxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjjashxx/getTbStAjjashxxByPage');
+	$('#listtbstajjashxxdg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();
 			var ajbh =$('#q_ajbh').textbox("getValue");
 			if(ajbh){
 				ft.put("ajbh@=", ajbh);
 			}
-			var jadw =$('#q_jadw').textbox("getValue");
-			if(jadw){
-				ft.put("jadw@=", jadw);
+			var shjg =$('#q_shjg').textbox("getValue");
+			if(shjg){
+				ft.put("shjg@=", shjg);
 			}
-			var jasj =$('#q_jasj').textbox("getValue");
-			if(jasj){
-				ft.put("jasj@=", jasj);
+			var shyj =$('#q_shyj').textbox("getValue");
+			if(shyj){
+				ft.put("shyj@=", shyj);
 			}
-			var jar =$('#q_jar').textbox("getValue");
-			if(jar){
-				ft.put("jar@=", jar);
+			var shdw =$('#q_shdw').textbox("getValue");
+			if(shdw){
+				ft.put("shdw@=", shdw);
+			}
+			var shsj =$('#q_shsj').textbox("getValue");
+			if(shsj){
+				ft.put("shsj@=", shsj);
+			}
+			var shr =$('#q_shr').textbox("getValue");
+			if(shr){
+				ft.put("shr@=", shr);
 			}
 			var bz =$('#q_bz').textbox("getValue");
 			if(bz){

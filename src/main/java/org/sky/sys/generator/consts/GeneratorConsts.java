@@ -14,8 +14,8 @@ public interface GeneratorConsts {
 	String DB_USER = "root"; // 用户名
 	String DB_PASS = "root"; // 密码
 	String DB_TABLE_PREFIX = ""; // 表前缀
-	String TABLE_NAME = "TB_ST_AJBLXX"; // 表名
-	String TARGET_DIR = "jsp/ywbl/ajbl/"; // 生成代码存放目录
+	String TABLE_NAME = "TB_ST_AJJASHXX"; // 表名
+	String TARGET_DIR = "jsp/ywbl/jash/"; // 生成代码存放目录
 	String URL_PREFIX="ywbl";//请求前缀
 	String BASE_FOLDER="src/main/java/";//maven目录
 	String BASE_PACKAGE="org.sky.ywbl";//生成java基础包名
