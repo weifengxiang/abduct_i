@@ -11,6 +11,7 @@ import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.ywbl.model.TbStAjdjxx;
 import org.sky.ywbl.model.TbStAjdjxxExample;
+import org.sky.ywbl.model.TbStTxxx;
 import org.sky.ywbl.model.TbStAjdjxxExample.Criteria;
 import org.sky.ywbl.service.ComService;
 import org.sky.ywbl.service.TbStAjdjxxService;
@@ -131,8 +132,13 @@ public class TbStAjdjxxController extends BaseController{
 			HttpServletResponse response){
 		ResultData rd= new ResultData();
 		try {
+			String data = request.getParameter("data");
+			List<TbStTxxx> txList=null;
+			if(!StringUtils.isNull(data)) {
+				txList = JsonUtils.json2list(data,TbStTxxx.class);
+			}
 			TbStAjdjxx edit = (TbStAjdjxx) getEntityBean(request,TbStAjdjxx.class);
-			tbstajdjxxService.saveAddEditTbStAjdjxx(edit);
+			tbstajdjxxService.saveAddEditTbStAjdjxx(edit,txList);
 			rd.setCode(ResultData.code_success);
 			rd.setName("保存成功");
 		} catch (Exception e) {

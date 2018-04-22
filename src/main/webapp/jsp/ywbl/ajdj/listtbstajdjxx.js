@@ -111,22 +111,52 @@ function detailTbStAjdjxx(){
 		$.messager.alert('提示','请选择一条记录','info');
 		return;
 	}
+	var gbButton = {
+			text: '关闭',  
+            iconCls: 'icon-cancel',  
+            handler:function(dialog){
+            	dialog.close();
+            }};
+	var buttons = new Array();
+	buttons.push(gbButton);
 	var opts={
 				id:'detailTbStAjdjxx',
 				title:'案件登记信息明细',
-				width:600,
-				height:450,
+				width:800,
+				height:600,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/initDetailTbStAjdjxxPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/initAjxxmainPage?ajbh='+checkeds[0].ajbh),
+				buttons:buttons
+			  };
+	SKY_EASYUI.open(opts);
+}
+/**
+ * 案件审核
+ * @returns
+ */
+function shTbStAjdjxx(){
+	var checkeds=$('#listtbstajdjxxdg').datagrid('getChecked');
+	if(null==checkeds||checkeds.length!=1){
+		$.messager.alert('提示','请选择一条记录','info');
+		return;
+	}
+	var opts={
+				id:'shTbStAjdjxx',
+				title:'案件登记信息审核',
+				width:800,
+				height:600,
+				modal:true,
+				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/initEditTbStAjdjxxPage'),
 				onLoad: function(dialog){ 
-		            if(this.content && this.content.initDetailTbStAjdjxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		            if(this.content && this.content.initEditTbStAjdjxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
 		                paramOpts.dialog=dialog;
 		                paramOpts.data=checkeds[0];
 		                paramOpts.callBack=function(){
 		                	dialog.close();
+		                	searchButton();
 		                };
-		            	this.content.initDetailTbStAjdjxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            	this.content.initEditTbStAjdjxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 		            } 
 		        }
 			  };

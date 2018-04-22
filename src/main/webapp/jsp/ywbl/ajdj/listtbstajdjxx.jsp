@@ -123,6 +123,8 @@ $(function() {
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delTbStAjdjxx()">删除</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-ok',plain:true" onclick="shTbStAjdjxx()">审核</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-06',plain:true" onclick="detailTbStAjdjxx()">查看明细</a>
 </div>
 </body>

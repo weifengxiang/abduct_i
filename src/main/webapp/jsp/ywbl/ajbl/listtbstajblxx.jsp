@@ -117,7 +117,7 @@ $(function() {
 </div>
 <div id="tb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="doAjbh()">案件办理</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="doAjbl()">案件办理</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-06',plain:true" onclick="detailTbStAjdjxx()">查看明细</a>
 </div>

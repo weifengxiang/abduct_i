@@ -12,7 +12,7 @@ function init(){
  * 案件办理
  * @returns
  */
-function doAjbh(){
+function doAjbl(){
 	var checkeds=$('#listtbstajdjxxdg').datagrid('getChecked');
 	if(null==checkeds||checkeds.length!=1){
 		$.messager.alert('提示','请选择一条记录','info');
@@ -171,24 +171,22 @@ function detailTbStAjdjxx(){
 		$.messager.alert('提示','请选择一条记录','info');
 		return;
 	}
+	var gbButton = {
+			text: '关闭',  
+            iconCls: 'icon-cancel',  
+            handler:function(dialog){
+            	dialog.close();
+            }};
+	var buttons = new Array();
+	buttons.push(gbButton);
 	var opts={
 				id:'detailTbStAjdjxx',
 				title:'案件登记信息明细',
-				width:600,
-				height:450,
+				width:800,
+				height:600,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/initDetailTbStAjdjxxPage'),
-				onLoad: function(dialog){ 
-		            if(this.content && this.content.initDetailTbStAjdjxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
-		                var paramOpts=new Object();
-		                paramOpts.dialog=dialog;
-		                paramOpts.data=checkeds[0];
-		                paramOpts.callBack=function(){
-		                	dialog.close();
-		                };
-		            	this.content.initDetailTbStAjdjxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
-		            } 
-		        }
+				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/initAjxxmainPage?ajbh='+checkeds[0].ajbh),
+				buttons:buttons
 			  };
 	SKY_EASYUI.open(opts);
 }

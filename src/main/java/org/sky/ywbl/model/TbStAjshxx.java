@@ -2,7 +2,7 @@ package org.sky.ywbl.model;
 
 import java.util.Date;
 
-public class TbStAjjashxx {
+public class TbStAjshxx {
     private String id;
 
     private String ajbh;

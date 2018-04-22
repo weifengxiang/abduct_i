@@ -22,7 +22,7 @@
 		<sqlMapGenerator targetPackage="org.sky.ywbl.sqlmap" targetProject="src\main\java" />
 		<!-- 生成DAO的包名和位置--> 
 		<javaClientGenerator targetPackage="org.sky.ywbl.client"	targetProject="src\main\java" type="XMLMAPPER" />
-		<table tableName="TB_ST_TXXX"></table>
+		<table tableName="TB_ST_AJSHXX"></table>
 		<!-- 
 		<table tableName="TB_ST_AJBLXX"></table>
 		<table tableName="TB_ST_AJDJXX"></table>
