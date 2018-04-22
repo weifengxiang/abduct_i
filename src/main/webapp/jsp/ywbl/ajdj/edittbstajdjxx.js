@@ -31,6 +31,7 @@ function initEditTbStAjdjxxPage(paramOpts){
 	};
 	var url=basepath+"ywbl/TbStAjdjxx/getTbStAjdjxxById?id="+paramOpts.data.id;
 	$('#addedittbstajdjxxform').form('load',SKY.urlCSRF(url));
+	initPicView();
 }
 /**
  * 保存添加/编辑案件登记信息
