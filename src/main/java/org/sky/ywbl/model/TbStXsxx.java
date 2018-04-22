@@ -32,8 +32,12 @@ public class TbStXsxx {
     private String xsly;
 
     private String djr;
+    
+    private String djrName;
 
     private String djdw;
+    
+    private String djdwName;
 
     private Date djsj;
 
@@ -192,4 +196,20 @@ public class TbStXsxx {
     public void setBz(String bz) {
         this.bz = bz;
     }
+
+	public String getDjrName() {
+		return djrName;
+	}
+
+	public void setDjrName(String djrName) {
+		this.djrName = djrName;
+	}
+
+	public String getDjdwName() {
+		return djdwName;
+	}
+
+	public void setDjdwName(String djdwName) {
+		this.djdwName = djdwName;
+	}
 }

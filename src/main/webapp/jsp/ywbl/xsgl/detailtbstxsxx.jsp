@@ -99,6 +99,33 @@ $(function() {
 				  </tr>
 			</table>
 		</form>
+		<form  id="picForm" method="post" enctype="multipart/form-data">
+		 	<table>
+			 	<tr>
+			 		<td style="width:33%">
+				 		<div style="text-align: center;">
+							<img id='picPreView1' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<input id='pic1' name='dangerPic' type="file" accept="image/*" name='拍照'/>
+						</div>
+					</td>
+					<td  style="width:33%">
+						<div style="text-align: center;">
+							<img id='picPreView2' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<input id='pic2' name='dangerPic' type="file" accept="image/*" name='拍照'/>
+						</div>
+					</td>
+					<td  style="width:33%">
+						<div style="text-align: center;">
+							<img id='picPreView3' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<input id='pic3' name='dangerPic' type="file" accept="image/*" name='拍照'/>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>
 </div>
 <div id='detailPageButtonsFt' style="text-align:center; padding:2px; top:0px">
 	<a href="javascript:void(0)" id='cloBtn' class="easyui-linkbutton" iconCls='icon-cancel'">关闭</a>

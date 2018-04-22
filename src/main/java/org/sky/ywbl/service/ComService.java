@@ -8,7 +8,10 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
+import org.sky.ywbl.client.TbStTxxxMapper;
 import org.sky.ywbl.client.TbStYwbhMapper;
+import org.sky.ywbl.model.TbStTxxx;
+import org.sky.ywbl.model.TbStTxxxExample;
 import org.sky.ywbl.model.TbStYwbh;
 import org.sky.ywbl.model.TbStYwbhExample;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,8 @@ public class ComService {
 	private final Logger logger=Logger.getLogger(ComService.class);
 	@Autowired
 	private TbStYwbhMapper ywbhMapper;
+	@Autowired
+	private TbStTxxxMapper txMapper;
 	/**
 	 * 获取业务编号
 	 * @param szm
@@ -67,5 +72,18 @@ public class ComService {
 			ywbh=szm+jgdm+ny+df.format(sxh);
 		}
 		return ywbh;
+	}
+	/**
+	 * 根据业务类型，业务编号获取图像信息
+	 * @param ywlx
+	 * @param ywbh
+	 * @return
+	 */
+	public List<TbStTxxx> selectTxxxByYW(String ywlx,String ywbh){
+		TbStTxxxExample txe = new TbStTxxxExample();
+		txe.createCriteria().andYwlxEqualTo(ywlx)
+							.andYwbhEqualTo(ywbh);
+		txe.setOrderByClause("create_time asc");
+		return txMapper.selectByExampleWithBLOBs(txe);
 	}
 }

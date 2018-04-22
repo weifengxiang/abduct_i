@@ -7,6 +7,7 @@
 <head>
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/ywbl/ajdj/edittbstajdjxx.js'></script>
+<script type="text/javascript" src="${basepath}skin/js/utils.js"></script>
 <script type="text/javascript">
 var ajbh = '${ajbh}';
 var djsj = '<%=CommonUtils.getCurrentDate() %>';
@@ -226,6 +227,33 @@ $(function() {
 					<td><input class="easyui-textbox" name="bz"
 						data-options="required:true"></input></td>
 				  </tr>
+			</table>
+		</form>
+		<form  id="picForm" method="post" enctype="multipart/form-data">
+		 	<table>
+			 	<tr>
+			 		<td style="width:33%">
+				 		<div style="text-align: center;">
+							<img id='picPreView1' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<input id='pic1' name='pic' type="file" accept="image/*" name='拍照'/>
+						</div>
+					</td>
+					<td  style="width:33%">
+						<div style="text-align: center;">
+							<img id='picPreView2' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<input id='pic2' name='pic' type="file" accept="image/*" name='拍照'/>
+						</div>
+					</td>
+					<td  style="width:33%">
+						<div style="text-align: center;">
+							<img id='picPreView3' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<input id='pic3' name='pic' type="file" accept="image/*" name='拍照'/>
+						</div>
+					</td>
+				</tr>
 			</table>
 		</form>
 </div>

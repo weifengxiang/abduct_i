@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
+import org.sky.ywbl.model.TbStTxxx;
 import org.sky.ywbl.model.TbStXsxx;
 import org.sky.ywbl.model.TbStXsxxExample;
-import org.sky.ywbl.model.TbStXsxxExample.Criteria;
 import org.sky.ywbl.service.ComService;
 import org.sky.ywbl.service.TbStXsxxService;
 import org.sky.sys.utils.BspUtils;
@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 /**
  * 
  * @ClassName:  TbStXsxxController   
- * @Description:TODO(线索管理服务层)   
+ * @Description:TODO(线索管理控制层)   
  * @author: weifx 
  * @date:   2018年4月13日 下午3:05:33   
  * @version V1.0    
@@ -123,8 +123,13 @@ public class TbStXsxxController extends BaseController{
 			HttpServletResponse response){
 		ResultData rd= new ResultData();
 		try {
+			String data = request.getParameter("data");
+			List<TbStTxxx> txList=null;
+			if(!StringUtils.isNull(data)) {
+				txList = JsonUtils.json2list(data,TbStTxxx.class);
+			}
 			TbStXsxx edit = (TbStXsxx) getEntityBean(request,TbStXsxx.class);
-			tbstxsxxService.saveAddEditTbStXsxx(edit);
+			tbstxsxxService.saveAddEditTbStXsxx(edit,txList);
 			rd.setCode(ResultData.code_success);
 			rd.setName("保存成功");
 		} catch (Exception e) {

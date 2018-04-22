@@ -7,6 +7,7 @@
 <head>
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/ywbl/xsgl/edittbstxsxx.js'></script>
+<script type="text/javascript" src="${basepath}skin/js/utils.js"></script>
 <script type="text/javascript">
 var xsbh = '${xsbh}';
 var zjlx = <%=DictUtils.getDictItem("017") %>;
@@ -25,7 +26,7 @@ $(function() {
 </head>
 <body>
 <div class="easyui-panel"  style="width:100%;height:100%;text-align: center;"
-	 data-options="footer:'#editPageButtonsFt'">
+	 data-options="footer:'#editPageButtonsFt',fit:true">
 		<form id="addedittbstxsxxform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
@@ -107,6 +108,33 @@ $(function() {
 					<td colspan='3'><input class="easyui-textbox" name="bz" style='width:300;height:50'
 						data-options="required:true,multiline:true"></input></td>
 				  </tr>
+			</table>
+		</form>
+		<form  id="picForm" method="post" enctype="multipart/form-data">
+		 	<table>
+			 	<tr>
+			 		<td style="width:33%">
+				 		<div style="text-align: center;">
+							<img id='picPreView1' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<input id='pic1' name='pic' type="file" accept="image/*" name='拍照'/>
+						</div>
+					</td>
+					<td  style="width:33%">
+						<div style="text-align: center;">
+							<img id='picPreView2' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<input id='pic2' name='pic' type="file" accept="image/*" name='拍照'/>
+						</div>
+					</td>
+					<td  style="width:33%">
+						<div style="text-align: center;">
+							<img id='picPreView3' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<input id='pic3' name='pic' type="file" accept="image/*" name='拍照'/>
+						</div>
+					</td>
+				</tr>
 			</table>
 		</form>
 </div>

@@ -3,8 +3,11 @@ import org.apache.log4j.Logger;
 import java.sql.Timestamp;
 import java.util.List;
 import org.sky.sys.client.SysCommonMapper;
+import org.sky.ywbl.client.TbStTxxxMapper;
 import org.sky.ywbl.client.TbStXsxxMapper;
 import org.sky.sys.exception.ServiceException;
+import org.sky.ywbl.model.TbStTxxx;
+import org.sky.ywbl.model.TbStTxxxExample;
 import org.sky.ywbl.model.TbStXsxx;
 import org.sky.ywbl.model.TbStXsxxExample;
 import org.sky.sys.utils.PageListData;
@@ -19,6 +22,8 @@ public class TbStXsxxService {
 	private final Logger logger=Logger.getLogger(TbStXsxxService.class);
 	@Autowired
 	private TbStXsxxMapper tbstxsxxmapper;
+	@Autowired
+	private TbStTxxxMapper txxxmapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
 	/**
@@ -77,9 +82,22 @@ public class TbStXsxxService {
 	*保存新增/编辑单个对象
 	**/
 	@Transactional
-	public void saveAddEditTbStXsxx(TbStXsxx edit) throws ServiceException{
+	public void saveAddEditTbStXsxx(TbStXsxx edit,List<TbStTxxx> txList) throws ServiceException{
 		try{
 			Timestamp ts = syscommonmapper.queryTimestamp();
+			//先删除之前的图像信息 再插入新的图像信息
+			TbStTxxxExample txe = new TbStTxxxExample();
+			txe.createCriteria().andYwlxEqualTo("XSXX")
+								.andYwbhEqualTo(edit.getXsbh());
+			txxxmapper.deleteByExample(txe);
+			for(TbStTxxx tx:txList) {
+				tx.setId(CommonUtils.getUUID(32));
+				tx.setCreater(BspUtils.getLoginUser().getCode());
+				tx.setCreateTime(ts);
+				tx.setYwbh(edit.getXsbh());
+				tx.setYwlx("XSXX");
+				txxxmapper.insert(tx);
+			}
 			if(StringUtils.isNull(edit.getId())){
 				//新增
 				edit.setId(CommonUtils.getUUID(32));

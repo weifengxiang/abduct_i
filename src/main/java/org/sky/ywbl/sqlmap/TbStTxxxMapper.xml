@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.sky.ywbl.client.TbStFjxxMapper">
-  <resultMap id="BaseResultMap" type="org.sky.ywbl.model.TbStFjxx">
+<mapper namespace="org.sky.ywbl.client.TbStTxxxMapper">
+  <resultMap id="BaseResultMap" type="org.sky.ywbl.model.TbStTxxx">
     <id column="ID" jdbcType="VARCHAR" property="id" />
-    <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
-    <result column="FJMC" jdbcType="VARCHAR" property="fjmc" />
-    <result column="FJLX" jdbcType="VARCHAR" property="fjlx" />
-    <result column="FJDX" jdbcType="INTEGER" property="fjdx" />
+    <result column="YWLX" jdbcType="CHAR" property="ywlx" />
+    <result column="YWBH" jdbcType="VARCHAR" property="ywbh" />
+    <result column="TXMC" jdbcType="VARCHAR" property="txmc" />
+    <result column="TXLX" jdbcType="VARCHAR" property="txlx" />
+    <result column="TXDX" jdbcType="INTEGER" property="txdx" />
+    <result column="SEQ" jdbcType="INTEGER" property="seq" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
-    <result column="CREATR_TIME" jdbcType="TIMESTAMP" property="creatrTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.sky.ywbl.model.TbStFjxx">
-    <result column="FJNR" jdbcType="LONGVARBINARY" property="fjnr" />
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.sky.ywbl.model.TbStTxxx">
+    <result column="TXNR" jdbcType="LONGVARCHAR" property="txnr" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,12 +74,12 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AJBH, FJMC, FJLX, FJDX, CREATER, CREATR_TIME
+    ID, YWLX, YWBH, TXMC, TXLX, TXDX, SEQ, CREATER, CREATE_TIME
   </sql>
   <sql id="Blob_Column_List">
-    FJNR
+    TXNR
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="org.sky.ywbl.model.TbStFjxxExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="org.sky.ywbl.model.TbStTxxxExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -85,7 +87,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from tb_st_fjxx
+    from tb_st_txxx
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,13 +95,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStFjxxExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStTxxxExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tb_st_fjxx
+    from tb_st_txxx
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -113,114 +115,134 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from tb_st_fjxx
+    from tb_st_txxx
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tb_st_fjxx
+    delete from tb_st_txxx
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="org.sky.ywbl.model.TbStFjxxExample">
-    delete from tb_st_fjxx
+  <delete id="deleteByExample" parameterType="org.sky.ywbl.model.TbStTxxxExample">
+    delete from tb_st_txxx
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.sky.ywbl.model.TbStFjxx">
-    insert into tb_st_fjxx (ID, AJBH, FJMC, 
-      FJLX, FJDX, CREATER, 
-      CREATR_TIME, FJNR)
-    values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{fjmc,jdbcType=VARCHAR}, 
-      #{fjlx,jdbcType=VARCHAR}, #{fjdx,jdbcType=INTEGER}, #{creater,jdbcType=VARCHAR}, 
-      #{creatrTime,jdbcType=TIMESTAMP}, #{fjnr,jdbcType=LONGVARBINARY})
+  <insert id="insert" parameterType="org.sky.ywbl.model.TbStTxxx">
+    insert into tb_st_txxx (ID, YWLX, YWBH, 
+      TXMC, TXLX, TXDX, SEQ, 
+      CREATER, CREATE_TIME, TXNR
+      )
+    values (#{id,jdbcType=VARCHAR}, #{ywlx,jdbcType=CHAR}, #{ywbh,jdbcType=VARCHAR}, 
+      #{txmc,jdbcType=VARCHAR}, #{txlx,jdbcType=VARCHAR}, #{txdx,jdbcType=INTEGER}, #{seq,jdbcType=INTEGER}, 
+      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{txnr,jdbcType=LONGVARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStFjxx">
-    insert into tb_st_fjxx
+  <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStTxxx">
+    insert into tb_st_txxx
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         ID,
       </if>
-      <if test="ajbh != null">
-        AJBH,
+      <if test="ywlx != null">
+        YWLX,
       </if>
-      <if test="fjmc != null">
-        FJMC,
+      <if test="ywbh != null">
+        YWBH,
       </if>
-      <if test="fjlx != null">
-        FJLX,
+      <if test="txmc != null">
+        TXMC,
       </if>
-      <if test="fjdx != null">
-        FJDX,
+      <if test="txlx != null">
+        TXLX,
+      </if>
+      <if test="txdx != null">
+        TXDX,
+      </if>
+      <if test="seq != null">
+        SEQ,
       </if>
       <if test="creater != null">
         CREATER,
       </if>
-      <if test="creatrTime != null">
-        CREATR_TIME,
+      <if test="createTime != null">
+        CREATE_TIME,
       </if>
-      <if test="fjnr != null">
-        FJNR,
+      <if test="txnr != null">
+        TXNR,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="ajbh != null">
-        #{ajbh,jdbcType=VARCHAR},
+      <if test="ywlx != null">
+        #{ywlx,jdbcType=CHAR},
       </if>
-      <if test="fjmc != null">
-        #{fjmc,jdbcType=VARCHAR},
+      <if test="ywbh != null">
+        #{ywbh,jdbcType=VARCHAR},
       </if>
-      <if test="fjlx != null">
-        #{fjlx,jdbcType=VARCHAR},
+      <if test="txmc != null">
+        #{txmc,jdbcType=VARCHAR},
       </if>
-      <if test="fjdx != null">
-        #{fjdx,jdbcType=INTEGER},
+      <if test="txlx != null">
+        #{txlx,jdbcType=VARCHAR},
+      </if>
+      <if test="txdx != null">
+        #{txdx,jdbcType=INTEGER},
+      </if>
+      <if test="seq != null">
+        #{seq,jdbcType=INTEGER},
       </if>
       <if test="creater != null">
         #{creater,jdbcType=VARCHAR},
       </if>
-      <if test="creatrTime != null">
-        #{creatrTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="fjnr != null">
-        #{fjnr,jdbcType=LONGVARBINARY},
+      <if test="txnr != null">
+        #{txnr,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.sky.ywbl.model.TbStFjxxExample" resultType="java.lang.Long">
-    select count(*) from tb_st_fjxx
+  <select id="countByExample" parameterType="org.sky.ywbl.model.TbStTxxxExample" resultType="java.lang.Long">
+    select count(*) from tb_st_txxx
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update tb_st_fjxx
+    update tb_st_txxx
     <set>
       <if test="record.id != null">
         ID = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.ajbh != null">
-        AJBH = #{record.ajbh,jdbcType=VARCHAR},
+      <if test="record.ywlx != null">
+        YWLX = #{record.ywlx,jdbcType=CHAR},
       </if>
-      <if test="record.fjmc != null">
-        FJMC = #{record.fjmc,jdbcType=VARCHAR},
+      <if test="record.ywbh != null">
+        YWBH = #{record.ywbh,jdbcType=VARCHAR},
       </if>
-      <if test="record.fjlx != null">
-        FJLX = #{record.fjlx,jdbcType=VARCHAR},
+      <if test="record.txmc != null">
+        TXMC = #{record.txmc,jdbcType=VARCHAR},
       </if>
-      <if test="record.fjdx != null">
-        FJDX = #{record.fjdx,jdbcType=INTEGER},
+      <if test="record.txlx != null">
+        TXLX = #{record.txlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txdx != null">
+        TXDX = #{record.txdx,jdbcType=INTEGER},
+      </if>
+      <if test="record.seq != null">
+        SEQ = #{record.seq,jdbcType=INTEGER},
       </if>
       <if test="record.creater != null">
         CREATER = #{record.creater,jdbcType=VARCHAR},
       </if>
-      <if test="record.creatrTime != null">
-        CREATR_TIME = #{record.creatrTime,jdbcType=TIMESTAMP},
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.fjnr != null">
-        FJNR = #{record.fjnr,jdbcType=LONGVARBINARY},
+      <if test="record.txnr != null">
+        TXNR = #{record.txnr,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -228,78 +250,92 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
-    update tb_st_fjxx
+    update tb_st_txxx
     set ID = #{record.id,jdbcType=VARCHAR},
-      AJBH = #{record.ajbh,jdbcType=VARCHAR},
-      FJMC = #{record.fjmc,jdbcType=VARCHAR},
-      FJLX = #{record.fjlx,jdbcType=VARCHAR},
-      FJDX = #{record.fjdx,jdbcType=INTEGER},
+      YWLX = #{record.ywlx,jdbcType=CHAR},
+      YWBH = #{record.ywbh,jdbcType=VARCHAR},
+      TXMC = #{record.txmc,jdbcType=VARCHAR},
+      TXLX = #{record.txlx,jdbcType=VARCHAR},
+      TXDX = #{record.txdx,jdbcType=INTEGER},
+      SEQ = #{record.seq,jdbcType=INTEGER},
       CREATER = #{record.creater,jdbcType=VARCHAR},
-      CREATR_TIME = #{record.creatrTime,jdbcType=TIMESTAMP},
-      FJNR = #{record.fjnr,jdbcType=LONGVARBINARY}
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      TXNR = #{record.txnr,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update tb_st_fjxx
+    update tb_st_txxx
     set ID = #{record.id,jdbcType=VARCHAR},
-      AJBH = #{record.ajbh,jdbcType=VARCHAR},
-      FJMC = #{record.fjmc,jdbcType=VARCHAR},
-      FJLX = #{record.fjlx,jdbcType=VARCHAR},
-      FJDX = #{record.fjdx,jdbcType=INTEGER},
+      YWLX = #{record.ywlx,jdbcType=CHAR},
+      YWBH = #{record.ywbh,jdbcType=VARCHAR},
+      TXMC = #{record.txmc,jdbcType=VARCHAR},
+      TXLX = #{record.txlx,jdbcType=VARCHAR},
+      TXDX = #{record.txdx,jdbcType=INTEGER},
+      SEQ = #{record.seq,jdbcType=INTEGER},
       CREATER = #{record.creater,jdbcType=VARCHAR},
-      CREATR_TIME = #{record.creatrTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.sky.ywbl.model.TbStFjxx">
-    update tb_st_fjxx
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.ywbl.model.TbStTxxx">
+    update tb_st_txxx
     <set>
-      <if test="ajbh != null">
-        AJBH = #{ajbh,jdbcType=VARCHAR},
+      <if test="ywlx != null">
+        YWLX = #{ywlx,jdbcType=CHAR},
       </if>
-      <if test="fjmc != null">
-        FJMC = #{fjmc,jdbcType=VARCHAR},
+      <if test="ywbh != null">
+        YWBH = #{ywbh,jdbcType=VARCHAR},
       </if>
-      <if test="fjlx != null">
-        FJLX = #{fjlx,jdbcType=VARCHAR},
+      <if test="txmc != null">
+        TXMC = #{txmc,jdbcType=VARCHAR},
       </if>
-      <if test="fjdx != null">
-        FJDX = #{fjdx,jdbcType=INTEGER},
+      <if test="txlx != null">
+        TXLX = #{txlx,jdbcType=VARCHAR},
+      </if>
+      <if test="txdx != null">
+        TXDX = #{txdx,jdbcType=INTEGER},
+      </if>
+      <if test="seq != null">
+        SEQ = #{seq,jdbcType=INTEGER},
       </if>
       <if test="creater != null">
         CREATER = #{creater,jdbcType=VARCHAR},
       </if>
-      <if test="creatrTime != null">
-        CREATR_TIME = #{creatrTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="fjnr != null">
-        FJNR = #{fjnr,jdbcType=LONGVARBINARY},
+      <if test="txnr != null">
+        TXNR = #{txnr,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.sky.ywbl.model.TbStFjxx">
-    update tb_st_fjxx
-    set AJBH = #{ajbh,jdbcType=VARCHAR},
-      FJMC = #{fjmc,jdbcType=VARCHAR},
-      FJLX = #{fjlx,jdbcType=VARCHAR},
-      FJDX = #{fjdx,jdbcType=INTEGER},
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.sky.ywbl.model.TbStTxxx">
+    update tb_st_txxx
+    set YWLX = #{ywlx,jdbcType=CHAR},
+      YWBH = #{ywbh,jdbcType=VARCHAR},
+      TXMC = #{txmc,jdbcType=VARCHAR},
+      TXLX = #{txlx,jdbcType=VARCHAR},
+      TXDX = #{txdx,jdbcType=INTEGER},
+      SEQ = #{seq,jdbcType=INTEGER},
       CREATER = #{creater,jdbcType=VARCHAR},
-      CREATR_TIME = #{creatrTime,jdbcType=TIMESTAMP},
-      FJNR = #{fjnr,jdbcType=LONGVARBINARY}
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      TXNR = #{txnr,jdbcType=LONGVARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.sky.ywbl.model.TbStFjxx">
-    update tb_st_fjxx
-    set AJBH = #{ajbh,jdbcType=VARCHAR},
-      FJMC = #{fjmc,jdbcType=VARCHAR},
-      FJLX = #{fjlx,jdbcType=VARCHAR},
-      FJDX = #{fjdx,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="org.sky.ywbl.model.TbStTxxx">
+    update tb_st_txxx
+    set YWLX = #{ywlx,jdbcType=CHAR},
+      YWBH = #{ywbh,jdbcType=VARCHAR},
+      TXMC = #{txmc,jdbcType=VARCHAR},
+      TXLX = #{txlx,jdbcType=VARCHAR},
+      TXDX = #{txdx,jdbcType=INTEGER},
+      SEQ = #{seq,jdbcType=INTEGER},
       CREATER = #{creater,jdbcType=VARCHAR},
-      CREATR_TIME = #{creatrTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">
