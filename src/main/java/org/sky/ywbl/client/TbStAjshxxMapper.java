@@ -10,13 +10,21 @@ public interface TbStAjshxxMapper {
 
     int deleteByExample(TbStAjshxxExample example);
 
+    int deleteByPrimaryKey(String id);
+
     int insert(TbStAjshxx record);
 
     int insertSelective(TbStAjshxx record);
 
     List<TbStAjshxx> selectByExample(TbStAjshxxExample example);
 
+    TbStAjshxx selectByPrimaryKey(String id);
+
     int updateByExampleSelective(@Param("record") TbStAjshxx record, @Param("example") TbStAjshxxExample example);
 
     int updateByExample(@Param("record") TbStAjshxx record, @Param("example") TbStAjshxxExample example);
+
+    int updateByPrimaryKeySelective(TbStAjshxx record);
+
+    int updateByPrimaryKey(TbStAjshxx record);
 }

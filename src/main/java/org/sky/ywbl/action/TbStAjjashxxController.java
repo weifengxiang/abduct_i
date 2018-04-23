@@ -7,15 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
-import org.sky.ywbl.model.TbStAjjashxx;
-import org.sky.ywbl.model.TbStAjjashxxExample;
-import org.sky.ywbl.model.TbStAjjashxxExample.Criteria;
-import org.sky.ywbl.service.TbStAjjashxxService;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
 import org.sky.sys.utils.ResultData;
 import org.sky.sys.utils.StringUtils;
+import org.sky.ywbl.model.TbStAjshxx;
+import org.sky.ywbl.model.TbStAjshxxExample;
+import org.sky.ywbl.service.TbStAjshxxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class TbStAjjashxxController extends BaseController{
 	@Autowired
-	private TbStAjjashxxService tbstajjashxxService;
+	private TbStAjshxxService tbstajshxxService;
 	
 	public TbStAjjashxxController() {
 		// TODO Auto-generated constructor stub
@@ -52,7 +51,7 @@ public class TbStAjjashxxController extends BaseController{
 		Map filterMap = JsonUtils.json2map(filter);
 		String sortfield=request.getParameter("sortfield");
 		Page p= super.getPage(request);
-		TbStAjjashxxExample pote= new TbStAjjashxxExample();
+		TbStAjshxxExample pote= new TbStAjshxxExample();
 		if(null!=filterMap){
 			pote.createCriteria();
 			pote.integratedQuery(filterMap);
@@ -61,7 +60,7 @@ public class TbStAjjashxxController extends BaseController{
 			pote.setOrderByClause(sortfield);
 		}
 		pote.setPage(p);
-		PageListData pageData = tbstajjashxxService.getTbStAjjashxxByPage(pote);
+		PageListData pageData = tbstajshxxService.getTbStAjshxxByPage(pote);
 		return JsonUtils.obj2json(pageData);
 	}
 	/**
@@ -97,8 +96,8 @@ public class TbStAjjashxxController extends BaseController{
 			HttpServletResponse response){
 		ResultData rd= new ResultData();
 		try {
-			TbStAjjashxx edit = (TbStAjjashxx) getEntityBean(request,TbStAjjashxx.class);
-			tbstajjashxxService.saveAddEditTbStAjjashxx(edit);
+			TbStAjshxx edit = (TbStAjshxx) getEntityBean(request,TbStAjshxx.class);
+			tbstajshxxService.saveAddEditTbStAjshxx(edit);
 			rd.setCode(ResultData.code_success);
 			rd.setName("保存成功");
 		} catch (Exception e) {
@@ -119,8 +118,8 @@ public class TbStAjjashxxController extends BaseController{
 		ResultData rd= new ResultData();
 		try {
 			String delRows=request.getParameter("delRows");
-			List de=JsonUtils.json2list(delRows, TbStAjjashxx.class);
-			tbstajjashxxService.delTbStAjjashxxById(de);
+			List de=JsonUtils.json2list(delRows, TbStAjshxx.class);
+			tbstajshxxService.delTbStAjshxxById(de);
 			rd.setCode(ResultData.code_success);
 			rd.setName("删除成功");
 		} catch (ServiceException e) {
@@ -139,7 +138,7 @@ public class TbStAjjashxxController extends BaseController{
 			HttpServletRequest request, 
 			HttpServletResponse response){
 		String id = request.getParameter("id");
-		TbStAjjashxx bean = tbstajjashxxService.getTbStAjjashxxById(id);
+		TbStAjshxx bean = tbstajshxxService.getTbStAjshxxById(id);
 		return JsonUtils.obj2json(bean);
 	}
 }

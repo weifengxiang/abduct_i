@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.sky.ywbl.client.TbStAjshxxMapper">
   <resultMap id="BaseResultMap" type="org.sky.ywbl.model.TbStAjshxx">
-    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
     <result column="SHJG" jdbcType="VARCHAR" property="shjg" />
     <result column="SHYJ" jdbcType="VARCHAR" property="shyj" />
@@ -14,6 +14,7 @@
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="YWLX" jdbcType="VARCHAR" property="ywlx" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,7 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AJBH, SHJG, SHYJ, SHDW, SHSJ, SHENHR, BZ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    ID, AJBH, SHJG, SHYJ, SHDW, SHSJ, SHENHR, BZ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, 
+    YWLX
   </sql>
   <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStAjshxxExample" resultMap="BaseResultMap">
     select
@@ -91,6 +93,16 @@
     </if>
     <include refid="MySqlPaginationSuffix" />
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_st_ajshxx
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_st_ajshxx
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
   <delete id="deleteByExample" parameterType="org.sky.ywbl.model.TbStAjshxxExample">
     delete from tb_st_ajshxx
     <if test="_parameter != null">
@@ -101,13 +113,13 @@
     insert into tb_st_ajshxx (ID, AJBH, SHJG, 
       SHYJ, SHDW, SHSJ, 
       SHENHR, BZ, CREATER, 
-      CREATE_TIME, UPDATER, UPDATE_TIME
-      )
+      CREATE_TIME, UPDATER, UPDATE_TIME, 
+      YWLX)
     values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{shjg,jdbcType=VARCHAR}, 
       #{shyj,jdbcType=VARCHAR}, #{shdw,jdbcType=VARCHAR}, #{shsj,jdbcType=TIMESTAMP}, 
       #{shenhr,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{ywlx,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStAjshxx">
     insert into tb_st_ajshxx
@@ -148,6 +160,9 @@
       <if test="updateTime != null">
         UPDATE_TIME,
       </if>
+      <if test="ywlx != null">
+        YWLX,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -185,6 +200,9 @@
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ywlx != null">
+        #{ywlx,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -233,6 +251,9 @@
       <if test="record.updateTime != null">
         UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.ywlx != null">
+        YWLX = #{record.ywlx,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -251,10 +272,69 @@
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       UPDATER = #{record.updater,jdbcType=VARCHAR},
-      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      YWLX = #{record.ywlx,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.ywbl.model.TbStAjshxx">
+    update tb_st_ajshxx
+    <set>
+      <if test="ajbh != null">
+        AJBH = #{ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="shjg != null">
+        SHJG = #{shjg,jdbcType=VARCHAR},
+      </if>
+      <if test="shyj != null">
+        SHYJ = #{shyj,jdbcType=VARCHAR},
+      </if>
+      <if test="shdw != null">
+        SHDW = #{shdw,jdbcType=VARCHAR},
+      </if>
+      <if test="shsj != null">
+        SHSJ = #{shsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shenhr != null">
+        SHENHR = #{shenhr,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ywlx != null">
+        YWLX = #{ywlx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sky.ywbl.model.TbStAjshxx">
+    update tb_st_ajshxx
+    set AJBH = #{ajbh,jdbcType=VARCHAR},
+      SHJG = #{shjg,jdbcType=VARCHAR},
+      SHYJ = #{shyj,jdbcType=VARCHAR},
+      SHDW = #{shdw,jdbcType=VARCHAR},
+      SHSJ = #{shsj,jdbcType=TIMESTAMP},
+      SHENHR = #{shenhr,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      YWLX = #{ywlx,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">
     <if test="page != null">

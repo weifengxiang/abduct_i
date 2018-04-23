@@ -950,6 +950,76 @@ public class TbStAjshxxExample {
             addCriterion("UPDATE_TIME not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+        public Criteria andYwlxIsNull() {
+            addCriterion("YWLX is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxIsNotNull() {
+            addCriterion("YWLX is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxEqualTo(String value) {
+            addCriterion("YWLX =", value, "ywlx");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxNotEqualTo(String value) {
+            addCriterion("YWLX <>", value, "ywlx");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxGreaterThan(String value) {
+            addCriterion("YWLX >", value, "ywlx");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxGreaterThanOrEqualTo(String value) {
+            addCriterion("YWLX >=", value, "ywlx");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxLessThan(String value) {
+            addCriterion("YWLX <", value, "ywlx");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxLessThanOrEqualTo(String value) {
+            addCriterion("YWLX <=", value, "ywlx");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxLike(String value) {
+            addCriterion("YWLX like", value, "ywlx");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxNotLike(String value) {
+            addCriterion("YWLX not like", value, "ywlx");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxIn(List<String> values) {
+            addCriterion("YWLX in", values, "ywlx");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxNotIn(List<String> values) {
+            addCriterion("YWLX not in", values, "ywlx");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxBetween(String value1, String value2) {
+            addCriterion("YWLX between", value1, value2, "ywlx");
+            return (Criteria) this;
+        }
+
+        public Criteria andYwlxNotBetween(String value1, String value2) {
+            addCriterion("YWLX not between", value1, value2, "ywlx");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

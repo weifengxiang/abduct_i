@@ -27,6 +27,8 @@ public class TbStAjshxx {
 
     private Date updateTime;
 
+    private String ywlx;
+
     public String getId() {
         return id;
     }
@@ -121,5 +123,13 @@ public class TbStAjshxx {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getYwlx() {
+        return ywlx;
+    }
+
+    public void setYwlx(String ywlx) {
+        this.ywlx = ywlx;
     }
 }
