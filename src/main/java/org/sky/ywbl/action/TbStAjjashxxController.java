@@ -21,6 +21,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ModelAttribute;
+
+/**
+ * 
+ * @ClassName:  TbStAjjashxxController   
+ * @Description:TODO(结案审核信息)   
+ * @author: weifx 
+ * @date:   2018年4月23日 下午9:26:31   
+ * @version V1.0    
+ * @Copyright: 2018 XXX. All rights reserved.
+ */
 @Controller
 public class TbStAjjashxxController extends BaseController{
 	@Autowired
@@ -53,6 +63,7 @@ public class TbStAjjashxxController extends BaseController{
 		Page p= super.getPage(request);
 		TbStAjshxxExample pote= new TbStAjshxxExample();
 		if(null!=filterMap){
+			filterMap.put("ywlx@=","JASH");
 			pote.createCriteria();
 			pote.integratedQuery(filterMap);
 		}

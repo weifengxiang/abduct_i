@@ -9,7 +9,7 @@
 <script type="text/javascript" src='${basepath}jsp/ywbl/jash/edittbstajjashxx.js'></script>
 <script type="text/javascript">
 var _callbacks = $.Callbacks();
-var STATE = <%=EnumUtils.getEnums("AJSH.STATE") %>;
+var STATE = <%=EnumUtils.getEnums("JASH.STATE") %>;
 var shsj = '<%=CommonUtils.getCurrentDate() %>';
 var shr  = '<%=BspUtils.getLoginUser().getCode() %>';
 var shrName = '<%=BspUtils.getLoginUser().getName() %>';
@@ -28,6 +28,7 @@ $(function() {
 			<input type='hidden' name='id' id='id'/>
 			<input type='hidden' name='shdw' id='shdw'/>
 			<input type='hidden' name='shenhr' id='shenhr'/>
+			<input type='hidden' name='ywlx' value='JASH'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>案件编号:</label></th>

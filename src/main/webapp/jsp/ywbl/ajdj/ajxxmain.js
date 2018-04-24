@@ -17,8 +17,56 @@ function initDjxxMain(){
  */
 function onAjxxLoadSuccess(djxx){
 	viewTxxx(djxx);
+	createAJSHXX(djxx);
 	createBLXX(djxx);
 	createJASHXX(djxx);
+}
+/**
+ * 案件审核信息
+ * @param djxx
+ * @returns
+ */
+function createAJSHXX(djxx){
+	$('#mainDetailTab').tabs('add',{
+		title: '案件审核信息',
+		selected:false,
+		content:'<table id="ajshxxdg" style="width: 100%; height: 100%"></table>'
+	});
+	$('#ajshxxdg').datagrid({    
+	    url:SKY.urlCSRF(basepath+'/ywbl/TbStAjshxx/getTbStAjshxxByPage'),
+	    pagination:true,
+		rownumbers: true,
+		checkbox:true,
+		nowrap:false,
+		singleSelect:true,
+		selectOnCheck:false,
+		checkOnSelect:false,
+		queryParams: {
+			page:1,
+			rows:10,
+			filter:function(){
+				var ft=new HashMap();
+				ft.put("ajbh@=",djxx.ajbh);
+				return ft.getJSON();
+			},
+			sortfield:" create_time desc"
+		},
+		onLoadSuccess : function () {
+    		$(this).datagrid('fixRownumber');
+    		$(this).datagrid('doCellTip',{'max-width':'200px','delay':500});
+		},
+	    columns:[[    
+	        {field:'shjg',title:'审核结果',width:100,
+        	 formatter: function(value,row,index){
+				return SKY.formatterEnum(value,row,AJSHSTATE);
+			 }
+	        },    
+	        {field:'shyj',title:'审核意见',width:150}, 
+	        {field:'shsj',title:'审核时间',width:150},
+	        {field:'shenhr',title:'审核人',width:360},
+	        {field:'shdw',title:'审核单位',width:100}
+	    ]]    
+	}); 
 }
 /**
  * 创建办理信息grid
@@ -54,7 +102,11 @@ function createBLXX(djxx){
     		$(this).datagrid('doCellTip',{'max-width':'200px','delay':500});
 		},
 	    columns:[[    
-	        {field:'bljg',title:'办理结果',width:100},    
+	        {field:'bljg',title:'办理结果',width:100,
+        	 formatter: function(value,row,index){
+				return SKY.formatterEnum(value,row,AJBLSTATE);
+			 }
+	        },    
 	        {field:'blyj',title:'办理意见',width:150}, 
 	        {field:'blsj',title:'办理时间',width:150},
 	        {field:'blr',title:'办理人',width:360},
@@ -97,7 +149,11 @@ function createJASHXX(djxx){
     		$(this).datagrid('doCellTip',{'max-width':'200px','delay':500});
 		},
 	    columns:[[    
-	        {field:'shjg',title:'审核结果',width:100},    
+	        {field:'shjg',title:'审核结果',width:100,
+	        	formatter: function(value,row,index){
+								return SKY.formatterEnum(value,row,JASHSTATE);
+							}
+	        },    
 	        {field:'shyj',title:'审核意见',width:150}, 
 	        {field:'shsj',title:'审核时间',width:150},
 	        {field:'shenhr',title:'审核人',width:360},

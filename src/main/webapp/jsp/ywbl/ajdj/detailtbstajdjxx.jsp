@@ -1,3 +1,4 @@
+<%@page import="org.sky.sys.utils.EnumUtils"%>
 <%@page import="org.sky.sys.utils.CommonUtils"%>
 <%@page import="org.sky.sys.utils.DictUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
@@ -14,7 +15,7 @@ var bjlb = <%=DictUtils.getDictItem("BJLB") %>;
 var bjlx = <%=DictUtils.getDictItem("BJLX") %>;
 var bjxl = <%=DictUtils.getDictItem("BJXL") %>;
 var lhlb = <%=DictUtils.getDictItem("LHLB") %>;
-var sjzt = <%=DictUtils.getDictItem("SJZT") %>;
+var ajzt = <%=EnumUtils.getEnums("AJDJ.STATE") %>;
 var ajly = <%=DictUtils.getDictItem("AJLY") %>;
 var xb = <%=DictUtils.getDictItem("XB") %>;
 var djr  = '<%=BspUtils.getLoginUser().getCode() %>';
@@ -180,7 +181,7 @@ $(function() {
 						data-options="required:true,
 									  valueField:'code',
 								      textField:'name',
-									  data:sjzt"></input></td>
+									  data:ajzt"></input></td>
 				  
 					<th><label>警务区:</label></th>
 					<td><input class="easyui-textbox" name="jwq"

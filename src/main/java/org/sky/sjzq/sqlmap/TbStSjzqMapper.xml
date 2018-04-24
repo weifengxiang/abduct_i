@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sky.sjzq.client.TbStSjzqMapper">
+  <resultMap id="BaseResultMap" type="org.sky.sjzq.model.TbStSjzq">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="XQLB" jdbcType="VARCHAR" property="xqlb" />
+    <result column="XQBH" jdbcType="VARCHAR" property="xqbh" />
+    <result column="XM" jdbcType="VARCHAR" property="xm" />
+    <result column="XB" jdbcType="VARCHAR" property="xb" />
+    <result column="CSRQ" jdbcType="VARCHAR" property="csrq" />
+    <result column="SZSSG" jdbcType="VARCHAR" property="szssg" />
+    <result column="SZSJ" jdbcType="VARCHAR" property="szsj" />
+    <result column="SZRSZD" jdbcType="VARCHAR" property="szrszd" />
+    <result column="SZDD" jdbcType="VARCHAR" property="szdd" />
+    <result column="XQZTZMS" jdbcType="VARCHAR" property="xqztzms" />
+    <result column="QTZL" jdbcType="VARCHAR" property="qtzl" />
+    <result column="ZCSJ" jdbcType="VARCHAR" property="zcsj" />
+    <result column="GJZYZ" jdbcType="VARCHAR" property="gjzyz" />
+    <result column="YSWZ" jdbcType="VARCHAR" property="yswz" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, XQLB, XQBH, XM, XB, CSRQ, SZSSG, SZSJ, SZRSZD, SZDD, XQZTZMS, QTZL, ZCSJ, GJZYZ, 
+    YSWZ, CREATE_TIME, NOTE
+  </sql>
+  <select id="selectByExample" parameterType="org.sky.sjzq.model.TbStSjzqExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_st_sjzq
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="MySqlPaginationSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_st_sjzq
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_st_sjzq
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.sky.sjzq.model.TbStSjzqExample">
+    delete from tb_st_sjzq
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.sky.sjzq.model.TbStSjzq">
+    insert into tb_st_sjzq (ID, XQLB, XQBH, 
+      XM, XB, CSRQ, SZSSG, 
+      SZSJ, SZRSZD, SZDD, 
+      XQZTZMS, QTZL, ZCSJ, 
+      GJZYZ, YSWZ, CREATE_TIME, 
+      NOTE)
+    values (#{id,jdbcType=VARCHAR}, #{xqlb,jdbcType=VARCHAR}, #{xqbh,jdbcType=VARCHAR}, 
+      #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, #{csrq,jdbcType=VARCHAR}, #{szssg,jdbcType=VARCHAR}, 
+      #{szsj,jdbcType=VARCHAR}, #{szrszd,jdbcType=VARCHAR}, #{szdd,jdbcType=VARCHAR}, 
+      #{xqztzms,jdbcType=VARCHAR}, #{qtzl,jdbcType=VARCHAR}, #{zcsj,jdbcType=VARCHAR}, 
+      #{gjzyz,jdbcType=VARCHAR}, #{yswz,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sky.sjzq.model.TbStSjzq">
+    insert into tb_st_sjzq
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="xqlb != null">
+        XQLB,
+      </if>
+      <if test="xqbh != null">
+        XQBH,
+      </if>
+      <if test="xm != null">
+        XM,
+      </if>
+      <if test="xb != null">
+        XB,
+      </if>
+      <if test="csrq != null">
+        CSRQ,
+      </if>
+      <if test="szssg != null">
+        SZSSG,
+      </if>
+      <if test="szsj != null">
+        SZSJ,
+      </if>
+      <if test="szrszd != null">
+        SZRSZD,
+      </if>
+      <if test="szdd != null">
+        SZDD,
+      </if>
+      <if test="xqztzms != null">
+        XQZTZMS,
+      </if>
+      <if test="qtzl != null">
+        QTZL,
+      </if>
+      <if test="zcsj != null">
+        ZCSJ,
+      </if>
+      <if test="gjzyz != null">
+        GJZYZ,
+      </if>
+      <if test="yswz != null">
+        YSWZ,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="xqlb != null">
+        #{xqlb,jdbcType=VARCHAR},
+      </if>
+      <if test="xqbh != null">
+        #{xqbh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null">
+        #{csrq,jdbcType=VARCHAR},
+      </if>
+      <if test="szssg != null">
+        #{szssg,jdbcType=VARCHAR},
+      </if>
+      <if test="szsj != null">
+        #{szsj,jdbcType=VARCHAR},
+      </if>
+      <if test="szrszd != null">
+        #{szrszd,jdbcType=VARCHAR},
+      </if>
+      <if test="szdd != null">
+        #{szdd,jdbcType=VARCHAR},
+      </if>
+      <if test="xqztzms != null">
+        #{xqztzms,jdbcType=VARCHAR},
+      </if>
+      <if test="qtzl != null">
+        #{qtzl,jdbcType=VARCHAR},
+      </if>
+      <if test="zcsj != null">
+        #{zcsj,jdbcType=VARCHAR},
+      </if>
+      <if test="gjzyz != null">
+        #{gjzyz,jdbcType=VARCHAR},
+      </if>
+      <if test="yswz != null">
+        #{yswz,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.sky.sjzq.model.TbStSjzqExample" resultType="java.lang.Long">
+    select count(*) from tb_st_sjzq
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_st_sjzq
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xqlb != null">
+        XQLB = #{record.xqlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xqbh != null">
+        XQBH = #{record.xqbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xm != null">
+        XM = #{record.xm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xb != null">
+        XB = #{record.xb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.csrq != null">
+        CSRQ = #{record.csrq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.szssg != null">
+        SZSSG = #{record.szssg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.szsj != null">
+        SZSJ = #{record.szsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.szrszd != null">
+        SZRSZD = #{record.szrszd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.szdd != null">
+        SZDD = #{record.szdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xqztzms != null">
+        XQZTZMS = #{record.xqztzms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qtzl != null">
+        QTZL = #{record.qtzl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zcsj != null">
+        ZCSJ = #{record.zcsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gjzyz != null">
+        GJZYZ = #{record.gjzyz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yswz != null">
+        YSWZ = #{record.yswz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.note != null">
+        NOTE = #{record.note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_st_sjzq
+    set ID = #{record.id,jdbcType=VARCHAR},
+      XQLB = #{record.xqlb,jdbcType=VARCHAR},
+      XQBH = #{record.xqbh,jdbcType=VARCHAR},
+      XM = #{record.xm,jdbcType=VARCHAR},
+      XB = #{record.xb,jdbcType=VARCHAR},
+      CSRQ = #{record.csrq,jdbcType=VARCHAR},
+      SZSSG = #{record.szssg,jdbcType=VARCHAR},
+      SZSJ = #{record.szsj,jdbcType=VARCHAR},
+      SZRSZD = #{record.szrszd,jdbcType=VARCHAR},
+      SZDD = #{record.szdd,jdbcType=VARCHAR},
+      XQZTZMS = #{record.xqztzms,jdbcType=VARCHAR},
+      QTZL = #{record.qtzl,jdbcType=VARCHAR},
+      ZCSJ = #{record.zcsj,jdbcType=VARCHAR},
+      GJZYZ = #{record.gjzyz,jdbcType=VARCHAR},
+      YSWZ = #{record.yswz,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      NOTE = #{record.note,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.sjzq.model.TbStSjzq">
+    update tb_st_sjzq
+    <set>
+      <if test="xqlb != null">
+        XQLB = #{xqlb,jdbcType=VARCHAR},
+      </if>
+      <if test="xqbh != null">
+        XQBH = #{xqbh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        XB = #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null">
+        CSRQ = #{csrq,jdbcType=VARCHAR},
+      </if>
+      <if test="szssg != null">
+        SZSSG = #{szssg,jdbcType=VARCHAR},
+      </if>
+      <if test="szsj != null">
+        SZSJ = #{szsj,jdbcType=VARCHAR},
+      </if>
+      <if test="szrszd != null">
+        SZRSZD = #{szrszd,jdbcType=VARCHAR},
+      </if>
+      <if test="szdd != null">
+        SZDD = #{szdd,jdbcType=VARCHAR},
+      </if>
+      <if test="xqztzms != null">
+        XQZTZMS = #{xqztzms,jdbcType=VARCHAR},
+      </if>
+      <if test="qtzl != null">
+        QTZL = #{qtzl,jdbcType=VARCHAR},
+      </if>
+      <if test="zcsj != null">
+        ZCSJ = #{zcsj,jdbcType=VARCHAR},
+      </if>
+      <if test="gjzyz != null">
+        GJZYZ = #{gjzyz,jdbcType=VARCHAR},
+      </if>
+      <if test="yswz != null">
+        YSWZ = #{yswz,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sky.sjzq.model.TbStSjzq">
+    update tb_st_sjzq
+    set XQLB = #{xqlb,jdbcType=VARCHAR},
+      XQBH = #{xqbh,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      XB = #{xb,jdbcType=VARCHAR},
+      CSRQ = #{csrq,jdbcType=VARCHAR},
+      SZSSG = #{szssg,jdbcType=VARCHAR},
+      SZSJ = #{szsj,jdbcType=VARCHAR},
+      SZRSZD = #{szrszd,jdbcType=VARCHAR},
+      SZDD = #{szdd,jdbcType=VARCHAR},
+      XQZTZMS = #{xqztzms,jdbcType=VARCHAR},
+      QTZL = #{qtzl,jdbcType=VARCHAR},
+      ZCSJ = #{zcsj,jdbcType=VARCHAR},
+      GJZYZ = #{gjzyz,jdbcType=VARCHAR},
+      YSWZ = #{yswz,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      NOTE = #{note,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="MySqlPaginationSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin},#{page.rows} ]]>
+    </if>
+  </sql>
+</mapper>

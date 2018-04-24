@@ -2,6 +2,14 @@
  * 初始化添加案件审核页面
  */
 function initAddTbStAjshxxPage(paramOpts){
+	var data = paramOpts.data;
+	$('#ajbh').textbox('setValue',data.ajbh);
+	$('#shjg').combobox('setValue',data.opt);
+	$('#shenhr').val(shr);
+	$('#shenhrName').textbox('setValue',shrName);
+	$('#shdw').val(shdw);
+	$('#shdwName').textbox('setValue',shdwName);
+	$('#shsj').datetimebox('setValue',shsj);
 	_callbacks.add(paramOpts.callBack);
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();

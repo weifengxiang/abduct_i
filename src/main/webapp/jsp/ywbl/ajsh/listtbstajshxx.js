@@ -18,17 +18,17 @@ function doAjsh(){
 		$.messager.alert('提示','请选择一条记录','info');
 		return;
 	}
-	//结案审核
+	//案件审核
 	var doSH=function(opt){
 		var opts={
-				id:'addTbStAjblxx',
+				id:'addTbStAjshxx',
 				title:'案件审核',
 				width:600,
 				height:450,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjjashxx/initEditTbStAjjashxxPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjshxx/initAddTbStAjshxxPage'),
 				onLoad: function(dialog){ 
-		            if(this.content && this.content.initAddTbStAjjashxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		            if(this.content && this.content.initAddTbStAjshxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
 		                var data = new Object();
 		                data.ajbh = checkeds[0].ajbh;
@@ -39,7 +39,7 @@ function doAjsh(){
 		                	dialog.close();
 		                	searchButton();
 		                };
-		            	this.content.initAddTbStAjjashxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            	this.content.initAddTbStAjshxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 		            } 
 		        }
 			  };
@@ -47,16 +47,16 @@ function doAjsh(){
 	};
 	var buttons = new Array();
 	var thButton = {
-			text: '退回重办',  
+			text: '退回登记',  
             iconCls: 'icon-undo',  
             handler:function(dialog){
-            	doSH('0');
+            	doSH('1');
             }};
-	var tyButton = {
-			text: '同意结案',  
+	var tgButton = {
+			text: '审核通过',  
             iconCls: 'icon-accept',  
             handler:function(dialog){
-            	doSH('1');
+            	doSH('2');
             }}; 
 	var gbButton = {
 			text: '关闭',  
@@ -64,8 +64,8 @@ function doAjsh(){
             handler:function(dialog){
             	dialog.close();
             }};
+	buttons.push(tgButton);
 	buttons.push(thButton);
-	buttons.push(tyButton);
 	buttons.push(gbButton);
 	var opts={
 			id:'doJash',
