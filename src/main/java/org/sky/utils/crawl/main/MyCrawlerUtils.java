@@ -1,6 +1,7 @@
 package org.sky.utils.crawl.main;
 
 import org.sky.sjzq.model.TbStSjzq;
+import org.sky.sys.utils.ConfUtils;
 import org.sky.utils.crawl.link.LinkFilter;
 import org.sky.utils.crawl.link.Links;
 import org.sky.utils.crawl.page.Page;
@@ -9,6 +10,7 @@ import org.sky.utils.crawl.page.RequestAndResponseTool;
 import org.sky.utils.crawl.util.FileTool;
 import org.jsoup.select.Elements;
 
+import java.io.File;
 import java.util.Set;
 
 public class MyCrawlerUtils {
@@ -33,6 +35,7 @@ public class MyCrawlerUtils {
      * @return
      */
     public static CrawlData crawling(String xqbh) {
+    	String dir = ConfUtils.getValue("temp_dir")+xqbh+File.separator;
     	CrawlData data = new CrawlData();
     	String seed = "http://www.baobeihuijia.com/view.aspx?id="+xqbh;
         //初始化 URL 队列
@@ -123,14 +126,11 @@ public class MyCrawlerUtils {
                 	data.setData(sj);
                 }
             }
-            FileTool.saveToLocal(page);
-           
-            
             //将保存文件
-            FileTool.saveToLocal(page);
+            
+            FileTool.saveToLocal(page,dir);
             //将已经访问过的链接放入已访问的链接中；
             Links.addVisitedUrlSet(visitUrl);
-
             //得到超链接
             Set<String> links = PageParserTool.getLinks(page,"img");
             for (String link : links) {
@@ -138,7 +138,8 @@ public class MyCrawlerUtils {
                 System.out.println("新增爬取路径: " + link);
             }
         }
-        
+        String imgBase64 = FileTool.getImgBase64(dir, xqbh);
+        data.setBase64(imgBase64);
         return data;
     }
 

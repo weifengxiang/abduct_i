@@ -96,6 +96,17 @@ $(function() {
 				  </tr>
 			</table>
 		</form>
+		<form  id="picForm" method="post" enctype="multipart/form-data">
+		 	<table>
+			 	<tr>
+			 		<td style="width:33%">
+				 		<div style="text-align: center;">
+							<img id='picPreView1' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>
 </div>
 <div id='detailPageButtonsFt' style="text-align:center; padding:2px; top:0px">
 	<a href="javascript:void(0)" id='cloBtn' class="easyui-linkbutton" iconCls='icon-cancel'">关闭</a>

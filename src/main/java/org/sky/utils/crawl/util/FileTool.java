@@ -73,11 +73,13 @@ public class FileTool {
             e.printStackTrace();
         }
     }
-    public static String getImgBase64(Page page,String xqbh) {
-    	String base64="";
-        mkdir();
+    public static void saveToLocal(Page page,String dir) {
+        File dirs = new File(dir);
+        if(!dirs.exists()) {
+        	dirs.mkdirs();
+        }
         String fileName =  getFileNameByUrl(page.getUrl(), page.getContentType()) ;
-        String filePath = dirPath + fileName ;
+        String filePath = dir + fileName ;
         byte[] data = page.getContent();
         try {
             //Files.lines(Paths.get("D:\\jd.txt"), StandardCharsets.UTF_8).forEach(System.out::println);
@@ -88,15 +90,22 @@ public class FileTool {
             out.flush();
             out.close();
             System.out.println("文件："+ fileName + "已经被存储在"+ filePath  );
-            File htmlFile = new File(filePath);
-            File parDir = htmlFile.getParentFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static String getImgBase64(String dir,String xqbh) {
+    	String base64="";
+        try {
+            File parDir = new File(dir);
             File[] fs = parDir.listFiles();
             for(File f:fs) {
-            	if(f.getName().contains(xqbh)) {
+            	if(f.getName().contains(xqbh)&&
+            			f.getName().contains("www.baobeihuijia.com_photo")) {
             		base64=getImageStr(f);
             	}
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return base64;

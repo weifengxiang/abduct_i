@@ -136,6 +136,7 @@ public class TbStSjzqService {
 			TbStTxxx tx = new TbStTxxx();
 			tx.setId(CommonUtils.getUUID(32));
 			tx.setYwbh(xqbh);
+			tx.setYwlx("SJZQ");
 			tx.setTxnr(base64);
 			tx.setSeq(1);
 			txMapper.insert(tx);
