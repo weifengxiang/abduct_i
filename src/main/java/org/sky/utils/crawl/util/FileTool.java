@@ -1,13 +1,17 @@
-package org.sky.crawl.util;
+package org.sky.utils.crawl.util;
 
 
 
-import org.sky.crawl.page.Page;
+import org.sky.utils.crawl.page.Page;
+
+import sun.misc.BASE64Encoder;
 
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /*  本类主要是 下载那些已经访问过的文件*/
 public class FileTool {
@@ -69,5 +73,47 @@ public class FileTool {
             e.printStackTrace();
         }
     }
-
+    public static String getImgBase64(Page page,String xqbh) {
+    	String base64="";
+        mkdir();
+        String fileName =  getFileNameByUrl(page.getUrl(), page.getContentType()) ;
+        String filePath = dirPath + fileName ;
+        byte[] data = page.getContent();
+        try {
+            //Files.lines(Paths.get("D:\\jd.txt"), StandardCharsets.UTF_8).forEach(System.out::println);
+            DataOutputStream out = new DataOutputStream(new FileOutputStream(new File(filePath)));
+            for (int i = 0; i < data.length; i++) {
+                out.write(data[i]);
+            }
+            out.flush();
+            out.close();
+            System.out.println("文件："+ fileName + "已经被存储在"+ filePath  );
+            File htmlFile = new File(filePath);
+            File parDir = htmlFile.getParentFile();
+            File[] fs = parDir.listFiles();
+            for(File f:fs) {
+            	if(f.getName().contains(xqbh)) {
+            		base64=getImageStr(f);
+            	}
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return base64;
+    }
+    public static String getImageStr(File imgFile) {
+        InputStream inputStream = null;
+        byte[] data = null;
+        try {
+            inputStream = new FileInputStream(imgFile);
+            data = new byte[inputStream.available()];
+            inputStream.read(data);
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // 加密
+        BASE64Encoder encoder = new BASE64Encoder();
+        return encoder.encode(data);
+    }
 }

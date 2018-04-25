@@ -27,4 +27,6 @@ public interface TbStSjzqMapper {
     int updateByPrimaryKeySelective(TbStSjzq record);
 
     int updateByPrimaryKey(TbStSjzq record);
+    
+    int getMaxXQBH();
 }

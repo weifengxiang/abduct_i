@@ -1,4 +1,4 @@
-package org.sky.crawl.link;
+package org.sky.utils.crawl.link;
 
 import java.util.HashSet;
 import java.util.LinkedList;

@@ -1,11 +1,11 @@
-package org.sky.crawl.main;
+package org.sky.utils.crawl.main;
 
-import org.sky.crawl.link.LinkFilter;
-import org.sky.crawl.link.Links;
-import org.sky.crawl.page.Page;
-import org.sky.crawl.page.PageParserTool;
-import org.sky.crawl.page.RequestAndResponseTool;
-import org.sky.crawl.util.FileTool;
+import org.sky.utils.crawl.link.LinkFilter;
+import org.sky.utils.crawl.link.Links;
+import org.sky.utils.crawl.page.Page;
+import org.sky.utils.crawl.page.PageParserTool;
+import org.sky.utils.crawl.page.RequestAndResponseTool;
+import org.sky.utils.crawl.util.FileTool;
 import org.jsoup.select.Elements;
 
 import java.util.Set;

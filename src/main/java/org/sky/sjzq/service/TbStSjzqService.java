@@ -14,6 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.StringUtils;
+import org.sky.utils.crawl.main.CrawlData;
+import org.sky.utils.crawl.main.MyCrawlerUtils;
+import org.sky.ywbl.client.TbStTxxxMapper;
+import org.sky.ywbl.model.TbStTxxx;
 @Service
 public class TbStSjzqService {
 	private final Logger logger=Logger.getLogger(TbStSjzqService.class);
@@ -21,6 +25,8 @@ public class TbStSjzqService {
 	private TbStSjzqMapper tbstsjzqmapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
+	@Autowired
+	private TbStTxxxMapper txMapper;
 	/**
 	*分页查询
 	**/
@@ -83,15 +89,10 @@ public class TbStSjzqService {
 			if(StringUtils.isNull(edit.getId())){
 				//新增
 				edit.setId(CommonUtils.getUUID(32));
-				edit.setCreater(BspUtils.getLoginUser().getCode());
 				edit.setCreateTime(ts);
-				edit.setUpdater(BspUtils.getLoginUser().getCode());
-				edit.setUpdateTime(ts);
 				tbstsjzqmapper.insertSelective(edit);
 			}else{
 				//修改
-				edit.setUpdater(BspUtils.getLoginUser().getCode());
-				edit.setUpdateTime(ts);
 				tbstsjzqmapper.updateByPrimaryKeySelective(edit);
 			}
 		}catch(Exception e){
@@ -108,11 +109,36 @@ public class TbStSjzqService {
 			tbstsjzqmapper.deleteByPrimaryKey(del.getId());
 		}
 	}
+	public int getMaxXqbh() {
+		return tbstsjzqmapper.getMaxXQBH();
+	}
 	/**
 	*根据主键查询对象
 	**/
 	public TbStSjzq getTbStSjzqById(String id){
 		TbStSjzq bean = tbstsjzqmapper.selectByPrimaryKey(id);
 		return bean;
+	}
+	/**
+	 * 保存爬取数据
+	 * @param xqbh
+	 */
+	@Transactional
+	public void crawlData(String xqbh) {
+		CrawlData cd = MyCrawlerUtils.crawling(xqbh);
+		TbStSjzq sj = cd.getData();
+		String base64 = cd.getBase64();
+		if(null!=sj) {
+			Timestamp ts = syscommonmapper.queryTimestamp();
+			sj.setId(CommonUtils.getUUID(32));
+			sj.setCreateTime(ts);
+			tbstsjzqmapper.insert(sj);
+			TbStTxxx tx = new TbStTxxx();
+			tx.setId(CommonUtils.getUUID(32));
+			tx.setYwbh(xqbh);
+			tx.setTxnr(base64);
+			tx.setSeq(1);
+			txMapper.insert(tx);
+		}
 	}
 }

@@ -403,4 +403,7 @@
       <![CDATA[ limit #{page.begin},#{page.rows} ]]>
     </if>
   </sql>
+  <select id='getMaxXQBH' resultType="java.lang.Integer">
+  	SELECT IFNULL(MAX(CONVERT(XQBH,SIGNED)),0) FROM tb_st_sjzq;
+  </select>
 </mapper>

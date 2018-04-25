@@ -1,4 +1,4 @@
-package org.sky.crawl.page;
+package org.sky.utils.crawl.page;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

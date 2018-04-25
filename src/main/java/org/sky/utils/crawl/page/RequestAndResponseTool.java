@@ -1,4 +1,4 @@
-package org.sky.crawl.page;
+package org.sky.utils.crawl.page;
 
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
 import org.apache.commons.httpclient.HttpClient;

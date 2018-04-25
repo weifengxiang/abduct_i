@@ -1,7 +1,7 @@
-package org.sky.crawl.page;
+package org.sky.utils.crawl.page;
 
 
-import org.sky.crawl.util.CharsetDetector;
+import org.sky.utils.crawl.util.CharsetDetector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
