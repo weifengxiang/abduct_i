@@ -17,12 +17,12 @@
 						connectionURL="jdbc:mysql://localhost:3306/abduct"			
 						userId="root" password="root" />
 		<!-- 生成模型的包名和位置-->  
-		<javaModelGenerator targetPackage="org.sky.sjzq.model" targetProject="src\main\java" />
+		<javaModelGenerator targetPackage="org.sky.ywbl.model" targetProject="src\main\java" />
 		<!-- 生成映射文件的包名和位置--> 
-		<sqlMapGenerator targetPackage="org.sky.sjzq.sqlmap" targetProject="src\main\java" />
+		<sqlMapGenerator targetPackage="org.sky.ywbl.sqlmap" targetProject="src\main\java" />
 		<!-- 生成DAO的包名和位置--> 
-		<javaClientGenerator targetPackage="org.sky.sjzq.client"	targetProject="src\main\java" type="XMLMAPPER" />
-		<table tableName="TB_ST_SJZQ"></table>
+		<javaClientGenerator targetPackage="org.sky.ywbl.client"	targetProject="src\main\java" type="XMLMAPPER" />
+		<table tableName="TB_ST_AJLZXX"></table>
 		<!-- 
 		<table tableName="TB_ST_AJBLXX"></table>
 		<table tableName="TB_ST_AJDJXX"></table>

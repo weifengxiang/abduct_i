@@ -28,6 +28,7 @@ $(function() {
 			<input type='hidden' name='id' id='id'/>
 			<input type='hidden' name='blr' id='blr'/>
 			<input type='hidden' name='bldw' id='bldw'/>
+			<input type='hidden' name='flqx' id='flqx'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>案件编号:</label></th>
@@ -40,6 +41,13 @@ $(function() {
 									  valueField:'code',
 									  textField:'name',
 									  data:STATE"></input></td>
+				  </tr>
+				  <tr id='flqxTR'>
+					<th><label>分流去向:</label></th>
+					<td colspan='3'>
+						<input class="easyui-textbox" name="flqxName" id="flqxName" style='width:80%'></input>
+						<a href="javascript:openOrganHelp()"class="easyui-linkbutton" plain="true" iconCls="icon-search">选择</a>
+					</td>
 				  </tr>
 				  <tr>
 					<th><label>办理意见:</label></th>

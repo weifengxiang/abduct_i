@@ -25,7 +25,7 @@ public class TbStAjlzxx {
 
     private String creater;
 
-    private Date createrTime;
+    private Date createTime;
 
     private String updater;
 
@@ -119,12 +119,12 @@ public class TbStAjlzxx {
         this.creater = creater;
     }
 
-    public Date getCreaterTime() {
-        return createrTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreaterTime(Date createrTime) {
-        this.createrTime = createrTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public String getUpdater() {

@@ -4,9 +4,14 @@ import java.sql.Timestamp;
 import java.util.List;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.ywbl.client.TbStAjblxxMapper;
+import org.sky.ywbl.client.TbStAjdjxxMapper;
+import org.sky.ywbl.client.TbStAjlzxxMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.ywbl.model.TbStAjblxx;
 import org.sky.ywbl.model.TbStAjblxxExample;
+import org.sky.ywbl.model.TbStAjdjxx;
+import org.sky.ywbl.model.TbStAjdjxxExample;
+import org.sky.ywbl.model.TbStAjlzxx;
 import org.sky.sys.utils.PageListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +26,10 @@ public class TbStAjblxxService {
 	private TbStAjblxxMapper tbstajblxxmapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
+	@Autowired
+	private TbStAjdjxxMapper djxxMapper;
+	@Autowired
+	private TbStAjlzxxMapper lzxxMapper;
 	/**
 	*分页查询
 	**/
@@ -77,7 +86,7 @@ public class TbStAjblxxService {
 	*保存新增/编辑单个对象
 	**/
 	@Transactional
-	public void saveAddEditTbStAjblxx(TbStAjblxx edit) throws ServiceException{
+	public void saveAddEditTbStAjblxx(TbStAjblxx edit,String flqx) throws ServiceException{
 		try{
 			Timestamp ts = syscommonmapper.queryTimestamp();
 			if(StringUtils.isNull(edit.getId())){
@@ -88,6 +97,26 @@ public class TbStAjblxxService {
 				edit.setUpdater(BspUtils.getLoginUser().getCode());
 				edit.setUpdateTime(ts);
 				tbstajblxxmapper.insertSelective(edit);
+				if(!StringUtils.isNull(flqx)) {
+					//修改案件信息当前单位
+					TbStAjdjxx aj = new TbStAjdjxx();
+					aj.setDqdw(flqx);
+					aj.setSjzt(edit.getBljg());
+					TbStAjdjxxExample e = new TbStAjdjxxExample();
+					e.createCriteria().andAjbhEqualTo(edit.getAjbh());
+					djxxMapper.updateByExampleSelective(aj, e);
+					//增加流转信息
+					TbStAjlzxx lzxx = new TbStAjlzxx();
+					lzxx.setId(CommonUtils.getUUID(32));
+					lzxx.setAjbh(edit.getAjbh());
+					lzxx.setDqdw(flqx);
+					lzxx.setLzr(BspUtils.getLoginUser().getCode());
+					lzxx.setLzdw(BspUtils.getLoginUser().getOrganCode());
+					lzxx.setLzsj(ts);
+					lzxx.setCreater(BspUtils.getLoginUser().getCode());
+					lzxx.setCreateTime(ts);
+					lzxxMapper.insert(lzxx);
+				}
 			}else{
 				//修改
 				edit.setUpdater(BspUtils.getLoginUser().getCode());

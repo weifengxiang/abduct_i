@@ -56,19 +56,19 @@ function doAjbl(){
 			text: '分流',  
             iconCls: 'icon-20130406125519344_easyicon_net_16',  
             handler:function(dialog){
-            	doBL('0');
+            	doBL('3');
             }}; 
 	var slButton = {
 			text: '受理',  
             iconCls: 'icon-accept',  
             handler:function(dialog){
-            	doBL('1');
+            	doBL('4');
             }}; 
 	var bjButton = {
 			text: '办结',  
             iconCls: 'icon-ok',  
             handler:function(dialog){
-            	doBL('2');
+            	doBL('5');
             }}; 
 	var gbButton = {
 			text: '关闭',  

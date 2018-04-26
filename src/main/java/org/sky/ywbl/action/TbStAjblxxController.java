@@ -117,8 +117,9 @@ public class TbStAjblxxController extends BaseController{
 			HttpServletResponse response){
 		ResultData rd= new ResultData();
 		try {
+			String flqx = request.getParameter("flqx");
 			TbStAjblxx edit = (TbStAjblxx) getEntityBean(request,TbStAjblxx.class);
-			tbstajblxxService.saveAddEditTbStAjblxx(edit);
+			tbstajblxxService.saveAddEditTbStAjblxx(edit,flqx);
 			rd.setCode(ResultData.code_success);
 			rd.setName("保存成功");
 		} catch (Exception e) {

@@ -11,6 +11,11 @@ function initAddTbStAjblxxPage(paramOpts){
 	$('#bldwName').textbox('setValue',bldwName);
 	$('#bldw').val(bldw);
 	$('#blsj').datetimebox('setValue',blsj);
+	if('0'==opt){
+		$('#flqxTR').show();
+	}else{
+		$('#flqxTR').hide();
+	}
 	_callbacks.add(paramOpts.callBack);
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
@@ -57,4 +62,37 @@ function submitAddEditTbStAjblxxForm() {
 	};  
 	$('#addedittbstajblxxform').ajaxSubmit(options);
 	
+}
+//组织机构选择
+function openOrganHelp(){
+	var opts={
+			id:'chooseOrganWin',
+			title:'选择分流去向',
+			width:600,
+			height:450,
+			modal:true,
+			content:'url:'+SKY.urlCSRF(basepath+'sys/common/help/organchoose'),
+			onLoad: function(dialog){ 
+	            if(this.content && this.content.initOrganHelp){//判断弹出窗体iframe中的driveInit方法是否存在 
+	                var paramOpts=new Object();
+	                paramOpts.dialog=dialog;
+	                paramOpts.close=function(){
+	                	dialog.close();
+	                };
+	                paramOpts.ok=function(list){
+	                	debugger;
+	                	if(list.length==1){
+	                		$('#flqx').val(list[0].data.code);
+	                		$('#flqxName').textbox('setValue',list[0].data.name);
+	                		dialog.close();
+	                	}else{
+	                		$.messager.alert('提示','请选择一个分流去向','error');
+	                	}
+	                	
+	                };
+	            	this.content.initOrganHelp(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+	            } 
+	        }
+		  };
+	SKY_EASYUI.open(opts);
 }

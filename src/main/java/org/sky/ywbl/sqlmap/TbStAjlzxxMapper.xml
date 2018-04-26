@@ -13,7 +13,7 @@
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
     <result column="LZSJ" jdbcType="TIMESTAMP" property="lzsj" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
-    <result column="CREATER_TIME" jdbcType="TIMESTAMP" property="createrTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -76,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AJBH, LZBH, DQDW, SBLZBH, LZR, LZDW, LZYY, BZ, LZSJ, CREATER, CREATER_TIME, UPDATER, 
+    ID, AJBH, LZBH, DQDW, SBLZBH, LZR, LZDW, LZYY, BZ, LZSJ, CREATER, CREATE_TIME, UPDATER, 
     UPDATE_TIME
   </sql>
   <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStAjlzxxExample" resultMap="BaseResultMap">
@@ -114,12 +114,12 @@
     insert into tb_st_ajlzxx (ID, AJBH, LZBH, 
       DQDW, SBLZBH, LZR, 
       LZDW, LZYY, BZ, LZSJ, 
-      CREATER, CREATER_TIME, UPDATER, 
+      CREATER, CREATE_TIME, UPDATER, 
       UPDATE_TIME)
     values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{lzbh,jdbcType=VARCHAR}, 
       #{dqdw,jdbcType=VARCHAR}, #{sblzbh,jdbcType=VARCHAR}, #{lzr,jdbcType=VARCHAR}, 
       #{lzdw,jdbcType=VARCHAR}, #{lzyy,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{lzsj,jdbcType=TIMESTAMP}, 
-      #{creater,jdbcType=VARCHAR}, #{createrTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStAjlzxx">
@@ -158,8 +158,8 @@
       <if test="creater != null">
         CREATER,
       </if>
-      <if test="createrTime != null">
-        CREATER_TIME,
+      <if test="createTime != null">
+        CREATE_TIME,
       </if>
       <if test="updater != null">
         UPDATER,
@@ -202,8 +202,8 @@
       <if test="creater != null">
         #{creater,jdbcType=VARCHAR},
       </if>
-      <if test="createrTime != null">
-        #{createrTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updater != null">
         #{updater,jdbcType=VARCHAR},
@@ -255,8 +255,8 @@
       <if test="record.creater != null">
         CREATER = #{record.creater,jdbcType=VARCHAR},
       </if>
-      <if test="record.createrTime != null">
-        CREATER_TIME = #{record.createrTime,jdbcType=TIMESTAMP},
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updater != null">
         UPDATER = #{record.updater,jdbcType=VARCHAR},
@@ -282,7 +282,7 @@
       BZ = #{record.bz,jdbcType=VARCHAR},
       LZSJ = #{record.lzsj,jdbcType=TIMESTAMP},
       CREATER = #{record.creater,jdbcType=VARCHAR},
-      CREATER_TIME = #{record.createrTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       UPDATER = #{record.updater,jdbcType=VARCHAR},
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -322,8 +322,8 @@
       <if test="creater != null">
         CREATER = #{creater,jdbcType=VARCHAR},
       </if>
-      <if test="createrTime != null">
-        CREATER_TIME = #{createrTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updater != null">
         UPDATER = #{updater,jdbcType=VARCHAR},
@@ -346,7 +346,7 @@
       BZ = #{bz,jdbcType=VARCHAR},
       LZSJ = #{lzsj,jdbcType=TIMESTAMP},
       CREATER = #{creater,jdbcType=VARCHAR},
-      CREATER_TIME = #{createrTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATER = #{updater,jdbcType=VARCHAR},
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
