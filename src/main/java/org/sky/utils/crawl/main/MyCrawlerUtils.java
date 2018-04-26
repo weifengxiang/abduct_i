@@ -98,6 +98,9 @@ public class MyCrawlerUtils {
                 		if(info.contains("性别")) {
                 			sj.setXb(info.split(":")[1]);
                 		}
+                		if(info.contains("出生日期")) {
+                			sj.setCsrq(info.split(":")[1]);
+                		}
                 		if(info.contains("失踪时身高")) {
                 			sj.setSzssg(info.split(":")[1]);
                 		}
