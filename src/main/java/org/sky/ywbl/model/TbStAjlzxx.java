@@ -10,12 +10,18 @@ public class TbStAjlzxx {
     private String lzbh;
 
     private String dqdw;
+    
+    private String dqdwName;
 
     private String sblzbh;
 
     private String lzr;
 
     private String lzdw;
+    
+    private String lzdwName;
+
+    private String ajzt;
 
     private String lzyy;
 
@@ -87,6 +93,14 @@ public class TbStAjlzxx {
         this.lzdw = lzdw;
     }
 
+    public String getAjzt() {
+        return ajzt;
+    }
+
+    public void setAjzt(String ajzt) {
+        this.ajzt = ajzt;
+    }
+
     public String getLzyy() {
         return lzyy;
     }
@@ -142,4 +156,21 @@ public class TbStAjlzxx {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getDqdwName() {
+		return dqdwName;
+	}
+
+	public void setDqdwName(String dqdwName) {
+		this.dqdwName = dqdwName;
+	}
+
+	public String getLzdwName() {
+		return lzdwName;
+	}
+
+	public void setLzdwName(String lzdwName) {
+		this.lzdwName = lzdwName;
+	}
+    
 }

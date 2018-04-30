@@ -1,3 +1,4 @@
+<%@page import="org.sky.sys.utils.EnumUtils"%>
 <%@page import="org.sky.sys.utils.CommonUtils"%>
 <%@page import="org.sky.sys.utils.DictUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
@@ -14,7 +15,7 @@ var bjlb = <%=DictUtils.getDictItem("BJLB") %>;
 var bjlx = <%=DictUtils.getDictItem("BJLX") %>;
 var bjxl = <%=DictUtils.getDictItem("BJXL") %>;
 var lhlb = <%=DictUtils.getDictItem("LHLB") %>;
-var sjzt = <%=DictUtils.getDictItem("SJZT") %>;
+var sjzt = <%=EnumUtils.getEnums("AJDJ.STATE") %>;
 var ajly = <%=DictUtils.getDictItem("AJLY") %>;
 $(function() {
 	init();

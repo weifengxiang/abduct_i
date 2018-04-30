@@ -20,6 +20,7 @@ function onAjxxLoadSuccess(djxx){
 	createAJSHXX(djxx);
 	createBLXX(djxx);
 	createJASHXX(djxx);
+	createAJLZXX(djxx);
 }
 /**
  * 案件审核信息
@@ -158,6 +159,43 @@ function createJASHXX(djxx){
 	        {field:'shsj',title:'审核时间',width:150},
 	        {field:'shenhr',title:'审核人',width:360},
 	        {field:'shdw',title:'审核单位',width:100}
+	    ]]    
+	}); 
+}
+function createAJLZXX(djxx){
+	$('#mainDetailTab').tabs('add',{
+		title: '案件流转信息',
+		selected:false,
+		content:'<table id="ajlzxxdg" style="width: 100%; height: 100%"></table>'
+	});
+	$('#ajlzxxdg').datagrid({    
+	    url:SKY.urlCSRF(basepath+'/ywbl/TbStAjdjxx/getTbStAjlzxxByPage'),
+	    pagination:true,
+		rownumbers: true,
+		checkbox:true,
+		nowrap:false,
+		singleSelect:true,
+		selectOnCheck:false,
+		checkOnSelect:false,
+		queryParams: {
+			page:1,
+			rows:10,
+			filter:function(){
+				var ft=new HashMap();
+				ft.put("ajbh@=",djxx.ajbh);
+				return ft.getJSON();
+			},
+			sortfield:" create_time desc"
+		},
+		onLoadSuccess : function () {
+    		$(this).datagrid('fixRownumber');
+    		$(this).datagrid('doCellTip',{'max-width':'200px','delay':500});
+		},
+	    columns:[[    
+	        {field:'dqdwName',title:'当前单位',width:100},    
+	        {field:'lzdwName',title:'流转单位',width:150}, 
+	        {field:'ajzt',title:'案件状态',width:150},
+	        {field:'lzsj',title:'流转时间',width:360}
 	    ]]    
 	}); 
 }

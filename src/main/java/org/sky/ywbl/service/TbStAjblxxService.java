@@ -97,26 +97,44 @@ public class TbStAjblxxService {
 				edit.setUpdater(BspUtils.getLoginUser().getCode());
 				edit.setUpdateTime(ts);
 				tbstajblxxmapper.insertSelective(edit);
-				if(!StringUtils.isNull(flqx)) {
-					//修改案件信息当前单位
-					TbStAjdjxx aj = new TbStAjdjxx();
-					aj.setDqdw(flqx);
-					aj.setSjzt(edit.getBljg());
-					TbStAjdjxxExample e = new TbStAjdjxxExample();
-					e.createCriteria().andAjbhEqualTo(edit.getAjbh());
-					djxxMapper.updateByExampleSelective(aj, e);
-					//增加流转信息
-					TbStAjlzxx lzxx = new TbStAjlzxx();
-					lzxx.setId(CommonUtils.getUUID(32));
-					lzxx.setAjbh(edit.getAjbh());
-					lzxx.setDqdw(flqx);
-					lzxx.setLzr(BspUtils.getLoginUser().getCode());
-					lzxx.setLzdw(BspUtils.getLoginUser().getOrganCode());
-					lzxx.setLzsj(ts);
-					lzxx.setCreater(BspUtils.getLoginUser().getCode());
-					lzxx.setCreateTime(ts);
-					lzxxMapper.insert(lzxx);
+				TbStAjdjxx aj = new TbStAjdjxx();
+				//分流
+				if("B1".equals(edit.getBljg())) {
+					if(!StringUtils.isNull(flqx)) {
+						//修改案件信息当前单位
+						aj.setDqdw(flqx);
+					}else {
+						throw new ServiceException("分流单位不能为空");
+					}
+				}else if("B3".equals(edit.getBljg())){
+					//办结
+					TbStAjdjxx ajxx = djxxMapper.selectByAjbh(edit.getAjbh());
+					aj.setDqdw(ajxx.getDjdw());
 				}
+				aj.setSjzt(edit.getBljg());
+				TbStAjdjxxExample e = new TbStAjdjxxExample();
+				e.createCriteria().andAjbhEqualTo(edit.getAjbh());
+				djxxMapper.updateByExampleSelective(aj, e);
+				//增加流转信息
+				TbStAjlzxx lzxx = new TbStAjlzxx();
+				lzxx.setId(CommonUtils.getUUID(32));
+				lzxx.setAjbh(edit.getAjbh());
+				if("B1".equals(edit.getBljg())) {
+					//分流
+					//修改案件信息当前单位
+					lzxx.setDqdw(flqx);
+				}else if("B3".equals(edit.getBljg())){
+					//办结
+					lzxx.setDqdw(aj.getDqdw());
+				}else {
+					lzxx.setDqdw(BspUtils.getLoginUser().getOrganCode());
+				}
+				lzxx.setLzr(BspUtils.getLoginUser().getCode());
+				lzxx.setLzdw(BspUtils.getLoginUser().getOrganCode());
+				lzxx.setLzsj(ts);
+				lzxx.setCreater(BspUtils.getLoginUser().getCode());
+				lzxx.setCreateTime(ts);
+				lzxxMapper.insert(lzxx);
 			}else{
 				//修改
 				edit.setUpdater(BspUtils.getLoginUser().getCode());

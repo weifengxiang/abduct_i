@@ -4,10 +4,13 @@ import java.sql.Timestamp;
 import java.util.List;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.ywbl.client.TbStAjdjxxMapper;
+import org.sky.ywbl.client.TbStAjlzxxMapper;
 import org.sky.ywbl.client.TbStTxxxMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.ywbl.model.TbStAjdjxx;
 import org.sky.ywbl.model.TbStAjdjxxExample;
+import org.sky.ywbl.model.TbStAjlzxx;
+import org.sky.ywbl.model.TbStAjlzxxExample;
 import org.sky.ywbl.model.TbStTxxx;
 import org.sky.ywbl.model.TbStTxxxExample;
 import org.sky.sys.utils.PageListData;
@@ -26,6 +29,8 @@ public class TbStAjdjxxService {
 	private SysCommonMapper syscommonmapper;
 	@Autowired
 	private TbStTxxxMapper txxxmapper;
+	@Autowired
+	private TbStAjlzxxMapper lzxxmapper;
 	/**
 	*分页查询
 	**/
@@ -112,6 +117,20 @@ public class TbStAjdjxxService {
 				edit.setUpdateTime(ts);
 				tbstajdjxxmapper.updateByPrimaryKeySelective(edit);
 			}
+			//记录流转记录表
+			TbStAjlzxx lzxx = new TbStAjlzxx();
+			lzxx.setId(CommonUtils.getUUID(32));
+			lzxx.setAjbh(edit.getAjbh());
+			lzxx.setDqdw(BspUtils.getLoginUser().getOrganCode());
+			lzxx.setLzr(BspUtils.getLoginUser().getCode());
+			lzxx.setLzdw(BspUtils.getLoginUser().getOrganCode());
+			lzxx.setAjzt(edit.getSjzt());
+			lzxx.setLzsj(ts);
+			lzxx.setCreater(BspUtils.getLoginUser().getCode());
+			lzxx.setCreateTime(ts);
+			lzxx.setUpdater(BspUtils.getLoginUser().getCode());
+			lzxx.setUpdateTime(ts);
+			lzxxmapper.insert(lzxx);
 		}catch(Exception e){
 			logger.error("保存新增/编辑单个对象执行失败",e);
 			throw new ServiceException(e.getMessage());
@@ -142,5 +161,18 @@ public class TbStAjdjxxService {
 		}else {
 			return null;
 		}
+	}
+	/**
+	 * 查询案件流转信息
+	 * @param ep
+	 * @return
+	 */
+	public PageListData getTbStAjlzxxByPage(TbStAjlzxxExample ep){
+		long totalCount = lzxxmapper.countByExample(ep);
+		List list = lzxxmapper.selectByExample(ep);
+		PageListData pld = new PageListData();
+		pld.setTotal(totalCount);
+		pld.setRows(list);
+		return pld;
 	}
 }

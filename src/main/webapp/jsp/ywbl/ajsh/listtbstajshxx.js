@@ -46,17 +46,17 @@ function doAjsh(){
 		SKY_EASYUI.open(opts);
 	};
 	var buttons = new Array();
-	var thButton = {
-			text: '退回登记',  
+	var btgButton = {
+			text: '审核不通过',  
             iconCls: 'icon-undo',  
             handler:function(dialog){
-            	doSH('1');
+            	doSH('-1');
             }};
 	var tgButton = {
 			text: '审核通过',  
             iconCls: 'icon-accept',  
             handler:function(dialog){
-            	doSH('2');
+            	doSH('S1');
             }}; 
 	var gbButton = {
 			text: '关闭',  
@@ -65,7 +65,7 @@ function doAjsh(){
             	dialog.close();
             }};
 	buttons.push(tgButton);
-	buttons.push(thButton);
+	buttons.push(btgButton);
 	buttons.push(gbButton);
 	var opts={
 			id:'doJash',

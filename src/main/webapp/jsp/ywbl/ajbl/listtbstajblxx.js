@@ -50,25 +50,25 @@ function doAjbl(){
 			text: '退回',  
             iconCls: 'icon-undo',  
             handler:function(dialog){
-            	doBL('-1');
+            	doBL('B0');
             }};
 	var flButton = {
 			text: '分流',  
             iconCls: 'icon-20130406125519344_easyicon_net_16',  
             handler:function(dialog){
-            	doBL('3');
+            	doBL('B1');
             }}; 
 	var slButton = {
 			text: '受理',  
             iconCls: 'icon-accept',  
             handler:function(dialog){
-            	doBL('4');
+            	doBL('B2');
             }}; 
 	var bjButton = {
 			text: '办结',  
             iconCls: 'icon-ok',  
             handler:function(dialog){
-            	doBL('5');
+            	doBL('B3');
             }}; 
 	var gbButton = {
 			text: '关闭',  

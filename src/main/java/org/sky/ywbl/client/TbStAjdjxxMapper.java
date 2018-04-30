@@ -19,6 +19,8 @@ public interface TbStAjdjxxMapper {
     List<TbStAjdjxx> selectByExample(TbStAjdjxxExample example);
 
     TbStAjdjxx selectByPrimaryKey(String id);
+    
+    TbStAjdjxx selectByAjbh(String ajbh);
 
     int updateByExampleSelective(@Param("record") TbStAjdjxx record, @Param("example") TbStAjdjxxExample example);
 

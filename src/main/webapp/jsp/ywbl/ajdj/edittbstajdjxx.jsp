@@ -179,7 +179,7 @@ $(function() {
 				 </tr>
 				 <tr>
 					<th><label>事件状态:</label></th>
-					<td><input class="easyui-combobox" name="sjzt"
+					<td><input class="easyui-combobox" name="sjzt" id="sjzt"
 						data-options="required:true,
 									  valueField:'code',
 								      textField:'name',
@@ -219,6 +219,7 @@ $(function() {
 					<td><input class="easyui-datetimebox" name="djsj" id="djsj"
 						data-options="required:true"></input></td>
 				  </tr>
+				  <!-- 
 				  <tr>
 					<th><label>线索编号:</label></th>
 					<td><input class="easyui-textbox" name="xsbh"
@@ -228,6 +229,7 @@ $(function() {
 					<td><input class="easyui-textbox" name="bz"
 						data-options="required:true"></input></td>
 				  </tr>
+				   -->
 			</table>
 		</form>
 		<form  id="picForm" method="post" enctype="multipart/form-data">
@@ -260,7 +262,11 @@ $(function() {
 </div>
 <div id='editPageButtonsFt' style="text-align:center; padding:0px; top:0px">
 	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls='icon-save'
-		onclick="submitAddEditTbStAjdjxxForm()">保存</a> 
+		onclick="submitAddEditTbStAjdjxxForm('D1')">暂存</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls='icon-save'
+		onclick="submitAddEditTbStAjdjxxForm('D2')">登记完成</a> 
+	<a href="javascript:void(0)" id='cloBtn' class="easyui-linkbutton" iconCls='icon-cancel'
+		onclick="submitAddEditTbStAjdjxxForm('-1')">无效案件</a>
 	<a href="javascript:void(0)" id='cloBtn' class="easyui-linkbutton" iconCls='icon-cancel'>关闭</a>
 </div>
 </body>

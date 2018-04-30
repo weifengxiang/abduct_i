@@ -36,7 +36,8 @@ function initEditTbStAjdjxxPage(paramOpts){
 /**
  * 保存添加/编辑案件登记信息
  */
-function submitAddEditTbStAjdjxxForm() {
+function submitAddEditTbStAjdjxxForm(sjzt) {
+	$("#sjzt").combobox('setValue',sjzt);
 	var getImgBase64=function(){
 		var imgBase64=new Array();
 		var fileId='pic';

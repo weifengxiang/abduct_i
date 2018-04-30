@@ -6,9 +6,12 @@
     <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
     <result column="LZBH" jdbcType="VARCHAR" property="lzbh" />
     <result column="DQDW" jdbcType="VARCHAR" property="dqdw" />
+    <result column="DQDW_NAME" jdbcType="VARCHAR" property="dqdwName" />
     <result column="SBLZBH" jdbcType="VARCHAR" property="sblzbh" />
     <result column="LZR" jdbcType="VARCHAR" property="lzr" />
     <result column="LZDW" jdbcType="VARCHAR" property="lzdw" />
+    <result column="LZDW_NAME" jdbcType="VARCHAR" property="lzdwName" />
+    <result column="AJZT" jdbcType="VARCHAR" property="ajzt" />
     <result column="LZYY" jdbcType="VARCHAR" property="lzyy" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
     <result column="LZSJ" jdbcType="TIMESTAMP" property="lzsj" />
@@ -76,8 +79,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, AJBH, LZBH, DQDW, SBLZBH, LZR, LZDW, LZYY, BZ, LZSJ, CREATER, CREATE_TIME, UPDATER, 
-    UPDATE_TIME
+    ID, AJBH, LZBH, DQDW, SBLZBH, LZR, LZDW, AJZT, LZYY, BZ, LZSJ, CREATER, CREATE_TIME, 
+    UPDATER, UPDATE_TIME,
+    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=DQDW) AS DQDW_NAME,
+    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=LZDW) AS LZDW_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStAjlzxxExample" resultMap="BaseResultMap">
     select
@@ -113,14 +118,14 @@
   <insert id="insert" parameterType="org.sky.ywbl.model.TbStAjlzxx">
     insert into tb_st_ajlzxx (ID, AJBH, LZBH, 
       DQDW, SBLZBH, LZR, 
-      LZDW, LZYY, BZ, LZSJ, 
-      CREATER, CREATE_TIME, UPDATER, 
-      UPDATE_TIME)
+      LZDW, AJZT, LZYY, BZ, 
+      LZSJ, CREATER, CREATE_TIME, 
+      UPDATER, UPDATE_TIME)
     values (#{id,jdbcType=VARCHAR}, #{ajbh,jdbcType=VARCHAR}, #{lzbh,jdbcType=VARCHAR}, 
       #{dqdw,jdbcType=VARCHAR}, #{sblzbh,jdbcType=VARCHAR}, #{lzr,jdbcType=VARCHAR}, 
-      #{lzdw,jdbcType=VARCHAR}, #{lzyy,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{lzsj,jdbcType=TIMESTAMP}, 
-      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{lzdw,jdbcType=VARCHAR}, #{ajzt,jdbcType=VARCHAR}, #{lzyy,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, 
+      #{lzsj,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.ywbl.model.TbStAjlzxx">
     insert into tb_st_ajlzxx
@@ -145,6 +150,9 @@
       </if>
       <if test="lzdw != null">
         LZDW,
+      </if>
+      <if test="ajzt != null">
+        AJZT,
       </if>
       <if test="lzyy != null">
         LZYY,
@@ -189,6 +197,9 @@
       </if>
       <if test="lzdw != null">
         #{lzdw,jdbcType=VARCHAR},
+      </if>
+      <if test="ajzt != null">
+        #{ajzt,jdbcType=VARCHAR},
       </if>
       <if test="lzyy != null">
         #{lzyy,jdbcType=VARCHAR},
@@ -243,6 +254,9 @@
       <if test="record.lzdw != null">
         LZDW = #{record.lzdw,jdbcType=VARCHAR},
       </if>
+      <if test="record.ajzt != null">
+        AJZT = #{record.ajzt,jdbcType=VARCHAR},
+      </if>
       <if test="record.lzyy != null">
         LZYY = #{record.lzyy,jdbcType=VARCHAR},
       </if>
@@ -278,6 +292,7 @@
       SBLZBH = #{record.sblzbh,jdbcType=VARCHAR},
       LZR = #{record.lzr,jdbcType=VARCHAR},
       LZDW = #{record.lzdw,jdbcType=VARCHAR},
+      AJZT = #{record.ajzt,jdbcType=VARCHAR},
       LZYY = #{record.lzyy,jdbcType=VARCHAR},
       BZ = #{record.bz,jdbcType=VARCHAR},
       LZSJ = #{record.lzsj,jdbcType=TIMESTAMP},
@@ -309,6 +324,9 @@
       </if>
       <if test="lzdw != null">
         LZDW = #{lzdw,jdbcType=VARCHAR},
+      </if>
+      <if test="ajzt != null">
+        AJZT = #{ajzt,jdbcType=VARCHAR},
       </if>
       <if test="lzyy != null">
         LZYY = #{lzyy,jdbcType=VARCHAR},
@@ -342,6 +360,7 @@
       SBLZBH = #{sblzbh,jdbcType=VARCHAR},
       LZR = #{lzr,jdbcType=VARCHAR},
       LZDW = #{lzdw,jdbcType=VARCHAR},
+      AJZT = #{ajzt,jdbcType=VARCHAR},
       LZYY = #{lzyy,jdbcType=VARCHAR},
       BZ = #{bz,jdbcType=VARCHAR},
       LZSJ = #{lzsj,jdbcType=TIMESTAMP},

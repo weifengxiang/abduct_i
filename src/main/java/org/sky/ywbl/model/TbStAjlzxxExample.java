@@ -631,6 +631,76 @@ public class TbStAjlzxxExample {
             return (Criteria) this;
         }
 
+        public Criteria andAjztIsNull() {
+            addCriterion("AJZT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztIsNotNull() {
+            addCriterion("AJZT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztEqualTo(String value) {
+            addCriterion("AJZT =", value, "ajzt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztNotEqualTo(String value) {
+            addCriterion("AJZT <>", value, "ajzt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztGreaterThan(String value) {
+            addCriterion("AJZT >", value, "ajzt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztGreaterThanOrEqualTo(String value) {
+            addCriterion("AJZT >=", value, "ajzt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztLessThan(String value) {
+            addCriterion("AJZT <", value, "ajzt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztLessThanOrEqualTo(String value) {
+            addCriterion("AJZT <=", value, "ajzt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztLike(String value) {
+            addCriterion("AJZT like", value, "ajzt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztNotLike(String value) {
+            addCriterion("AJZT not like", value, "ajzt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztIn(List<String> values) {
+            addCriterion("AJZT in", values, "ajzt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztNotIn(List<String> values) {
+            addCriterion("AJZT not in", values, "ajzt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztBetween(String value1, String value2) {
+            addCriterion("AJZT between", value1, value2, "ajzt");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjztNotBetween(String value1, String value2) {
+            addCriterion("AJZT not between", value1, value2, "ajzt");
+            return (Criteria) this;
+        }
+
         public Criteria andLzyyIsNull() {
             addCriterion("LZYY is null");
             return (Criteria) this;

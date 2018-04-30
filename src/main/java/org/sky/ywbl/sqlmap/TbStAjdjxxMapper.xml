@@ -137,6 +137,12 @@
     from tb_st_ajdjxx
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="selectByAjbh" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_st_ajdjxx
+    where ajbh = #{ajbh,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_st_ajdjxx
     where ID = #{id,jdbcType=VARCHAR}

@@ -50,13 +50,13 @@ function doJash(){
 			text: '退回重办',  
             iconCls: 'icon-undo',  
             handler:function(dialog){
-            	doSH('0');
+            	doSH('J0');
             }};
 	var tyButton = {
 			text: '同意结案',  
             iconCls: 'icon-accept',  
             handler:function(dialog){
-            	doSH('1');
+            	doSH('J1');
             }}; 
 	var gbButton = {
 			text: '关闭',  
