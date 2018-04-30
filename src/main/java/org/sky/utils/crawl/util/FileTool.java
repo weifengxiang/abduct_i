@@ -99,11 +99,13 @@ public class FileTool {
         try {
             File parDir = new File(dir);
             File[] fs = parDir.listFiles();
-            for(File f:fs) {
-            	if(f.getName().contains(xqbh)&&
-            			f.getName().contains("www.baobeihuijia.com_photo")) {
-            		base64=getImageStr(f);
-            	}
+            if(null!=fs) {
+	            for(File f:fs) {
+	            	if(f.getName().contains(xqbh)&&
+	            			f.getName().contains("www.baobeihuijia.com_photo")) {
+	            		base64=getImageStr(f);
+	            	}
+	            }
             }
         } catch (Exception e) {
             e.printStackTrace();

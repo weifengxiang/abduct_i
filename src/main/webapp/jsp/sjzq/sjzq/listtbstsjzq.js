@@ -152,3 +152,10 @@ function searchButton(){
 		}
 	});
 }
+function cellStyler(value,row,index){
+	if (value == 0){
+		return 'color:red;';
+	}else{
+		return 'color:blue;';
+	}
+}

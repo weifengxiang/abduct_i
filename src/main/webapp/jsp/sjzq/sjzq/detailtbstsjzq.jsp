@@ -14,7 +14,7 @@ $(function() {
 </head>
 <body>
 <div class="easyui-panel"  style="width:100%;height:100%;text-align: center;"
-	 data-options="footer:'#detailPageButtonsFt'">
+	 data-options="footer:'#detailPageButtonsFt',fit:true">
 		<form id="detailtbstsjzqform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>

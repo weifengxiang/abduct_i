@@ -133,13 +133,20 @@ public class TbStSjzqService {
 			sj.setId(CommonUtils.getUUID(32));
 			sj.setCreateTime(ts);
 			tbstsjzqmapper.insert(sj);
-			TbStTxxx tx = new TbStTxxx();
-			tx.setId(CommonUtils.getUUID(32));
-			tx.setYwbh(xqbh);
-			tx.setYwlx("SJZQ");
-			tx.setTxnr(base64);
-			tx.setSeq(1);
-			txMapper.insert(tx);
+			if(!StringUtils.isNull(base64)) {
+				TbStTxxx tx = new TbStTxxx();
+				tx.setId(CommonUtils.getUUID(32));
+				tx.setYwbh(xqbh);
+				tx.setYwlx("SJZQ");
+				tx.setTxnr(base64);
+				tx.setSeq(1);
+				txMapper.insert(tx);
+			}
 		}
+	}
+	public int countByXqbh(String xqbh) {
+		TbStSjzqExample e = new TbStSjzqExample();
+		e.createCriteria().andXqbhEqualTo(xqbh);
+		return tbstsjzqmapper.countByExample(e);
 	}
 }

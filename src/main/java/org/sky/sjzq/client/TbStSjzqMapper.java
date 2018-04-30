@@ -6,7 +6,7 @@ import org.sky.sjzq.model.TbStSjzq;
 import org.sky.sjzq.model.TbStSjzqExample;
 
 public interface TbStSjzqMapper {
-    long countByExample(TbStSjzqExample example);
+    int countByExample(TbStSjzqExample example);
 
     int deleteByExample(TbStSjzqExample example);
 

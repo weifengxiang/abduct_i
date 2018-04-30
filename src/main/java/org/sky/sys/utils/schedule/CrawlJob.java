@@ -12,12 +12,17 @@ public class CrawlJob  implements Job {
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		// TODO Auto-generated method stub
 		TbStSjzqService sjzqService = BspUtils.getBean(TbStSjzqService.class);
-		int xqbh=sjzqService.getMaxXqbh();
-		String xqbhStr="319431";
-		if(0!=xqbh) {
-			xqbhStr=xqbh+1+"";
+		//String xqbhStr="319431";
+		int xqbhBegin=319431;
+		int xqbhEnd = 999999;
+		for(int i=xqbhBegin;i<=xqbhEnd;i++) {
+			System.out.println(i);
+			String xqbhStr=i+"";
+			if(sjzqService.countByXqbh(xqbhStr)==0) {
+				sjzqService.crawlData(xqbhStr);
+			}
 		}
-		sjzqService.crawlData(xqbhStr);
+		
 	}
 
 }

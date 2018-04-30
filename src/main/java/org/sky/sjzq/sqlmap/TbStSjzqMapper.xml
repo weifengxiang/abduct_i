@@ -19,6 +19,7 @@
     <result column="YSWZ" jdbcType="VARCHAR" property="yswz" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="TX" jdbcType="VARCHAR" property="tx" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -80,7 +81,8 @@
   </sql>
   <sql id="Base_Column_List">
     ID, XQLB, XQBH, XM, XB, CSRQ, SZSSG, SZSJ, SZRSZD, SZDD, XQZTZMS, QTZL, ZCSJ, GJZYZ, 
-    YSWZ, CREATE_TIME, NOTE
+    YSWZ, CREATE_TIME, NOTE,
+    (SELECT COUNT(1) FROM TB_ST_TXXX WHERE YWLX='SJZQ' AND YWBH = XQBH) AS TX
   </sql>
   <select id="selectByExample" parameterType="org.sky.sjzq.model.TbStSjzqExample" resultMap="BaseResultMap">
     select
@@ -236,7 +238,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.sky.sjzq.model.TbStSjzqExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="org.sky.sjzq.model.TbStSjzqExample" resultType="java.lang.Integer">
     select count(*) from tb_st_sjzq
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

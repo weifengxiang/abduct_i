@@ -36,6 +36,8 @@ public class TbStSjzq {
     private Date createTime;
 
     private String note;
+    
+    private String tx;
 
     public String getId() {
         return id;
@@ -172,4 +174,12 @@ public class TbStSjzq {
     public void setNote(String note) {
         this.note = note;
     }
+
+	public String getTx() {
+		return tx;
+	}
+
+	public void setTx(String tx) {
+		this.tx = tx;
+	}
 }

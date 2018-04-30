@@ -50,6 +50,14 @@ $(function() {
 	<thead>
 		<tr>
 			<th data-options="field: 'checked', checkbox:true"></th>
+				<th data-options="field:'tx',width:180,styler:cellStyler,
+				formatter:function(value,row){
+						  	 if(0==value){
+						  	 	return '无';
+						  	 }else{
+						  	 	return '有';
+						  	 }
+						 }">是否有图像</th>
 				<th data-options="field:'xqlb',width:180,
 				editor:{
 						type:'textbox',
