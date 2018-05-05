@@ -13,7 +13,8 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mybatis-spring:scan base-package="org.sky.sys.client,
 									   org.sky.ywbl.client,
-									   org.sky.sjzq.client
+									   org.sky.sjzq.client,
+									   org.sky.txsb.client
 									   " 
 						 template-ref="sqlSession"/>			
 	<!-- 扫描service层 -->

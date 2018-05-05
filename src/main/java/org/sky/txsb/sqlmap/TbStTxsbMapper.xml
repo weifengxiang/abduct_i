@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sky.txsb.client.TbStTxsbMapper">
+  <resultMap id="BaseResultMap" type="org.sky.txsb.model.TbStTxsb">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="YWLX" jdbcType="VARCHAR" property="ywlx" />
+    <result column="YWBH" jdbcType="VARCHAR" property="ywbh" />
+    <result column="TXXH" jdbcType="INTEGER" property="txxh" />
+    <result column="XSD" jdbcType="DECIMAL" property="xsd" />
+    <result column="WZ" jdbcType="VARCHAR" property="wz" />
+    <result column="SBSJ" jdbcType="TIMESTAMP" property="sbsj" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, YWLX, YWBH, TXXH, XSD, WZ, SBSJ, CREATE_TIME
+  </sql>
+  <select id="selectByExample" parameterType="org.sky.txsb.model.TbStTxsbExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_st_txsb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="MySqlPaginationSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_st_txsb
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_st_txsb
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.sky.txsb.model.TbStTxsbExample">
+    delete from tb_st_txsb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.sky.txsb.model.TbStTxsb">
+    insert into tb_st_txsb (ID, YWLX, YWBH, 
+      TXXH, XSD, WZ, SBSJ, 
+      CREATE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{ywlx,jdbcType=VARCHAR}, #{ywbh,jdbcType=VARCHAR}, 
+      #{txxh,jdbcType=INTEGER}, #{xsd,jdbcType=DECIMAL}, #{wz,jdbcType=VARCHAR}, #{sbsj,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sky.txsb.model.TbStTxsb">
+    insert into tb_st_txsb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="ywlx != null">
+        YWLX,
+      </if>
+      <if test="ywbh != null">
+        YWBH,
+      </if>
+      <if test="txxh != null">
+        TXXH,
+      </if>
+      <if test="xsd != null">
+        XSD,
+      </if>
+      <if test="wz != null">
+        WZ,
+      </if>
+      <if test="sbsj != null">
+        SBSJ,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ywlx != null">
+        #{ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="ywbh != null">
+        #{ywbh,jdbcType=VARCHAR},
+      </if>
+      <if test="txxh != null">
+        #{txxh,jdbcType=INTEGER},
+      </if>
+      <if test="xsd != null">
+        #{xsd,jdbcType=DECIMAL},
+      </if>
+      <if test="wz != null">
+        #{wz,jdbcType=VARCHAR},
+      </if>
+      <if test="sbsj != null">
+        #{sbsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.sky.txsb.model.TbStTxsbExample" resultType="java.lang.Long">
+    select count(*) from tb_st_txsb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_st_txsb
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ywlx != null">
+        YWLX = #{record.ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ywbh != null">
+        YWBH = #{record.ywbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txxh != null">
+        TXXH = #{record.txxh,jdbcType=INTEGER},
+      </if>
+      <if test="record.xsd != null">
+        XSD = #{record.xsd,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wz != null">
+        WZ = #{record.wz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sbsj != null">
+        SBSJ = #{record.sbsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_st_txsb
+    set ID = #{record.id,jdbcType=VARCHAR},
+      YWLX = #{record.ywlx,jdbcType=VARCHAR},
+      YWBH = #{record.ywbh,jdbcType=VARCHAR},
+      TXXH = #{record.txxh,jdbcType=INTEGER},
+      XSD = #{record.xsd,jdbcType=DECIMAL},
+      WZ = #{record.wz,jdbcType=VARCHAR},
+      SBSJ = #{record.sbsj,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.txsb.model.TbStTxsb">
+    update tb_st_txsb
+    <set>
+      <if test="ywlx != null">
+        YWLX = #{ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="ywbh != null">
+        YWBH = #{ywbh,jdbcType=VARCHAR},
+      </if>
+      <if test="txxh != null">
+        TXXH = #{txxh,jdbcType=INTEGER},
+      </if>
+      <if test="xsd != null">
+        XSD = #{xsd,jdbcType=DECIMAL},
+      </if>
+      <if test="wz != null">
+        WZ = #{wz,jdbcType=VARCHAR},
+      </if>
+      <if test="sbsj != null">
+        SBSJ = #{sbsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sky.txsb.model.TbStTxsb">
+    update tb_st_txsb
+    set YWLX = #{ywlx,jdbcType=VARCHAR},
+      YWBH = #{ywbh,jdbcType=VARCHAR},
+      TXXH = #{txxh,jdbcType=INTEGER},
+      XSD = #{xsd,jdbcType=DECIMAL},
+      WZ = #{wz,jdbcType=VARCHAR},
+      SBSJ = #{sbsj,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="MySqlPaginationSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin},#{page.rows} ]]>
+    </if>
+  </sql>
+</mapper>
