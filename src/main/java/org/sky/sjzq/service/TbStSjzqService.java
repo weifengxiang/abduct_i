@@ -139,7 +139,7 @@ public class TbStSjzqService {
 				tx.setId(CommonUtils.getUUID(32));
 				tx.setYwbh(xqbh);
 				tx.setYwlx("SJZQ");
-				tx.setTxnr(base64);
+				tx.setTxnr("data:image/jpeg;base64,"+base64);
 				String fileName = cd.getImgName();
 				tx.setTxlx(fileName.split("\\.")[fileName.split("\\.").length-1]);
 				tx.setSeq(1);
