@@ -1,5 +1,7 @@
 package org.sky.sjzq.service;
 import org.apache.log4j.Logger;
+
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
 import org.sky.sys.client.SysCommonMapper;
@@ -16,6 +18,7 @@ import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.StringUtils;
 import org.sky.utils.crawl.main.CrawlData;
 import org.sky.utils.crawl.main.MyCrawlerUtils;
+import org.sky.utils.crawl.util.FileTool;
 import org.sky.ywbl.client.TbStTxxxMapper;
 import org.sky.ywbl.model.TbStTxxx;
 @Service
@@ -128,19 +131,19 @@ public class TbStSjzqService {
 		try {
 		CrawlData cd = MyCrawlerUtils.crawling(xqbh);
 		TbStSjzq sj = cd.getData();
-		String base64 = cd.getBase64();
+		String fileName = cd.getImgName();
 		if(null!=sj) {
 			Timestamp ts = syscommonmapper.queryTimestamp();
 			sj.setId(CommonUtils.getUUID(32));
 			sj.setCreateTime(ts);
 			tbstsjzqmapper.insert(sj);
-			if(!StringUtils.isNull(base64)) {
+			if(!StringUtils.isNull(fileName)) {
 				TbStTxxx tx = new TbStTxxx();
 				tx.setId(CommonUtils.getUUID(32));
 				tx.setYwbh(xqbh);
 				tx.setYwlx("SJZQ");
-				tx.setTxnr("data:image/jpeg;base64,"+base64);
-				String fileName = cd.getImgName();
+				File f = new File(fileName);
+				tx.setTxnr("data:image/jpeg;base64,"+FileTool.getImageStr(f));
 				tx.setTxlx(fileName.split("\\.")[fileName.split("\\.").length-1]);
 				tx.setSeq(1);
 				txMapper.insert(tx);

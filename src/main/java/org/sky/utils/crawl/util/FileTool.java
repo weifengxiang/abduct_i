@@ -95,14 +95,13 @@ public class FileTool {
         }
     }
     public static String getImgPath(String dir,String xqbh) {
-    	String base64="";
         File parDir = new File(dir);
         File[] fs = parDir.listFiles();
         if(null!=fs) {
             for(File f:fs) {
             	if(f.getName().contains(xqbh)&&
             			f.getName().contains("www.baobeihuijia.com_photo")) {
-            		return f.getName();
+            		return f.getAbsolutePath();
             	}
             }
         }
@@ -118,6 +117,7 @@ public class FileTool {
 	            	if(f.getName().contains(xqbh)&&
 	            			f.getName().contains("www.baobeihuijia.com_photo")) {
 	            		base64=getImageStr(f);
+	            		return base64;
 	            	}
 	            }
             }

@@ -25,7 +25,7 @@ function viewTxxx(data){
 			$.each(data,function(i,node){
 				//$('#pic'+(i+1)).val(node.txmc);
 				console.log(node.txnr);
-				$('#picPreView'+(i+1)).attr('src','data:image/png;base64,'+node.txnr);
+				$('#picPreView'+(i+1)).attr('src',node.txnr);
 			});
 		}
 	});
