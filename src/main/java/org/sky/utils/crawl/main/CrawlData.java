@@ -14,6 +14,7 @@ public class CrawlData {
 
 	private TbStSjzq data;
 	private String base64;
+	private String imgName;
 	public TbStSjzq getData() {
 		return data;
 	}
@@ -25,6 +26,12 @@ public class CrawlData {
 	}
 	public void setBase64(String base64) {
 		this.base64 = base64;
+	}
+	public String getImgName() {
+		return imgName;
+	}
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
 	}
 	
 }

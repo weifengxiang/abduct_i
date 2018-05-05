@@ -125,6 +125,7 @@ public class TbStSjzqService {
 	 */
 	@Transactional
 	public void crawlData(String xqbh) {
+		try {
 		CrawlData cd = MyCrawlerUtils.crawling(xqbh);
 		TbStSjzq sj = cd.getData();
 		String base64 = cd.getBase64();
@@ -139,9 +140,14 @@ public class TbStSjzqService {
 				tx.setYwbh(xqbh);
 				tx.setYwlx("SJZQ");
 				tx.setTxnr(base64);
+				String fileName = cd.getImgName();
+				tx.setTxlx(fileName.split("\\.")[fileName.split("\\.").length-1]);
 				tx.setSeq(1);
 				txMapper.insert(tx);
 			}
+		}
+		}catch(Exception e) {
+			logger.error(e.getMessage());
 		}
 	}
 	public int countByXqbh(String xqbh) {

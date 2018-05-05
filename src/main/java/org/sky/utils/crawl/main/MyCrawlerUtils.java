@@ -2,6 +2,7 @@ package org.sky.utils.crawl.main;
 
 import org.sky.sjzq.model.TbStSjzq;
 import org.sky.sys.utils.ConfUtils;
+import org.sky.utils.Base64Img;
 import org.sky.utils.crawl.link.LinkFilter;
 import org.sky.utils.crawl.link.Links;
 import org.sky.utils.crawl.page.Page;
@@ -33,8 +34,9 @@ public class MyCrawlerUtils {
      *
      * @param seeds
      * @return
+     * @throws Exception 
      */
-    public static CrawlData crawling(String xqbh) {
+    public static CrawlData crawling(String xqbh) throws Exception {
     	String dir = ConfUtils.getValue("temp_dir")+xqbh+File.separator;
     	CrawlData data = new CrawlData();
     	String seed = "http://www.baobeihuijia.com/view.aspx?id="+xqbh;
@@ -141,8 +143,12 @@ public class MyCrawlerUtils {
                 System.out.println("新增爬取路径: " + link);
             }
         }
-        String imgBase64 = FileTool.getImgBase64(dir, xqbh);
-        data.setBase64(imgBase64);
+        String imgPath = FileTool.getImgPath(dir,xqbh);
+        data.setImgName(imgPath);
+        //String imgBase64 = FileTool.getImgBase64(dir, xqbh);
+        if(null!=imgPath) {
+			data.setBase64(Base64Img.GetImageStr(imgPath));
+        }
         return data;
     }
 
@@ -150,6 +156,11 @@ public class MyCrawlerUtils {
     //main 方法入口
     public static void main(String[] args) {
         MyCrawlerUtils crawler = new MyCrawlerUtils();
-        crawler.crawling("319431");
+        try {
+			crawler.crawling("319431");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

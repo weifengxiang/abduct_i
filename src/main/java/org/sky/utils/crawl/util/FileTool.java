@@ -94,6 +94,20 @@ public class FileTool {
             e.printStackTrace();
         }
     }
+    public static String getImgPath(String dir,String xqbh) {
+    	String base64="";
+        File parDir = new File(dir);
+        File[] fs = parDir.listFiles();
+        if(null!=fs) {
+            for(File f:fs) {
+            	if(f.getName().contains(xqbh)&&
+            			f.getName().contains("www.baobeihuijia.com_photo")) {
+            		return f.getName();
+            	}
+            }
+        }
+        return null;
+    }
     public static String getImgBase64(String dir,String xqbh) {
     	String base64="";
         try {

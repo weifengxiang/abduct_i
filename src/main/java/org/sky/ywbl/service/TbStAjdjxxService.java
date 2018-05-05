@@ -101,6 +101,8 @@ public class TbStAjdjxxService {
 				tx.setCreateTime(ts);
 				tx.setYwbh(edit.getAjbh());
 				tx.setYwlx("AJXX");
+				String fileName= tx.getTxmc();
+				tx.setTxlx(fileName.split("\\.")[fileName.split("\\.").length-1]);
 				txxxmapper.insert(tx);
 			}
 			if(StringUtils.isNull(edit.getId())){
