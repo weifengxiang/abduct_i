@@ -11,7 +11,7 @@ function initAddTbStAjblxxPage(paramOpts){
 	$('#bldwName').textbox('setValue',bldwName);
 	$('#bldw').val(bldw);
 	$('#blsj').datetimebox('setValue',blsj);
-	if('3'==opt){
+	if('B1'==opt){
 		$('#flqxTR').show();
 	}else{
 		$('#flqxTR').hide();
