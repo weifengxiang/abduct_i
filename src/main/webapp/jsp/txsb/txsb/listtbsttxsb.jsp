@@ -1,3 +1,4 @@
+<%@page import="org.sky.sys.utils.EnumUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/jsp/inc/include.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,6 +7,7 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/txsb/txsb/listtbsttxsb.js'></script>
 <script type="text/javascript">
+var ywlx=<%=EnumUtils.getEnums("YWBL.YWLX") %>;
 $(function() {
 	init();
 });
@@ -53,29 +55,27 @@ $(function() {
 		<tr>
 			<th data-options="field: 'checked', checkbox:true"></th>
 				<th data-options="field:'ywlx',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">业务类型</th>
+				formatter:function(value,row){
+						  	 return SKY.formatterDict(value,row,ywlx);
+						 }">业务类型</th>
 				<th data-options="field:'ywbh',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">业务编号</th>
-				<th data-options="field:'txxh',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">图像序号</th>
-				<th data-options="field:'xsd',width:180,
+				<th data-options="field:'xsd',width:80,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">相似度</th>
+				<th data-options="field:'ajbh',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">案件编号</th>
 				<th data-options="field:'wz',width:180,
 				editor:{
 						type:'textbox',

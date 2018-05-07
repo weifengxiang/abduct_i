@@ -18,6 +18,10 @@ public class TbStTxsb {
 
     private Date sbsj;
 
+    private String ajbh;
+
+    private Integer ajtxxh;
+
     private Date createTime;
 
     public String getId() {
@@ -74,6 +78,22 @@ public class TbStTxsb {
 
     public void setSbsj(Date sbsj) {
         this.sbsj = sbsj;
+    }
+
+    public String getAjbh() {
+        return ajbh;
+    }
+
+    public void setAjbh(String ajbh) {
+        this.ajbh = ajbh;
+    }
+
+    public Integer getAjtxxh() {
+        return ajtxxh;
+    }
+
+    public void setAjtxxh(Integer ajtxxh) {
+        this.ajtxxh = ajtxxh;
     }
 
     public Date getCreateTime() {

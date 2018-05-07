@@ -602,6 +602,136 @@ public class TbStTxsbExample {
             return (Criteria) this;
         }
 
+        public Criteria andAjbhIsNull() {
+            addCriterion("AJBH is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhIsNotNull() {
+            addCriterion("AJBH is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhEqualTo(String value) {
+            addCriterion("AJBH =", value, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhNotEqualTo(String value) {
+            addCriterion("AJBH <>", value, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhGreaterThan(String value) {
+            addCriterion("AJBH >", value, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhGreaterThanOrEqualTo(String value) {
+            addCriterion("AJBH >=", value, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhLessThan(String value) {
+            addCriterion("AJBH <", value, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhLessThanOrEqualTo(String value) {
+            addCriterion("AJBH <=", value, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhLike(String value) {
+            addCriterion("AJBH like", value, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhNotLike(String value) {
+            addCriterion("AJBH not like", value, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhIn(List<String> values) {
+            addCriterion("AJBH in", values, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhNotIn(List<String> values) {
+            addCriterion("AJBH not in", values, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhBetween(String value1, String value2) {
+            addCriterion("AJBH between", value1, value2, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjbhNotBetween(String value1, String value2) {
+            addCriterion("AJBH not between", value1, value2, "ajbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhIsNull() {
+            addCriterion("AJTXXH is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhIsNotNull() {
+            addCriterion("AJTXXH is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhEqualTo(Integer value) {
+            addCriterion("AJTXXH =", value, "ajtxxh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhNotEqualTo(Integer value) {
+            addCriterion("AJTXXH <>", value, "ajtxxh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhGreaterThan(Integer value) {
+            addCriterion("AJTXXH >", value, "ajtxxh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhGreaterThanOrEqualTo(Integer value) {
+            addCriterion("AJTXXH >=", value, "ajtxxh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhLessThan(Integer value) {
+            addCriterion("AJTXXH <", value, "ajtxxh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhLessThanOrEqualTo(Integer value) {
+            addCriterion("AJTXXH <=", value, "ajtxxh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhIn(List<Integer> values) {
+            addCriterion("AJTXXH in", values, "ajtxxh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhNotIn(List<Integer> values) {
+            addCriterion("AJTXXH not in", values, "ajtxxh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhBetween(Integer value1, Integer value2) {
+            addCriterion("AJTXXH between", value1, value2, "ajtxxh");
+            return (Criteria) this;
+        }
+
+        public Criteria andAjtxxhNotBetween(Integer value1, Integer value2) {
+            addCriterion("AJTXXH not between", value1, value2, "ajtxxh");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("CREATE_TIME is null");
             return (Criteria) this;

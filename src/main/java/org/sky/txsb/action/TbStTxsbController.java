@@ -1,16 +1,25 @@
 package org.sky.txsb.action;
 
+import java.awt.Desktop;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.txsb.model.TbStTxsb;
 import org.sky.txsb.model.TbStTxsbExample;
-import org.sky.txsb.model.TbStTxsbExample.Criteria;
 import org.sky.txsb.service.TbStTxsbService;
+import org.sky.sys.utils.BspUtils;
+import org.sky.sys.utils.ConfUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
@@ -22,8 +31,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class TbStTxsbController extends BaseController{
+	private final Logger logger=Logger.getLogger(TbStTxsbController.class);
 	@Autowired
 	private TbStTxsbService tbsttxsbService;
 	

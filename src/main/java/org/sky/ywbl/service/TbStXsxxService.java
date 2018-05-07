@@ -95,6 +95,7 @@ public class TbStXsxxService {
 				tx.setCreater(BspUtils.getLoginUser().getCode());
 				tx.setCreateTime(ts);
 				tx.setYwbh(edit.getXsbh());
+				tx.setTxlx(tx.getTxmc().split("\\.")[tx.getTxmc().split("\\.").length-1]);
 				tx.setYwlx("XSXX");
 				txxxmapper.insert(tx);
 			}
