@@ -47,6 +47,7 @@ public class ImageRecognitionJob implements Job {
 		filter.put("ywlx@in","SJZQ,XSXX");
 		filter.put("not exists(select 1 from tb_st_txsb tx where tx.ywbh=tb_st_txxx.ywbh) and 1@=",1);
 		txxxe.integratedQuery(filter);
+		txxxe.setOrderByClause(" create_time desc ");
 		//查询没用匹配过的图像
 		List<TbStTxxx> list = txxxMapper.selectByExampleWithBLOBs(txxxe);
 		Map<String,List> ywMaps = new HashMap();
@@ -75,9 +76,9 @@ public class ImageRecognitionJob implements Job {
 	 */
 	private void exeImageRecognition(List<TbStTxxx> txList) {
 		for(TbStTxxx tx:txList) {
-//			if(!tx.getYwlx().equals("XSXX")) {
-//				return;
-//			}
+			if(!tx.getYwlx().equals("XSXX")) {
+				return;
+			}
 			String dir = ConfUtils.getValue("TXTASK_DIR")+tx.getYwbh();
 			File dirFile = new File(dir);
 			if(!dirFile.exists()) {

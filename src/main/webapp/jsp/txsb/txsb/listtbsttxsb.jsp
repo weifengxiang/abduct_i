@@ -1,3 +1,4 @@
+<%@page import="org.sky.sys.utils.ConfUtils"%>
 <%@page import="org.sky.sys.utils.EnumUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/jsp/inc/include.jsp"%> 
@@ -8,6 +9,7 @@
 <script type="text/javascript" src='${basepath}jsp/txsb/txsb/listtbsttxsb.js'></script>
 <script type="text/javascript">
 var ywlx=<%=EnumUtils.getEnums("YWBL.YWLX") %>;
+var xsd=<%=ConfUtils.getValue("SIM_DEGREE") %>;
 $(function() {
 	init();
 });
@@ -49,7 +51,12 @@ $(function() {
 			onLoadSuccess : function () {
         		$(this).datagrid('fixRownumber');
         		$(this).datagrid('doCellTip',{'max-width':'200px','delay':500});
-    		}
+    		},
+    		rowStyler: function(index,row){
+					if (row.xsd >= xsd){
+						return 'background-color:red;color:#fff;font-weight:bold;';
+					}
+			}
 		">
 	<thead>
 		<tr>

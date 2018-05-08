@@ -33,5 +33,13 @@ public class ComController extends BaseController {
 			) {
 		return comService.selectTxxxByYW(ywlx, ywbh);
 	}
-
+	@SysControllerLog(desc = "显示图像")
+	@RequestMapping(value = "/ywbl/com/viewTxxxSH/{ywlx}/{ywbh}/{xh}", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody TbStTxxx viewTxxxSH(
+			@PathVariable String ywlx,
+			@PathVariable String ywbh,
+			@PathVariable int xh
+			) {
+		return comService.selectTxxxByYWXH(ywlx, ywbh,xh);
+	}
 }

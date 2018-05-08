@@ -14,41 +14,21 @@ $(function() {
 </head>
 <body>
 <div class="easyui-panel"  style="width:100%;height:100%;text-align: center;"
-	 data-options="footer:'#detailPageButtonsFt'">
-		<form id="detailtbsttxsbform" class="easyui-form" method="post" 
-			data-options="novalidate:true">
-			<input type='hidden' name='id' id='id'/>
-			<table style="width:100%">
-				  <tr>
-					<th><label>业务类型:</label></th>
-					<td><input class="easyui-textbox" name="ywlx"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>业务编号:</label></th>
-					<td><input class="easyui-textbox" name="ywbh"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>图像序号:</label></th>
-					<td><input class="easyui-textbox" name="txxh"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>相似度:</label></th>
-					<td><input class="easyui-textbox" name="xsd"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>位置:</label></th>
-					<td><input class="easyui-textbox" name="wz"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>识别时间:</label></th>
-					<td><input class="easyui-textbox" name="sbsj"
-						data-options="required:true"></input></td>
-				  </tr>
+	 data-options="footer:'#detailPageButtonsFt',fit:true">
+		<form  id="picForm" method="post" enctype="multipart/form-data">
+		 	<table style="width:100%;height:80%">
+			 	<tr>
+			 		<td style="width:50%">
+				 		<div style="text-align: center;">
+							<img id='ywPicPreView' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+						</div>
+					</td>
+					<td  style="width:50%">
+						<div style="text-align: center;">
+							<img id='ajPicPreView' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+						</div>
+					</td>
+				</tr>
 			</table>
 		</form>
 </div>

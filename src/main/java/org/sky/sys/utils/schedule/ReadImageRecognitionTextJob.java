@@ -28,6 +28,7 @@ import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.StringUtils;
 import org.sky.txsb.client.TbStTxsbMapper;
 import org.sky.txsb.model.TbStTxsb;
+import org.sky.txsb.model.TbStTxsbExample;
 import org.sky.utils.Base64Img;
 import org.sky.ywbl.client.TbStTxxxMapper;
 import org.sky.ywbl.model.TbStTxxx;
@@ -61,12 +62,20 @@ public class ReadImageRecognitionTextJob implements Job {
 				        //System.out.println(s);
 				    	if(!StringUtils.isNull(res)) {
 				    		String[] resList = res.split(" ");
+				    		String ywbh = resList[2].split("_")[0];
+				    		TbStTxsbExample e = new TbStTxsbExample();
+				    		e.createCriteria().andYwbhEqualTo(ywbh);
+				    		long count = txsbMapper.countByExample(e);
+				    		if(count>0) {
+				    			continue;
+				    		}
 				    		TbStTxsb sb = new TbStTxsb();
 				    		sb.setId(CommonUtils.getUUID(32));
 				    		sb.setXsd(new BigDecimal(resList[0]));
 				    		sb.setAjbh(resList[1].split("_")[0]);
 				    		sb.setAjtxxh(new Integer(resList[1].split("_")[1].substring(0, 1)));
-				    		sb.setYwbh(resList[2].split("_")[0]);
+				    		
+				    		sb.setYwbh(ywbh);
 				    		String ywlx="";
 				    		if(resList[2].split("_")[0].startsWith("X")) {
 				    			ywlx="XSXX";

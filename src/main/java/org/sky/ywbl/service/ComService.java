@@ -86,4 +86,22 @@ public class ComService {
 		txe.setOrderByClause("create_time asc");
 		return txMapper.selectByExampleWithBLOBs(txe);
 	}
+	/**
+	 * 根据业务编号跟序号查询图像信息
+	 * @param ywlx
+	 * @param ywbh
+	 * @return
+	 */
+	public TbStTxxx selectTxxxByYWXH(String ywlx,String ywbh,int xh){
+		TbStTxxxExample txe = new TbStTxxxExample();
+		txe.createCriteria().andYwlxEqualTo(ywlx)
+							.andYwbhEqualTo(ywbh)
+							.andSeqEqualTo(xh);
+		List<TbStTxxx> list = txMapper.selectByExampleWithBLOBs(txe);
+		if(list.size()>0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
 }
