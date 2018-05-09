@@ -123,6 +123,21 @@ public class TbStSjzqService {
 		return bean;
 	}
 	/**
+	 * 根据寻亲编号查询
+	 * @param xqbh
+	 * @return
+	 */
+	public TbStSjzq getTbStSjzqByXqbh(String xqbh){
+		TbStSjzqExample e = new TbStSjzqExample();
+		e.createCriteria().andXqbhEqualTo(xqbh);
+		List<TbStSjzq> list = tbstsjzqmapper.selectByExample(e);
+		if(list.size()>0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
+	/**
 	 * 保存爬取数据
 	 * @param xqbh
 	 */

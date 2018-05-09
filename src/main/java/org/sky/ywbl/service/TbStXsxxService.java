@@ -134,4 +134,19 @@ public class TbStXsxxService {
 		TbStXsxx bean = tbstxsxxmapper.selectByPrimaryKey(id);
 		return bean;
 	}
+	/**
+	 * 根据线索编号查询
+	 * @param xsbh
+	 * @return
+	 */
+	public TbStXsxx getTbStXsxxByXsbh(String xsbh){
+		TbStXsxxExample e = new TbStXsxxExample();
+		e.createCriteria().andXsbhEqualTo(xsbh);
+		List<TbStXsxx> list = tbstxsxxmapper.selectByExample(e);
+		if(null!=list && list.size()>0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
 }

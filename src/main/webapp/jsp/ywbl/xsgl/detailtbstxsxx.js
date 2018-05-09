@@ -9,7 +9,7 @@ function initDetailTbStXsxxPage(paramOpts){
 	$('#detailtbstxsxxform').form('options').onLoadSuccess=function(data){
 		viewTxxx(data);
 	};
-	var url=basepath+"ywbl/TbStXsxx/getTbStXsxxById?id="+paramOpts.data.id;
+	var url=basepath+"ywbl/TbStXsxx/getTbStXsxxByXsbh?xsbh="+paramOpts.data.xsbh;
 	$('#detailtbstxsxxform').form('load',SKY.urlCSRF(url));
 }
 /**

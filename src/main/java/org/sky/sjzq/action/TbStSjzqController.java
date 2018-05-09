@@ -142,4 +142,18 @@ public class TbStSjzqController extends BaseController{
 		TbStSjzq bean = tbstsjzqService.getTbStSjzqById(id);
 		return JsonUtils.obj2json(bean);
 	}
+	/**
+	 * 根据寻亲编号查询
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/sjzq/TbStSjzq/getTbStSjzqByXqbh", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String getTbStSjzqByXqbh(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		String xqbh = request.getParameter("xqbh");
+		TbStSjzq bean = tbstsjzqService.getTbStSjzqByXqbh(xqbh);
+		return JsonUtils.obj2json(bean);
+	}
 }

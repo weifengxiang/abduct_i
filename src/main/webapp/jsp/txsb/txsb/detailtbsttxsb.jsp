@@ -1,3 +1,4 @@
+<%@page import="org.sky.sys.utils.ConfUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/jsp/inc/include.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,6 +7,7 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/txsb/txsb/detailtbsttxsb.js'></script>
 <script type="text/javascript">
+var xsdDegree=<%=ConfUtils.getValue("SIM_DEGREE") %>;
 var _callbacks = $.Callbacks();
 $(function() {
 	
@@ -18,14 +20,23 @@ $(function() {
 		<form  id="picForm" method="post" enctype="multipart/form-data">
 		 	<table style="width:100%;height:80%">
 			 	<tr>
-			 		<td style="width:50%">
+			 		<td style="width:45%">
 				 		<div style="text-align: center;">
 							<img id='ywPicPreView' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<a href='#' id='ywbh'></a>
 						</div>
 					</td>
-					<td  style="width:50%">
+					<td style="width:10%">
+						<div style="text-align: center">
+						相似度<br/><span id='xsd'></span>
+						</div>
+					</td>
+					<td  style="width:45%">
 						<div style="text-align: center;">
 							<img id='ajPicPreView' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<a href='#' id='ajbh'></a>
 						</div>
 					</td>
 				</tr>

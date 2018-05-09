@@ -175,4 +175,13 @@ public class TbStXsxxController extends BaseController{
 		TbStXsxx bean = tbstxsxxService.getTbStXsxxById(id);
 		return JsonUtils.obj2json(bean);
 	}
+	@SysControllerLog(desc = "根据线索编号查询线索信息")
+	@RequestMapping(value = "/ywbl/TbStXsxx/getTbStXsxxByXsbh", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String getTbStXsxxByXsbh(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		String xsbh = request.getParameter("xsbh");
+		TbStXsxx bean = tbstxsxxService.getTbStXsxxByXsbh(xsbh);
+		return JsonUtils.obj2json(bean);
+	}
 }
