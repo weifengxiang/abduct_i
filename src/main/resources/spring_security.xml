@@ -23,6 +23,7 @@
     	<security:http disable-url-rewriting="true" pattern="/error/**" security="none"></security:http>
     	<security:http disable-url-rewriting="true" pattern="/app/**" security="none"></security:http>
     	<security:http disable-url-rewriting="true" pattern="/txsb/TbStTxsb/exeTxsb/**" security="none"></security:http>
+    	<security:http disable-url-rewriting="true" pattern="/sound/**" security="none"></security:http>
     <!--  -->
     <security:http auto-config="true"  disable-url-rewriting="true"
     		authentication-manager-ref="authenicationmanager" >

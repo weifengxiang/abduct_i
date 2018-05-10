@@ -34,7 +34,6 @@
 <link rel="stylesheet" type="text/css" href="${basepath}skin/css/sky.css">
 <script type="text/javascript">
 var basepath='${basepath}';
-var isSecurityFilter='<%=BspUtils.isSecurityFilter() %>';
 //事件是页面完全加载完的时候执行
 window.onload=function() {
 	var c = $.cookie('style');
