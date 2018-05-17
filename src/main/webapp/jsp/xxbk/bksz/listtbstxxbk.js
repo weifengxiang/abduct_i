@@ -156,22 +156,7 @@ function searchButton(){
 			if(yxsjz){
 				ft.put("yxsjz@=", yxsjz);
 			}
-			var bjlx =$('#q_bjlx').textbox("getValue");
-			if(bjlx){
-				ft.put("bjlx@=", bjlx);
-			}
-			var zrr =$('#q_zrr').textbox("getValue");
-			if(zrr){
-				ft.put("zrr@=", zrr);
-			}
-			var zt =$('#q_zt').textbox("getValue");
-			if(zt){
-				ft.put("zt@=", zt);
-			}
-			var bz =$('#q_bz').textbox("getValue");
-			if(bz){
-				ft.put("bz@=", bz);
-			}
+			
 			return ft.getJSON();
 		}
 	});

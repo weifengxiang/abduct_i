@@ -25,14 +25,6 @@ $(function() {
 		<td><input  class="easyui-textbox" data-options="prompt:'输入有效时间起'" name="q_yxsjq"  id="q_yxsjq" ></input></td>				
 		<th><label>有效时间至:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入有效时间至'" name="q_yxsjz"  id="q_yxsjz" ></input></td>				
-		<th><label>报警类型:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入报警类型'" name="q_bjlx"  id="q_bjlx" ></input></td>				
-		<th><label>责任人:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入责任人'" name="q_zrr"  id="q_zrr" ></input></td>				
-		<th><label>状态:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入状态'" name="q_zt"  id="q_zt" ></input></td>				
-		<th><label>备注:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入备注'" name="q_bz"  id="q_bz" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>
