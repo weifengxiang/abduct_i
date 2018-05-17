@@ -14,7 +14,8 @@
 	<mybatis-spring:scan base-package="org.sky.sys.client,
 									   org.sky.ywbl.client,
 									   org.sky.sjzq.client,
-									   org.sky.txsb.client
+									   org.sky.txsb.client,
+									   org.sky.xxbk.client
 									   " 
 						 template-ref="sqlSession"/>			
 	<!-- 扫描service层 -->
