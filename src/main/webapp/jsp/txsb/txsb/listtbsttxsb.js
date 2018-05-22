@@ -5,7 +5,8 @@ function init(){
 		filter : function(){
 			var ft = new HashMap();
 			return ft.getJSON();
-		}
+		},
+		sortfield:"sbsj desc"
 	});
 }
  /**
@@ -153,6 +154,7 @@ function searchButton(){
 				ft.put("txxh@=", txxh);
 			}
 			return ft.getJSON();
-		}
+		},
+		sortfield:"sbsj desc"
 	});
 }
