@@ -8,12 +8,13 @@
 <security:csrfMetaTags />
 <style type="text/css">
 </style>
-<script type="text/javascript" src="${basepath}skin/echarts/echarts.min.js"></script>
-<script type="text/javascript" src="${basepath}skin/echarts/shine.js"></script>
-<script type="text/javascript" src="${basepath}skin/echarts/map/js/shandong.js"></script>
+<script type="text/javascript" src="${basepath}skin/plugins/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="${basepath}skin/plugins/echarts/shine.js"></script>
+<script type="text/javascript" src="${basepath}skin/plugins/echarts/map/js/shandong.js"></script>
 
 <script>
-	var orgcode = '<%=BspUtils.getLoginUserDep().getOrganCode()%>';
+
+	//var orgcode =  '';
 	// 地图统计构建图形
 	function initMap() {
 		mapChart = echarts.init($('#sdMapTj').get(0));
@@ -31,7 +32,6 @@
 				left : 'left',
 				top : 'bottom',
 				text : [ '高', '低' ], // 文本，默认为数值文本
-				calculable : true,
 				inRange: {
 	                color: ['orangered','yellow','green']
 	            }
@@ -78,6 +78,38 @@
 	//获取统计数据
 	function getMapDate(){
 		mapChart.showLoading();
+		var data=[{name:'济南市',value:18},
+				  {name:'青岛市',value:16},
+				  {name:'淄博市',value:15},
+				  {name:'枣庄市',value:14},
+				  {name:'东营市',value:13},
+				  {name:'烟台市',value:12},
+				  {name:'潍坊市',value:11},
+				  {name:'济宁市',value:10},
+				  {name:'泰安市',value:9},
+				  {name:'威海市',value:8},
+				  {name:'日照市',value:7},
+				  {name:'莱芜市',value:6},
+				  {name:'临沂市',value:5},
+				  {name:'德州市',value:4},
+				  {name:'聊城市',value:3},
+				  {name:'滨州市',value:2},
+				  {name:'菏泽市',value:1}
+			];
+		mapChart.hideLoading();
+		mapChart.setOption({
+			title : {
+				subtext: '共'+data.count+'件',
+			},
+			visualMap:{
+				min:0,
+				max:20
+			},
+			series:[{
+				data:data
+			}]
+		});
+		/**
 		$.ajax({
 			url : urlcsrf(basepath + 'sys/PubMainShow/getMapDate'),
 			type : "POST",
@@ -99,6 +131,7 @@
 				});
 			}
 		});
+		**/
 	}
 $(function() {
 	initMap();
@@ -107,7 +140,7 @@ $(function() {
 </script>
 </head>
 <body>
-	<div id='sdMapTj' style="width:500px;height:400px;">
+	<div id='sdMapTj' style="width:500px;height:300px;">
 	</div>
 </body>
 </html>

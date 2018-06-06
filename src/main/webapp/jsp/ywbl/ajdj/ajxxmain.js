@@ -194,7 +194,11 @@ function createAJLZXX(djxx){
 	    columns:[[    
 	        {field:'dqdwName',title:'当前单位',width:100},    
 	        {field:'lzdwName',title:'流转单位',width:150}, 
-	        {field:'ajzt',title:'案件状态',width:150},
+	        {field:'ajzt',title:'案件状态',width:150,
+	        	formatter:function(value,row){
+			  	 return SKY.formatterEnum(value,row,ajzt);
+	        	}
+	        },
 	        {field:'lzsj',title:'流转时间',width:360}
 	    ]]    
 	}); 

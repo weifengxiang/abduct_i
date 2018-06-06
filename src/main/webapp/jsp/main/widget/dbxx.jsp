@@ -1,4 +1,4 @@
-<%@page import="org.es.sys.utils.EnumUtils"%>
+<%@page import="org.sky.sys.utils.EnumUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/jsp/inc/include.jsp"%>
@@ -7,10 +7,10 @@
 <head>
 <security:csrfMetaTags />
 <script type="text/javascript">
-var AI_DB_STATUS=<%=EnumUtils.getEnums("AI.DB_STATUS") %>;
+var AI_DB_STATUS=new Object();
 $(function() {
 	$('#dbTreeGrid').treegrid({
-		url:urlcsrf(basepath+'sys/PubMainShow/getDbcxTj'),
+		data:[{'name':'审核','text':12}],
 		idField:'id',
 		treeField:'id'
 	});
@@ -67,11 +67,7 @@ function openBl(status,value){
 <table id="dbTreeGrid" class="easyui-treegird" style="width:100%;height:100%;">
 	<thead>
 		<tr>
-			<th data-options="field:'id',width:180,
-				formatter:function(value,row){
-					return addNodeOpen(formatterEnum(value,row,AI_DB_STATUS),row);
-					
-				}">待办项</th>
+			<th data-options="field:'name',width:180">待办项</th>
 			<th data-options="field:'text',width:200,
 				formatter:function(value,row){
 					return addOpen(value,row);

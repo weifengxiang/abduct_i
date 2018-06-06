@@ -9,15 +9,14 @@
 <security:csrfMetaTags />
 <style type="text/css">
 </style>
-<script type="text/javascript" src="${basepath}skin/echarts/echarts.min.js"></script>
-<script type="text/javascript" src="${basepath}skin/echarts/shine.js"></script>
-<script type="text/javascript" src="${basepath}skin/echarts/map/js/shandong.js"></script>
-<script type="text/javascript"
-	src="${basepath}skin/portal/jquery.portal.js"></script>
+<script type="text/javascript" src="${basepath}skin/plugins/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="${basepath}skin/plugins/echarts/shine.js"></script>
+<script type="text/javascript" src="${basepath}skin/plugins/echarts/map/js/shandong.js"></script>
+
 <script>
-	var orgcode = '<%=BspUtils.getLoginUserDep().getOrganCode()%>';
+	var orgcode = '';
 	$(function() {
-		tjxx();
+		sltj();
 	});
 	// 受理统计获取数据
 	function tjxx() {
@@ -31,7 +30,7 @@
 		});
 	}
 	// 受理统计构建统计图
-	function sltj(data) {
+	function sltj() {
 		var chart1 = echarts.init($('#slajtj').get(0));
 		// 指定图表的配置项和数据
 		var option = {
@@ -40,55 +39,27 @@
 				trigger : 'item'
 			},
 			legend: {
-		        data:['电话','短信','来人','来函','传真','互联网','语音留言','其他','微信','微博']
+		        data:['现场登记','微信登记','APP登记']
 		    },
 			calculable : true,
 			xAxis : {
-				data : [ "投诉", "举报", "咨询"]
+				data : [ "现场登记", "微信登记", "APP登记"]
 			},
 			yAxis : {
 				type : 'value'
 			},
 			series : [ {
-					name : '电话',
+					name : '现场登记',
 					type : 'bar',
-					data : data.dh,
+					data : 12,
 				},{
-					name : '短信',
+					name : '微信登记',
 					type : 'bar',
-					data : data.dx,
+					data : 1,
 				},{
-					name : '来人',
+					name : 'APP登记',
 					type : 'bar',
-					data : data.lr,
-				},{
-					name : '来函',
-					type : 'bar',
-					data : data.lh,
-				},{
-					name : '传真',
-					type : 'bar',
-					data : data.cz,
-				},{
-					name : '互联网',
-					type : 'bar',
-					data : data.hlw,
-				},{
-					name : '语音留言',
-					type : 'bar',
-					data : data.yyly,
-				},{
-					name : '其他',
-					type : 'bar',
-					data : data.qt,
-				},{
-					name : '微信',
-					type : 'bar',
-					data : data.wx,
-				},{
-					name : '微博',
-					type : 'bar',
-					data : data.wb,
+					data : 2,
 				}
 				]
 		};
