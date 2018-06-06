@@ -12,7 +12,7 @@
 //widget集合
 var _panels = new Array();
 var portal;
-var myHeight = 200;
+var myHeight = 250;
 //portal列
 var p_columns=2;
 //在一起的用，分割，不在一起的用：分割

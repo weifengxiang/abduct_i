@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="org.es.sys.utils.BspUtils"%>
-<%@page import="org.es.sys.utils.CommUtils"%>
-<%@page import="org.es.sys.utils.EnumUtils"%>
-<%@page import="org.es.sys.utils.DictUtils"%>
-<%@include file="/jsp/main/include.jsp"%>
+<%@include file="/jsp/inc/include.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>

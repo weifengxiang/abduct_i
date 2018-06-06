@@ -1,7 +1,7 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="/jsp/main/include.jsp"%>
+<%@include file="/jsp/inc/include.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +13,7 @@
 }
 </style>
 <script type="text/javascript">
-var userId = '<%=BspUtils.getLoginUser().getUserId() %>';
+var userCode = '<%=BspUtils.getLoginUser().getCode() %>';
 
 	$(function() {
 		$('#cc').calendar({
@@ -23,6 +23,7 @@ var userId = '<%=BspUtils.getLoginUser().getUserId() %>';
 			showWeek:true,
 			weekNumberHeader:'第几周'
 		});
+		/**
 		var url = basepath+'sys/PubAttachment/viewNewPubAttachmentImgPath/userhead/'+userId;
 		url=urlcsrf(url);
 		$.ajax({
@@ -36,7 +37,7 @@ var userId = '<%=BspUtils.getLoginUser().getUserId() %>';
 				}
 			}
 		});
-		
+		**/
 		var clock = new Clock();
 		clock.display(document.getElementById("clock"));
 	});
@@ -77,16 +78,16 @@ var userId = '<%=BspUtils.getLoginUser().getUserId() %>';
 			<c:set var="nowDate" value="<%=(new Date()).getHours() %>"></c:set>
 			<c:choose>
 				<c:when test="${nowDate > 0 && nowDate<6}">
-					凌晨好：<font color='blue'><%=BspUtils.getLoginUser().getUserName() %></font>
+					凌晨好：<font color='blue'><%=BspUtils.getLoginUser().getName() %></font>
 				</c:when>
 				<c:when test="${nowDate > 6 && nowDate<=12}">
-					上午好：<font color='blue'><%=BspUtils.getLoginUser().getUserName() %></font>
+					上午好：<font color='blue'><%=BspUtils.getLoginUser().getName() %></font>
 				</c:when>
 				<c:when test="${nowDate > 12 && nowDate<=18}">
-					下午好：<font color='blue'><%=BspUtils.getLoginUser().getUserName() %></font>
+					下午好：<font color='blue'><%=BspUtils.getLoginUser().getName() %></font>
 				</c:when>
 				<c:when test="${nowDate > 18 && nowDate<=24}">
-					晚上好：<font color='blue'><%=BspUtils.getLoginUser().getUserName() %></font>
+					晚上好：<font color='blue'><%=BspUtils.getLoginUser().getName() %></font>
 				</c:when>
 			</c:choose>
 		</div>
@@ -94,8 +95,7 @@ var userId = '<%=BspUtils.getLoginUser().getUserId() %>';
 			style="width: 150px; height: 150px ;border:1px solid gray;margin-left: 10px; margin-right: 10px;margin-top: 5px;margin-bottom: 0px;padding: 1px;border-radius:5px"
 			src="${basepath}skin/images/timg.jpg" />
 		<div  style="width:160px; border: 1;padding-left:10px">
-			<br>单位：<font color='blue'><%=BspUtils.getLoginUserOrg().getOrganName() %></font>
-			<br>部门：<font color='blue'><%=BspUtils.getLoginUserDep().getShortName() %></font>
+		
 		</div>
 	</div>
 
