@@ -8,6 +8,17 @@
 <%=ConfUtils.getValue("procuctName") %>
 </title>
 <security:csrfMetaTags />
+<style type="text/css">
+.logo{
+	position:absolute;
+	padding-left:80px;
+	padding-top:13px;
+	color: #FFFFFF;
+	font-size: 22px;
+	font-weight: bolder;
+	font-family: YouYuan;
+}
+</style>
 <script type="text/javascript" src="${basepath}jsp/main/main.js"></script>
 
 <script type="text/javascript">
@@ -76,7 +87,8 @@ function switchStyle(styleName){
 <body class="easyui-layout">
 	<div region="north" border="false" style="height:83px;padding:0px 0px 0px 0px;overflow-x:visible;overflow-y:visible;">
 	<div style="height:56px;background-color: #1586E7;">
-		<img alt="LOGO" src="${basepath}skin/images/logo.png" style="position: absolute;top:0px">
+		<div class='logo'>涉拐工作平台</div>
+		<img alt="LOGO" src="${basepath}skin/images/58x58.png" style="position: absolute;top:0px;padding-left: 10px">
 		<div style="text-align: right;margin:0 auto;float:right;padding-top:0px">
 			<div style="overflow:hidden;">
 		        <a class="easyui-menubutton" data-options="menu:'#mm3',iconCls:'icon-user'">
