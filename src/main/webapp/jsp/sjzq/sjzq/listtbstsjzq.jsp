@@ -40,6 +40,7 @@ $(function() {
 			selectOnCheck:false,
 			checkOnSelect:false,
 			onDblClickRow:function(rowIndex, rowData){
+								dblclickFun(rowData);
 								//SKY_EASYUI.beginEdit('listtbstsjzqdg',rowIndex);
 						  },
 			onLoadSuccess : function () {
@@ -55,7 +56,7 @@ $(function() {
 						  	 if(0==value){
 						  	 	return '无';
 						  	 }else{
-						  	 	return '有';
+						  	 	return getImg(row.xqbh);
 						  	 }
 						 }">是否有图像</th>
 				<th data-options="field:'xqlb',width:180,
@@ -161,6 +162,8 @@ $(function() {
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delTbStSjzq()">删除</a>
  -->
+ 	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="expExcel()">导出</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-06',plain:true" onclick="detailTbStSjzq()">查看明细</a>
 </div>

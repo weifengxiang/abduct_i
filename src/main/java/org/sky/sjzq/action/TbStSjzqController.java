@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class TbStSjzqController extends BaseController{
 	@Autowired
@@ -155,5 +156,28 @@ public class TbStSjzqController extends BaseController{
 		String xqbh = request.getParameter("xqbh");
 		TbStSjzq bean = tbstsjzqService.getTbStSjzqByXqbh(xqbh);
 		return JsonUtils.obj2json(bean);
+	}
+	@RequestMapping(value = "/sjzq/TbStSjzq/expExcel", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String expExcel(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		ResultData rd= new ResultData();
+		try {
+			String filter = request.getParameter("filter");
+			Map filterMap = null;
+			if(StringUtils.isNull(filter)) {
+				filterMap=JsonUtils.json2map(filter);
+			}
+			String filepath = tbstsjzqService.createSjzqExcel(filterMap);
+			rd.setCode(ResultData.code_success);
+			rd.setData(filepath);
+			rd.setName("Excel生成成功");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("Excel生成失败<br>"+e.getMessage());
+		}
+		return JsonUtils.obj2json(rd);
 	}
 }

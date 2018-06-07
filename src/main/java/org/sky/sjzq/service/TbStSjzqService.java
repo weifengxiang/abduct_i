@@ -3,7 +3,11 @@ import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.sjzq.client.TbStSjzqMapper;
 import org.sky.sys.exception.ServiceException;
@@ -13,8 +17,11 @@ import org.sky.sys.utils.PageListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.sky.sys.utils.BigExcel;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
+import org.sky.sys.utils.ConfUtils;
+import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.StringUtils;
 import org.sky.utils.crawl.main.CrawlData;
 import org.sky.utils.crawl.main.MyCrawlerUtils;
@@ -172,5 +179,26 @@ public class TbStSjzqService {
 		TbStSjzqExample e = new TbStSjzqExample();
 		e.createCriteria().andXqbhEqualTo(xqbh);
 		return tbstsjzqmapper.countByExample(e);
+	}
+	public String createSjzqExcel(Map filter) {
+		String filepath=null;
+		List<Map> res = new ArrayList();
+		Map params = new HashMap();
+		TbStSjzqExample e = new TbStSjzqExample();
+		e.createCriteria();
+		if(null!=filter) {
+			e.integratedQuery(filter);
+		}
+		List<TbStSjzq> list = tbstsjzqmapper.selectByExample(e);
+		for(TbStSjzq zq:list) {
+			String temp = JsonUtils.obj2json(zq);
+			res.add(JsonUtils.json2map(temp));
+		}
+		filepath = ConfUtils.getValue("temp_dir")+File.separator+"crawl"
+				   +File.separator+BspUtils.getLoginUser().getCode()+".xls";
+		String[] titles={"寻亲编号","寻亲类别","姓名","性别","出生日期","失踪时身高","失踪时间","失踪人所在地","失踪地点","寻亲者特征描述","其他资料"};
+		String[] fields={"xqbh","xqlb","xm","xb","csrq","szssg","szsj","szrszd","szdd","xqztzms","qtzl"};
+		BigExcel.createExcel(filepath,CommonUtils.getCurrentDate("yyyy-MM-dd")+"数据抓取", titles,fields,res);
+		return filepath;
 	}
 }
