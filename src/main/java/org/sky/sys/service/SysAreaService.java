@@ -83,15 +83,9 @@ public class SysAreaService {
 			if(StringUtils.isNull(edit.getId())){
 				//新增
 				edit.setId(CommonUtils.getUUID(32));
-				edit.setCreater(BspUtils.getLoginUser().getCode());
-				edit.setCreateTime(ts);
-				edit.setUpdater(BspUtils.getLoginUser().getCode());
-				edit.setUpdateTime(ts);
 				sysareamapper.insertSelective(edit);
 			}else{
 				//修改
-				edit.setUpdater(BspUtils.getLoginUser().getCode());
-				edit.setUpdateTime(ts);
 				sysareamapper.updateByPrimaryKeySelective(edit);
 			}
 		}catch(Exception e){

@@ -1,6 +1,6 @@
 //初始化
 function init(){
-	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/getTbStAjdjxxByPage');
+	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjjashxx/getTbStAjdjxxByPage');
 	$('#listtbstajdjxxdg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();
@@ -180,7 +180,7 @@ function detailTbStAjdjxx(){
  * 查询按钮
  */
 function searchButton(){
-	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/getTbStAjdjxxByPage');
+	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjjashxx/getTbStAjdjxxByPage');
 	$('#listtbstajdjxxdg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();

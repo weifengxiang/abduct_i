@@ -1,16 +1,22 @@
 package org.sky.ywbl.action;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
+import org.sky.ywbl.model.TbStAjdjxxExample;
 import org.sky.ywbl.model.TbStAjshxx;
 import org.sky.ywbl.model.TbStAjshxxExample;
 import org.sky.ywbl.model.TbStAjshxxExample.Criteria;
+import org.sky.ywbl.service.TbStAjdjxxService;
 import org.sky.ywbl.service.TbStAjshxxService;
+import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
@@ -35,7 +41,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class TbStAjshxxController extends BaseController{
 	@Autowired
 	private TbStAjshxxService tbstajshxxService;
-	
+	@Autowired
+	private TbStAjdjxxService tbstajdjxxService;
 	public TbStAjshxxController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -46,6 +53,32 @@ public class TbStAjshxxController extends BaseController{
 	public String initTbStAjshxxListPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/ywbl/ajsh/listtbstajshxx";
+	}
+	@SysControllerLog(desc = "待登记审核的案件信息分页查询")
+	@RequestMapping(value = "/ywbl/TbStAjshxx/getTbStAjdjxxByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String getTbStAjdjxxByPage(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		String filter = request.getParameter("filter");
+		Map filterMap = JsonUtils.json2map(filter);
+		String sortfield=request.getParameter("sortfield");
+		Page p= super.getPage(request);
+		TbStAjdjxxExample pote= new TbStAjdjxxExample();
+		if(null==filterMap) {
+			filterMap=new HashMap();
+		}
+		if(null!=filterMap){
+			pote.createCriteria();
+			filterMap.put("dqdw@=", BspUtils.getLoginUser().getOrganCode());
+			filterMap.put("sjzt@in", "D2,B0");
+			pote.integratedQuery(filterMap);
+		}
+		if(!StringUtils.isNull(sortfield)){
+			pote.setOrderByClause(sortfield);
+		}
+		pote.setPage(p);
+		PageListData pageData = tbstajdjxxService.getTbStAjdjxxByPage(pote);
+		return JsonUtils.obj2json(pageData);
 	}
 	/**
 	 * 案件审核分页查询

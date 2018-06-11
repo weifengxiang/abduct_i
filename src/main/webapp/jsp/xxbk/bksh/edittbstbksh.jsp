@@ -5,7 +5,7 @@
 <html>
 <head>
 <security:csrfMetaTags/>
-<script type="text/javascript" src='${basepath}jsp/xxbk/bksz/edittbstxxbk.js'></script>
+<script type="text/javascript" src='${basepath}jsp/xxbk/bksz/edittbstbksh.js'></script>
 <script type="text/javascript">
 var _callbacks = $.Callbacks();
 var bjlx = <%=EnumUtils.getEnums("XXBK.BJLX") %>;

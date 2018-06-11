@@ -1,6 +1,6 @@
 //初始化
 function init(){
-	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/getTbStAjdjxxByPage');
+	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjshxx/getTbStAjdjxxByPage');
 	$('#listtbstajdjxxdg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();
@@ -50,7 +50,7 @@ function doAjsh(){
 			text: '审核不通过',  
             iconCls: 'icon-undo',  
             handler:function(dialog){
-            	doSH('-1');
+            	doSH('S0');
             }};
 	var tgButton = {
 			text: '审核通过',  
@@ -180,7 +180,7 @@ function detailTbStAjdjxx(){
  * 查询按钮
  */
 function searchButton(){
-	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/getTbStAjdjxxByPage');
+	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjshxx/getTbStAjdjxxByPage');
 	$('#listtbstajdjxxdg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();

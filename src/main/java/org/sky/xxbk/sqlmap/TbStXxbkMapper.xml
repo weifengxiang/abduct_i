@@ -10,8 +10,8 @@
     <result column="BJLX" jdbcType="VARCHAR" property="bjlx" />
     <result column="ZRR" jdbcType="VARCHAR" property="zrr" />
     <result column="ZT" jdbcType="VARCHAR" property="zt" />
-    <result column="SHR" jdbcType="VARCHAR" property="shr" />
-    <result column="SHSJ" jdbcType="TIMESTAMP" property="shsj" />
+    <result column="SPR" jdbcType="VARCHAR" property="spr" />
+    <result column="SPSJ" jdbcType="TIMESTAMP" property="spsj" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
@@ -77,7 +77,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, BH, BKNR, YXSJQ, YXSJZ, BJLX, ZRR, ZT, SHR, SHSJ, BZ, CREATER, CREATE_TIME, UPDATER, 
+    ID, BH, BKNR, YXSJQ, YXSJZ, BJLX, ZRR, ZT, SPR, SPSJ, BZ, CREATER, CREATE_TIME, UPDATER, 
     UPDATE_TIME
   </sql>
   <select id="selectByExample" parameterType="org.sky.xxbk.model.TbStXxbkExample" resultMap="BaseResultMap">
@@ -114,12 +114,12 @@
   <insert id="insert" parameterType="org.sky.xxbk.model.TbStXxbk">
     insert into tb_st_xxbk (ID, BH, BKNR, 
       YXSJQ, YXSJZ, BJLX, 
-      ZRR, ZT, SHR, SHSJ, 
+      ZRR, ZT, SPR, SPSJ, 
       BZ, CREATER, CREATE_TIME, 
       UPDATER, UPDATE_TIME)
     values (#{id,jdbcType=VARCHAR}, #{bh,jdbcType=VARCHAR}, #{bknr,jdbcType=VARCHAR}, 
       #{yxsjq,jdbcType=TIMESTAMP}, #{yxsjz,jdbcType=TIMESTAMP}, #{bjlx,jdbcType=VARCHAR}, 
-      #{zrr,jdbcType=VARCHAR}, #{zt,jdbcType=VARCHAR}, #{shr,jdbcType=VARCHAR}, #{shsj,jdbcType=TIMESTAMP}, 
+      #{zrr,jdbcType=VARCHAR}, #{zt,jdbcType=VARCHAR}, #{spr,jdbcType=VARCHAR}, #{spsj,jdbcType=TIMESTAMP}, 
       #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -150,11 +150,11 @@
       <if test="zt != null">
         ZT,
       </if>
-      <if test="shr != null">
-        SHR,
+      <if test="spr != null">
+        SPR,
       </if>
-      <if test="shsj != null">
-        SHSJ,
+      <if test="spsj != null">
+        SPSJ,
       </if>
       <if test="bz != null">
         BZ,
@@ -197,11 +197,11 @@
       <if test="zt != null">
         #{zt,jdbcType=VARCHAR},
       </if>
-      <if test="shr != null">
-        #{shr,jdbcType=VARCHAR},
+      <if test="spr != null">
+        #{spr,jdbcType=VARCHAR},
       </if>
-      <if test="shsj != null">
-        #{shsj,jdbcType=TIMESTAMP},
+      <if test="spsj != null">
+        #{spsj,jdbcType=TIMESTAMP},
       </if>
       <if test="bz != null">
         #{bz,jdbcType=VARCHAR},
@@ -253,11 +253,11 @@
       <if test="record.zt != null">
         ZT = #{record.zt,jdbcType=VARCHAR},
       </if>
-      <if test="record.shr != null">
-        SHR = #{record.shr,jdbcType=VARCHAR},
+      <if test="record.spr != null">
+        SPR = #{record.spr,jdbcType=VARCHAR},
       </if>
-      <if test="record.shsj != null">
-        SHSJ = #{record.shsj,jdbcType=TIMESTAMP},
+      <if test="record.spsj != null">
+        SPSJ = #{record.spsj,jdbcType=TIMESTAMP},
       </if>
       <if test="record.bz != null">
         BZ = #{record.bz,jdbcType=VARCHAR},
@@ -289,8 +289,8 @@
       BJLX = #{record.bjlx,jdbcType=VARCHAR},
       ZRR = #{record.zrr,jdbcType=VARCHAR},
       ZT = #{record.zt,jdbcType=VARCHAR},
-      SHR = #{record.shr,jdbcType=VARCHAR},
-      SHSJ = #{record.shsj,jdbcType=TIMESTAMP},
+      SPR = #{record.spr,jdbcType=VARCHAR},
+      SPSJ = #{record.spsj,jdbcType=TIMESTAMP},
       BZ = #{record.bz,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -324,11 +324,11 @@
       <if test="zt != null">
         ZT = #{zt,jdbcType=VARCHAR},
       </if>
-      <if test="shr != null">
-        SHR = #{shr,jdbcType=VARCHAR},
+      <if test="spr != null">
+        SPR = #{spr,jdbcType=VARCHAR},
       </if>
-      <if test="shsj != null">
-        SHSJ = #{shsj,jdbcType=TIMESTAMP},
+      <if test="spsj != null">
+        SPSJ = #{spsj,jdbcType=TIMESTAMP},
       </if>
       <if test="bz != null">
         BZ = #{bz,jdbcType=VARCHAR},
@@ -357,8 +357,8 @@
       BJLX = #{bjlx,jdbcType=VARCHAR},
       ZRR = #{zrr,jdbcType=VARCHAR},
       ZT = #{zt,jdbcType=VARCHAR},
-      SHR = #{shr,jdbcType=VARCHAR},
-      SHSJ = #{shsj,jdbcType=TIMESTAMP},
+      SPR = #{spr,jdbcType=VARCHAR},
+      SPSJ = #{spsj,jdbcType=TIMESTAMP},
       BZ = #{bz,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},

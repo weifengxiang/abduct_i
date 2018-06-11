@@ -19,9 +19,9 @@ public class TbStXxbk {
 
     private String zt;
 
-    private String shr;
+    private String spr;
 
-    private Date shsj;
+    private Date spsj;
 
     private String bz;
 
@@ -97,20 +97,20 @@ public class TbStXxbk {
         this.zt = zt;
     }
 
-    public String getShr() {
-        return shr;
+    public String getSpr() {
+        return spr;
     }
 
-    public void setShr(String shr) {
-        this.shr = shr;
+    public void setSpr(String spr) {
+        this.spr = spr;
     }
 
-    public Date getShsj() {
-        return shsj;
+    public Date getSpsj() {
+        return spsj;
     }
 
-    public void setShsj(Date shsj) {
-        this.shsj = shsj;
+    public void setSpsj(Date spsj) {
+        this.spsj = spsj;
     }
 
     public String getBz() {

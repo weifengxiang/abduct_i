@@ -11,6 +11,8 @@ import org.sky.xxbk.model.TbStXxbk;
 import org.sky.xxbk.model.TbStXxbkExample;
 import org.sky.xxbk.model.TbStXxbkExample.Criteria;
 import org.sky.xxbk.service.TbStXxbkService;
+import org.sky.ywbl.service.ComService;
+import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
@@ -21,12 +23,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class TbStXxbkController extends BaseController{
 	@Autowired
 	private TbStXxbkService tbstxxbkService;
-	
+	@Autowired
+	private ComService comService;
 	public TbStXxbkController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -68,17 +72,23 @@ public class TbStXxbkController extends BaseController{
 	*显示信息布控新增页面
 	**/
 	@RequestMapping(value = "/bksz/TbStXxbk/initAddTbStXxbkPage", method = { RequestMethod.GET })
-	public String initAddTbStXxbkPage(
+	public ModelAndView initAddTbStXxbkPage(
 			HttpServletRequest request, HttpServletResponse response) {
-		return "jsp/xxbk/bksz/edittbstxxbk";
+		String ywbh = comService.getYwbh("B", BspUtils.getLoginUser().getOrganCode());
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("bh", ywbh);
+		mv.setViewName("jsp/xxbk/bksz/edittbstxxbk");
+		return mv;
 	}
 	/**
 	*显示信息布控修改页面
 	**/
 	@RequestMapping(value = "/bksz/TbStXxbk/initEditTbStXxbkPage", method = { RequestMethod.GET })
-	public String initEditTbStXxbkPage(
+	public ModelAndView initEditTbStXxbkPage(
 			HttpServletRequest request, HttpServletResponse response) {
-		return "jsp/xxbk/bksz/edittbstxxbk";
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("jsp/xxbk/bksz/edittbstxxbk");
+		return mv;
 	}
 	/**
 	*显示信息布控详细页面

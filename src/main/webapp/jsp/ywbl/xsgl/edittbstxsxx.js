@@ -12,6 +12,8 @@ function initAddTbStXsxxPage(paramOpts){
 	$('#djdw').val(djdw);
 	$('#djdwName').textbox('setValue',djdwName);
 	$('#djsj').datetimebox('setValue',djsj);
+	$('#zt').combobox('setValue','01');
+	$('#xsly').combobox('setValue','01');
 	initPicView();
 }
 /**

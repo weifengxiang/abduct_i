@@ -1,5 +1,6 @@
 package org.sky.ywbl.action;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,8 +73,13 @@ public class TbStAjdjxxController extends BaseController{
 		String sortfield=request.getParameter("sortfield");
 		Page p= super.getPage(request);
 		TbStAjdjxxExample pote= new TbStAjdjxxExample();
+		if(null==filterMap) {
+			filterMap=new HashMap();
+		}
 		if(null!=filterMap){
 			pote.createCriteria();
+			filterMap.put("sjzt@in", "1,D1,S0");
+			filterMap.put("dqdw@=", BspUtils.getLoginUser().getOrganCode());
 			pote.integratedQuery(filterMap);
 		}
 		if(!StringUtils.isNull(sortfield)){

@@ -1,6 +1,6 @@
 //初始化
 function init(){
-	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/getTbStAjdjxxByPage');
+	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjblxx/getTbStAjdjxxByPage');
 	$('#listtbstajdjxxdg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();
@@ -76,10 +76,13 @@ function doAjbl(){
             handler:function(dialog){
             	dialog.close();
             }};
-	buttons.push(thButton);
-	buttons.push(flButton);
-	buttons.push(slButton);
-	buttons.push(bjButton);
+	if('S1'==checkeds[0].sjzt){
+		buttons.push(slButton);
+		buttons.push(thButton);
+	}else{
+		buttons.push(flButton);
+		buttons.push(bjButton);
+	}
 	buttons.push(gbButton);
 	var opts={
 			id:'doAjbl',
@@ -194,7 +197,7 @@ function detailTbStAjdjxx(){
  * 查询按钮
  */
 function searchButton(){
-	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/getTbStAjdjxxByPage');
+	$('#listtbstajdjxxdg').datagrid('options').url=SKY.urlCSRF(basepath+'ywbl/TbStAjblxx/getTbStAjdjxxByPage');
 	$('#listtbstajdjxxdg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();

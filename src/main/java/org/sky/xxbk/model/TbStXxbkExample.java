@@ -681,133 +681,133 @@ public class TbStXxbkExample {
             return (Criteria) this;
         }
 
-        public Criteria andShrIsNull() {
-            addCriterion("SHR is null");
+        public Criteria andSprIsNull() {
+            addCriterion("SPR is null");
             return (Criteria) this;
         }
 
-        public Criteria andShrIsNotNull() {
-            addCriterion("SHR is not null");
+        public Criteria andSprIsNotNull() {
+            addCriterion("SPR is not null");
             return (Criteria) this;
         }
 
-        public Criteria andShrEqualTo(String value) {
-            addCriterion("SHR =", value, "shr");
+        public Criteria andSprEqualTo(String value) {
+            addCriterion("SPR =", value, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShrNotEqualTo(String value) {
-            addCriterion("SHR <>", value, "shr");
+        public Criteria andSprNotEqualTo(String value) {
+            addCriterion("SPR <>", value, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShrGreaterThan(String value) {
-            addCriterion("SHR >", value, "shr");
+        public Criteria andSprGreaterThan(String value) {
+            addCriterion("SPR >", value, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShrGreaterThanOrEqualTo(String value) {
-            addCriterion("SHR >=", value, "shr");
+        public Criteria andSprGreaterThanOrEqualTo(String value) {
+            addCriterion("SPR >=", value, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShrLessThan(String value) {
-            addCriterion("SHR <", value, "shr");
+        public Criteria andSprLessThan(String value) {
+            addCriterion("SPR <", value, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShrLessThanOrEqualTo(String value) {
-            addCriterion("SHR <=", value, "shr");
+        public Criteria andSprLessThanOrEqualTo(String value) {
+            addCriterion("SPR <=", value, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShrLike(String value) {
-            addCriterion("SHR like", value, "shr");
+        public Criteria andSprLike(String value) {
+            addCriterion("SPR like", value, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShrNotLike(String value) {
-            addCriterion("SHR not like", value, "shr");
+        public Criteria andSprNotLike(String value) {
+            addCriterion("SPR not like", value, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShrIn(List<String> values) {
-            addCriterion("SHR in", values, "shr");
+        public Criteria andSprIn(List<String> values) {
+            addCriterion("SPR in", values, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShrNotIn(List<String> values) {
-            addCriterion("SHR not in", values, "shr");
+        public Criteria andSprNotIn(List<String> values) {
+            addCriterion("SPR not in", values, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShrBetween(String value1, String value2) {
-            addCriterion("SHR between", value1, value2, "shr");
+        public Criteria andSprBetween(String value1, String value2) {
+            addCriterion("SPR between", value1, value2, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShrNotBetween(String value1, String value2) {
-            addCriterion("SHR not between", value1, value2, "shr");
+        public Criteria andSprNotBetween(String value1, String value2) {
+            addCriterion("SPR not between", value1, value2, "spr");
             return (Criteria) this;
         }
 
-        public Criteria andShsjIsNull() {
-            addCriterion("SHSJ is null");
+        public Criteria andSpsjIsNull() {
+            addCriterion("SPSJ is null");
             return (Criteria) this;
         }
 
-        public Criteria andShsjIsNotNull() {
-            addCriterion("SHSJ is not null");
+        public Criteria andSpsjIsNotNull() {
+            addCriterion("SPSJ is not null");
             return (Criteria) this;
         }
 
-        public Criteria andShsjEqualTo(Date value) {
-            addCriterion("SHSJ =", value, "shsj");
+        public Criteria andSpsjEqualTo(Date value) {
+            addCriterion("SPSJ =", value, "spsj");
             return (Criteria) this;
         }
 
-        public Criteria andShsjNotEqualTo(Date value) {
-            addCriterion("SHSJ <>", value, "shsj");
+        public Criteria andSpsjNotEqualTo(Date value) {
+            addCriterion("SPSJ <>", value, "spsj");
             return (Criteria) this;
         }
 
-        public Criteria andShsjGreaterThan(Date value) {
-            addCriterion("SHSJ >", value, "shsj");
+        public Criteria andSpsjGreaterThan(Date value) {
+            addCriterion("SPSJ >", value, "spsj");
             return (Criteria) this;
         }
 
-        public Criteria andShsjGreaterThanOrEqualTo(Date value) {
-            addCriterion("SHSJ >=", value, "shsj");
+        public Criteria andSpsjGreaterThanOrEqualTo(Date value) {
+            addCriterion("SPSJ >=", value, "spsj");
             return (Criteria) this;
         }
 
-        public Criteria andShsjLessThan(Date value) {
-            addCriterion("SHSJ <", value, "shsj");
+        public Criteria andSpsjLessThan(Date value) {
+            addCriterion("SPSJ <", value, "spsj");
             return (Criteria) this;
         }
 
-        public Criteria andShsjLessThanOrEqualTo(Date value) {
-            addCriterion("SHSJ <=", value, "shsj");
+        public Criteria andSpsjLessThanOrEqualTo(Date value) {
+            addCriterion("SPSJ <=", value, "spsj");
             return (Criteria) this;
         }
 
-        public Criteria andShsjIn(List<Date> values) {
-            addCriterion("SHSJ in", values, "shsj");
+        public Criteria andSpsjIn(List<Date> values) {
+            addCriterion("SPSJ in", values, "spsj");
             return (Criteria) this;
         }
 
-        public Criteria andShsjNotIn(List<Date> values) {
-            addCriterion("SHSJ not in", values, "shsj");
+        public Criteria andSpsjNotIn(List<Date> values) {
+            addCriterion("SPSJ not in", values, "spsj");
             return (Criteria) this;
         }
 
-        public Criteria andShsjBetween(Date value1, Date value2) {
-            addCriterion("SHSJ between", value1, value2, "shsj");
+        public Criteria andSpsjBetween(Date value1, Date value2) {
+            addCriterion("SPSJ between", value1, value2, "spsj");
             return (Criteria) this;
         }
 
-        public Criteria andShsjNotBetween(Date value1, Date value2) {
-            addCriterion("SHSJ not between", value1, value2, "shsj");
+        public Criteria andSpsjNotBetween(Date value1, Date value2) {
+            addCriterion("SPSJ not between", value1, value2, "spsj");
             return (Criteria) this;
         }
 

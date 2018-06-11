@@ -1,5 +1,6 @@
 package org.sky.ywbl.action;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.sky.ywbl.model.TbStAjdjxxExample;
 import org.sky.ywbl.model.TbStAjblxxExample.Criteria;
 import org.sky.ywbl.service.TbStAjblxxService;
 import org.sky.ywbl.service.TbStAjdjxxService;
+import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
@@ -52,6 +54,32 @@ public class TbStAjblxxController extends BaseController{
 	public String initTbStAjblxxListPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/ywbl/ajbl/listtbstajblxx";
+	}
+	@SysControllerLog(desc = "案件待办理登记信息分页查询")
+	@RequestMapping(value = "/ywbl/TbStAjblxx/getTbStAjdjxxByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String getTbStAjdjxxByPage(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		String filter = request.getParameter("filter");
+		Map filterMap = JsonUtils.json2map(filter);
+		String sortfield=request.getParameter("sortfield");
+		Page p= super.getPage(request);
+		TbStAjdjxxExample pote= new TbStAjdjxxExample();
+		if(null==filterMap) {
+			filterMap=new HashMap();
+		}
+		if(null!=filterMap){
+			pote.createCriteria();
+			filterMap.put("sjzt@in", "S1,B0,B1,B2,J0");
+			filterMap.put("dqdw@=", BspUtils.getLoginUser().getOrganCode());
+			pote.integratedQuery(filterMap);
+		}
+		if(!StringUtils.isNull(sortfield)){
+			pote.setOrderByClause(sortfield);
+		}
+		pote.setPage(p);
+		PageListData pageData = tbstajdjxxService.getTbStAjdjxxByPage(pote);
+		return JsonUtils.obj2json(pageData);
 	}
 	/**
 	 * 案件办理信息分页查询

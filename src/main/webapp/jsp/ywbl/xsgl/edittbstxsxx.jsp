@@ -91,13 +91,13 @@ $(function() {
 				  </tr>
 				  <tr>
 					<th><label>状态:</label></th>
-					<td><input class="easyui-combobox" name="zt"
+					<td><input class="easyui-combobox" name="zt" id='zt'
 						data-options="required:true,
 									  valueField:'code',
 									  textField:'name',
 									  data:xszt"></input></td>
 					<th><label>线索来源:</label></th>
-					<td><input class="easyui-combobox" name="xsly"
+					<td><input class="easyui-combobox" name="xsly" id="xsly"
 						data-options="required:true,
 									  valueField:'code',
 									  textField:'name',
@@ -105,7 +105,7 @@ $(function() {
 				  </tr>
 				  <tr>
 					<th><label>备注:</label></th>
-					<td colspan='3'><input class="easyui-textbox" name="bz" style='width:300;height:50'
+					<td colspan='3'><input class="easyui-textbox" name="bz" style='width:500;height:50'
 						data-options="required:true,multiline:true"></input></td>
 				  </tr>
 			</table>

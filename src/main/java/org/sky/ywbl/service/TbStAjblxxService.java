@@ -12,6 +12,7 @@ import org.sky.ywbl.model.TbStAjblxxExample;
 import org.sky.ywbl.model.TbStAjdjxx;
 import org.sky.ywbl.model.TbStAjdjxxExample;
 import org.sky.ywbl.model.TbStAjlzxx;
+import org.sky.ywbl.model.TbStAjlzxxExample;
 import org.sky.sys.utils.PageListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -110,6 +111,17 @@ public class TbStAjblxxService {
 					//办结
 					TbStAjdjxx ajxx = djxxMapper.selectByAjbh(edit.getAjbh());
 					aj.setDqdw(ajxx.getDjdw());
+				}else if("B0".equals(edit.getBljg())){
+					//退回 根据流转信息倒序，找到第一个不是当前单位的，如果都是当前单位那当前单位就是当前单位
+					TbStAjlzxxExample e = new TbStAjlzxxExample();
+					e.createCriteria().andDqdwNotEqualTo(BspUtils.getLoginUser().getOrganCode());
+					e.setOrderByClause("create_time desc");
+					List<TbStAjlzxx> list = lzxxMapper.selectByExample(e);
+					if(list.size()>0) {
+						aj.setDqdw(list.get(0).getDqdw());
+					}else {
+						aj.setDqdw(BspUtils.getLoginUser().getOrganCode());
+					}
 				}
 				aj.setSjzt(edit.getBljg());
 				TbStAjdjxxExample e = new TbStAjdjxxExample();
@@ -123,12 +135,13 @@ public class TbStAjblxxService {
 					//分流
 					//修改案件信息当前单位
 					lzxx.setDqdw(flqx);
-				}else if("B3".equals(edit.getBljg())){
-					//办结
+				}else if("B3".equals(edit.getBljg())||"B0".equals(edit.getBljg())){
+					//办结或者退回
 					lzxx.setDqdw(aj.getDqdw());
 				}else {
 					lzxx.setDqdw(BspUtils.getLoginUser().getOrganCode());
 				}
+				lzxx.setAjzt(aj.getSjzt());
 				lzxx.setLzr(BspUtils.getLoginUser().getCode());
 				lzxx.setLzdw(BspUtils.getLoginUser().getOrganCode());
 				lzxx.setLzsj(ts);

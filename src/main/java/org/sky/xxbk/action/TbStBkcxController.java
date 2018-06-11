@@ -11,6 +11,8 @@ import org.sky.xxbk.model.TbStBkcx;
 import org.sky.xxbk.model.TbStBkcxExample;
 import org.sky.xxbk.model.TbStBkcxExample.Criteria;
 import org.sky.xxbk.service.TbStBkcxService;
+import org.sky.ywbl.service.ComService;
+import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
@@ -21,12 +23,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class TbStBkcxController extends BaseController{
 	@Autowired
 	private TbStBkcxService tbstbkcxService;
-	
 	public TbStBkcxController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -68,9 +70,11 @@ public class TbStBkcxController extends BaseController{
 	*显示布控查询新增页面
 	**/
 	@RequestMapping(value = "/bkcx/TbStBkcx/initAddTbStBkcxPage", method = { RequestMethod.GET })
-	public String initAddTbStBkcxPage(
+	public ModelAndView initAddTbStBkcxPage(
 			HttpServletRequest request, HttpServletResponse response) {
-		return "jsp/xxbk/bkcx/edittbstbkcx";
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("jsp/xxbk/bkcx/edittbstbkcx");
+		return mv;
 	}
 	/**
 	*显示布控查询修改页面
