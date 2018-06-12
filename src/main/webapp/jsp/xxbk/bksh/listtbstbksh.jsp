@@ -5,9 +5,10 @@
 <html>
 <head>
 <security:csrfMetaTags/>
-<script type="text/javascript" src='${basepath}jsp/xxbk/bksz/listtbstbksh.js'></script>
+<script type="text/javascript" src='${basepath}jsp/xxbk/bksh/listtbstbksh.js'></script>
 <script type="text/javascript">
 var bjlx = <%=EnumUtils.getEnums("XXBK.BJLX") %>;
+var zt= <%=EnumUtils.getEnums("XXBK.ZT") %>;
 $(function() {
 	init();
 });
@@ -80,41 +81,29 @@ $(function() {
 						options:{
 							required:true
 						}}">有效时间至</th>
-				<th data-options="field:'bjlx',width:180,
+				<th data-options="field:'bjlx',width:80,
 				formatter:function(value,row){
 						  	 return SKY.formatterDict(value,row,bjlx);
 						 }">报警类型</th>
-				<th data-options="field:'zrr',width:180,
+				<th data-options="field:'zrrName',width:80,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">责任人</th>
-				<th data-options="field:'zt',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">状态</th>
-				<th data-options="field:'bz',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">备注</th>
+				<th data-options="field:'zt',width:80,
+				formatter:function(value,row){
+						  	 return SKY.formatterDict(value,row,zt);
+						 }">状态</th>
 		</tr>
 	</thead>
 </table>
 </div>
 <div id="tb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="addTbStXxbk()">增加</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="doSh('1')">审核通过</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-edit',plain:true" onclick="editTbStXxbk()">修改</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delTbStXxbk()">删除</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-06',plain:true" onclick="detailTbStXxbk()">查看明细</a>
+		data-options="iconCls:'icon-edit',plain:true" onclick="doSh('-1')">审核不通过</a>
 </div>
 </body>
 </html>

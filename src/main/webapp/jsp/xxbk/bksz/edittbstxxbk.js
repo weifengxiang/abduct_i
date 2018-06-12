@@ -7,6 +7,7 @@ function initAddTbStXxbkPage(paramOpts){
 		paramOpts.dialog.close();
 	});
 	$('#bh').textbox('setValue',bh);
+	$('#zt').combobox('setValue','0');
 }
 /**
  * 初始化编辑信息布控页面

@@ -156,15 +156,60 @@ function searchButton(){
 			if(jksj){
 				ft.put("jksj@=", jksj);
 			}
-			var zt =$('#q_zt').textbox("getValue");
-			if(zt){
-				ft.put("zt@=", zt);
-			}
-			var bz =$('#q_bz').textbox("getValue");
-			if(bz){
-				ft.put("bz@=", bz);
-			}
 			return ft.getJSON();
 		}
 	});
 }
+function fmYwbh(data){
+	console.log(data.ywlx);
+	if('AJXX'==data.ywlx){
+		return "<a href='#' onclick='ajdetail(\""+data.ywbh+"\")'>"+data.ywbh+"</a>";
+	}else if('XSXX'==data.ywlx){
+		return "<a href='#' onclick='xsdetail(\""+data.ywbh+"\")'>"+data.ywbh+"</a>";
+	}else{
+		return data.ywbh
+	}
+	
+}
+var ajdetail=function(ajbh){
+	var gbButton = {
+			text: '关闭',  
+            iconCls: 'icon-cancel',  
+            handler:function(dialog){
+            	dialog.close();
+            }};
+	var buttons = new Array();
+	buttons.push(gbButton);
+	var opts={
+				id:'detailTbStAjdjxx',
+				title:'案件登记信息明细',
+				width:800,
+				height:600,
+				modal:true,
+				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/initAjxxmainPage?ajbh='+ajbh),
+				buttons:buttons
+			  };
+	SKY_EASYUI.open(opts);
+};
+var xsdetail=function(ywbh){
+		var opts={
+				id:'detailTbStXsxx',
+				title:'线索信息明细',
+				width:800,
+				height:600,
+				modal:true,
+				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStXsxx/initDetailTbStXsxxPage'),
+				onLoad: function(dialog){ 
+		            if(this.content && this.content.initDetailTbStXsxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		                var paramOpts=new Object();
+		                paramOpts.dialog=dialog;
+		                paramOpts.data={'xsbh':ywbh};
+		                paramOpts.callBack=function(){
+		                	dialog.close();
+		                };
+		            	this.content.initDetailTbStXsxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            } 
+		        }
+			  };
+		SKY_EASYUI.open(opts);
+};

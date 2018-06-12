@@ -8,6 +8,7 @@
 <script type="text/javascript" src='${basepath}jsp/xxbk/bksz/listtbstxxbk.js'></script>
 <script type="text/javascript">
 var bjlx = <%=EnumUtils.getEnums("XXBK.BJLX") %>;
+var zt= <%=EnumUtils.getEnums("XXBK.ZT") %>;
 $(function() {
 	init();
 });
@@ -80,28 +81,20 @@ $(function() {
 						options:{
 							required:true
 						}}">有效时间至</th>
-				<th data-options="field:'bjlx',width:180,
+				<th data-options="field:'bjlx',width:80,
 				formatter:function(value,row){
 						  	 return SKY.formatterDict(value,row,bjlx);
 						 }">报警类型</th>
-				<th data-options="field:'zrr',width:180,
+				<th data-options="field:'zrrName',width:80,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">责任人</th>
-				<th data-options="field:'zt',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">状态</th>
-				<th data-options="field:'bz',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">备注</th>
+				<th data-options="field:'zt',width:80,
+				formatter:function(value,row){
+						  	 return SKY.formatterDict(value,row,zt);
+						 }">状态</th>
 		</tr>
 	</thead>
 </table>

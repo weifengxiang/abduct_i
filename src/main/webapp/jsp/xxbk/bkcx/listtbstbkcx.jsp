@@ -24,11 +24,7 @@ $(function() {
 		<th><label>业务编号:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入业务编号'" name="q_ywbh"  id="q_ywbh" ></input></td>				
 		<th><label>监控时间:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入监控时间'" name="q_jksj"  id="q_jksj" ></input></td>				
-		<th><label>状态:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入状态'" name="q_zt"  id="q_zt" ></input></td>				
-		<th><label>备注:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入备注'" name="q_bz"  id="q_bz" ></input></td>				
+		<td><input  class="easyui-textbox" data-options="prompt:'输入监控时间'" name="q_jksj"  id="q_jksj" ></input></td>			
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>
@@ -71,23 +67,15 @@ $(function() {
 							required:true
 						}}">业务类型</th>
 				<th data-options="field:'ywbh',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">业务编号</th>
+				formatter:function(value,row){
+						  	 return fmYwbh(row);
+						 }">业务编号</th>
 				<th data-options="field:'jksj',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">监控时间</th>
-				<th data-options="field:'zt',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">状态</th>
 				<th data-options="field:'bz',width:180,
 				editor:{
 						type:'textbox',

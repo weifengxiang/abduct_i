@@ -9,6 +9,7 @@
 <script type="text/javascript">
 var _callbacks = $.Callbacks();
 var bjlx = <%=EnumUtils.getEnums("XXBK.BJLX") %>;
+var zt= <%=EnumUtils.getEnums("XXBK.ZT") %>;
 var bh='${bh}'
 $(function() {
 	
@@ -58,12 +59,17 @@ $(function() {
 				  </tr>
 				  <tr>
 					<th><label>状态:</label></th>
-					<td><input class="easyui-textbox" name="zt"
-						data-options="required:true"></input></td>
-				  
-					<th><label>备注:</label></th>
-					<td><input class="easyui-textbox" name="bz"
-						data-options="required:true"></input></td>
+					<td  colspan='3'><input class="easyui-combobox" name="zt" id='zt'
+						data-options="required:true,
+									  data:zt,
+									  valueField:'code',
+									  textField:'name'
+									  "></input></td>
+				  </tr>
+				  <tr>
+				  	<th><label>备注:</label></th>
+					<td colspan='3'><input class="easyui-textbox" name="bz" style='width:400;height:50'
+						data-options="multiline:true"></input></td>
 				  </tr>
 			</table>
 		</form>

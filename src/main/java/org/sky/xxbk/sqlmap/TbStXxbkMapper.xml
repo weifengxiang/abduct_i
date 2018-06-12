@@ -9,6 +9,7 @@
     <result column="YXSJZ" jdbcType="TIMESTAMP" property="yxsjz" />
     <result column="BJLX" jdbcType="VARCHAR" property="bjlx" />
     <result column="ZRR" jdbcType="VARCHAR" property="zrr" />
+    <result column="ZRR_NAME" jdbcType="VARCHAR" property="zrrName" />
     <result column="ZT" jdbcType="VARCHAR" property="zt" />
     <result column="SPR" jdbcType="VARCHAR" property="spr" />
     <result column="SPSJ" jdbcType="TIMESTAMP" property="spsj" />
@@ -78,7 +79,8 @@
   </sql>
   <sql id="Base_Column_List">
     ID, BH, BKNR, YXSJQ, YXSJZ, BJLX, ZRR, ZT, SPR, SPSJ, BZ, CREATER, CREATE_TIME, UPDATER, 
-    UPDATE_TIME
+    UPDATE_TIME,
+    (SELECT NAME FROM SYS_USER U WHERE U.CODE=ZRR) as ZRR_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.xxbk.model.TbStXxbkExample" resultMap="BaseResultMap">
     select

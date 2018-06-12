@@ -16,6 +16,8 @@ public class TbStXxbk {
     private String bjlx;
 
     private String zrr;
+    
+    private String zrrName;
 
     private String zt;
 
@@ -152,4 +154,12 @@ public class TbStXxbk {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getZrrName() {
+		return zrrName;
+	}
+
+	public void setZrrName(String zrrName) {
+		this.zrrName = zrrName;
+	}
 }

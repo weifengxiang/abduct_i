@@ -8,48 +8,25 @@ function init(){
 		}
 	});
 }
+
  /**
- *添加信息布控
+ *信息布控审核
  **/
-function addTbStXxbk(){
-	var opts={
-				id:'addTbStXxbk',
-				title:'添加信息布控',
-				width:600,
-				height:450,
-				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'bksz/TbStXxbk/initAddTbStXxbkPage'),
-				onLoad: function(dialog){ 
-		            if(this.content && this.content.initAddTbStXxbkPage){//判断弹出窗体iframe中的driveInit方法是否存在 
-		                var paramOpts=new Object();
-		                paramOpts.dialog=dialog;
-		                paramOpts.callBack=function(){
-		                	dialog.close();
-		                	searchButton();
-		                };
-		            	this.content.initAddTbStXxbkPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
-		            } 
-		        }
-			  };
-	SKY_EASYUI.open(opts);
-}
- /**
- *删除信息布控
- **/
-function delTbStXxbk(){
+function doSh(zt){
 	var checkeds=$('#listtbstxxbkdg').datagrid('getChecked');
 	if(null==checkeds||checkeds.length<1){
-		$.messager.alert('提示','请选择要删除的记录','info');
+		$.messager.alert('提示','请选择要审核的记录','info');
 		return;
 	}else{
-		var msg="确定要删除"+checkeds.length+"条数据?";
-		$.messager.confirm("删除确认",msg,
+		var msg="确定要审核"+checkeds.length+"条数据?";
+		$.messager.confirm("确认",msg,
 		function (r){
 			if(r){
-				SKY_EASYUI.mask('正在进行删除，请稍等...');
-				var url = SKY.urlCSRF(basepath+'bksz/TbStXxbk/delTbStXxbk');
+				SKY_EASYUI.mask('正在进行审核，请稍等...');
+				var url = SKY.urlCSRF(basepath+'bksh/TbStBksh/shTbStXxbk');
 				var params = {
-							"delRows":JSON.stringify(checkeds)
+							"shRows":JSON.stringify(checkeds),
+							"zt":zt
 						};
 				$.ajax({
 		    		url:url,
@@ -70,67 +47,6 @@ function delTbStXxbk(){
 		}
 		);
 	}
-}
-/**
-*修改信息布控
-**/
-function editTbStXxbk(){
-	var checkeds=$('#listtbstxxbkdg').datagrid('getChecked');
-	if(null==checkeds||checkeds.length!=1){
-		$.messager.alert('提示','请选择一条记录','info');
-		return;
-	}
-	var opts={
-				id:'editTbStXxbk',
-				title:'修改信息布控',
-				width:600,
-				height:450,
-				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'bksz/TbStXxbk/initEditTbStXxbkPage'),
-				onLoad: function(dialog){ 
-		            if(this.content && this.content.initEditTbStXxbkPage){//判断弹出窗体iframe中的driveInit方法是否存在 
-		                var paramOpts=new Object();
-		                paramOpts.dialog=dialog;
-		                paramOpts.data=checkeds[0];
-		                paramOpts.callBack=function(){
-		                	dialog.close();
-		                	searchButton();
-		                };
-		            	this.content.initEditTbStXxbkPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
-		            } 
-		        }
-			  };
-	SKY_EASYUI.open(opts);
-}
-/**
-*查看明细
-**/
-function detailTbStXxbk(){
-	var checkeds=$('#listtbstxxbkdg').datagrid('getChecked');
-	if(null==checkeds||checkeds.length!=1){
-		$.messager.alert('提示','请选择一条记录','info');
-		return;
-	}
-	var opts={
-				id:'detailTbStXxbk',
-				title:'信息布控明细',
-				width:600,
-				height:450,
-				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'bksz/TbStXxbk/initDetailTbStXxbkPage'),
-				onLoad: function(dialog){ 
-		            if(this.content && this.content.initDetailTbStXxbkPage){//判断弹出窗体iframe中的driveInit方法是否存在 
-		                var paramOpts=new Object();
-		                paramOpts.dialog=dialog;
-		                paramOpts.data=checkeds[0];
-		                paramOpts.callBack=function(){
-		                	dialog.close();
-		                };
-		            	this.content.initDetailTbStXxbkPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
-		            } 
-		        }
-			  };
-	SKY_EASYUI.open(opts);
 }
 /**
  * 查询按钮

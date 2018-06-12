@@ -14,12 +14,19 @@ import org.sky.ywbl.model.TbStAjlzxxExample;
 import org.sky.ywbl.model.TbStTxxx;
 import org.sky.ywbl.model.TbStTxxxExample;
 import org.sky.sys.utils.PageListData;
+import org.sky.sys.utils.PinyinUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.StringUtils;
+import org.sky.xxbk.client.TbStBkcxMapper;
+import org.sky.xxbk.client.TbStXxbkMapper;
+import org.sky.xxbk.model.TbStBkcx;
+import org.sky.xxbk.model.TbStBkcxExample;
+import org.sky.xxbk.model.TbStXxbk;
+import org.sky.xxbk.model.TbStXxbkExample;
 @Service
 public class TbStAjdjxxService {
 	private final Logger logger=Logger.getLogger(TbStAjdjxxService.class);
@@ -31,6 +38,10 @@ public class TbStAjdjxxService {
 	private TbStTxxxMapper txxxmapper;
 	@Autowired
 	private TbStAjlzxxMapper lzxxmapper;
+	@Autowired
+	private TbStXxbkMapper xxbkMapper;
+	@Autowired
+	private TbStBkcxMapper bkcxMapper;
 	/**
 	*分页查询
 	**/
@@ -133,6 +144,33 @@ public class TbStAjdjxxService {
 			lzxx.setUpdater(BspUtils.getLoginUser().getCode());
 			lzxx.setUpdateTime(ts);
 			lzxxmapper.insert(lzxx);
+			TbStXxbkExample bke = new TbStXxbkExample();
+			bke.createCriteria().andZtEqualTo("1").andYxsjqLessThanOrEqualTo(ts).andYxsjzGreaterThanOrEqualTo(ts);
+			List<TbStXxbk> bkList = xxbkMapper.selectByExample(bke);
+			PinyinUtils pu=new PinyinUtils();
+			for(TbStXxbk bk:bkList) {
+				String bkpy = pu.toPinYin(bk.getBknr(),"",PinyinUtils.Type.LOWERCASE);
+				String bjr = edit.getBjr();
+				String bjrzjhm = edit.getBjrzjhm();
+				String szr = edit.getSzr();
+				String szrzjhm = edit.getSzrzjhm();
+				if(bkpy.equals(pu.toPinYin(bjr,"",PinyinUtils.Type.LOWERCASE))
+					||bkpy.equals(pu.toPinYin(bjrzjhm,"",PinyinUtils.Type.LOWERCASE))
+					||bkpy.equals(pu.toPinYin(szr,"",PinyinUtils.Type.LOWERCASE))
+					||bkpy.equals(pu.toPinYin(szrzjhm,"",PinyinUtils.Type.LOWERCASE))) {
+					TbStBkcx bc = new TbStBkcx();
+					bc.setId(CommonUtils.getUUID(32));
+					bc.setBkbh(bk.getBh());
+					bc.setCreater(BspUtils.getLoginUser().getCode());
+					bc.setCreateTime(ts);
+					bc.setJksj(ts);
+					bc.setUpdater(BspUtils.getLoginUser().getCode());
+					bc.setUpdateTime(ts);
+					bc.setYwbh(edit.getAjbh());
+					bc.setYwlx("AJXX");
+					bkcxMapper.insert(bc);
+				}
+			}
 		}catch(Exception e){
 			logger.error("保存新增/编辑单个对象执行失败",e);
 			throw new ServiceException(e.getMessage());
