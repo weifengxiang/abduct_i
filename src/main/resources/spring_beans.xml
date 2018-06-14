@@ -82,6 +82,7 @@
 	        	<value>classpath*:org/sky/sjzq/**/sqlmap/*.xml</value>
 	        	<value>classpath*:org/sky/txsb/**/sqlmap/*.xml</value>
 	        	<value>classpath*:org/sky/xxbk/**/sqlmap/*.xml</value>
+	        	<value>classpath*:org/sky/zlgl/**/sqlmap/*.xml</value>
 	        </array>
         </property>
     </bean>
