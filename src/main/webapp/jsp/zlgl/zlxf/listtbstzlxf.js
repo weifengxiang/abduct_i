@@ -152,18 +152,11 @@ function searchButton(){
 			if(zlnr){
 				ft.put("zlnr@=", zlnr);
 			}
-			var xfdw =$('#q_xfdw').textbox("getValue");
-			if(xfdw){
-				ft.put("xfdw@=", xfdw);
-			}
 			var xfsj =$('#q_xfsj').textbox("getValue");
 			if(xfsj){
 				ft.put("xfsj@=", xfsj);
 			}
-			var bz =$('#q_bz').textbox("getValue");
-			if(bz){
-				ft.put("bz@=", bz);
-			}
+			
 			return ft.getJSON();
 		}
 	});

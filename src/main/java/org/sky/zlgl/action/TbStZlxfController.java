@@ -11,22 +11,26 @@ import org.sky.zlgl.model.TbStZlxf;
 import org.sky.zlgl.model.TbStZlxfExample;
 import org.sky.zlgl.model.TbStZlxfExample.Criteria;
 import org.sky.zlgl.service.TbStZlxfService;
+import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
 import org.sky.sys.utils.ResultData;
 import org.sky.sys.utils.StringUtils;
+import org.sky.ywbl.service.ComService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class TbStZlxfController extends BaseController{
 	@Autowired
 	private TbStZlxfService tbstzlxfService;
-	
+	@Autowired
+	private ComService comService;
 	public TbStZlxfController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -68,9 +72,13 @@ public class TbStZlxfController extends BaseController{
 	*显示指令下发新增页面
 	**/
 	@RequestMapping(value = "/zlgl/TbStZlxf/initAddTbStZlxfPage", method = { RequestMethod.GET })
-	public String initAddTbStZlxfPage(
+	public ModelAndView initAddTbStZlxfPage(
 			HttpServletRequest request, HttpServletResponse response) {
-		return "jsp/zlgl/zlxf/edittbstzlxf";
+		ModelAndView  mv = new ModelAndView();
+		String zlbh = comService.getYwbh("Z", BspUtils.getLoginUser().getOrganCode());
+		mv.addObject("zlbh", zlbh);
+		mv.setViewName("jsp/zlgl/zlxf/edittbstzlxf");
+		return mv;
 	}
 	/**
 	*显示指令下发修改页面

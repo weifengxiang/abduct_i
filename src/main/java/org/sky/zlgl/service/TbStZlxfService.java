@@ -3,8 +3,10 @@ import org.apache.log4j.Logger;
 import java.sql.Timestamp;
 import java.util.List;
 import org.sky.sys.client.SysCommonMapper;
+import org.sky.zlgl.client.TbStZlfkMapper;
 import org.sky.zlgl.client.TbStZlxfMapper;
 import org.sky.sys.exception.ServiceException;
+import org.sky.zlgl.model.TbStZlfk;
 import org.sky.zlgl.model.TbStZlxf;
 import org.sky.zlgl.model.TbStZlxfExample;
 import org.sky.sys.utils.PageListData;
@@ -19,6 +21,8 @@ public class TbStZlxfService {
 	private final Logger logger=Logger.getLogger(TbStZlxfService.class);
 	@Autowired
 	private TbStZlxfMapper tbstzlxfmapper;
+	@Autowired
+	private TbStZlfkMapper tbstzlfkmapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
 	/**
@@ -87,6 +91,20 @@ public class TbStZlxfService {
 				edit.setCreateTime(ts);
 				edit.setUpdater(BspUtils.getLoginUser().getCode());
 				edit.setUpdateTime(ts);
+				String jsdw = edit.getJsdw();
+				String[] jsdws = jsdw.split(",");
+				for(String dwcode:jsdws) {
+					TbStZlfk fk = new TbStZlfk();
+					fk.setId(CommonUtils.getUUID(32));
+					fk.setJsdw(dwcode);
+					fk.setZlbh(edit.getZlbh());
+					fk.setZt("0");
+					fk.setCreater(BspUtils.getLoginUser().getCode());
+					fk.setCreateTime(ts);
+					fk.setUpdater(BspUtils.getLoginUser().getCode());
+					fk.setUpdateTime(ts);
+					tbstzlfkmapper.insert(fk);
+				}
 				tbstzlxfmapper.insertSelective(edit);
 			}else{
 				//修改

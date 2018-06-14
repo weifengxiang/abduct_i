@@ -19,18 +19,10 @@ $(function() {
 	<tr style="height: 34px">
 		<th><label>指令编号:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入指令编号'" name="q_zlbh"  id="q_zlbh" ></input></td>				
-		<th><label>接收单位:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入接收单位'" name="q_jsdw"  id="q_jsdw" ></input></td>				
-		<th><label>接收时间:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入接收时间'" name="q_jssj"  id="q_jssj" ></input></td>				
-		<th><label>反馈时间:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入反馈时间'" name="q_fksj"  id="q_fksj" ></input></td>				
-		<th><label>反馈内容:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入反馈内容'" name="q_fknr"  id="q_fknr" ></input></td>				
+		
 		<th><label>状态(0,1,2):</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入状态(0,1,2)'" name="q_zt"  id="q_zt" ></input></td>				
-		<th><label>备注:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入备注'" name="q_bz"  id="q_bz" ></input></td>				
+				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>

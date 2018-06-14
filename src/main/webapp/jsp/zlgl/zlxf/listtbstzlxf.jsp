@@ -23,12 +23,8 @@ $(function() {
 		<td><input  class="easyui-textbox" data-options="prompt:'输入指令名称'" name="q_zlmc"  id="q_zlmc" ></input></td>				
 		<th><label>指令内容:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入指令内容'" name="q_zlnr"  id="q_zlnr" ></input></td>				
-		<th><label>下发单位:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入下发单位'" name="q_xfdw"  id="q_xfdw" ></input></td>				
 		<th><label>下发时间:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入下发时间'" name="q_xfsj"  id="q_xfsj" ></input></td>				
-		<th><label>备注:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入备注'" name="q_bz"  id="q_bz" ></input></td>				
+		<td><input  class="easyui-datebox" data-options="prompt:'输入下发时间'" name="q_xfsj"  id="q_xfsj" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>

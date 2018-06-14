@@ -144,30 +144,12 @@ function searchButton(){
 			if(zlbh){
 				ft.put("zlbh@=", zlbh);
 			}
-			var jsdw =$('#q_jsdw').textbox("getValue");
-			if(jsdw){
-				ft.put("jsdw@=", jsdw);
-			}
-			var jssj =$('#q_jssj').textbox("getValue");
-			if(jssj){
-				ft.put("jssj@=", jssj);
-			}
-			var fksj =$('#q_fksj').textbox("getValue");
-			if(fksj){
-				ft.put("fksj@=", fksj);
-			}
-			var fknr =$('#q_fknr').textbox("getValue");
-			if(fknr){
-				ft.put("fknr@=", fknr);
-			}
+			
 			var zt =$('#q_zt').textbox("getValue");
 			if(zt){
 				ft.put("zt@=", zt);
 			}
-			var bz =$('#q_bz').textbox("getValue");
-			if(bz){
-				ft.put("bz@=", bz);
-			}
+			
 			return ft.getJSON();
 		}
 	});

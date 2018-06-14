@@ -24,6 +24,10 @@ public class TbStZlxf {
     private String updater;
 
     private Date updateTime;
+    
+    private String jsdw;
+    
+    private String jsdwName;
 
     public String getId() {
         return id;
@@ -112,4 +116,21 @@ public class TbStZlxf {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getJsdw() {
+		return jsdw;
+	}
+
+	public void setJsdw(String jsdw) {
+		this.jsdw = jsdw;
+	}
+
+	public String getJsdwName() {
+		return jsdwName;
+	}
+
+	public void setJsdwName(String jsdwName) {
+		this.jsdwName = jsdwName;
+	}
+    
 }
