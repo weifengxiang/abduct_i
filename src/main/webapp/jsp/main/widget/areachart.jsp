@@ -8,139 +8,106 @@
 <security:csrfMetaTags />
 <style type="text/css">
 </style>
-<script type="text/javascript" src="${basepath}skin/plugins/echarts/echarts.min.js"></script>
-<script type="text/javascript" src="${basepath}skin/plugins/echarts/shine.js"></script>
-<script type="text/javascript" src="${basepath}skin/plugins/echarts/map/js/shandong.js"></script>
+<script type="text/javascript"
+	src="${basepath}skin/plugins/echarts/echarts.min.js"></script>
+<script type="text/javascript"
+	src="${basepath}skin/plugins/echarts/shine.js"></script>
 
 <script>
-
-	//var orgcode =  '';
-	// 地图统计构建图形
-	function initMap() {
-		mapChart = echarts.init($('#sdMapTj').get(0));
-		var option = {
-			title : {
-				text : '各地区登记数量统计('+(new Date).getFullYear()+')',
-				left: 'center'
-			},
-			tooltip : {
-				trigger : 'item'
-			},
-			visualMap : {
-				min : 6000,
-				max : 600000,
-				left : 'left',
-				top : 'bottom',
-				text : [ '高', '低' ], // 文本，默认为数值文本
-				inRange: {
-	                color: ['orangered','yellow','green']
-	            }
-			},
-			toolbox : {
-				show : true,
-				orient : 'vertical',
-				left : 'right',
-				top : 'center',
-				feature : {
-					dataView : {
-						readOnly : false
-					},
-					restore : {},
-					saveAsImage : {}
-				}
-			},
-			series : [ {
-				name : '登记数量',
-				type : 'map',
-				mapType : '山东',
-				roam : false,
-				label : {
-					normal : {
-						show : true
-					},
-					emphasis : {
-						show : true
-					}
+//var orgcode =  '';
+// 地图统计构建图形
+function initMap() {
+	$.getJSON(
+		basepath + "/skin/plugins/echarts/map/js/370100.json",
+		function(data) {
+			echarts.registerMap('jinan', data);
+			var chart = echarts.init($('#map')[0]);
+			var option = {
+				tooltip : {
+					trigger : 'item'
 				},
-				itemStyle : {
-					normal : {
-						 label : {
-		                        formatter : "{b}\n({c})",
-		                    }	  
-					}
+				dataRange : {
+					min : 800,
+					max : 50000,
+					text : [ 'High', 'Low' ],
+					realtime : false,
+					calculable : true,
+					color : [ '#254d8c', '#32c3ff', '#32e4ff', '#4477c4',
+							'#329cff' ],
+					show : false
 				},
-				data : []
-			}]
-		};
-		mapChart.setOption(option);
-	}
-
-	//获取统计数据
-	function getMapDate(){
-		mapChart.showLoading();
-		var data=[{name:'济南市',value:18},
-				  {name:'青岛市',value:16},
-				  {name:'淄博市',value:15},
-				  {name:'枣庄市',value:14},
-				  {name:'东营市',value:13},
-				  {name:'烟台市',value:12},
-				  {name:'潍坊市',value:11},
-				  {name:'济宁市',value:10},
-				  {name:'泰安市',value:9},
-				  {name:'威海市',value:8},
-				  {name:'日照市',value:7},
-				  {name:'莱芜市',value:6},
-				  {name:'临沂市',value:5},
-				  {name:'德州市',value:4},
-				  {name:'聊城市',value:3},
-				  {name:'滨州市',value:2},
-				  {name:'菏泽市',value:1}
-			];
-		mapChart.hideLoading();
-		mapChart.setOption({
-			title : {
-				subtext: '共'+data.count+'件',
-			},
-			visualMap:{
-				min:0,
-				max:20
-			},
-			series:[{
-				data:data
-			}]
-		});
-		/**
-		$.ajax({
-			url : urlcsrf(basepath + 'sys/PubMainShow/getMapDate'),
-			type : "POST",
-			dataType : 'json',
-			timeout : 600000,
-			success : function(data) {
-				mapChart.hideLoading();
-				mapChart.setOption({
-					title : {
-						subtext: '共'+data.count+'件',
+				series : [ {
+					type : 'map',
+					map : 'jinan',
+					layoutCenter : [ '50%', '50%' ],
+					layoutSize :250,
+					itemStyle : {
+						normal : {
+							borderWidth : 1, //区域边框宽度
+							borderColor : '#12446d', //区域边框颜色
+							label : {
+								show : true,
+								color : '#fff'
+							},
+							areaColor : [ '#2c74d3' ]
+						},
+						emphasis : {
+							label : {
+								show : true,
+								color : '#fff'
+							},
+							areaColor : '#32fdff'
+						}
 					},
-					visualMap:{
-						min:data.min,
-						max:data.max
-					},
-					series:[{
-						data:data.data
-					}]
+					data : [ {
+						name : '历下区',
+						value : 48000
+					}, {
+						name : '历城区',
+						value : 20000
+					} ]
+				} ]
+			};
+			chart.setOption(option);
+			//轮播展示
+			var currentIndex = -1;
+			setInterval(function() {
+				var dataLen = option.series[0].data.length;
+				// 取消之前高亮的图形
+				chart.dispatchAction({
+					type : 'downplay',
+					seriesIndex : 0, //表示series中的第几个data数据循环展示
+					dataIndex : currentIndex
 				});
-			}
-		});
-		**/
-	}
+				currentIndex = (currentIndex + 1) % dataLen; //+1表示每次跳转一个
+				// 高亮当前图形
+				chart.dispatchAction({
+					type : 'highlight',
+					seriesIndex : 0,
+					dataIndex : currentIndex
+				});
+				// 显示 tooltip
+				chart.dispatchAction({
+					type : 'showTip',
+					seriesIndex : 0,
+					dataIndex : currentIndex
+				});
+			}, 1000);
+			//鼠标点击事件
+			chart.on('click', function(params) {
+				var cityName = params.name;
+				var cityValue = params.value;
+				alert(cityName + "***" + cityValue);
+			});
+		}
+	);
+}
 $(function() {
 	initMap();
-	getMapDate();
 });
 </script>
 </head>
 <body>
-	<div id='sdMapTj' style="width:500px;height:300px;">
-	</div>
+	<div id='map' style="width: 500px;height:100%;"></div>
 </body>
 </html>
