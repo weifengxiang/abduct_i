@@ -24,7 +24,7 @@ $(function() {
 					<th><label>用户编号:</label></th>
 					<td><input class="easyui-textbox" name="code" id="code"
 						data-options="required:true"></input></td>
-					<th><label>用户名称:</label></th>
+					<th><label>用户姓名:</label></th>
 					<td><input class="easyui-textbox" name="name"
 						data-options="required:true"></input></td>
 				  </tr>
@@ -41,8 +41,8 @@ $(function() {
 				  <tr>
 				  	<th><label>账户状态:</label></th>
 					<td>
-						<input type="radio" name="status" value="O" checked>在职</input>
-						<input type="radio" name="status" value="L">离职</input>
+						<input type="radio" name="status" value="O" checked>在用</input>
+						<input type="radio" name="status" value="L">停用</input>
 					</td>
 					<th><label>是否系统用户:</label></th>
 					<td><input type="checkbox" name="isSys" value='1'></input></td>
@@ -64,6 +64,16 @@ $(function() {
 				 
 					<th><label>办公电话:</label></th>
 					<td><input class="easyui-textbox" name="worktel"
+						data-options=""></input></td>
+				  </tr>
+				  
+				  <tr>
+					<th><label>身份证号:</label></th>
+					<td><input class="easyui-textbox" name="idcardNo"
+						data-options=""></input></td>
+				 
+					<th><label>警号:</label></th>
+					<td><input class="easyui-textbox" name="policeNo"
 						data-options=""></input></td>
 				  </tr>
 				  

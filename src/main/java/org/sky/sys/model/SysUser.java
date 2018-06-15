@@ -41,6 +41,10 @@ public class SysUser {
 
     private Date updateTime;
 
+    private String idcardNo;
+
+    private String policeNo;
+
     public String getId() {
         return id;
     }
@@ -121,15 +125,7 @@ public class SysUser {
         this.organCode = organCode;
     }
 
-    public String getOrganName() {
-		return organName;
-	}
-
-	public void setOrganName(String organName) {
-		this.organName = organName;
-	}
-
-	public String getMobeltel() {
+    public String getMobeltel() {
         return mobeltel;
     }
 
@@ -192,4 +188,29 @@ public class SysUser {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+    public String getIdcardNo() {
+        return idcardNo;
+    }
+
+    public void setIdcardNo(String idcardNo) {
+        this.idcardNo = idcardNo;
+    }
+
+    public String getPoliceNo() {
+        return policeNo;
+    }
+
+    public void setPoliceNo(String policeNo) {
+        this.policeNo = policeNo;
+    }
+
+	public String getOrganName() {
+		return organName;
+	}
+
+	public void setOrganName(String organName) {
+		this.organName = organName;
+	}
+    
 }

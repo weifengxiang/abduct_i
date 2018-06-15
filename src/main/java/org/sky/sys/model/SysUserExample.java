@@ -83,11 +83,11 @@ public class SysUserExample {
     for(Object key : queryCondationMap.keySet()) {
 		String field = ((String)key).split("@")[0];
 		String opt = ((String)key).split("@")[1];
-		if(((String)key).contains("between")){
+		if(((String)key).toUpperCase().contains("BETWEEN")){
          criteria.addCriterion(BeanUtils.camelToUnderline(field)+" "+opt,((String)queryCondationMap.get(key)).split(",")[0],((String)queryCondationMap.get(key)).split(",")[1],(String)key);
-		}else if(((String)key).contains("IS NULL")||((String)key).contains("IS NOT NULL")){
+		}else if(((String)key).toUpperCase().contains("IS NULL")||((String)key).toUpperCase().contains("IS NOT NULL")){
          criteria.addCriterion(BeanUtils.camelToUnderline(field)+" "+opt);
-		}else if(((String)key).contains("@IN")||((String)key).contains("@NOT IN")){
+		}else if(((String)key).toUpperCase().contains("@IN")||((String)key).toUpperCase().contains("@NOT IN")){
          String values = (String)queryCondationMap.get(key);
  		  List val=Arrays.asList(values.split(","));
  		  criteria.addCriterion(BeanUtils.camelToUnderline(field)+" "+opt,val,(String)key);
@@ -1358,6 +1358,146 @@ public class SysUserExample {
 
         public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
             addCriterion("UPDATE_TIME not between", value1, value2, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoIsNull() {
+            addCriterion("IDCARD_NO is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoIsNotNull() {
+            addCriterion("IDCARD_NO is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoEqualTo(String value) {
+            addCriterion("IDCARD_NO =", value, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoNotEqualTo(String value) {
+            addCriterion("IDCARD_NO <>", value, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoGreaterThan(String value) {
+            addCriterion("IDCARD_NO >", value, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoGreaterThanOrEqualTo(String value) {
+            addCriterion("IDCARD_NO >=", value, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoLessThan(String value) {
+            addCriterion("IDCARD_NO <", value, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoLessThanOrEqualTo(String value) {
+            addCriterion("IDCARD_NO <=", value, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoLike(String value) {
+            addCriterion("IDCARD_NO like", value, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoNotLike(String value) {
+            addCriterion("IDCARD_NO not like", value, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoIn(List<String> values) {
+            addCriterion("IDCARD_NO in", values, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoNotIn(List<String> values) {
+            addCriterion("IDCARD_NO not in", values, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoBetween(String value1, String value2) {
+            addCriterion("IDCARD_NO between", value1, value2, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoNotBetween(String value1, String value2) {
+            addCriterion("IDCARD_NO not between", value1, value2, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoIsNull() {
+            addCriterion("POLICE_NO is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoIsNotNull() {
+            addCriterion("POLICE_NO is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoEqualTo(String value) {
+            addCriterion("POLICE_NO =", value, "policeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoNotEqualTo(String value) {
+            addCriterion("POLICE_NO <>", value, "policeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoGreaterThan(String value) {
+            addCriterion("POLICE_NO >", value, "policeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoGreaterThanOrEqualTo(String value) {
+            addCriterion("POLICE_NO >=", value, "policeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoLessThan(String value) {
+            addCriterion("POLICE_NO <", value, "policeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoLessThanOrEqualTo(String value) {
+            addCriterion("POLICE_NO <=", value, "policeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoLike(String value) {
+            addCriterion("POLICE_NO like", value, "policeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoNotLike(String value) {
+            addCriterion("POLICE_NO not like", value, "policeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoIn(List<String> values) {
+            addCriterion("POLICE_NO in", values, "policeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoNotIn(List<String> values) {
+            addCriterion("POLICE_NO not in", values, "policeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoBetween(String value1, String value2) {
+            addCriterion("POLICE_NO between", value1, value2, "policeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliceNoNotBetween(String value1, String value2) {
+            addCriterion("POLICE_NO not between", value1, value2, "policeNo");
             return (Criteria) this;
         }
     }

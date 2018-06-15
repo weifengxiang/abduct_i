@@ -56,7 +56,7 @@ $(function() {
 						type:'textbox',
 						options:{
 							required:true
-						}}">用户名称</th>
+						}}">用户姓名</th>
 				<th data-options="field:'status',width:180,
 				editor:{
 						type:'textbox',
