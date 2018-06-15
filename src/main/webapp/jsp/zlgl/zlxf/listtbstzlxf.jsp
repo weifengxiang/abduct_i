@@ -72,24 +72,24 @@ $(function() {
 						options:{
 							required:true
 						}}">指令内容</th>
-				<th data-options="field:'xfdw',width:180,
+				<th data-options="field:'xfdwName',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">下发单位</th>
+				<th data-options="field:'jsdwName',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">接收单位</th>
 				<th data-options="field:'xfsj',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">下发时间</th>
-				<th data-options="field:'bz',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">备注</th>
 		</tr>
 	</thead>
 </table>
@@ -103,6 +103,8 @@ $(function() {
 		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delTbStZlxf()">删除</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-06',plain:true" onclick="detailTbStZlxf()">查看明细</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-06',plain:true" onclick="detailTbStZlfk()">查看反馈情况</a>
 </div>
 </body>
 </html>

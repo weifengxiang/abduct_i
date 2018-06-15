@@ -6,6 +6,6 @@ function initDetailTbStZlxfPage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
-	var url=basepath+"zlgl/TbStZlxf/getTbStZlxfById?id="+paramOpts.data.id;
+	var url=basepath+"zlgl/TbStZlxf/getTbStZlxfByZlbh?zlbh="+paramOpts.data.zlbh;
 	$('#detailtbstzlxfform').form('load',SKY.urlCSRF(url));
 }

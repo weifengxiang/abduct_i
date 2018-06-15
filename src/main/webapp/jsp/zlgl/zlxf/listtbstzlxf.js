@@ -161,3 +161,35 @@ function searchButton(){
 		}
 	});
 }
+/**
+ * 指令反馈情况
+ * @returns
+ */
+function detailTbStZlfk(){
+	var checkeds=$('#listtbstzlxfdg').datagrid('getChecked');
+	if(null==checkeds||checkeds.length!=1){
+		$.messager.alert('提示','请选择一条记录','info');
+		return;
+	}
+	var opts={
+			id:'listTbStZlfk',
+			title:'指令反馈情况',
+			width:600,
+			height:450,
+			modal:true,
+			content:'url:'+SKY.urlCSRF(basepath+'zlgl/TbStZlxf/initTbStZlFKPage'),
+			onLoad: function(dialog){ 
+	            if(this.content && this.content.initAddTbStZlfkPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+	                var paramOpts=new Object();
+	                paramOpts.dialog=dialog;
+	                paramOpts.data=checkeds[0];
+	                paramOpts.callBack=function(){
+	                	dialog.close();
+	                	searchButton();
+	                };
+	            	this.content.initAddTbStZlfkPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+	            } 
+	        }
+		  };
+	SKY_EASYUI.open(opts);
+}

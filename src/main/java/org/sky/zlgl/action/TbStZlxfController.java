@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
+import org.sky.zlgl.model.TbStZlfkExample;
 import org.sky.zlgl.model.TbStZlxf;
 import org.sky.zlgl.model.TbStZlxfExample;
 import org.sky.zlgl.model.TbStZlxfExample.Criteria;
+import org.sky.zlgl.service.TbStZlfkService;
 import org.sky.zlgl.service.TbStZlxfService;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.JsonUtils;
@@ -29,6 +31,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class TbStZlxfController extends BaseController{
 	@Autowired
 	private TbStZlxfService tbstzlxfService;
+	@Autowired
+	private TbStZlfkService tbstzlfkService;
 	@Autowired
 	private ComService comService;
 	public TbStZlxfController() {
@@ -149,5 +153,47 @@ public class TbStZlxfController extends BaseController{
 		String id = request.getParameter("id");
 		TbStZlxf bean = tbstzlxfService.getTbStZlxfById(id);
 		return JsonUtils.obj2json(bean);
+	}
+	/**
+	*根据主键查询指令下发
+	**/
+	@RequestMapping(value = "/zlgl/TbStZlxf/getTbStZlxfByZlbh", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String getTbStZlxfByZlbh(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		String zlbh = request.getParameter("zlbh");
+		TbStZlxf bean = tbstzlxfService.getTbStZlxfByZlbh(zlbh);
+		return JsonUtils.obj2json(bean);
+	}
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/zlgl/TbStZlxf/initTbStZlFKPage", method = { RequestMethod.GET })
+	public String initTbStZlFKPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/zlgl/zlxf/listtbstzlfk";
+	}
+	@RequestMapping(value = "/zlgl/TbStZlxf/getTbStZlfkByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String getTbStZlfkByPage(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		String filter = request.getParameter("filter");
+		Map filterMap = JsonUtils.json2map(filter);
+		String sortfield=request.getParameter("sortfield");
+		Page p= super.getPage(request);
+		TbStZlfkExample pote= new TbStZlfkExample();
+		if(null!=filterMap){
+			pote.createCriteria();
+			pote.integratedQuery(filterMap);
+		}
+		if(!StringUtils.isNull(sortfield)){
+			pote.setOrderByClause(sortfield);
+		}
+		pote.setPage(p);
+		PageListData pageData = tbstzlfkService.getTbStZlfkByPage(pote);
+		return JsonUtils.obj2json(pageData);
 	}
 }

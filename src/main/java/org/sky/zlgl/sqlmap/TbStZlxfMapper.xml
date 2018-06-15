@@ -7,8 +7,10 @@
     <result column="ZLMC" jdbcType="VARCHAR" property="zlmc" />
     <result column="ZLNR" jdbcType="VARCHAR" property="zlnr" />
     <result column="XFDW" jdbcType="VARCHAR" property="xfdw" />
+    <result column="XFDW_NAME" jdbcType="VARCHAR" property="xfdwName" />
     <result column="XFSJ" jdbcType="TIMESTAMP" property="xfsj" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="JSDW_NAME" jdbcType="VARCHAR" property="jsdwName" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
@@ -73,7 +75,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, ZLBH, ZLMC, ZLNR, XFDW, XFSJ, BZ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    ID, ZLBH, ZLMC, ZLNR, XFDW, XFSJ, BZ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
+    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=XFDW) AS XFDW_NAME,
+    (SELECT GROUP_CONCAT(SO.NAME) FROM TB_ST_ZLFK FK,SYS_ORGAN SO WHERE SO.CODE=FK.JSDW)AS JSDW_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.zlgl.model.TbStZlxfExample" resultMap="BaseResultMap">
     select

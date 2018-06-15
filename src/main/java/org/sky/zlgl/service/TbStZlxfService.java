@@ -133,4 +133,13 @@ public class TbStZlxfService {
 		TbStZlxf bean = tbstzlxfmapper.selectByPrimaryKey(id);
 		return bean;
 	}
+	public TbStZlxf getTbStZlxfByZlbh(String zlbh){
+		TbStZlxfExample e = new TbStZlxfExample();
+		e.createCriteria().andZlbhEqualTo(zlbh);
+		List<TbStZlxf> list = tbstzlxfmapper.selectByExample(e);
+		if(null!=list && !list.isEmpty()) {
+			return list.get(0);
+		}
+		return null;
+	}
 }

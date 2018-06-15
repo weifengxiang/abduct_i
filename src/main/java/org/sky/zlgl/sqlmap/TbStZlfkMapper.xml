@@ -5,11 +5,13 @@
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="ZLBH" jdbcType="VARCHAR" property="zlbh" />
     <result column="JSDW" jdbcType="VARCHAR" property="jsdw" />
+    <result column="JSDW_NAME" jdbcType="VARCHAR" property="jsdwName" />
     <result column="JSSJ" jdbcType="TIMESTAMP" property="jssj" />
     <result column="FKSJ" jdbcType="TIMESTAMP" property="fksj" />
     <result column="FKNR" jdbcType="VARCHAR" property="fknr" />
     <result column="ZT" jdbcType="VARCHAR" property="zt" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="XFDW_NAME" jdbcType="VARCHAR" property="xfdwName" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
@@ -74,7 +76,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, ZLBH, JSDW, JSSJ, FKSJ, FKNR, ZT, BZ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    ID, ZLBH, JSDW, JSSJ, FKSJ, FKNR, ZT, BZ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
+    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=JSDW) AS JSDW_NAME,
+    (SELECT NAME FROM SYS_ORGAN SO,TB_ST_ZLXF XF WHERE SO.CODE=XF.XFDW AND XF.ZLBH = TB_ST_ZLFK.ZLBH) AS XFDW_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.zlgl.model.TbStZlfkExample" resultMap="BaseResultMap">
     select

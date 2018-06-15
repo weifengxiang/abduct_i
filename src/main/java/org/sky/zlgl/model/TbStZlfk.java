@@ -8,6 +8,8 @@ public class TbStZlfk {
     private String zlbh;
 
     private String jsdw;
+    
+    private String jsdwName;
 
     private Date jssj;
 
@@ -26,6 +28,8 @@ public class TbStZlfk {
     private String updater;
 
     private Date updateTime;
+    
+    private String xfdwName;
 
     public String getId() {
         return id;
@@ -122,4 +126,21 @@ public class TbStZlfk {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getJsdwName() {
+		return jsdwName;
+	}
+
+	public void setJsdwName(String jsdwName) {
+		this.jsdwName = jsdwName;
+	}
+
+	public String getXfdwName() {
+		return xfdwName;
+	}
+
+	public void setXfdwName(String xfdwName) {
+		this.xfdwName = xfdwName;
+	}
+	
 }

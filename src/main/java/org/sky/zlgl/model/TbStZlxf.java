@@ -12,6 +12,8 @@ public class TbStZlxf {
     private String zlnr;
 
     private String xfdw;
+    
+    private String xfdwName;
 
     private Date xfsj;
 
@@ -131,6 +133,14 @@ public class TbStZlxf {
 
 	public void setJsdwName(String jsdwName) {
 		this.jsdwName = jsdwName;
+	}
+
+	public String getXfdwName() {
+		return xfdwName;
+	}
+
+	public void setXfdwName(String xfdwName) {
+		this.xfdwName = xfdwName;
 	}
     
 }

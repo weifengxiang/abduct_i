@@ -154,3 +154,33 @@ function searchButton(){
 		}
 	});
 }
+/**
+*查看指令明细
+**/
+function detailTbStZlxf(){
+	var checkeds=$('#listtbstzlfkdg').datagrid('getChecked');
+	if(null==checkeds||checkeds.length!=1){
+		$.messager.alert('提示','请选择一条记录','info');
+		return;
+	}
+	var opts={
+				id:'detailTbStZlxf',
+				title:'指令下发明细',
+				width:600,
+				height:450,
+				modal:true,
+				content:'url:'+SKY.urlCSRF(basepath+'zlgl/TbStZlxf/initDetailTbStZlxfPage'),
+				onLoad: function(dialog){ 
+		            if(this.content && this.content.initDetailTbStZlxfPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		                var paramOpts=new Object();
+		                paramOpts.dialog=dialog;
+		                paramOpts.data=checkeds[0];
+		                paramOpts.callBack=function(){
+		                	dialog.close();
+		                };
+		            	this.content.initDetailTbStZlxfPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            } 
+		        }
+			  };
+	SKY_EASYUI.open(opts);
+}
