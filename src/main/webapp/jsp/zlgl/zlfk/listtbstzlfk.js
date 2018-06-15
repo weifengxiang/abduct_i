@@ -34,22 +34,22 @@ function addTbStZlfk(){
 	SKY_EASYUI.open(opts);
 }
  /**
- *删除指令反馈
+ *接收指令反馈
  **/
-function delTbStZlfk(){
+function aceptTbStZlfk(){
 	var checkeds=$('#listtbstzlfkdg').datagrid('getChecked');
 	if(null==checkeds||checkeds.length<1){
 		$.messager.alert('提示','请选择要删除的记录','info');
 		return;
 	}else{
-		var msg="确定要删除"+checkeds.length+"条数据?";
-		$.messager.confirm("删除确认",msg,
+		var msg="确定要接收"+checkeds.length+"条数据?";
+		$.messager.confirm("接收确认",msg,
 		function (r){
 			if(r){
-				SKY_EASYUI.mask('正在进行删除，请稍等...');
-				var url = SKY.urlCSRF(basepath+'zlgl/TbStZlfk/delTbStZlfk');
+				SKY_EASYUI.mask('正在进行接收，请稍等...');
+				var url = SKY.urlCSRF(basepath+'zlgl/TbStZlfk/acceptTbStZlfk');
 				var params = {
-							"delRows":JSON.stringify(checkeds)
+							"acceptRows":JSON.stringify(checkeds)
 						};
 				$.ajax({
 		    		url:url,

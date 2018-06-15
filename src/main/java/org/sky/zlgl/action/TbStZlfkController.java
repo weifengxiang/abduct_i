@@ -132,6 +132,31 @@ public class TbStZlfkController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
+	 * 接收指令
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/zlgl/TbStZlfk/acceptTbStZlfk", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String acceptTbStZlfk(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		ResultData rd= new ResultData();
+		try {
+			String acceptRows=request.getParameter("acceptRows");
+			List acc=JsonUtils.json2list(acceptRows, TbStZlfk.class);
+			tbstzlfkService.acceptTbStZlfk(acc);
+			rd.setCode(ResultData.code_success);
+			rd.setName("接收成功");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("接收失败<br>"+e.getMessage());
+		}
+		return JsonUtils.obj2json(rd);
+	}
+	/**
 	*根据主键查询指令反馈
 	**/
 	@RequestMapping(value = "/zlgl/TbStZlfk/getTbStZlfkById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")

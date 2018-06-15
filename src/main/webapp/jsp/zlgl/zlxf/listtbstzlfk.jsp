@@ -1,3 +1,4 @@
+<%@page import="org.sky.sys.utils.EnumUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/jsp/inc/include.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,6 +7,7 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/zlgl/zlxf/listtbstzlfk.js'></script>
 <script type="text/javascript">
+var zt=<%=EnumUtils.getEnums("ZLXF.ZT") %>;
 $(function() {
 	//init();
 });
@@ -74,11 +76,9 @@ $(function() {
 							required:true
 						}}">反馈内容</th>
 				<th data-options="field:'zt',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">状态(0,1,2)</th>
+				formatter:function(value,row){
+						  	 return SKY.formatterDict(value,row,zt);
+						 }">状态</th>
 		</tr>
 	</thead>
 </table>

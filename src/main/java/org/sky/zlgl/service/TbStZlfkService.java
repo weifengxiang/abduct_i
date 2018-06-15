@@ -115,4 +115,19 @@ public class TbStZlfkService {
 		TbStZlfk bean = tbstzlfkmapper.selectByPrimaryKey(id);
 		return bean;
 	}
+	/**
+	 * 接收指令
+	 * @param delList
+	 */
+	@Transactional
+	public void acceptTbStZlfk(List<TbStZlfk> acceptlList){
+		Timestamp ts = syscommonmapper.queryTimestamp();
+		for(TbStZlfk acc:acceptlList){
+			TbStZlfk record = new TbStZlfk();
+			record.setId(acc.getId());
+			record.setJssj(ts);
+			record.setZt("1");
+			tbstzlfkmapper.updateByPrimaryKeySelective(record);
+		}
+	}
 }

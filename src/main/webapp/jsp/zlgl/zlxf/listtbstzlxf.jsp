@@ -6,6 +6,7 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/zlgl/zlxf/listtbstzlxf.js'></script>
 <script type="text/javascript">
+
 $(function() {
 	init();
 });
@@ -90,6 +91,7 @@ $(function() {
 						options:{
 							required:true
 						}}">下发时间</th>
+				<th data-options="field:'createTime',width:160">下发时间</th>
 		</tr>
 	</thead>
 </table>

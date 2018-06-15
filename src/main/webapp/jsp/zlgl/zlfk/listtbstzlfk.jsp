@@ -1,3 +1,4 @@
+<%@page import="org.sky.sys.utils.EnumUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/jsp/inc/include.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,6 +7,7 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/zlgl/zlfk/listtbstzlfk.js'></script>
 <script type="text/javascript">
+var zt=<%=EnumUtils.getEnums("ZLXF.ZT") %>;
 $(function() {
 	init();
 });
@@ -20,8 +22,13 @@ $(function() {
 		<th><label>指令编号:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入指令编号'" name="q_zlbh"  id="q_zlbh" ></input></td>				
 		
-		<th><label>状态(0,1,2):</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入状态(0,1,2)'" name="q_zt"  id="q_zt" ></input></td>				
+		<th><label>状态:</label></th>
+		<td><input  class="easyui-combobox" 
+					data-options="prompt:'输入状态',
+								  data:zt,
+								  valueField:'code',
+								  textField:'name'
+								  " name="q_zt"  id="q_zt" ></input></td>				
 				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
@@ -88,23 +95,20 @@ $(function() {
 						options:{
 							required:true
 						}}">反馈内容</th>
-				<th data-options="field:'zt',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">状态(0,1,2)</th>
+				<th data-options="field:'zt',width:80,
+				formatter:function(value,row){
+						  	 return SKY.formatterDict(value,row,zt);
+						 }">状态</th>
+				<th data-options="field:'createTime',width:160">下发时间</th>
 		</tr>
 	</thead>
 </table>
 </div>
 <div id="tb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="addTbStZlfk()">增加</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="aceptTbStZlfk()">接受</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-edit',plain:true" onclick="editTbStZlfk()">修改</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delTbStZlfk()">删除</a>
+		data-options="iconCls:'icon-edit',plain:true" onclick="editTbStZlfk()">反馈</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-06',plain:true" onclick="detailTbStZlfk()">查看明细</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
