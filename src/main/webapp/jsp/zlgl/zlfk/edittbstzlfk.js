@@ -11,6 +11,7 @@ function initAddTbStZlfkPage(paramOpts){
  * 初始化编辑指令反馈页面
  */
 function initEditTbStZlfkPage(paramOpts){
+	$('#fksj').datetimebox('setValue',datetime);
 	_callbacks.add(paramOpts.callBack);
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
@@ -22,6 +23,7 @@ function initEditTbStZlfkPage(paramOpts){
  * 保存添加/编辑指令反馈
  */
 function submitAddEditTbStZlfkForm() {
+	$('#zt').combobox('setValue','2');
 	var options = { 
 	   data:{
     	   "data":function(){
@@ -29,7 +31,7 @@ function submitAddEditTbStZlfkForm() {
     	   }
        },   
        beforeSubmit:function(data){
-			return $('#addedittbstzlfkform').form('enableValidation').form('validate');
+    	   return $('#addedittbstzlfkform').form('enableValidation').form('validate');
        },   
        success:function(data){
     	    $.messager.alert('提示',data.name,'info',function(){
