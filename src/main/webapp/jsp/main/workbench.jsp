@@ -43,7 +43,8 @@ function converJSON2Panels(wdlist){
 		var wd = wdlist[i];
 		opts.id = wd.id;
 		opts.title = wd.name;
-		opts.height=''==wd.opts?myHeight:wd.opts; 
+		opts.height=(''==wd.opts||undefined==wd.opts)?myHeight:wd.opts; 
+		console.log(opts.height);
 		opts.collapsible = false;
 		opts.closable = true;
 		opts.content = '<iframe scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
