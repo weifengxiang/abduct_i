@@ -7,7 +7,7 @@
 <html>
 <head>
 <security:csrfMetaTags/>
-<script type="text/javascript" src='${basepath}jsp/jsp/zhcx/ajcx/ajcx.js'></script>
+<script type="text/javascript" src='${basepath}jsp/zhcx/ajcx/ajcx.js'></script>
 <script type="text/javascript">
 var djsj = '<%=CommonUtils.getCurrentDate() %>';
 var bjfs = <%=DictUtils.getDictItem("BJFS") %>;
@@ -31,7 +31,7 @@ $(function() {
 		<th><label>案件编号:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入案件编号'" name="q_ajbh"  id="q_ajbh" ></input></td>				
 		<th><label>报警时间:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入报警时间'" name="q_bjsj"  id="q_bjsj" ></input></td>				
+		<td><input  class="easyui-datebox" data-options="prompt:'输入报警时间'" name="q_bjsj"  id="q_bjsj" ></input></td>				
 		<th><label>联系电话:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入联系电话'" name="q_lxdh"  id="q_lxdh" ></input></td>				
 		<th><label>登记时间:</label></th>

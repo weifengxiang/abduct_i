@@ -52,7 +52,7 @@ function searchButton(){
 			}
 			var bjsj =$('#q_bjsj').textbox("getValue");
 			if(bjsj){
-				ft.put("bjsj@=", bjsj);
+				ft.put("date_format(bjsj,concat(upper('%y'),'-%m-%d'))@=", bjsj);
 			}
 			var lxdh =$('#q_lxdh').textbox("getValue");
 			if(lxdh){
@@ -60,7 +60,7 @@ function searchButton(){
 			}
 			var djsj =$('#q_djsj').textbox("getValue");
 			if(djsj){
-				ft.put("djsj@=", djsj);
+				ft.put("date_format(djsj,concat(upper('%y'),'-%m-%d'))@=@=", djsj);
 			}
 			return ft.getJSON();
 		}
