@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.log.SysControllerLog;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysArea;
@@ -16,6 +18,7 @@ import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
 import org.sky.sys.utils.ResultData;
 import org.sky.sys.utils.StringUtils;
+import org.sky.sys.utils.TreeStru;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +36,7 @@ public class SysAreaController extends BaseController{
 	/**
 	*显示省市区编码表列表页面
 	**/
-	@RequestMapping(value = "/bkcx/SysArea/initSysAreaListPage", method = { RequestMethod.GET })
+	@RequestMapping(value = "/sys/SysArea/initSysAreaListPage", method = { RequestMethod.GET })
 	public String initSysAreaListPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/sys/area/listsysarea";
@@ -44,7 +47,7 @@ public class SysAreaController extends BaseController{
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/bkcx/SysArea/getSysAreaByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/sys/SysArea/getSysAreaByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysAreaByPage(
 			HttpServletRequest request, 
 			HttpServletResponse response){
@@ -67,7 +70,7 @@ public class SysAreaController extends BaseController{
 	/**
 	*显示省市区编码表新增页面
 	**/
-	@RequestMapping(value = "/bkcx/SysArea/initAddSysAreaPage", method = { RequestMethod.GET })
+	@RequestMapping(value = "/sys/SysArea/initAddSysAreaPage", method = { RequestMethod.GET })
 	public String initAddSysAreaPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/sys/area/editsysarea";
@@ -75,7 +78,7 @@ public class SysAreaController extends BaseController{
 	/**
 	*显示省市区编码表修改页面
 	**/
-	@RequestMapping(value = "/bkcx/SysArea/initEditSysAreaPage", method = { RequestMethod.GET })
+	@RequestMapping(value = "/sys/SysArea/initEditSysAreaPage", method = { RequestMethod.GET })
 	public String initEditSysAreaPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/sys/area/editsysarea";
@@ -83,7 +86,7 @@ public class SysAreaController extends BaseController{
 	/**
 	*显示省市区编码表详细页面
 	**/
-	@RequestMapping(value = "/bkcx/SysArea/initDetailSysAreaPage", method = { RequestMethod.GET })
+	@RequestMapping(value = "/sys/SysArea/initDetailSysAreaPage", method = { RequestMethod.GET })
 	public String initDetailSysAreaPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/sys/area/detailsysarea";
@@ -91,7 +94,7 @@ public class SysAreaController extends BaseController{
 	/**
 	*保存新增/修改省市区编码表
 	**/
-	@RequestMapping(value = "/bkcx/SysArea/saveAddEditSysArea", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/sys/SysArea/saveAddEditSysArea", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditSysArea(
 			HttpServletRequest request, 
 			HttpServletResponse response){
@@ -112,7 +115,7 @@ public class SysAreaController extends BaseController{
 	/**
 	*删除省市区编码表
 	**/
-	@RequestMapping(value = "/bkcx/SysArea/delSysArea", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/sys/SysArea/delSysArea", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delSysArea(
 			HttpServletRequest request, 
 			HttpServletResponse response){
@@ -134,12 +137,23 @@ public class SysAreaController extends BaseController{
 	/**
 	*根据主键查询省市区编码表
 	**/
-	@RequestMapping(value = "/bkcx/SysArea/getSysAreaById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/sys/SysArea/getSysAreaById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getSysAreaById(
 			HttpServletRequest request, 
 			HttpServletResponse response){
 		String id = request.getParameter("id");
 		SysArea bean = sysareaService.getSysAreaById(id);
 		return JsonUtils.obj2json(bean);
+	}
+	@SysControllerLog(desc = "查询组织机构树")
+	@RequestMapping(value = "/sys/SysArea/getSysAreaTree", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<TreeStru> getSysAreaTree(HttpServletRequest request, 
+			HttpServletResponse response){
+		String data= request.getParameter("data");
+		Map dataMap=null;
+		if(!StringUtils.isNull(data)){
+			dataMap = JsonUtils.json2map(data);
+		}
+		return sysareaService.getSysOrganTree(dataMap);
 	}
 }

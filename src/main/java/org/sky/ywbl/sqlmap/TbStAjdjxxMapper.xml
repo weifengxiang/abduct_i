@@ -823,4 +823,6 @@
       <![CDATA[ limit #{page.begin},#{page.rows} ]]>
     </if>
   </sql>
+  <select id="selectAjArea" resultType="map">
+  </select>
 </mapper>

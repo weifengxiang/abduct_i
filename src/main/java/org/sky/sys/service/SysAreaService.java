@@ -1,12 +1,17 @@
 package org.sky.sys.service;
 import org.apache.log4j.Logger;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.client.SysAreaMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysArea;
 import org.sky.sys.model.SysAreaExample;
+import org.sky.sys.model.SysOrgan;
+import org.sky.sys.model.SysOrganExample;
 import org.sky.sys.utils.PageListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.StringUtils;
+import org.sky.sys.utils.TreeStru;
 @Service
 public class SysAreaService {
 	private final Logger logger=Logger.getLogger(SysAreaService.class);
@@ -108,5 +114,32 @@ public class SysAreaService {
 	public SysArea getSysAreaById(String id){
 		SysArea bean = sysareamapper.selectByPrimaryKey(id);
 		return bean;
+	}
+	/**
+	 * 查询组织机构树
+	 * @param m
+	 * @return
+	 */
+	public List<TreeStru> getSysOrganTree(Map m){
+		List<TreeStru> list = new ArrayList();
+		String code = (String)m.get("code");
+		SysAreaExample sae = new SysAreaExample();
+		sae.createCriteria().andParCodeEqualTo(code);
+		List<SysArea> salist = sysareamapper.selectByExample(sae);
+		for(SysArea sa:salist){
+			TreeStru ts = new TreeStru();
+			ts.setId(sa.getCode());
+			ts.setText(sa.getName()+"["+sa.getCode()+"]");
+			ts.setSeq(null==sa.getSeq()?0:sa.getSeq());
+			ts.setIconCls("icon-map");
+			if(sa.getChildCount()>0){
+				ts.setState("closed");
+			}else{
+				ts.setState("open");
+			}
+			ts.setData(sa);
+			list.add(ts);
+		}
+		return list;
 	}
 }

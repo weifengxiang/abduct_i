@@ -10,6 +10,8 @@ public class SysArea {
     private String parCode;
 
     private Integer seq;
+    
+    private Integer childCount;
 
     public String getId() {
         return id;
@@ -50,4 +52,13 @@ public class SysArea {
     public void setSeq(Integer seq) {
         this.seq = seq;
     }
+
+	public Integer getChildCount() {
+		return childCount;
+	}
+
+	public void setChildCount(Integer childCount) {
+		this.childCount = childCount;
+	}
+    
 }

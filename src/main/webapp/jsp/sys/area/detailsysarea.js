@@ -6,6 +6,6 @@ function initDetailSysAreaPage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
-	var url=basepath+"bkcx/SysArea/getSysAreaById?id="+paramOpts.data.id;
+	var url=basepath+"sys/SysArea/getSysAreaById?id="+paramOpts.data.id;
 	$('#detailsysareaform').form('load',SKY.urlCSRF(url));
 }

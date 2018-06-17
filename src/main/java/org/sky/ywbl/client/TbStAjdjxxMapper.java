@@ -1,6 +1,8 @@
 package org.sky.ywbl.client;
 
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.sky.ywbl.model.TbStAjdjxx;
 import org.sky.ywbl.model.TbStAjdjxxExample;
@@ -29,4 +31,6 @@ public interface TbStAjdjxxMapper {
     int updateByPrimaryKeySelective(TbStAjdjxx record);
 
     int updateByPrimaryKey(TbStAjdjxx record);
+    
+    List<Map> selectAjArea();
 }

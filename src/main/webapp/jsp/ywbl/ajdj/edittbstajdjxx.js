@@ -125,3 +125,45 @@ function viewTxxx(data){
 		}
 	});
 }
+//行政区划选择
+function openAreaHelp(){
+	var opts={
+			id:'chooseAreaWin',
+			title:'选择行政区划',
+			width:600,
+			height:450,
+			modal:true,
+			content:'url:'+SKY.urlCSRF(basepath+'sys/common/help/areachoose'),
+			onLoad: function(dialog){ 
+	            if(this.content && this.content.initAreaHelp){//判断弹出窗体iframe中的driveInit方法是否存在 
+	                var paramOpts=new Object();
+	                paramOpts.dialog=dialog;
+	                paramOpts.close=function(){
+	                	dialog.close();
+	                };
+	                paramOpts.ok=function(list){
+	                	if(list.length>0){
+	                		var jsdws='';
+	                		var jsdwNames='';
+	                		$.each(list,function(i,node){
+	                			jsdws=jsdws+node.data.code;
+	                			jsdwNames=jsdwNames+node.data.name;
+	                			if(i!=list.length-1){
+	                				jsdws=jsdws+",";
+	                				jsdwNames=jsdwNames+',';
+	                			}
+	                		});
+	                		$('#jsdw').val(jsdws);
+	                		$('#jsdwName').textbox('setValue',jsdwNames);
+	                		dialog.close();
+	                	}else{
+	                		$.messager.alert('提示','请选行政区划','error');
+	                	}
+	                	
+	                };
+	            	this.content.initAreaHelp(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+	            } 
+	        }
+		  };
+	SKY_EASYUI.open(opts);
+}

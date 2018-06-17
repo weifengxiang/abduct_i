@@ -15,7 +15,7 @@ function initEditSysAreaPage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
-	var url=basepath+"bkcx/SysArea/getSysAreaById?id="+paramOpts.data.id;
+	var url=basepath+"sys/SysArea/getSysAreaById?id="+paramOpts.data.id;
 	$('#addeditsysareaform').form('load',SKY.urlCSRF(url));
 }
 /**
@@ -41,7 +41,7 @@ function submitAddEditSysAreaForm() {
        error:function(e){
     	   $.messager.alert('提示',JSON.stringify(e),'info');
        },
-       url:SKY.urlCSRF(basepath+'bkcx/SysArea/saveAddEditSysArea'), 
+       url:SKY.urlCSRF(basepath+'sys/SysArea/saveAddEditSysArea'), 
        type:'post',   
        dataType:'json',   
        timeout:-1    

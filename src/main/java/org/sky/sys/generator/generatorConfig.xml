@@ -22,7 +22,7 @@
 		<sqlMapGenerator targetPackage="org.sky.sys.sqlmap" targetProject="src\main\java" />
 		<!-- 生成DAO的包名和位置--> 
 		<javaClientGenerator targetPackage="org.sky.sys.client"	targetProject="src\main\java" type="XMLMAPPER" />
-		<table tableName="SYS_USER"></table>
+		<table tableName="SYS_AREA"></table>
 		<!-- 
 		<table tableName="TB_ST_AJBLXX"></table>
 		<table tableName="TB_ST_AJDJXX"></table>

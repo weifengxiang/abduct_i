@@ -1,6 +1,6 @@
 //初始化
 function init(){
-	$('#listsysareadg').datagrid('options').url=SKY.urlCSRF(basepath+'bkcx/SysArea/getSysAreaByPage');
+	$('#listsysareadg').datagrid('options').url=SKY.urlCSRF(basepath+'sys/SysArea/getSysAreaByPage');
 	$('#listsysareadg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();
@@ -18,7 +18,7 @@ function addSysArea(){
 				width:600,
 				height:450,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'bkcx/SysArea/initAddSysAreaPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'sys/SysArea/initAddSysAreaPage'),
 				onLoad: function(dialog){ 
 		            if(this.content && this.content.initAddSysAreaPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
@@ -47,7 +47,7 @@ function delSysArea(){
 		function (r){
 			if(r){
 				SKY_EASYUI.mask('正在进行删除，请稍等...');
-				var url = SKY.urlCSRF(basepath+'bkcx/SysArea/delSysArea');
+				var url = SKY.urlCSRF(basepath+'sys/SysArea/delSysArea');
 				var params = {
 							"delRows":JSON.stringify(checkeds)
 						};
@@ -86,7 +86,7 @@ function editSysArea(){
 				width:600,
 				height:450,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'bkcx/SysArea/initEditSysAreaPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'sys/SysArea/initEditSysAreaPage'),
 				onLoad: function(dialog){ 
 		            if(this.content && this.content.initEditSysAreaPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
@@ -117,7 +117,7 @@ function detailSysArea(){
 				width:600,
 				height:450,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'bkcx/SysArea/initDetailSysAreaPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'sys/SysArea/initDetailSysAreaPage'),
 				onLoad: function(dialog){ 
 		            if(this.content && this.content.initDetailSysAreaPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
@@ -136,7 +136,7 @@ function detailSysArea(){
  * 查询按钮
  */
 function searchButton(){
-	$('#listsysareadg').datagrid('options').url=SKY.urlCSRF(basepath+'bkcx/SysArea/getSysAreaByPage');
+	$('#listsysareadg').datagrid('options').url=SKY.urlCSRF(basepath+'sys/SysArea/getSysAreaByPage');
 	$('#listsysareadg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();

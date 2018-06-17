@@ -2,11 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.sky.sys.client.SysAreaMapper">
   <resultMap id="BaseResultMap" type="org.sky.sys.model.SysArea">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="par_code" jdbcType="VARCHAR" property="parCode" />
-    <result column="seq" jdbcType="INTEGER" property="seq" />
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PAR_CODE" jdbcType="VARCHAR" property="parCode" />
+    <result column="SEQ" jdbcType="INTEGER" property="seq" />
+    <result column="CHILD_COUNT" jdbcType="INTEGER" property="childCount" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, code, name, par_code, seq
+    ID, CODE, NAME, PAR_CODE, SEQ,
+    (SELECT IFNULL(COUNT(1),0) FROM SYS_AREA SA WHERE SA.PAR_CODE=SYS_AREA.CODE) AS CHILD_COUNT
   </sql>
   <select id="selectByExample" parameterType="org.sky.sys.model.SysAreaExample" resultMap="BaseResultMap">
     select
@@ -88,11 +90,11 @@
     select 
     <include refid="Base_Column_List" />
     from sys_area
-    where id = #{id,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sys_area
-    where id = #{id,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="org.sky.sys.model.SysAreaExample">
     delete from sys_area
@@ -101,8 +103,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.sky.sys.model.SysArea">
-    insert into sys_area (id, code, name, 
-      par_code, seq)
+    insert into sys_area (ID, CODE, NAME, 
+      PAR_CODE, SEQ)
     values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{parCode,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER})
   </insert>
@@ -110,19 +112,19 @@
     insert into sys_area
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        id,
+        ID,
       </if>
       <if test="code != null">
-        code,
+        CODE,
       </if>
       <if test="name != null">
-        name,
+        NAME,
       </if>
       <if test="parCode != null">
-        par_code,
+        PAR_CODE,
       </if>
       <if test="seq != null">
-        seq,
+        SEQ,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -153,19 +155,19 @@
     update sys_area
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=VARCHAR},
+        ID = #{record.id,jdbcType=VARCHAR},
       </if>
       <if test="record.code != null">
-        code = #{record.code,jdbcType=VARCHAR},
+        CODE = #{record.code,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+        NAME = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.parCode != null">
-        par_code = #{record.parCode,jdbcType=VARCHAR},
+        PAR_CODE = #{record.parCode,jdbcType=VARCHAR},
       </if>
       <if test="record.seq != null">
-        seq = #{record.seq,jdbcType=INTEGER},
+        SEQ = #{record.seq,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -174,11 +176,11 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update sys_area
-    set id = #{record.id,jdbcType=VARCHAR},
-      code = #{record.code,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      par_code = #{record.parCode,jdbcType=VARCHAR},
-      seq = #{record.seq,jdbcType=INTEGER}
+    set ID = #{record.id,jdbcType=VARCHAR},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      PAR_CODE = #{record.parCode,jdbcType=VARCHAR},
+      SEQ = #{record.seq,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -187,27 +189,27 @@
     update sys_area
     <set>
       <if test="code != null">
-        code = #{code,jdbcType=VARCHAR},
+        CODE = #{code,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        NAME = #{name,jdbcType=VARCHAR},
       </if>
       <if test="parCode != null">
-        par_code = #{parCode,jdbcType=VARCHAR},
+        PAR_CODE = #{parCode,jdbcType=VARCHAR},
       </if>
       <if test="seq != null">
-        seq = #{seq,jdbcType=INTEGER},
+        SEQ = #{seq,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.sky.sys.model.SysArea">
     update sys_area
-    set code = #{code,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      par_code = #{parCode,jdbcType=VARCHAR},
-      seq = #{seq,jdbcType=INTEGER}
-    where id = #{id,jdbcType=VARCHAR}
+    set CODE = #{code,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PAR_CODE = #{parCode,jdbcType=VARCHAR},
+      SEQ = #{seq,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">
     <if test="page != null">
