@@ -48,6 +48,8 @@ public class TbStAjdjxx {
     private String xqdw;
 
     private String xzqh;
+    
+    private String xzqhName;
 
     private String cjr;
 
@@ -461,5 +463,13 @@ public class TbStAjdjxx {
 
 	public void setDjdwName(String djdwName) {
 		this.djdwName = djdwName;
+	}
+
+	public String getXzqhName() {
+		return xzqhName;
+	}
+
+	public void setXzqhName(String xzqhName) {
+		this.xzqhName = xzqhName;
 	}
 }

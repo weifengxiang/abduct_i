@@ -39,6 +39,7 @@ $(function() {
 			<input type='hidden' name='djr' id='djr'/>
 			<input type='hidden' name='djdw' id='djdw'/>
 			<input type='hidden' name='dqdw' id='dqdw'/>
+			<input type='hidden' name='xzqh' id='xzqh'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>案件编号:</label></th>
@@ -136,7 +137,7 @@ $(function() {
 				  </tr>
 				  <tr>
 					<th><label>事发地行政区划:</label></th>
-					<td colspan='3'><input class="easyui-textbox" name="xzqh" 
+					<td colspan='3'><input class="easyui-textbox" name="xzqhName" id="xzqhName" 
 						data-options="required:true"></input>
 						<a href="javascript:openAreaHelp()"class="easyui-linkbutton" plain="true" iconCls="icon-search">选择</a>
 						</td>

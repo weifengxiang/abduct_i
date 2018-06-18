@@ -37,6 +37,7 @@ $(function() {
 			<input type='hidden' name='djr' id='djr'/>
 			<input type='hidden' name='djdw' id='djdw'/>
 			<input type='hidden' name='dqdw' id='dqdw'/>
+			<input type='hidden' name='xzqh' id='xzqh'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>案件编号:</label></th>
@@ -133,6 +134,11 @@ $(function() {
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
+					<th><label>事发行政区划:</label></th>
+					<td><input class="easyui-textbox" name="xzqhName"
+						data-options="required:true"></input></td>
+				  </tr>
+				  <tr>
 					<th><label>事发地址:</label></th>
 					<td colspan='3'><input class="easyui-textbox" name="sfdz" style='width:500;height:50'
 						data-options="required:true,multiline:true"></input></td>
@@ -142,15 +148,7 @@ $(function() {
 					<td colspan='3'><input class="easyui-textbox" name="sjxq" style='width:500;height:50'
 						data-options="required:true,multiline:true"></input></td>
 				  </tr>
-				  <tr>
-					<th><label>辖区单位:</label></th>
-					<td><input class="easyui-textbox" name="xqdw"
-						data-options="required:true"></input></td>
-
-					<th><label>行政区划:</label></th>
-					<td><input class="easyui-textbox" name="xzqh"
-						data-options="required:true"></input></td>
-				  </tr>
+				  
 				  <tr>
 					<th><label>出警人:</label></th>
 					<td><input class="easyui-textbox" name="cjr"

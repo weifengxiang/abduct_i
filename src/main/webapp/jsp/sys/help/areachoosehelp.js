@@ -48,6 +48,7 @@ function chooseOK(callback){
 		$.messager.alert('提示','请选择记录','info');
 		return;
 	}else{
+		debugger;
 		callback(checkeds);
 	}
 }

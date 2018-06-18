@@ -25,6 +25,7 @@
     <result column="SJXQ" jdbcType="VARCHAR" property="sjxq" />
     <result column="XQDW" jdbcType="VARCHAR" property="xqdw" />
     <result column="XZQH" jdbcType="VARCHAR" property="xzqh" />
+    <result column="XZQH_NAME" jdbcType="VARCHAR" property="xzqhName" />
     <result column="CJR" jdbcType="VARCHAR" property="cjr" />
     <result column="DCSJ" jdbcType="TIMESTAMP" property="dcsj" />
     <result column="DCQK" jdbcType="VARCHAR" property="dcqk" />
@@ -114,7 +115,8 @@
     UPDATER, UPDATE_TIME, BZ,
     (SELECT NAME FROM SYS_USER U WHERE U.CODE=DJR) AS DJR_NAME,
     (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=DQDW) AS DQDW_NAME,
-    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=DJDW) AS DJDW_NAME
+    (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=DJDW) AS DJDW_NAME,
+    (SELECT NAME FROM SYS_AREA A WHERE A.CODE = XZQH) AS XZQH_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.ywbl.model.TbStAjdjxxExample" resultMap="BaseResultMap">
     select

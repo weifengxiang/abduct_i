@@ -142,19 +142,11 @@ function openAreaHelp(){
 	                	dialog.close();
 	                };
 	                paramOpts.ok=function(list){
-	                	if(list.length>0){
-	                		var jsdws='';
-	                		var jsdwNames='';
-	                		$.each(list,function(i,node){
-	                			jsdws=jsdws+node.data.code;
-	                			jsdwNames=jsdwNames+node.data.name;
-	                			if(i!=list.length-1){
-	                				jsdws=jsdws+",";
-	                				jsdwNames=jsdwNames+',';
-	                			}
-	                		});
-	                		$('#jsdw').val(jsdws);
-	                		$('#jsdwName').textbox('setValue',jsdwNames);
+	                	debugger;
+	                	if(list.length==1){
+	                		debugger;
+	                		$('#xzqh').val(list[0].data.code);
+	                		$('#xzqhName').textbox('setValue',list[0].data.name);
 	                		dialog.close();
 	                	}else{
 	                		$.messager.alert('提示','请选行政区划','error');

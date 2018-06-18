@@ -137,6 +137,11 @@ $(function() {
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
+					<th><label>事发地行政区划:</label></th>
+					<td colspan='3'><input class="easyui-textbox" name="xzqhName"
+						data-options="required:true"></input></td>
+				  </tr>
+				  <tr>
 					<th><label>事发地址:</label></th>
 					<td colspan='3'><input class="easyui-textbox" name="sfdz" style='width:500;height:50'
 						data-options="required:true,multiline:true"></input></td>
@@ -145,15 +150,6 @@ $(function() {
 					<th><label>事件详情:</label></th>
 					<td colspan='3'><input class="easyui-textbox" name="sjxq" style='width:500;height:50'
 						data-options="required:true,multiline:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>辖区单位:</label></th>
-					<td><input class="easyui-textbox" name="xqdw"
-						data-options="required:true"></input></td>
-
-					<th><label>行政区划:</label></th>
-					<td><input class="easyui-textbox" name="xzqh"
-						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>出警人:</label></th>
