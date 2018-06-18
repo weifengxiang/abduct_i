@@ -9,10 +9,57 @@ package org.sky.app.utils;
  * @Copyright: 2018 XXX. All rights reserved.
  */
 public class AppConst {
-	public static final String TOKEN_ERROR="403";
-	public static final String TOKEN_ERROR_NAME="TOKEN验证失败";
-	public static final String TOKEN_SUCCESS="200";
-	public static final String TOKEN_SUCCESS_NAME="TOKEN验证成功";
-	public static final String TOKEN_EXP="408";
-	public static final String TOKEN_EXP_NAME="TOKEN超时";
+	
+	/********************不需要验证token的地址*************************/
+	public static final String NO_INTERCEPTOR_PATH = ".*/((test)|(register)|(tokenLogin)|(login)|(refreshToken)|(obtainSms)|(updatePassword)).*";//不需要验证token地址
+	
+	/*******************返回成功代码**********************************/
+	public static final String SUCCESS = "SUCCESS";//成功
+	public static final String SUCCESS_DESCRIPTION = "操作成功";
+	
+	/*******************返回错误代码及描述******************************/
+	//通用错误类型
+	public static final String SYS_ERROR = "SYS_ERROR";
+	public static final String SYS_ERROR_DESCRIPTION = "系统错误";
+	public static final String PARAMETER_NULL = "PARAMETER_NULL";
+	public static final String PARAMETER_NULL_DESCRIPTION = "缺少必须参数";
+	public static final String PARAMETER_ERROR = "PARAMETER_ERROR";
+	public static final String PARAMETER_ERROR_DESCRIPTION = "参数不符合要求";
+	public static final String ROLE_ERROR = "ROLE_ERROR";
+	public static final String ROLE_ERROR_DESCRIPTION = "没有权限";
+	//token错误类型
+	public static final String TOKEN_NULL = "TOKEN_ERROR_0001";
+	public static final String TOKEN_NULL_DESCRIPTION = "没有token参数";
+	public static final String TOKEN_EXP = "TOKEN_ERROR_0002";
+	public static final String TOKEN_EXP_DESCRIPTION = "token过期";
+	public static final String TOKEN_ERROR = "TOKEN_ERROR_0003";
+	public static final String TOKEN_ERROR_DESCRIPTION = "token无效";
+	//用户错误类型
+	public static final String USER_LOGIN_ERROR = "USER_ERROR_0002";
+	public static final String USER_LOGIN_ERROR_DESCRIPTION = "用户名或密码错误";
+	public static final String USER_LOGIN_INVALID = "USER_ERROR_0003";
+	public static final String USER_LOGIN_INVALID_DESCRIPTION = "登录信息无效";
+	
+	/********************系统常量*********************/
+	//request中的参数名
+	/**
+	 * request中请求token参数名称
+	 */
+	public static final String REQUEST_TOKEN_NAME = "requestToken";
+	/**
+	 * request中刷新token参数名称
+	 */
+	public static final String REFRESH_TOKEN_NAME = "refreshToken";
+	/**
+	 *request中登录信息
+	 */
+	public static final String REQUEST_LOGIN_MSG = "REQUEST_LOGIN_MSG";
+	//全局常量
+	public static final String APP_NOT = "0";//否
+	public static final String APP_IS = "1";//是
+	
+	/********************客户模块常量******************/
+	public static final String CUSTOMER_TYPE_0 = "0";//表示全部客户
+	public static final String CUSTOMER_TYPE_1 = "1";//表示今日客户
+	public static final String CUSTOMER_TYPE_2 = "2";//表示重点客户
 }

@@ -10,8 +10,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.sky.app.entity.AppUser;
-import org.sky.app.utils.JWTUtils;
 import org.sky.sys.model.SysFile;
 import org.sky.sys.model.SysUser;
 import org.sky.sys.utils.BspUtils;
