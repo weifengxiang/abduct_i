@@ -9,6 +9,7 @@
 
 package org.sky.utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,6 +28,19 @@ import sun.misc.BASE64Encoder;
  */
 public class Base64Img {
 
+	public static String GetImageStr(File imgFile) throws Exception {// 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+		//String imgFile = "d://test.jpg";// 待处理的图片
+		InputStream in = null;
+		byte[] data = null;
+		// 读取图片字节数组
+		in = new FileInputStream(imgFile);
+		data = new byte[in.available()];
+		in.read(data);
+		in.close();
+		// 对字节数组Base64编码
+		BASE64Encoder encoder = new BASE64Encoder();
+		return encoder.encode(data);// 返回Base64编码过的字节数组字符串
+	}
 	// 图片转化成base64字符串
 	public static String GetImageStr(String imgFile) throws Exception {// 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
 		//String imgFile = "d://test.jpg";// 待处理的图片

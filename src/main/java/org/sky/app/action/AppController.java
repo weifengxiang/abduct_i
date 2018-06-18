@@ -1,6 +1,11 @@
 package org.sky.app.action;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,18 +16,31 @@ import org.apache.log4j.Logger;
 import org.sky.app.service.AppService;
 import org.sky.app.utils.AppConst;
 import org.sky.app.utils.JwtUtil;
+import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
+import org.sky.sys.model.SysFile;
 import org.sky.sys.model.SysUser;
+import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
+import org.sky.sys.utils.ConfUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.MD5Utils;
 import org.sky.sys.utils.ResultData;
 import org.sky.sys.utils.StringUtils;
+import org.sky.utils.Base64Img;
+import org.sky.ywbl.model.TbStAjdjxx;
+import org.sky.ywbl.model.TbStXsxx;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
+import net.sf.json.JSONObject;
 
 
 /**
@@ -33,17 +51,16 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-public class AppController {
+public class AppController extends BaseController{
 	@Autowired
 	private AppService appService;
-	
 	/**
 	 * 使用token登录
 	 * @param token
 	 * @return
 	 */
 	@RequestMapping(value="/app/AppController/tokenLogin",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-	public ResultData tokenLogin(HttpServletRequest request, HttpServletResponse response){
+	public @ResponseBody ResultData tokenLogin(HttpServletRequest request, HttpServletResponse response){
 		ResultData rd = new ResultData();
 		try {
 			String token = request.getParameter("refreshToken");
@@ -82,7 +99,7 @@ public class AppController {
 	 * @return
 	 */
 	@RequestMapping(value="/app/AppController/login",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-	public ResultData login(HttpServletRequest request, HttpServletResponse response){
+	public @ResponseBody ResultData login(HttpServletRequest request, HttpServletResponse response){
 		ResultData rd = new ResultData();
 		String usercode = request.getParameter("usercode");
 		String password = request.getParameter("password");
@@ -129,6 +146,181 @@ public class AppController {
 		}
 		return rd;
 	}
+	@RequestMapping(value="/app/AppController/selectDictItemByType",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody List selectDictItemByType(HttpServletRequest request, HttpServletResponse response) {
+		String dictCode = request.getParameter("dictCode");
+		return appService.selectDictItemByType(dictCode);
+	}
+	/**
+	 * 添加线索
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/app/AppController/AddXsxx", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody
+	ResultData AddXsxx(HttpServletRequest request, HttpServletResponse response)
+			throws IllegalStateException, IOException {
+		ResultData rd = new ResultData();
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		try {
+			// 创建一个通用的多部分解析器
+			CommonsMultipartResolver multipartResolver = (CommonsMultipartResolver)BspUtils.getBean("multipartResolver");
+			// 判断 request 是否有文件上传,即多部分请求
+			if (multipartResolver.isMultipart(request)) {
+				// 转换成多部分request
+				MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)multipartResolver.resolveMultipart(request);
+				List<SysFile> list = new ArrayList<SysFile>();
+				//线索信息
+				TbStXsxx xs = null;
+				List<Field> idField = new ArrayList();
+				idField=getAllField(idField, TbStXsxx.class);
+				JSONObject js= new JSONObject();
+				for (Field field : idField) {
+					String name = field.getName();
+					String str =  multiRequest.getParameter(name);
+					if(str != null){
+						js.put(name, str);
+					}
+				}
+				xs = JsonUtils.json2pojo(js.toString(), TbStXsxx.class);
+				List<String> tx = new ArrayList();
+				// 取得request中的所有文件名
+				Iterator<String> iter = multiRequest.getFileNames();
+				while (iter.hasNext()) {
+					// 记录上传过程起始时的时间，用来计算上传时间
+					int pre = (int) System.currentTimeMillis();
+					// 取得上传文件
+					MultipartFile attachfile = multiRequest.getFile(iter.next());
+					if (attachfile != null) {
+						// 取得当前上传文件的文件名称
+						String fileName = attachfile.getOriginalFilename();
+						// 如果名称不为“”,说明该文件存在，否则说明该文件不存在
+						if (fileName.trim() != "") {
+							// 定义上传路径
+							String path = ConfUtils.getValue("ATTACHMENT_DIR")
+									+ "app" + File.separator
+									+ "xsxx" + fileName;
+							File localFile = new File(path);
+							if (!localFile.getParentFile().exists()) {
+								localFile.getParentFile().mkdirs();
+							}
+							attachfile.transferTo(localFile);
+							String base64 =Base64Img.GetImageStr(localFile);
+							tx.add(base64);
+						}
+					}
+					// 记录上传该文件后的时间
+					int finaltime = (int) System.currentTimeMillis();
+					System.out.println(finaltime - pre);
+				}
+				appService.AddXsxx(xs, tx, usercode);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("上传失败<br>" + e.getMessage());
+			return rd;
+		}
+		rd.setCode(ResultData.code_success);
+		rd.setName("上传成功");
+		return rd;
+	}
+	@RequestMapping(value = "/app/AppController/AddAjxx", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody
+	ResultData AddAjxx(HttpServletRequest request, HttpServletResponse response)
+			throws IllegalStateException, IOException {
+		ResultData rd = new ResultData();
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		try {
+			// 创建一个通用的多部分解析器
+			CommonsMultipartResolver multipartResolver = (CommonsMultipartResolver)BspUtils.getBean("multipartResolver");
+			// 判断 request 是否有文件上传,即多部分请求
+			if (multipartResolver.isMultipart(request)) {
+				// 转换成多部分request
+				MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)multipartResolver.resolveMultipart(request);
+				List<SysFile> list = new ArrayList<SysFile>();
+				//线索信息
+				TbStAjdjxx aj = null;
+				List<Field> idField = new ArrayList();
+				idField=getAllField(idField, TbStAjdjxx.class);
+				JSONObject js= new JSONObject();
+				for (Field field : idField) {
+					String name = field.getName();
+					String str =  multiRequest.getParameter(name);
+					if(str != null){
+						js.put(name, str);
+					}
+				}
+				aj = JsonUtils.json2pojo(js.toString(), TbStAjdjxx.class);
+				List<String> tx = new ArrayList();
+				// 取得request中的所有文件名
+				Iterator<String> iter = multiRequest.getFileNames();
+				while (iter.hasNext()) {
+					// 记录上传过程起始时的时间，用来计算上传时间
+					int pre = (int) System.currentTimeMillis();
+					// 取得上传文件
+					MultipartFile attachfile = multiRequest.getFile(iter.next());
+					if (attachfile != null) {
+						// 取得当前上传文件的文件名称
+						String fileName = attachfile.getOriginalFilename();
+						// 如果名称不为“”,说明该文件存在，否则说明该文件不存在
+						if (fileName.trim() != "") {
+							// 定义上传路径
+							String path = ConfUtils.getValue("ATTACHMENT_DIR")
+									+ "app" + File.separator
+									+ "xsxx" + fileName;
+							File localFile = new File(path);
+							if (!localFile.getParentFile().exists()) {
+								localFile.getParentFile().mkdirs();
+							}
+							attachfile.transferTo(localFile);
+							String base64 =Base64Img.GetImageStr(localFile);
+							tx.add(base64);
+						}
+					}
+					// 记录上传该文件后的时间
+					int finaltime = (int) System.currentTimeMillis();
+					System.out.println(finaltime - pre);
+				}
+				appService.AddAjxx(aj, tx, usercode);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("上传失败<br>" + e.getMessage());
+			return rd;
+		}
+		rd.setCode(ResultData.code_success);
+		rd.setName("上传成功");
+		return rd;
+	}
+	/**
+	 * 加载线索信息
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/loadXsxx",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody List loadXsxx(HttpServletRequest request, HttpServletResponse response) {
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		return appService.loadXsxx(usercode);
+	}
+	/**
+	 * 加载案件信息
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/loadAjxx",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody List loadAjxx(HttpServletRequest request, HttpServletResponse response) {
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		return appService.loadAjxx(usercode);
+	}
 	/**
 	 * 生成登录返回值
 	 * @param rd
@@ -147,4 +339,5 @@ public class AppController {
 		rd.setData(resultMap);
 		return rd;
 	}
+	
 }

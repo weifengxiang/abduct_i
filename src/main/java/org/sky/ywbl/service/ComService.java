@@ -38,7 +38,7 @@ public class ComService {
 	 * @param jgdm
 	 * @return
 	 */
-	public synchronized String getYwbh(String szm,String jgdm) {
+	public synchronized String getYwbh(String szm,String userCode,String jgdm) {
 		int sxh=0;
 		String ywbh="";
 		String ny = CommonUtils.getCurrentDate("yyyyMM");
@@ -46,7 +46,6 @@ public class ComService {
 		e.createCriteria().andSzmEqualTo(szm).andJgdmEqualTo(jgdm).andNyEqualTo(ny);
 		List<TbStYwbh> list = ywbhMapper.selectByExample(e);
 		DecimalFormat df = new DecimalFormat("#0000");
-		String userCode = BspUtils.getLoginUser().getCode();
 		Date date = CommonUtils.getCurrentDbDate();
 		if(list.isEmpty()) {
 			sxh=1;

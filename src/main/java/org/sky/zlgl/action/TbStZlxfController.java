@@ -79,7 +79,7 @@ public class TbStZlxfController extends BaseController{
 	public ModelAndView initAddTbStZlxfPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView  mv = new ModelAndView();
-		String zlbh = comService.getYwbh("Z", BspUtils.getLoginUser().getOrganCode());
+		String zlbh = comService.getYwbh("Z", BspUtils.getLoginUser().getCode(),BspUtils.getLoginUser().getOrganCode());
 		mv.addObject("zlbh", zlbh);
 		mv.setViewName("jsp/zlgl/zlxf/edittbstzlxf");
 		return mv;

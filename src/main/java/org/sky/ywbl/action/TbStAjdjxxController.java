@@ -96,7 +96,7 @@ public class TbStAjdjxxController extends BaseController{
 	@RequestMapping(value = "/ywbl/TbStAjdjxx/initAddTbStAjdjxxPage", method = { RequestMethod.GET })
 	public ModelAndView initAddTbStAjdjxxPage(
 			HttpServletRequest request, HttpServletResponse response) {
-		String ajbh = comService.getYwbh("A", BspUtils.getLoginUser().getOrganCode());
+		String ajbh = comService.getYwbh("A",BspUtils.getLoginUser().getCode(), BspUtils.getLoginUser().getOrganCode());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("ajbh", ajbh);
 		mv.setViewName("jsp/ywbl/ajdj/edittbstajdjxx");

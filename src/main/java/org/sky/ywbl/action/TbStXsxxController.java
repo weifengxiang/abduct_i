@@ -89,7 +89,7 @@ public class TbStXsxxController extends BaseController{
 	@RequestMapping(value = "/ywbl/TbStXsxx/initAddTbStXsxxPage", method = { RequestMethod.GET })
 	public ModelAndView initAddTbStXsxxPage(
 			HttpServletRequest request, HttpServletResponse response) {
-		String xsbh = comService.getYwbh("X", BspUtils.getLoginUser().getOrganCode());
+		String xsbh = comService.getYwbh("X", BspUtils.getLoginUser().getCode(),BspUtils.getLoginUser().getOrganCode());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("xsbh", xsbh);
 		mv.setViewName("jsp/ywbl/xsgl/edittbstxsxx");

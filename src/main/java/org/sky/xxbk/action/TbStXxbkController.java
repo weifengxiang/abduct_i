@@ -74,7 +74,7 @@ public class TbStXxbkController extends BaseController{
 	@RequestMapping(value = "/bksz/TbStXxbk/initAddTbStXxbkPage", method = { RequestMethod.GET })
 	public ModelAndView initAddTbStXxbkPage(
 			HttpServletRequest request, HttpServletResponse response) {
-		String ywbh = comService.getYwbh("B", BspUtils.getLoginUser().getOrganCode());
+		String ywbh = comService.getYwbh("B",BspUtils.getLoginUser().getCode(), BspUtils.getLoginUser().getOrganCode());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("bh", ywbh);
 		mv.setViewName("jsp/xxbk/bksz/edittbstxxbk");
