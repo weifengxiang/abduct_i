@@ -1,11 +1,14 @@
 package org.sky.app.service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.sky.hdjl.client.TbStHdjlJsMapper;
+import org.sky.hdjl.model.TbStHdjlJsExample;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.client.SysDictItemMapper;
 import org.sky.sys.client.SysUserMapper;
@@ -51,6 +54,8 @@ public class AppService {
 	private TbStTxxxMapper txMapper;
 	@Autowired
 	private TbStAjdjxxMapper ajMapper;
+	@Autowired
+	private TbStHdjlJsMapper jsMapper;
 	/**
 	 * 登录
 	 * @param username
@@ -194,5 +199,73 @@ public class AppService {
 		sae.createCriteria().andCreaterEqualTo(usercode);
 		sae.setOrderByClause("create_time desc");
 		return ajMapper.selectByExample(sae);
+	}
+	/**
+	 * 加载所有用户联系人信息
+	 * @return
+	 */
+	public List loadAllUsers() {
+		SysUserExample e = new SysUserExample();
+		e.createCriteria().andCodeNotEqualTo("SUPERADMIN").andOrganCodeIsNotNull();
+		List<SysUser> list = sysuserMapper.selectByExample(e);
+		List<Contact> resList = new ArrayList();
+		for(SysUser su:list) {
+			String orgCode = su.getOrganCode();
+			String orgName = su.getOrganName();
+			boolean orgExist = false;
+			for(Contact c:resList) {
+				if(c.getOrganCode().equals(orgCode)) {
+					orgExist=true;
+					c.getUserList().add(su);
+				}
+			}
+			if(!orgExist) {
+				Contact c = new Contact();
+				c.setOrganCode(orgCode);
+				c.setOrganName(orgName);
+				c.getUserList().add(su);
+				resList.add(c);
+			}
+		}
+		return resList;
+	}
+	/**
+	 * 加载用户接受到的信息数量
+	 * @param userCode
+	 * @return
+	 */
+	public Long loadReceiverMsgCount(String userCode) {
+		TbStHdjlJsExample e = new TbStHdjlJsExample();
+		e.createCriteria().andJsrEqualTo(userCode).andZtEqualTo("0");
+		return jsMapper.countByExample(e);
+	}
+	public List loadReceiverMsgCountByUser(String userCode) {
+		TbStHdjlJsExample e = new TbStHdjlJsExample();
+		e.createCriteria().andJsrEqualTo(userCode).andZtEqualTo("0");
+		return jsMapper.countByExample(e);
+	}
+	class Contact{
+		private String organCode;
+		private String organName;
+		private List<SysUser> userList=new ArrayList();
+		public String getOrganCode() {
+			return organCode;
+		}
+		public void setOrganCode(String organCode) {
+			this.organCode = organCode;
+		}
+		public String getOrganName() {
+			return organName;
+		}
+		public void setOrganName(String organName) {
+			this.organName = organName;
+		}
+		public List<SysUser> getUserList() {
+			return userList;
+		}
+		public void setUserList(List<SysUser> userList) {
+			this.userList = userList;
+		}
+		
 	}
 }

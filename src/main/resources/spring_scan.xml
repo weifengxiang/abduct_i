@@ -16,7 +16,8 @@
 									   org.sky.sjzq.client,
 									   org.sky.txsb.client,
 									   org.sky.xxbk.client,
-									   org.sky.zlgl.client
+									   org.sky.zlgl.client,
+									   org.sky.hdjl.client
 									   " 
 						 template-ref="sqlSession"/>			
 	<!-- 扫描service层 -->

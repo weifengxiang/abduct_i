@@ -322,6 +322,39 @@ public class AppController extends BaseController{
 		return appService.loadAjxx(usercode);
 	}
 	/**
+	 * 加载所有用户(联系人)信息
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/loadAllUsers",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody List loadAllUsers(HttpServletRequest request, HttpServletResponse response) {
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		return appService.loadAllUsers();
+	}
+	/**
+	 * 加载接收到的信息数量
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/loadReceiverMsgCount",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody Long loadReceiverMsgCount(HttpServletRequest request, HttpServletResponse response) {
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		return appService.loadReceiverMsgCount(usercode);
+	}
+	/**
+	 * 查询接收到每个用户发送来的数据
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/loadReceiverMsgCountByUser",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody Long loadReceiverMsgCountByUser(HttpServletRequest request, HttpServletResponse response) {
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		return appService.loadReceiverMsgCountByUser(usercode);
+	}
+	/**
 	 * 生成登录返回值
 	 * @param rd
 	 * @param user

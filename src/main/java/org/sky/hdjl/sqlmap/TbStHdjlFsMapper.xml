@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sky.hdjl.client.TbStHdjlFsMapper">
+  <resultMap id="BaseResultMap" type="org.sky.hdjl.model.TbStHdjlFs">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="XXNR" jdbcType="VARCHAR" property="xxnr" />
+    <result column="FSSJ" jdbcType="TIMESTAMP" property="fssj" />
+    <result column="FSR" jdbcType="VARCHAR" property="fsr" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, XXNR, FSSJ, FSR
+  </sql>
+  <select id="selectByExample" parameterType="org.sky.hdjl.model.TbStHdjlFsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_st_hdjl_fs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="MySqlPaginationSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_st_hdjl_fs
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_st_hdjl_fs
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.sky.hdjl.model.TbStHdjlFsExample">
+    delete from tb_st_hdjl_fs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.sky.hdjl.model.TbStHdjlFs">
+    insert into tb_st_hdjl_fs (ID, XXNR, FSSJ, 
+      FSR)
+    values (#{id,jdbcType=VARCHAR}, #{xxnr,jdbcType=VARCHAR}, #{fssj,jdbcType=TIMESTAMP}, 
+      #{fsr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sky.hdjl.model.TbStHdjlFs">
+    insert into tb_st_hdjl_fs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="xxnr != null">
+        XXNR,
+      </if>
+      <if test="fssj != null">
+        FSSJ,
+      </if>
+      <if test="fsr != null">
+        FSR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="xxnr != null">
+        #{xxnr,jdbcType=VARCHAR},
+      </if>
+      <if test="fssj != null">
+        #{fssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fsr != null">
+        #{fsr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.sky.hdjl.model.TbStHdjlFsExample" resultType="java.lang.Long">
+    select count(*) from tb_st_hdjl_fs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_st_hdjl_fs
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xxnr != null">
+        XXNR = #{record.xxnr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fssj != null">
+        FSSJ = #{record.fssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fsr != null">
+        FSR = #{record.fsr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_st_hdjl_fs
+    set ID = #{record.id,jdbcType=VARCHAR},
+      XXNR = #{record.xxnr,jdbcType=VARCHAR},
+      FSSJ = #{record.fssj,jdbcType=TIMESTAMP},
+      FSR = #{record.fsr,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.hdjl.model.TbStHdjlFs">
+    update tb_st_hdjl_fs
+    <set>
+      <if test="xxnr != null">
+        XXNR = #{xxnr,jdbcType=VARCHAR},
+      </if>
+      <if test="fssj != null">
+        FSSJ = #{fssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fsr != null">
+        FSR = #{fsr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sky.hdjl.model.TbStHdjlFs">
+    update tb_st_hdjl_fs
+    set XXNR = #{xxnr,jdbcType=VARCHAR},
+      FSSJ = #{fssj,jdbcType=TIMESTAMP},
+      FSR = #{fsr,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="MySqlPaginationSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin},#{page.rows} ]]>
+    </if>
+  </sql>
+</mapper>
