@@ -16,6 +16,8 @@ import org.apache.log4j.Logger;
 import org.sky.app.service.AppService;
 import org.sky.app.utils.AppConst;
 import org.sky.app.utils.JwtUtil;
+import org.sky.hdjl.model.TbStHdjlFs;
+import org.sky.hdjl.model.TbStHdjlJs;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysFile;
@@ -350,9 +352,43 @@ public class AppController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="/app/AppController/loadReceiverMsgCountByUser",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-	public @ResponseBody Long loadReceiverMsgCountByUser(HttpServletRequest request, HttpServletResponse response) {
+	public @ResponseBody List loadReceiverMsgCountByUser(HttpServletRequest request, HttpServletResponse response) {
 		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
 		return appService.loadReceiverMsgCountByUser(usercode);
+	}
+	/**
+	 * 发送消息
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/sendMsg",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody ResultData sendMsg(HttpServletRequest request, HttpServletResponse response) {
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		TbStHdjlFs fs = (TbStHdjlFs) this.getEntityBean(request, TbStHdjlFs.class);
+		fs.setFsr(usercode);
+		String jsr = request.getParameter("jsr");
+		TbStHdjlJs js = new TbStHdjlJs();
+		js.setJsr(jsr);
+		List jslist = new ArrayList();
+		jslist.add(js);
+		appService.sendMsg(fs,jslist);
+		ResultData rd = new ResultData();
+		rd.setCode("1");
+		rd.setName("发送成功");
+		return rd;
+	}
+	/**
+	 * 接收消息
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/receiveMsg",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody List<TbStHdjlFs> receiveMsg(HttpServletRequest request, HttpServletResponse response) {
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		String sender = request.getParameter("sender");
+		return appService.receiveMsg(usercode,sender);
 	}
 	/**
 	 * 生成登录返回值

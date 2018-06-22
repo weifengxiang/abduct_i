@@ -214,4 +214,16 @@
       <![CDATA[ limit #{page.begin},#{page.rows} ]]>
     </if>
   </sql>
+  <select id="loadReceiverMsgCountByUser" resultType="map">
+  	SELECT COUNT(1) AS COUNT,
+		   DATE_FORMAT(MAX(FS.FSSJ),'%m-%d %H:%i:%S') as LASTTIME,
+		   FS.FSR,
+		   (SELECT NAME FROM SYS_USER U WHERE U.CODE=FS.FSR) AS FSRNAME
+  	  FROM TB_ST_HDJL_JS JS
+  	  LEFT JOIN TB_ST_HDJL_FS FS
+  	  ON JS.FS_ID = FS.ID
+  	  WHERE JS.ZT='0'
+  	    AND JS.JSR=#{useCode,jdbcType=VARCHAR}
+  	  GROUP BY FS.FSR
+  </select>
 </mapper>

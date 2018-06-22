@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.sky.hdjl.client.TbStHdjlFsMapper;
 import org.sky.hdjl.client.TbStHdjlJsMapper;
+import org.sky.hdjl.model.TbStHdjlFs;
+import org.sky.hdjl.model.TbStHdjlFsExample;
+import org.sky.hdjl.model.TbStHdjlJs;
 import org.sky.hdjl.model.TbStHdjlJsExample;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.client.SysDictItemMapper;
@@ -54,6 +58,8 @@ public class AppService {
 	private TbStTxxxMapper txMapper;
 	@Autowired
 	private TbStAjdjxxMapper ajMapper;
+	@Autowired
+	private TbStHdjlFsMapper fsMapper;
 	@Autowired
 	private TbStHdjlJsMapper jsMapper;
 	/**
@@ -239,10 +245,60 @@ public class AppService {
 		e.createCriteria().andJsrEqualTo(userCode).andZtEqualTo("0");
 		return jsMapper.countByExample(e);
 	}
+	/**
+	 * 接收消息按发送人分组
+	 * @param userCode
+	 * @return
+	 */
 	public List loadReceiverMsgCountByUser(String userCode) {
-		TbStHdjlJsExample e = new TbStHdjlJsExample();
-		e.createCriteria().andJsrEqualTo(userCode).andZtEqualTo("0");
-		return jsMapper.countByExample(e);
+		return jsMapper.loadReceiverMsgCountByUser(userCode);
+	}
+	/**
+	 * 消息发送
+	 * @param fs
+	 * @param js
+	 */
+	public void sendMsg(TbStHdjlFs fs,List<TbStHdjlJs> list) {
+		Timestamp ts = syscommonmapper.queryTimestamp();
+		fs.setId(CommonUtils.getUUID(32));
+		fs.setFssj(ts);
+		fsMapper.insert(fs);
+		for(TbStHdjlJs js:list) {
+			js.setId(CommonUtils.getUUID(32));
+			js.setFsId(fs.getId());
+			js.setZt("0");
+			jsMapper.insert(js);
+		}
+	}
+	/**
+	 * 接收发送的消息
+	 * @param userCode
+	 * @return
+	 */
+	public List<TbStHdjlFs> receiveMsg(String userCode,String sender) {
+		Timestamp ts = syscommonmapper.queryTimestamp();
+		TbStHdjlFsExample fse = new TbStHdjlFsExample();
+		fse.createCriteria();
+		fse.setOrderByClause("fssj asc");
+		Map filter = new HashMap();
+		filter.put("exists(select 1 from tb_st_hdjl_js js where js.fs_id=tb_st_hdjl_fs.id and js.zt='0' and jsr='"+userCode+"') and 1@=", "1");
+		filter.put("fsr@=", sender);
+		fse.integratedQuery(filter);
+		List list = fsMapper.selectByExample(fse);
+		if(null!=list && !list.isEmpty()) {
+			TbStHdjlJs js = new TbStHdjlJs();
+			js.setZt("1");
+			js.setJssj(ts);
+			TbStHdjlJsExample e = new TbStHdjlJsExample();
+			e.createCriteria();
+			Map f = new HashMap();
+			f.put("jsr@=", userCode);
+			f.put("zt@=", "0");
+			f.put("exists(select 1 from tb_st_hdjl_fs fs where fs.id=fs_id and fs.fsr='"+sender+"') and 1@=", "1");
+			e.integratedQuery(f);
+			jsMapper.updateByExampleSelective(js, e);
+		}
+		return list;
 	}
 	class Contact{
 		private String organCode;
@@ -266,6 +322,5 @@ public class AppService {
 		public void setUserList(List<SysUser> userList) {
 			this.userList = userList;
 		}
-		
 	}
 }
