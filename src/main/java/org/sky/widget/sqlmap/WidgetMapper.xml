@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sky.widget.client.WidgetMapper" >
+	<!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->    
+	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> --> 
+	
+	<select id="selectDbxx" resultType="map">
+		SELECT  '案件登记' AS NAME,
+				 AJ.SJZT AS ZT,
+				 COUNT(1) AS NUM
+			 FROM TB_ST_AJDJXX AJ
+			WHERE AJ.DQDW=#{organCode,jdbcType=VARCHAR}
+			GROUP BY 
+			AJ.SJZT
+			UNION 
+			SELECT '指令下发' AS NAME,
+						FK.ZT AS ZT,
+						COUNT(1) AS NUM
+			FROM TB_ST_ZLFK FK
+			LEFT JOIN TB_ST_ZLXF XF
+			ON FK.ZLBH = XF.ZLBH
+			WHERE FK.JSDW=#{organCode,jdbcType=VARCHAR}
+				AND FK.ZT IN('0','1')
+			GROUP BY 
+			FK.ZT
+	</select>
+	<select id="selectBjfs" resultType="map">
+		SELECT BJFS AS CODE,
+			   (SELECT NAME FROM SYS_DICT_ITEM WHERE CODE = BJFS AND DICT_CODE='BJFS') AS NAME,
+			   COUNT(1) AS VALUE 
+		  FROM TB_ST_AJDJXX 
+	  GROUP BY BJFS
+	</select>
+</mapper>

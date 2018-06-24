@@ -1,3 +1,5 @@
+<%@page import="org.sky.sys.utils.CommonUtils"%>
+<%@page import="org.sky.sys.utils.EnumUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/jsp/inc/include.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,6 +8,8 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/zlgl/zlfk/detailtbstzlfk.js'></script>
 <script type="text/javascript">
+var zt=<%=EnumUtils.getEnums("ZLXF.ZT") %>;
+var datetime = '<%=CommonUtils.getCurrentDate() %>';
 var _callbacks = $.Callbacks();
 $(function() {
 	
@@ -23,8 +27,7 @@ $(function() {
 					<th><label>指令编号:</label></th>
 					<td><input class="easyui-textbox" name="zlbh"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+
 					<th><label>接收单位:</label></th>
 					<td><input class="easyui-textbox" name="jsdw"
 						data-options="required:true"></input></td>
@@ -33,26 +36,30 @@ $(function() {
 					<th><label>接收时间:</label></th>
 					<td><input class="easyui-textbox" name="jssj"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+
 					<th><label>反馈时间:</label></th>
-					<td><input class="easyui-textbox" name="fksj"
+					<td><input class="easyui-datetimebox" name="fksj" id="fksj"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>反馈内容:</label></th>
-					<td><input class="easyui-textbox" name="fknr"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="fknr"style='width:400;height:50'
+						data-options="multiline:true,required:true"></input></td>
 				  </tr>
-				  <tr>
-					<th><label>状态(0,1,2):</label></th>
-					<td><input class="easyui-textbox" name="zt"
-						data-options="required:true"></input></td>
-				  </tr>
+				  
 				  <tr>
 					<th><label>备注:</label></th>
-					<td><input class="easyui-textbox" name="bz"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="bz"style='width:400;height:50'
+						data-options="multiline:true"></input></td>
+				  </tr>
+				  <tr>
+					<th><label>状态:</label></th>
+					<td colspan='3'><input class="easyui-combobox" name="zt" id="zt"
+						data-options="required:true,
+									  data:zt,
+									  valueField:'code',
+									  textField:'name'
+									  "></input></td>
 				  </tr>
 			</table>
 		</form>

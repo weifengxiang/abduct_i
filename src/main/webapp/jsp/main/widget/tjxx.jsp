@@ -11,64 +11,82 @@
 </style>
 <script type="text/javascript" src="${basepath}skin/plugins/echarts/echarts.min.js"></script>
 <script type="text/javascript" src="${basepath}skin/plugins/echarts/shine.js"></script>
-<script type="text/javascript" src="${basepath}skin/plugins/echarts/map/js/shandong.js"></script>
-
 <script>
-	var orgcode = '';
-	$(function() {
-		sltj();
-	});
-	// 受理统计获取数据
-	function tjxx() {
-		$.ajax({
-			url : urlcsrf(basepath + 'sys/PubMainShow/getTjxx'),
-			type : "POST",
-			dataType : 'json',
-			success : function(data) {
-				sltj(data);
-			}
-		});
-	}
-	// 受理统计构建统计图
-	function sltj() {
-		var chart1 = echarts.init($('#slajtj').get(0));
-		// 指定图表的配置项和数据
-		var option = {
+$(function() {
+	var dom = document.getElementById("chart");
+		var myChart = echarts.init(dom);
+		var app = {};
+		option = null;
+		//app.title = '坐标轴刻度与标签对齐';
+		option = {
+			color : [ '#3398DB' ],
 			tooltip : {
-				show : true,
-				trigger : 'item'
-			},
-			legend: {
-		        data:['现场登记','微信登记','APP登记']
-		    },
-			calculable : true,
-			xAxis : {
-				data : [ "现场登记", "微信登记", "APP登记"]
-			},
-			yAxis : {
-				type : 'value'
-			},
-			series : [ {
-					name : '现场登记',
-					type : 'bar',
-					data : 12,
-				},{
-					name : '微信登记',
-					type : 'bar',
-					data : 1,
-				},{
-					name : 'APP登记',
-					type : 'bar',
-					data : 2,
+				trigger : 'axis',
+				axisPointer : { // 坐标轴指示器，坐标轴触发有效
+					type : 'shadow' // 默认为直线，可选为：'line' | 'shadow'
 				}
-				]
+			},
+			grid : {
+				left : '3%',
+				right : '4%',
+				bottom : '15%',
+				top:'10%',
+				containLabel : true
+			},
+			xAxis : [ {
+				type : 'category',
+				data : [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ],
+				axisTick : {
+					alignWithLabel : true
+				}
+			} ],
+			yAxis : [ {
+				type : 'value'
+			} ],
+			series : [ {
+				name : '数量',
+				type : 'bar',
+				barWidth : '60%',
+				data : [ 10, 52, 200, 334, 390, 330, 220 ]
+			} ]
 		};
-		chart1.setOption(option);
-	}
+		if (option && typeof option === "object") {
+			myChart.setOption(option, true);
+		}
+		loadData(myChart);
+	});
+function loadData(chart){
+	var url = SKY.urlCSRF(basepath+'widget/WidgetController/selectBjfs');
+	$.ajax({
+		url:url,
+		type: "POST",
+		dataType:'json',
+		success:function(data){
+			if(data){
+				var xData = new Array();
+				var barData=new Array();
+				
+				$.each(data,function(i,node){
+					xData.push(node.NAME);
+					barData.push({
+						code:node.CODE,
+						name:node.NAME,
+						value:node.VALUE
+					});
+				});
+				var option = chart.getOption();
+				option.xAxis[0].data = xData;
+			    option.series[0].data = barData;  
+				chart.setOption(option);
+				
+			}
+		}
+	});
+}
 </script>
 </head>
 <body >
-	<div id='slajtj' style="width:500px;height:250px;">
+	<div id='chart' style="width:500px;height:250px;">
 	</div>
 </body>
 </html>

@@ -37,9 +37,30 @@ public class WidgetController extends BaseController{
 	public @ResponseBody List<Map> selectAjArea(
 			HttpServletRequest request, 
 			HttpServletResponse response){
-		String data = "";
 		List<Map> list = wgService.selectAjArea();
 		return list;
 	} 
-
+	/**
+	 * 待办信息
+	 */
+	@RequestMapping(value = "/widget/WidgetController/selectDbxx", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<Map> selectDbxx(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		List<Map> list = wgService.selectDbxx();
+		return list;
+	} 
+	/**
+	 * 报警方式
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/widget/WidgetController/selectBjfs", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<Map> selectBjfs(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		List<Map> list = wgService.selectBjfs();
+		return list;
+	} 
 }

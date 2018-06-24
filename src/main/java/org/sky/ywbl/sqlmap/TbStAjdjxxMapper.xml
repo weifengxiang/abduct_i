@@ -826,5 +826,11 @@
     </if>
   </sql>
   <select id="selectAjArea" resultType="map">
+  	SELECT 
+ 		XZQH AS CODE,
+ 		(SELECT NAME FROM SYS_AREA A WHERE A.CODE=XZQH) AS NAME,
+		COUNT(1) AS NUM
+ 	FROM TB_ST_AJDJXX
+	GROUP BY XZQH
   </select>
 </mapper>

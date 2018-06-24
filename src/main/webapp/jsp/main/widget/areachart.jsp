@@ -16,12 +16,13 @@
 <script>
 //var orgcode =  '';
 // 地图统计构建图形
+var chart = null;
 function initMap() {
 	$.getJSON(
 		basepath + "/skin/plugins/echarts/map/js/370100.json",
 		function(data) {
+			chart = echarts.init($('#map')[0]);
 			echarts.registerMap('jinan', data);
-			var chart = echarts.init($('#map')[0]);
 			var option = {
 				tooltip : {
 					trigger : 'item'
@@ -69,41 +70,68 @@ function initMap() {
 				} ]
 			};
 			chart.setOption(option);
-			//轮播展示
-			var currentIndex = -1;
-			setInterval(function() {
-				var dataLen = option.series[0].data.length;
-				// 取消之前高亮的图形
-				chart.dispatchAction({
-					type : 'downplay',
-					seriesIndex : 0, //表示series中的第几个data数据循环展示
-					dataIndex : currentIndex
-				});
-				currentIndex = (currentIndex + 1) % dataLen; //+1表示每次跳转一个
-				// 高亮当前图形
-				chart.dispatchAction({
-					type : 'highlight',
-					seriesIndex : 0,
-					dataIndex : currentIndex
-				});
-				// 显示 tooltip
-				chart.dispatchAction({
-					type : 'showTip',
-					seriesIndex : 0,
-					dataIndex : currentIndex
-				});
-			}, 1000);
+			
 			//鼠标点击事件
+			/**
 			chart.on('click', function(params) {
 				var cityName = params.name;
 				var cityValue = params.value;
 				alert(cityName + "***" + cityValue);
-			});
+			});**/
 		}
 	);
 }
+function loadData(){
+	var url = SKY.urlCSRF(basepath+'widget/WidgetController/selectAjArea');
+	$.ajax({
+		url:url,
+		type: "POST",
+		dataType:'json',
+		success:function(data){
+			if(data){
+				var areaData=new Array();
+				$.each(data,function(i,node){
+					areaData.push({
+						code:node.CODE,
+						name:node.NAME,
+						value:node.NUM
+					});
+				});
+				//alert(JSON.stringify(areaData));
+				var option = chart.getOption();
+			    option.series[0].data = areaData;  
+				chart.setOption(option);
+				//轮播展示
+				var currentIndex = -1;
+				setInterval(function() {
+					var dataLen = option.series[0].data.length;
+					// 取消之前高亮的图形
+					chart.dispatchAction({
+						type : 'downplay',
+						seriesIndex : 0, //表示series中的第几个data数据循环展示
+						dataIndex : currentIndex
+					});
+					currentIndex = (currentIndex + 1) % dataLen; //+1表示每次跳转一个
+					// 高亮当前图形
+					chart.dispatchAction({
+						type : 'highlight',
+						seriesIndex : 0,
+						dataIndex : currentIndex
+					});
+					// 显示 tooltip
+					chart.dispatchAction({
+						type : 'showTip',
+						seriesIndex : 0,
+						dataIndex : currentIndex
+					});
+				}, 1000);
+			}
+		}
+	});
+}
 $(function() {
 	initMap();
+	loadData();
 });
 </script>
 </head>
