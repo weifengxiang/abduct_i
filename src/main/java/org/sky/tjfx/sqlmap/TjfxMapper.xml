@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sky.tjfx.client.TjfxMapper" >
+	<!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->    
+	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> --> 
+	
+	<select id="selectAfl" parameterType="map" resultType="map">
+		SELECT COUNT(1) AS NUM ,
+			   XZQH AS CODE,
+			   (SELECT NAME FROM SYS_AREA A WHERE A.CODE=XZQH) AS NAME
+		FROM TB_ST_AJDJXX AJ
+		WHERE 1=1
+		<if test="filter.djsjBegin != null and filter.djsjBegin != '' ">
+		<![CDATA[
+			AND DATE_FORMAT(AJ.DJSJ,'%Y-%m-%d')>=#{filter.djsjBegin,jdbcType=VARCHAR}
+		]]>
+		</if>
+		<if test="filter.djsjEnd != null and filter.djsjEnd != '' ">
+		<![CDATA[
+			AND DATE_FORMAT(AJ.DJSJ,'%Y-%m-%d')<=#{filter.djsjEnd,jdbcType=VARCHAR}
+		]]>
+		</if>
+		GROUP BY AJ.XZQH
+	</select>
+	<select id="selectGzl" parameterType="map" resultType="map">
+		SELECT 
+			DQDW AS CODE,
+			(SELECT NAME FROM SYS_ORGAN SO WHERE SO.CODE=DQDW) AS NAME,
+			COUNT(1) AS NUM
+		FROM (
+			SELECT 
+				AJBH,
+				DQDW
+			FROM TB_ST_AJLZXX
+			WHERE 1=1
+			<if test="filter.djsjBegin != null and filter.djsjBegin != '' ">
+			<![CDATA[
+				AND DATE_FORMAT(LZSJ,'%Y-%m-%d')>=#{filter.djsjBegin,jdbcType=VARCHAR}
+			]]>
+			</if>
+			<if test="filter.djsjEnd != null and filter.djsjEnd != '' ">
+			<![CDATA[
+				AND DATE_FORMAT(LZSJ,'%Y-%m-%d')<=#{filter.djsjEnd,jdbcType=VARCHAR}
+			]]>
+			</if>
+			GROUP BY AJBH,DQDW
+		) GZL GROUP BY DQDW
+	</select>
+</mapper>
