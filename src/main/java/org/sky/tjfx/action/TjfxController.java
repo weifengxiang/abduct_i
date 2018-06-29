@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import sms.SendMessage;
 /**
  * 
  * @ClassName:  TjfxController   
@@ -35,6 +37,13 @@ public class TjfxController extends BaseController{
 	@RequestMapping(value = "/tjfx/TjfxController/initAfltjListPage", method = { RequestMethod.GET })
 	public String initAfltjListPage(
 			HttpServletRequest request, HttpServletResponse response) {
+		SendMessage sm = new SendMessage();
+		try {
+			sm.doIt();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "jsp/tjfx/afltj/afltjlist";
 	}
 	/**

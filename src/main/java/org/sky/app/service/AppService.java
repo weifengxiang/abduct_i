@@ -15,9 +15,12 @@ import org.sky.hdjl.model.TbStHdjlJs;
 import org.sky.hdjl.model.TbStHdjlJsExample;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.client.SysDictItemMapper;
+import org.sky.sys.client.SysOrganMapper;
 import org.sky.sys.client.SysUserMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysDictItemExample;
+import org.sky.sys.model.SysOrgan;
+import org.sky.sys.model.SysOrganExample;
 import org.sky.sys.model.SysUser;
 import org.sky.sys.model.SysUserExample;
 import org.sky.sys.utils.ApplicationCached;
@@ -47,6 +50,8 @@ public class AppService {
 	@Autowired
 	private SysDictItemMapper sysdictitemMapper;
 	@Autowired
+	private SysOrganMapper sysorganMapper;
+	@Autowired
 	private SysUserMapper sysuserMapper;
 	@Autowired
 	private ComService comService;
@@ -62,6 +67,17 @@ public class AppService {
 	private TbStHdjlFsMapper fsMapper;
 	@Autowired
 	private TbStHdjlJsMapper jsMapper;
+	
+	public void register(SysUser user) {
+		Timestamp ts = syscommonmapper.queryTimestamp();
+		user.setId(CommonUtils.getUUID(32));
+		//user.setCreater(BspUtils.getLoginUser().getCode());
+		user.setCreateTime(ts);
+		//user.setUpdater(BspUtils.getLoginUser().getCode());
+		user.setUpdateTime(ts);
+		user.setStatus("R");
+		sysuserMapper.insert(user);
+	}
 	/**
 	 * 登录
 	 * @param username
@@ -72,6 +88,9 @@ public class AppService {
 		sue.createCriteria().andCodeEqualTo(usercode).andPasswordEqualTo(password);
 		List<SysUser> list = sysuseMapper.selectByExample(sue);
 		if(null!=list && !list.isEmpty()) {
+			if("R".equals(list.get(0).getStatus())) {
+				new ServiceException("用户审核尚未通过，请等待");
+			}
 			return list.get(0);
 		}
 		throw new ServiceException("用户名或密码不正确");
@@ -299,6 +318,15 @@ public class AppService {
 			jsMapper.updateByExampleSelective(js, e);
 		}
 		return list;
+	}
+	/**
+	 * 查询所有组织机构
+	 * @return
+	 */
+	public List<SysOrgan> selectSysOrgan(){
+		SysOrganExample soe = new SysOrganExample();
+		soe.setOrderByClause("code asc");
+		return sysorganMapper.selectByExample(soe);
 	}
 	class Contact{
 		private String organCode;

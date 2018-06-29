@@ -41,6 +41,7 @@ $(function() {
 				  <tr>
 				  	<th><label>账户状态:</label></th>
 					<td>
+						<input type="radio" name="status" value="R" checked>注册</input>
 						<input type="radio" name="status" value="O" checked>在用</input>
 						<input type="radio" name="status" value="L">停用</input>
 					</td>

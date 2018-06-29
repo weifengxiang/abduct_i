@@ -57,6 +57,29 @@ public class AppController extends BaseController{
 	@Autowired
 	private AppService appService;
 	/**
+	 * 注册接口
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/register",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody ResultData register(HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String user = request.getParameter("user");
+		SysUser su = JsonUtils.json2pojo(user, SysUser.class);
+		
+		try {
+			appService.register(su);
+			rd.setCode("1");
+			rd.setName("注册成功,请等待审核");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			rd.setCode("0");
+			rd.setName("注册失败"+e.getMessage());
+		}
+		return rd;
+	}
+	/**
 	 * 使用token登录
 	 * @param token
 	 * @return
@@ -95,7 +118,7 @@ public class AppController extends BaseController{
 	}
 	
 	/**
-	 * 渠道登录接口
+	 * 登录接口
 	 * @param request
 	 * @param response
 	 * @return
@@ -389,6 +412,16 @@ public class AppController extends BaseController{
 		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
 		String sender = request.getParameter("sender");
 		return appService.receiveMsg(usercode,sender);
+	}
+	/**
+	 * 查询所有组织机构
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/selectSysOrgan",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody List selectSysOrgan(HttpServletRequest request, HttpServletResponse response) {
+		return appService.selectSysOrgan();
 	}
 	/**
 	 * 生成登录返回值
