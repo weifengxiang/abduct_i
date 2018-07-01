@@ -2,6 +2,8 @@ package org.sky.zlgl.service;
 import org.apache.log4j.Logger;
 import java.sql.Timestamp;
 import java.util.List;
+
+import org.sky.msg.client.TbStMsgMapper;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.zlgl.client.TbStZlfkMapper;
 import org.sky.zlgl.client.TbStZlxfMapper;
@@ -25,6 +27,8 @@ public class TbStZlxfService {
 	private TbStZlfkMapper tbstzlfkmapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
+	@Autowired
+	private TbStMsgMapper msgMapper;
 	/**
 	*分页查询
 	**/
@@ -104,6 +108,7 @@ public class TbStZlxfService {
 					fk.setUpdater(BspUtils.getLoginUser().getCode());
 					fk.setUpdateTime(ts);
 					tbstzlfkmapper.insert(fk);
+					msgMapper.insertOrgMsg(dwcode,"您有新的指令，请登录系统查看");
 				}
 				tbstzlxfmapper.insertSelective(edit);
 			}else{

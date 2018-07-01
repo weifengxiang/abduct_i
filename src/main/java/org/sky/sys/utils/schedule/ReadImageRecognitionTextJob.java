@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.sky.msg.client.TbStMsgMapper;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.ConfUtils;
@@ -33,6 +34,7 @@ import org.sky.utils.Base64Img;
 import org.sky.ywbl.client.TbStTxxxMapper;
 import org.sky.ywbl.model.TbStTxxx;
 import org.sky.ywbl.model.TbStTxxxExample;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 
@@ -50,6 +52,7 @@ public class ReadImageRecognitionTextJob implements Job {
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		// TODO Auto-generated method stub
 		TbStTxsbMapper txsbMapper = BspUtils.getBean(TbStTxsbMapper.class);
+		TbStMsgMapper msgMapper = BspUtils.getBean(TbStMsgMapper.class);
 		String dir = ConfUtils.getValue("IMG_RESULT_TEXT");
 		File dirFile = new File(dir);
 		File[] textFiles = dirFile.listFiles();
@@ -87,6 +90,10 @@ public class ReadImageRecognitionTextJob implements Job {
 				    		sb.setWz(resList[3]+" "+resList[4]+" "+resList[5]+" "+resList[6]);
 				    		sb.setSbsj(CommonUtils.getCurrentDbDate());
 				    		txsbMapper.insertSelective(sb);
+				    		if(sb.getXsd().floatValue()>=0.8) {
+				    			String ajbh = sb.getAjbh();
+				    			msgMapper.insertOrgMsg(ajbh.substring(1, 13),"案件匹配相似"+sb.getXsd().floatValue()+"请登陆查看");
+				    		}
 				    	}
 				    }
 				    br.close();

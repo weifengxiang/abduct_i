@@ -278,4 +278,22 @@
       <![CDATA[ limit #{page.begin},#{page.rows} ]]>
     </if>
   </sql>
+  <insert id="insertOrgMsg" arameterType="java.lang.String">
+    insert into tb_st_msg (ID, RECEIVER, RECEIVER_TEL, 
+      CONTENT, SEND_TIME, STATE, 
+      CREATER, CREATE_TIME, BZ
+      )
+    SELECT 
+	REPLACE(UUID(),'-','') AS ID,
+	U.CODE,
+	U.MOBELTEL,
+	 #{content,jdbcType=VARCHAR},
+	NOW(),
+	'0',
+	 NOW(),
+	''
+	FROM SYS_USER U
+	WHERE U.ORGAN_CODE= #{orgCode,jdbcType=VARCHAR}
+	AND U.MOBELTEL IS NOT NULL
+  </insert>
 </mapper>
