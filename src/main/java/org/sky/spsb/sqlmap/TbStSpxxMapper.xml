@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.sky.msg.client.TbStMsgMapper">
-  <resultMap id="BaseResultMap" type="org.sky.msg.model.TbStMsg">
+<mapper namespace="org.sky.spsb.client.TbStSpxxMapper">
+  <resultMap id="BaseResultMap" type="org.sky.spsb.model.TbStSpxx">
     <id column="ID" jdbcType="VARCHAR" property="id" />
-    <result column="RECEIVER" jdbcType="VARCHAR" property="receiver" />
-    <result column="RECEIVER_TEL" jdbcType="VARCHAR" property="receiverTel" />
-    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
-    <result column="SEND_TIME" jdbcType="TIMESTAMP" property="sendTime" />
-    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="SPBH" jdbcType="VARCHAR" property="spbh" />
+    <result column="SPMC" jdbcType="VARCHAR" property="spmc" />
+    <result column="SPLJ" jdbcType="VARCHAR" property="splj" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="BZ" jdbcType="VARCHAR" property="bz" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, RECEIVER, RECEIVER_TEL, CONTENT, SEND_TIME, STATE, CREATER, CREATE_TIME, BZ
+    ID, SPBH, SPMC, SPLJ, CREATER, CREATE_TIME
   </sql>
-  <select id="selectByExample" parameterType="org.sky.msg.model.TbStMsgExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="org.sky.spsb.model.TbStSpxxExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tb_st_msg
+    from tb_st_spxx
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,49 +88,41 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_st_msg
+    from tb_st_spxx
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tb_st_msg
+    delete from tb_st_spxx
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="org.sky.msg.model.TbStMsgExample">
-    delete from tb_st_msg
+  <delete id="deleteByExample" parameterType="org.sky.spsb.model.TbStSpxxExample">
+    delete from tb_st_spxx
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.sky.msg.model.TbStMsg">
-    insert into tb_st_msg (ID, RECEIVER, RECEIVER_TEL, 
-      CONTENT, SEND_TIME, STATE, 
-      CREATER, CREATE_TIME, BZ
+  <insert id="insert" parameterType="org.sky.spsb.model.TbStSpxx">
+    insert into tb_st_spxx (ID, SPBH, SPMC, 
+      SPLJ, CREATER, CREATE_TIME
       )
-    values (#{id,jdbcType=VARCHAR}, #{receiver,jdbcType=VARCHAR}, #{receiverTel,jdbcType=VARCHAR}, 
-      #{content,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}, 
-      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{bz,jdbcType=VARCHAR}
+    values (#{id,jdbcType=VARCHAR}, #{spbh,jdbcType=VARCHAR}, #{spmc,jdbcType=VARCHAR}, 
+      #{splj,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.sky.msg.model.TbStMsg">
-    insert into tb_st_msg
+  <insert id="insertSelective" parameterType="org.sky.spsb.model.TbStSpxx">
+    insert into tb_st_spxx
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         ID,
       </if>
-      <if test="receiver != null">
-        RECEIVER,
+      <if test="spbh != null">
+        SPBH,
       </if>
-      <if test="receiverTel != null">
-        RECEIVER_TEL,
+      <if test="spmc != null">
+        SPMC,
       </if>
-      <if test="content != null">
-        CONTENT,
-      </if>
-      <if test="sendTime != null">
-        SEND_TIME,
-      </if>
-      <if test="state != null">
-        STATE,
+      <if test="splj != null">
+        SPLJ,
       </if>
       <if test="creater != null">
         CREATER,
@@ -141,28 +130,19 @@
       <if test="createTime != null">
         CREATE_TIME,
       </if>
-      <if test="bz != null">
-        BZ,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="receiver != null">
-        #{receiver,jdbcType=VARCHAR},
+      <if test="spbh != null">
+        #{spbh,jdbcType=VARCHAR},
       </if>
-      <if test="receiverTel != null">
-        #{receiverTel,jdbcType=VARCHAR},
+      <if test="spmc != null">
+        #{spmc,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="sendTime != null">
-        #{sendTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="state != null">
-        #{state,jdbcType=VARCHAR},
+      <if test="splj != null">
+        #{splj,jdbcType=VARCHAR},
       </if>
       <if test="creater != null">
         #{creater,jdbcType=VARCHAR},
@@ -170,37 +150,28 @@
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="bz != null">
-        #{bz,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.sky.msg.model.TbStMsgExample" resultType="java.lang.Long">
-    select count(*) from tb_st_msg
+  <select id="countByExample" parameterType="org.sky.spsb.model.TbStSpxxExample" resultType="java.lang.Long">
+    select count(*) from tb_st_spxx
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update tb_st_msg
+    update tb_st_spxx
     <set>
       <if test="record.id != null">
         ID = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.receiver != null">
-        RECEIVER = #{record.receiver,jdbcType=VARCHAR},
+      <if test="record.spbh != null">
+        SPBH = #{record.spbh,jdbcType=VARCHAR},
       </if>
-      <if test="record.receiverTel != null">
-        RECEIVER_TEL = #{record.receiverTel,jdbcType=VARCHAR},
+      <if test="record.spmc != null">
+        SPMC = #{record.spmc,jdbcType=VARCHAR},
       </if>
-      <if test="record.content != null">
-        CONTENT = #{record.content,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sendTime != null">
-        SEND_TIME = #{record.sendTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.state != null">
-        STATE = #{record.state,jdbcType=VARCHAR},
+      <if test="record.splj != null">
+        SPLJ = #{record.splj,jdbcType=VARCHAR},
       </if>
       <if test="record.creater != null">
         CREATER = #{record.creater,jdbcType=VARCHAR},
@@ -208,46 +179,34 @@
       <if test="record.createTime != null">
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.bz != null">
-        BZ = #{record.bz,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update tb_st_msg
+    update tb_st_spxx
     set ID = #{record.id,jdbcType=VARCHAR},
-      RECEIVER = #{record.receiver,jdbcType=VARCHAR},
-      RECEIVER_TEL = #{record.receiverTel,jdbcType=VARCHAR},
-      CONTENT = #{record.content,jdbcType=VARCHAR},
-      SEND_TIME = #{record.sendTime,jdbcType=TIMESTAMP},
-      STATE = #{record.state,jdbcType=VARCHAR},
+      SPBH = #{record.spbh,jdbcType=VARCHAR},
+      SPMC = #{record.spmc,jdbcType=VARCHAR},
+      SPLJ = #{record.splj,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
-      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
-      BZ = #{record.bz,jdbcType=VARCHAR}
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.sky.msg.model.TbStMsg">
-    update tb_st_msg
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.spsb.model.TbStSpxx">
+    update tb_st_spxx
     <set>
-      <if test="receiver != null">
-        RECEIVER = #{receiver,jdbcType=VARCHAR},
+      <if test="spbh != null">
+        SPBH = #{spbh,jdbcType=VARCHAR},
       </if>
-      <if test="receiverTel != null">
-        RECEIVER_TEL = #{receiverTel,jdbcType=VARCHAR},
+      <if test="spmc != null">
+        SPMC = #{spmc,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        CONTENT = #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="sendTime != null">
-        SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="state != null">
-        STATE = #{state,jdbcType=VARCHAR},
+      <if test="splj != null">
+        SPLJ = #{splj,jdbcType=VARCHAR},
       </if>
       <if test="creater != null">
         CREATER = #{creater,jdbcType=VARCHAR},
@@ -255,22 +214,16 @@
       <if test="createTime != null">
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="bz != null">
-        BZ = #{bz,jdbcType=VARCHAR},
-      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.sky.msg.model.TbStMsg">
-    update tb_st_msg
-    set RECEIVER = #{receiver,jdbcType=VARCHAR},
-      RECEIVER_TEL = #{receiverTel,jdbcType=VARCHAR},
-      CONTENT = #{content,jdbcType=VARCHAR},
-      SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
-      STATE = #{state,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="org.sky.spsb.model.TbStSpxx">
+    update tb_st_spxx
+    set SPBH = #{spbh,jdbcType=VARCHAR},
+      SPMC = #{spmc,jdbcType=VARCHAR},
+      SPLJ = #{splj,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      BZ = #{bz,jdbcType=VARCHAR}
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">
@@ -278,23 +231,4 @@
       <![CDATA[ limit #{page.begin},#{page.rows} ]]>
     </if>
   </sql>
-  <insert id="insertOrgMsg" parameterType="java.lang.String">
-    insert into tb_st_msg (ID, RECEIVER, RECEIVER_TEL, 
-      CONTENT, SEND_TIME, STATE, 
-      CREATER, CREATE_TIME, BZ
-      )
-    SELECT 
-	REPLACE(UUID(),'-','') AS ID,
-	U.CODE,
-	U.MOBELTEL,
-	 #{content,jdbcType=VARCHAR},
-	NOW(),
-	'0',
-	'',
-	 NOW(),
-	''
-	FROM SYS_USER U
-	WHERE U.ORGAN_CODE= #{orgCode,jdbcType=VARCHAR}
-	AND U.MOBELTEL IS NOT NULL
-  </insert>
 </mapper>
