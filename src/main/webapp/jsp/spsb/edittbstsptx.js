@@ -3,9 +3,12 @@
  */
 function initAddTbStSpTxPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
+	var data = paramOpts.data;
+	$('#spbh').textbox('setValue',data.spbh);
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
+	initPicView();
 }
 /**
  * 初始化编辑视频图片匹配页面
@@ -22,10 +25,13 @@ function initEditTbStSpTxPage(paramOpts){
  * 保存添加/编辑视频图片匹配
  */
 function submitAddEditTbStSpTxForm() {
+	var getImgBase64=function(){
+		return $.compress($('#picPreView')[0]);
+	};
 	var options = { 
 	   data:{
     	   "data":function(){
-    		   //return JSON.stringify();
+    		   return JSON.stringify(getImgBase64());
     	   }
        },   
        beforeSubmit:function(data){
@@ -48,4 +54,16 @@ function submitAddEditTbStSpTxForm() {
 	};  
 	$('#addedittbstsptxform').ajaxSubmit(options);
 	
+}
+/**
+ * 初始化图片信息
+ * @returns
+ */
+function initPicView(){	
+	_currentDeg=0;
+	$("#pic").uploadPreview({ Img: 'picPreView', Width: 210, Height: 210 });
+	$('#picPreView').on('click',function(){           
+		_currentDeg = (_currentDeg+90)%360;
+        this.style.transform = 'rotate('+_currentDeg+'deg)';
+	});
 }

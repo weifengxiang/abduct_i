@@ -18,11 +18,15 @@ import org.sky.sys.utils.PageListData;
 import org.sky.sys.utils.ResultData;
 import org.sky.sys.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class TbStSpTxController extends BaseController{
 	@Autowired
@@ -99,6 +103,8 @@ public class TbStSpTxController extends BaseController{
 		ResultData rd= new ResultData();
 		try {
 			TbStSpTxWithBLOBs edit = (TbStSpTxWithBLOBs) getEntityBean(request,TbStSpTxWithBLOBs.class);
+			String data = request.getParameter("data");
+			edit.setTxnr(data);
 			tbstsptxService.saveAddEditTbStSpTx(edit);
 			rd.setCode(ResultData.code_success);
 			rd.setName("保存成功");
@@ -142,5 +148,13 @@ public class TbStSpTxController extends BaseController{
 		String id = request.getParameter("id");
 		TbStSpTx bean = tbstsptxService.getTbStSpTxById(id);
 		return JsonUtils.obj2json(bean);
+	}
+	@RequestMapping(value = "/spsb/TbStSpTx/viewImg/{id}", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String viewImg(
+			@PathVariable String id,
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		TbStSpTxWithBLOBs bean = tbstsptxService.getTbStSpTxById(id);
+		return bean.getTxnr();
 	}
 }

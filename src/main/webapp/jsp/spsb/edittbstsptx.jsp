@@ -5,6 +5,7 @@
 <head>
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/spsb/edittbstsptx.js'></script>
+<script type="text/javascript" src="${basepath}skin/js/utils.js"></script>
 <script type="text/javascript">
 var _callbacks = $.Callbacks();
 $(function() {
@@ -18,26 +19,27 @@ $(function() {
 		<form id="addedittbstsptxform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
+			<input type='hidden' name='txnr' id='txnr'/>
 			<table style="width:100%">
 				  <tr>
-					<th><label>图像内容:</label></th>
-					<td><input class="easyui-textbox" name="txnr"
+					<th style="width:100px"><label>视频编号:</label></th>
+					<td><input class="easyui-textbox" name="spbh" id='spbh' style='width:200px'
 						data-options="required:true"></input></td>
 				  </tr>
+			</table>
+		</form>
+		<form class="easyui-form" method="post" 
+			data-options="novalidate:true">
+			<table style="width:100%">
 				  <tr>
-					<th><label>视频编号:</label></th>
-					<td><input class="easyui-textbox" name="spbh"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>截图:</label></th>
-					<td><input class="easyui-textbox" name="jt"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>相似度:</label></th>
-					<td><input class="easyui-textbox" name="xsd"
-						data-options="required:true"></input></td>
+					<th style="width:100px"><label>图片:</label></th>
+					<td>
+						<div style="text-align: center;width:200px">
+							<img id='picPreView' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<input id='pic' name='pic' type="file" accept="image/*" name='拍照'/>
+						</div>
+					</td>
 				  </tr>
 			</table>
 		</form>

@@ -39,6 +39,9 @@ $(function() {
 			singleSelect:true,
 			selectOnCheck:false,
 			checkOnSelect:false,
+			onClickRow:function(rowIndex,rowData){
+				loadSpTxList(rowData.spbh);
+			},
 			onDblClickRow:function(rowIndex, rowData){
 								//SKY_EASYUI.beginEdit('listtbstspxxdg',rowIndex);
 						  },
@@ -98,11 +101,13 @@ $(function() {
 		<tr>
 			<th data-options="field: 'checked', checkbox:true"></th>
 				<th data-options="field:'txnr',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">图像内容</th>
+				formatter:function(value,row){
+						  	 if(0==value){
+						  	 	return '无';
+						  	 }else{
+						  	 	return getImg(row.id);
+						  	 }
+						 }">图像内容</th>
 				<th data-options="field:'spbh',width:180,
 				editor:{
 						type:'textbox',
@@ -131,15 +136,14 @@ $(function() {
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delTbStSpxx()">删除视频</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-06',plain:true" onclick="detailTbStSpxx()">查看视频</a>
+		data-options="iconCls:'icon-06',plain:true" onclick="downloadSysFile()">下载视频</a>
 </div>
 <div id="tptb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="addTbStSpxx()">增加图片</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="addTbStSpTx()">增加图片</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delTbStSpxx()">删除图片</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-06',plain:true" onclick="detailTbStSpxx()">查看图片</a>
+		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delTbStSpTx()">删除图片</a>
+
 </div>
 </body>
 </html>

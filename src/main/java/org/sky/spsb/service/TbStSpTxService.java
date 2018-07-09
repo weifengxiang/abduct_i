@@ -108,8 +108,8 @@ public class TbStSpTxService {
 	/**
 	*根据主键查询对象
 	**/
-	public TbStSpTx getTbStSpTxById(String id){
-		TbStSpTx bean = tbstsptxmapper.selectByPrimaryKey(id);
+	public TbStSpTxWithBLOBs getTbStSpTxById(String id){
+		TbStSpTxWithBLOBs bean = tbstsptxmapper.selectByPrimaryKey(id);
 		return bean;
 	}
 }
