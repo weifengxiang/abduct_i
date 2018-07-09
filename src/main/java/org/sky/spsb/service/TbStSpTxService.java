@@ -7,6 +7,7 @@ import org.sky.spsb.client.TbStSpTxMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.spsb.model.TbStSpTx;
 import org.sky.spsb.model.TbStSpTxExample;
+import org.sky.spsb.model.TbStSpTxWithBLOBs;
 import org.sky.sys.utils.PageListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,16 +37,16 @@ public class TbStSpTxService {
 	*保存列表新增及修改
 	**/
 	@Transactional
-	public void saveTbStSpTx(List<TbStSpTx> addlist,
-			List<TbStSpTx> updatelist) throws ServiceException{
+	public void saveTbStSpTx(List<TbStSpTxWithBLOBs> addlist,
+			List<TbStSpTxWithBLOBs> updatelist) throws ServiceException{
 		try{
 			if(null!=addlist&&addlist.size()>0){
-				for(TbStSpTx add:addlist){
+				for(TbStSpTxWithBLOBs add:addlist){
 					tbstsptxmapper.insertSelective(add);
 				}
 			}
 			if(null!=updatelist&&updatelist.size()>0){
-				for(TbStSpTx update:updatelist){
+				for(TbStSpTxWithBLOBs update:updatelist){
 					tbstsptxmapper.updateByPrimaryKeySelective(update);
 				}
 			}
@@ -61,7 +62,7 @@ public class TbStSpTxService {
 	*保存添加单个对象
 	**/
 	@Transactional
-	public void saveAddTbStSpTx(TbStSpTx add) throws ServiceException{
+	public void saveAddTbStSpTx(TbStSpTxWithBLOBs add) throws ServiceException{
 		try{
 			tbstsptxmapper.insertSelective(add);
 		}catch(Exception e){
@@ -77,7 +78,7 @@ public class TbStSpTxService {
 	*保存新增/编辑单个对象
 	**/
 	@Transactional
-	public void saveAddEditTbStSpTx(TbStSpTx edit) throws ServiceException{
+	public void saveAddEditTbStSpTx(TbStSpTxWithBLOBs edit) throws ServiceException{
 		try{
 			Timestamp ts = syscommonmapper.queryTimestamp();
 			if(StringUtils.isNull(edit.getId())){
@@ -85,13 +86,9 @@ public class TbStSpTxService {
 				edit.setId(CommonUtils.getUUID(32));
 				edit.setCreater(BspUtils.getLoginUser().getCode());
 				edit.setCreateTime(ts);
-				edit.setUpdater(BspUtils.getLoginUser().getCode());
-				edit.setUpdateTime(ts);
 				tbstsptxmapper.insertSelective(edit);
 			}else{
 				//修改
-				edit.setUpdater(BspUtils.getLoginUser().getCode());
-				edit.setUpdateTime(ts);
 				tbstsptxmapper.updateByPrimaryKeySelective(edit);
 			}
 		}catch(Exception e){

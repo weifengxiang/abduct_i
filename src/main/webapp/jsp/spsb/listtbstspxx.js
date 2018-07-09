@@ -148,10 +148,6 @@ function searchButton(){
 			if(spmc){
 				ft.put("spmc@=", spmc);
 			}
-			var splj =$('#q_splj').textbox("getValue");
-			if(splj){
-				ft.put("splj@=", splj);
-			}
 			return ft.getJSON();
 		}
 	});

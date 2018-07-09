@@ -10,6 +10,7 @@ import org.sky.sys.exception.ServiceException;
 import org.sky.spsb.model.TbStSpTx;
 import org.sky.spsb.model.TbStSpTxExample;
 import org.sky.spsb.model.TbStSpTxExample.Criteria;
+import org.sky.spsb.model.TbStSpTxWithBLOBs;
 import org.sky.spsb.service.TbStSpTxService;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
@@ -97,7 +98,7 @@ public class TbStSpTxController extends BaseController{
 			HttpServletResponse response){
 		ResultData rd= new ResultData();
 		try {
-			TbStSpTx edit = (TbStSpTx) getEntityBean(request,TbStSpTx.class);
+			TbStSpTxWithBLOBs edit = (TbStSpTxWithBLOBs) getEntityBean(request,TbStSpTxWithBLOBs.class);
 			tbstsptxService.saveAddEditTbStSpTx(edit);
 			rd.setCode(ResultData.code_success);
 			rd.setName("保存成功");

@@ -7,6 +7,7 @@
 <script type="text/javascript" src='${basepath}jsp/spsb/edittbstspxx.js'></script>
 <script type="text/javascript">
 var _callbacks = $.Callbacks();
+var spbh = '${spbh}';
 $(function() {
 	
 });
@@ -15,24 +16,27 @@ $(function() {
 <body>
 <div class="easyui-panel"  style="width:100%;height:100%;text-align: center;"
 	 data-options="footer:'#editPageButtonsFt'">
-		<form id="addedittbstspxxform" class="easyui-form" method="post" 
+		<form id="addedittbstspxxform" class="easyui-form" method="post" enctype="multipart/form-data"
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>视频编号:</label></th>
-					<td><input class="easyui-textbox" name="spbh"
+					<td><input class="easyui-textbox" name="spbh" id="spbh" style='width:350px'
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>视频名称:</label></th>
-					<td><input class="easyui-textbox" name="spmc"
+					<td><input class="easyui-textbox" name="spmc" style='width:350px'
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>路径:</label></th>
-					<td><input class="easyui-textbox" name="splj"
-						data-options="required:true"></input></td>
+					<th><label>视频路径:</label></th>
+					<td><input class="easyui-filebox" name="splj" style='width:350px'
+						data-options="required:true,
+									  buttonText: '选择文件',
+   									  buttonAlign: 'right' 
+									 "></input></td>
 				  </tr>
 			</table>
 		</form>

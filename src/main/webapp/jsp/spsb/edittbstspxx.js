@@ -3,6 +3,7 @@
  */
 function initAddTbStSpxxPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
+	$('#spbh').textbox('setValue',spbh);
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
@@ -32,6 +33,7 @@ function submitAddEditTbStSpxxForm() {
 			return $('#addedittbstspxxform').form('enableValidation').form('validate');
        },   
        success:function(data){
+    	   SKY_EASYUI.unmask();
     	    $.messager.alert('提示',data.name,'info',function(){
     		   if(data.code=='1'){
     			   _callbacks.fire();  
@@ -39,6 +41,7 @@ function submitAddEditTbStSpxxForm() {
     	   	});     	   
        },
        error:function(e){
+    	   SKY_EASYUI.unmask();
     	   $.messager.alert('提示',JSON.stringify(e),'info');
        },
        url:SKY.urlCSRF(basepath+'spsb/TbStSpxx/saveAddEditTbStSpxx'), 
@@ -46,6 +49,7 @@ function submitAddEditTbStSpxxForm() {
        dataType:'json',   
        timeout:-1    
 	};  
+	SKY_EASYUI.mask('正在上传，请稍等...');
 	$('#addedittbstspxxform').ajaxSubmit(options);
 	
 }
