@@ -4,9 +4,11 @@
   <resultMap id="BaseResultMap" type="org.sky.spsb.model.TbStSpTx">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="SPBH" jdbcType="VARCHAR" property="spbh" />
+    <result column="WJMC" jdbcType="VARCHAR" property="wjmc" />
     <result column="XSD" jdbcType="DECIMAL" property="xsd" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ZT" jdbcType="VARCHAR" property="zt" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.sky.spsb.model.TbStSpTxWithBLOBs">
     <result column="TXNR" jdbcType="LONGVARCHAR" property="txnr" />
@@ -71,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, SPBH, XSD, CREATER, CREATE_TIME
+    ID, SPBH, WJMC, XSD, CREATER, CREATE_TIME, ZT
   </sql>
   <sql id="Blob_Column_List">
     TXNR, JT
@@ -126,12 +128,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.sky.spsb.model.TbStSpTxWithBLOBs">
-    insert into tb_st_sp_tx (ID, SPBH, XSD, 
-      CREATER, CREATE_TIME, TXNR, 
-      JT)
-    values (#{id,jdbcType=VARCHAR}, #{spbh,jdbcType=VARCHAR}, #{xsd,jdbcType=DECIMAL}, 
-      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{txnr,jdbcType=LONGVARCHAR}, 
-      #{jt,jdbcType=LONGVARCHAR})
+    insert into tb_st_sp_tx (ID, SPBH, WJMC, 
+      XSD, CREATER, CREATE_TIME, 
+      ZT, TXNR, JT
+      )
+    values (#{id,jdbcType=VARCHAR}, #{spbh,jdbcType=VARCHAR}, #{wjmc,jdbcType=VARCHAR}, 
+      #{xsd,jdbcType=DECIMAL}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{zt,jdbcType=VARCHAR}, #{txnr,jdbcType=LONGVARCHAR}, #{jt,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.sky.spsb.model.TbStSpTxWithBLOBs">
     insert into tb_st_sp_tx
@@ -142,6 +146,9 @@
       <if test="spbh != null">
         SPBH,
       </if>
+      <if test="wjmc != null">
+        WJMC,
+      </if>
       <if test="xsd != null">
         XSD,
       </if>
@@ -150,6 +157,9 @@
       </if>
       <if test="createTime != null">
         CREATE_TIME,
+      </if>
+      <if test="zt != null">
+        ZT,
       </if>
       <if test="txnr != null">
         TXNR,
@@ -165,6 +175,9 @@
       <if test="spbh != null">
         #{spbh,jdbcType=VARCHAR},
       </if>
+      <if test="wjmc != null">
+        #{wjmc,jdbcType=VARCHAR},
+      </if>
       <if test="xsd != null">
         #{xsd,jdbcType=DECIMAL},
       </if>
@@ -173,6 +186,9 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zt != null">
+        #{zt,jdbcType=VARCHAR},
       </if>
       <if test="txnr != null">
         #{txnr,jdbcType=LONGVARCHAR},
@@ -197,6 +213,9 @@
       <if test="record.spbh != null">
         SPBH = #{record.spbh,jdbcType=VARCHAR},
       </if>
+      <if test="record.wjmc != null">
+        WJMC = #{record.wjmc,jdbcType=VARCHAR},
+      </if>
       <if test="record.xsd != null">
         XSD = #{record.xsd,jdbcType=DECIMAL},
       </if>
@@ -205,6 +224,9 @@
       </if>
       <if test="record.createTime != null">
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zt != null">
+        ZT = #{record.zt,jdbcType=VARCHAR},
       </if>
       <if test="record.txnr != null">
         TXNR = #{record.txnr,jdbcType=LONGVARCHAR},
@@ -221,9 +243,11 @@
     update tb_st_sp_tx
     set ID = #{record.id,jdbcType=VARCHAR},
       SPBH = #{record.spbh,jdbcType=VARCHAR},
+      WJMC = #{record.wjmc,jdbcType=VARCHAR},
       XSD = #{record.xsd,jdbcType=DECIMAL},
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      ZT = #{record.zt,jdbcType=VARCHAR},
       TXNR = #{record.txnr,jdbcType=LONGVARCHAR},
       JT = #{record.jt,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -234,9 +258,11 @@
     update tb_st_sp_tx
     set ID = #{record.id,jdbcType=VARCHAR},
       SPBH = #{record.spbh,jdbcType=VARCHAR},
+      WJMC = #{record.wjmc,jdbcType=VARCHAR},
       XSD = #{record.xsd,jdbcType=DECIMAL},
       CREATER = #{record.creater,jdbcType=VARCHAR},
-      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      ZT = #{record.zt,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -247,6 +273,9 @@
       <if test="spbh != null">
         SPBH = #{spbh,jdbcType=VARCHAR},
       </if>
+      <if test="wjmc != null">
+        WJMC = #{wjmc,jdbcType=VARCHAR},
+      </if>
       <if test="xsd != null">
         XSD = #{xsd,jdbcType=DECIMAL},
       </if>
@@ -255,6 +284,9 @@
       </if>
       <if test="createTime != null">
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zt != null">
+        ZT = #{zt,jdbcType=VARCHAR},
       </if>
       <if test="txnr != null">
         TXNR = #{txnr,jdbcType=LONGVARCHAR},
@@ -268,9 +300,11 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.sky.spsb.model.TbStSpTxWithBLOBs">
     update tb_st_sp_tx
     set SPBH = #{spbh,jdbcType=VARCHAR},
+      WJMC = #{wjmc,jdbcType=VARCHAR},
       XSD = #{xsd,jdbcType=DECIMAL},
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      ZT = #{zt,jdbcType=VARCHAR},
       TXNR = #{txnr,jdbcType=LONGVARCHAR},
       JT = #{jt,jdbcType=LONGVARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
@@ -278,9 +312,11 @@
   <update id="updateByPrimaryKey" parameterType="org.sky.spsb.model.TbStSpTx">
     update tb_st_sp_tx
     set SPBH = #{spbh,jdbcType=VARCHAR},
+      WJMC = #{wjmc,jdbcType=VARCHAR},
       XSD = #{xsd,jdbcType=DECIMAL},
       CREATER = #{creater,jdbcType=VARCHAR},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      ZT = #{zt,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">

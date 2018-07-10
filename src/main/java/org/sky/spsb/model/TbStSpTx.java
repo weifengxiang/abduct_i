@@ -8,11 +8,15 @@ public class TbStSpTx {
 
     private String spbh;
 
+    private String wjmc;
+
     private BigDecimal xsd;
 
     private String creater;
 
     private Date createTime;
+
+    private String zt;
 
     public String getId() {
         return id;
@@ -28,6 +32,14 @@ public class TbStSpTx {
 
     public void setSpbh(String spbh) {
         this.spbh = spbh;
+    }
+
+    public String getWjmc() {
+        return wjmc;
+    }
+
+    public void setWjmc(String wjmc) {
+        this.wjmc = wjmc;
     }
 
     public BigDecimal getXsd() {
@@ -52,5 +64,13 @@ public class TbStSpTx {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getZt() {
+        return zt;
+    }
+
+    public void setZt(String zt) {
+        this.zt = zt;
     }
 }

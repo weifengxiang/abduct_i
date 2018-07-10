@@ -22,7 +22,6 @@
 		<sqlMapGenerator targetPackage="org.sky.spsb.sqlmap" targetProject="src\main\java" />
 		<!-- 生成DAO的包名和位置--> 
 		<javaClientGenerator targetPackage="org.sky.spsb.client"	targetProject="src\main\java" type="XMLMAPPER" />
-		<table tableName="TB_ST_SPXX"></table>
 		<table tableName="TB_ST_SP_TX"></table>
 		<!-- 
 		<table tableName="TB_ST_AJBLXX"></table>

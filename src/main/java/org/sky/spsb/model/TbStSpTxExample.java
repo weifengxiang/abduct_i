@@ -282,6 +282,76 @@ public class TbStSpTxExample {
             return (Criteria) this;
         }
 
+        public Criteria andWjmcIsNull() {
+            addCriterion("WJMC is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcIsNotNull() {
+            addCriterion("WJMC is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcEqualTo(String value) {
+            addCriterion("WJMC =", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcNotEqualTo(String value) {
+            addCriterion("WJMC <>", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcGreaterThan(String value) {
+            addCriterion("WJMC >", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcGreaterThanOrEqualTo(String value) {
+            addCriterion("WJMC >=", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcLessThan(String value) {
+            addCriterion("WJMC <", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcLessThanOrEqualTo(String value) {
+            addCriterion("WJMC <=", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcLike(String value) {
+            addCriterion("WJMC like", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcNotLike(String value) {
+            addCriterion("WJMC not like", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcIn(List<String> values) {
+            addCriterion("WJMC in", values, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcNotIn(List<String> values) {
+            addCriterion("WJMC not in", values, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcBetween(String value1, String value2) {
+            addCriterion("WJMC between", value1, value2, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcNotBetween(String value1, String value2) {
+            addCriterion("WJMC not between", value1, value2, "wjmc");
+            return (Criteria) this;
+        }
+
         public Criteria andXsdIsNull() {
             addCriterion("XSD is null");
             return (Criteria) this;
@@ -469,6 +539,76 @@ public class TbStSpTxExample {
 
         public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
             addCriterion("CREATE_TIME not between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtIsNull() {
+            addCriterion("ZT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtIsNotNull() {
+            addCriterion("ZT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtEqualTo(String value) {
+            addCriterion("ZT =", value, "zt");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtNotEqualTo(String value) {
+            addCriterion("ZT <>", value, "zt");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtGreaterThan(String value) {
+            addCriterion("ZT >", value, "zt");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtGreaterThanOrEqualTo(String value) {
+            addCriterion("ZT >=", value, "zt");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtLessThan(String value) {
+            addCriterion("ZT <", value, "zt");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtLessThanOrEqualTo(String value) {
+            addCriterion("ZT <=", value, "zt");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtLike(String value) {
+            addCriterion("ZT like", value, "zt");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtNotLike(String value) {
+            addCriterion("ZT not like", value, "zt");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtIn(List<String> values) {
+            addCriterion("ZT in", values, "zt");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtNotIn(List<String> values) {
+            addCriterion("ZT not in", values, "zt");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtBetween(String value1, String value2) {
+            addCriterion("ZT between", value1, value2, "zt");
+            return (Criteria) this;
+        }
+
+        public Criteria andZtNotBetween(String value1, String value2) {
+            addCriterion("ZT not between", value1, value2, "zt");
             return (Criteria) this;
         }
     }

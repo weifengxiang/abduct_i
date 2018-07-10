@@ -20,6 +20,7 @@ $(function() {
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
 			<input type='hidden' name='txnr' id='txnr'/>
+			<input type='hidden' name='zt' id='zt'/>
 			<table style="width:100%">
 				  <tr>
 					<th style="width:100px"><label>视频编号:</label></th>

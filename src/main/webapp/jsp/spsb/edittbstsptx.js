@@ -5,6 +5,7 @@ function initAddTbStSpTxPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
 	var data = paramOpts.data;
 	$('#spbh').textbox('setValue',data.spbh);
+	$('#zt').val('0');
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});

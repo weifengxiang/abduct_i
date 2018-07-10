@@ -1,3 +1,4 @@
+<%@page import="org.sky.sys.utils.EnumUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/jsp/inc/include.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,6 +7,7 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/spsb/listtbstspxx.js'></script>
 <script type="text/javascript">
+var zt = <%=EnumUtils.getEnums("VIDEO.ZT") %>;
 $(function() {
 	init();
 });
@@ -114,6 +116,11 @@ $(function() {
 						options:{
 							required:true
 						}}">视频编号</th>
+				<th data-options="field:'zt',width:180,
+				formatter:function(value,row){
+						  	 return SKY.formatterDict(value,row,zt);
+						 }">状态</th>
+				<th data-options="field:'wjmc',width:180">文件名称</th>
 				<th data-options="field:'jt',width:180,
 				editor:{
 						type:'textbox',
