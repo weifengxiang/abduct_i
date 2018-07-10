@@ -136,21 +136,24 @@ public class TbStSpxxController extends BaseController{
 					// 记录上传过程起始时的时间，用来计算上传时间
 					int pre = (int) System.currentTimeMillis();
 					// 取得上传文件
-					MultipartFile attachfile = multiRequest.getFile(iter.next());
-					if (attachfile != null) {
-						// 取得当前上传文件的文件名称
-						String fileName = attachfile.getOriginalFilename();
-						// 如果名称不为“”,说明该文件存在，否则说明该文件不存在
-						if (fileName.trim() != "") {
-							// 定义上传路径
-							String path = ConfUtils.getValue("SP_DIR") +File.separator+ spbh+fileName;
-							File localFile = new File(path);
-							if (!localFile.getParentFile().exists()) {
-								localFile.getParentFile().mkdirs();
-							}
-							attachfile.transferTo(localFile);
-							edit.setSplj(path);
+					List<MultipartFile> attachfiles = multiRequest.getFiles(iter.next());
+					if (attachfiles != null) {
+						// 定义上传路径
+						String filepath = ConfUtils.getValue("SP_DIR")+File.separator+spbh;
+						File fileDir = new File(filepath);
+						if(!fileDir.exists()) {
+							fileDir.mkdirs();
 						}
+						for(MultipartFile attachfile:attachfiles) {
+							// 取得当前上传文件的文件名称
+							String fileName = attachfile.getOriginalFilename();
+							// 如果名称不为“”,说明该文件存在，否则说明该文件不存在
+							if (fileName.trim() != "") {
+								File localFile = new File(filepath+File.separator+fileName);
+								attachfile.transferTo(localFile);
+							}
+						}
+						edit.setSplj(filepath);
 					}
 					// 记录上传该文件后的时间
 					int finaltime = (int) System.currentTimeMillis();
