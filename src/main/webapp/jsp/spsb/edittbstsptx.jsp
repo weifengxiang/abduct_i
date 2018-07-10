@@ -37,7 +37,7 @@ $(function() {
 						<div style="text-align: center;width:200px">
 							<img id='picPreView' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
 							<br/>
-							<input id='pic' name='pic' type="file" accept="image/*" name='拍照'/>
+							<input id='pic' name='pic' type="file" accept="image/*" name='选择照片' multiple="multiple"/>
 						</div>
 					</td>
 				  </tr>

@@ -35,7 +35,8 @@ $(function() {
 					<td><input class="easyui-filebox" name="splj" style='width:350px'
 						data-options="required:true,
 									  buttonText: '选择文件',
-   									  buttonAlign: 'right' 
+   									  buttonAlign: 'right',
+   									  multiple:true 
 									 "></input></td>
 				  </tr>
 			</table>
