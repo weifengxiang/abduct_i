@@ -17,6 +17,8 @@ public class TbStSpTx {
     private Date createTime;
 
     private String zt;
+    
+    private String splj;
 
     public String getId() {
         return id;
@@ -73,4 +75,12 @@ public class TbStSpTx {
     public void setZt(String zt) {
         this.zt = zt;
     }
+
+	public String getSplj() {
+		return splj;
+	}
+
+	public void setSplj(String splj) {
+		this.splj = splj;
+	}
 }

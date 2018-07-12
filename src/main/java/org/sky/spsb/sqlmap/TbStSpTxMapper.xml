@@ -9,6 +9,7 @@
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="ZT" jdbcType="VARCHAR" property="zt" />
+    <result column="SPLJ" jdbcType="VARCHAR" property="splj" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.sky.spsb.model.TbStSpTxWithBLOBs">
     <result column="TXNR" jdbcType="LONGVARCHAR" property="txnr" />
@@ -73,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, SPBH, WJMC, XSD, CREATER, CREATE_TIME, ZT
+    ID, SPBH, WJMC, XSD, CREATER, CREATE_TIME, ZT,
+    (SELECT SPLJ FROM TB_ST_SPXX SP WHERE SP.SPBH = TB_ST_SP_TX.SPBH) AS SPLJ
   </sql>
   <sql id="Blob_Column_List">
     TXNR, JT

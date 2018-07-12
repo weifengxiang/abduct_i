@@ -121,27 +121,3 @@ public class ImageRecognitionJob implements Job {
 	}
 }
 
-class StreamGobbler extends Thread {
-	InputStream is;
-	String type;
-	StreamGobbler(InputStream is, String type) {
-		this.is = is;
-		this.type = type;
-	}
-	public void run() {
-		try {
-			InputStreamReader isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(isr);
-			String line = null;
-			while ((line = br.readLine()) != null) {
-				if (type.equals("Error")) {
-					// LogManager.logError(line);
-				} else {
-					// LogManager.logDebug(line);
-				}
-			}
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-	}
-}
