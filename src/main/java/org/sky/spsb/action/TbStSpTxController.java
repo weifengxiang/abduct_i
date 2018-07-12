@@ -103,8 +103,10 @@ public class TbStSpTxController extends BaseController{
 		ResultData rd= new ResultData();
 		try {
 			TbStSpTxWithBLOBs edit = (TbStSpTxWithBLOBs) getEntityBean(request,TbStSpTxWithBLOBs.class);
-			String data = request.getParameter("data");
+			String data = request.getParameter("data").replace("\"","");
+			String txmc = request.getParameter("txmc");
 			edit.setTxnr(data);
+			edit.setWjmc(txmc);
 			tbstsptxService.saveAddEditTbStSpTx(edit);
 			rd.setCode(ResultData.code_success);
 			rd.setName("保存成功");
@@ -155,6 +157,6 @@ public class TbStSpTxController extends BaseController{
 			HttpServletRequest request, 
 			HttpServletResponse response){
 		TbStSpTxWithBLOBs bean = tbstsptxService.getTbStSpTxById(id);
-		return bean.getTxnr();
+		return "\""+bean.getTxnr()+"\"";
 	}
 }

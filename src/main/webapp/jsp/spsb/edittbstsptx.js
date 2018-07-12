@@ -33,7 +33,8 @@ function submitAddEditTbStSpTxForm() {
 	   data:{
     	   "data":function(){
     		   return JSON.stringify(getImgBase64());
-    	   }
+    	   },
+    	   "txmc":$('#pic').val()
        },   
        beforeSubmit:function(data){
 			return $('#addedittbstsptxform').form('enableValidation').form('validate');

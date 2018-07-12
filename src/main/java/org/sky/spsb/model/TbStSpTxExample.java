@@ -212,6 +212,76 @@ public class TbStSpTxExample {
             return (Criteria) this;
         }
 
+        public Criteria andWjmcIsNull() {
+            addCriterion("WJMC is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcIsNotNull() {
+            addCriterion("WJMC is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcEqualTo(String value) {
+            addCriterion("WJMC =", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcNotEqualTo(String value) {
+            addCriterion("WJMC <>", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcGreaterThan(String value) {
+            addCriterion("WJMC >", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcGreaterThanOrEqualTo(String value) {
+            addCriterion("WJMC >=", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcLessThan(String value) {
+            addCriterion("WJMC <", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcLessThanOrEqualTo(String value) {
+            addCriterion("WJMC <=", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcLike(String value) {
+            addCriterion("WJMC like", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcNotLike(String value) {
+            addCriterion("WJMC not like", value, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcIn(List<String> values) {
+            addCriterion("WJMC in", values, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcNotIn(List<String> values) {
+            addCriterion("WJMC not in", values, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcBetween(String value1, String value2) {
+            addCriterion("WJMC between", value1, value2, "wjmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWjmcNotBetween(String value1, String value2) {
+            addCriterion("WJMC not between", value1, value2, "wjmc");
+            return (Criteria) this;
+        }
+
         public Criteria andSpbhIsNull() {
             addCriterion("SPBH is null");
             return (Criteria) this;
@@ -282,73 +352,73 @@ public class TbStSpTxExample {
             return (Criteria) this;
         }
 
-        public Criteria andWjmcIsNull() {
-            addCriterion("WJMC is null");
+        public Criteria andSpwjmcIsNull() {
+            addCriterion("SPWJMC is null");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcIsNotNull() {
-            addCriterion("WJMC is not null");
+        public Criteria andSpwjmcIsNotNull() {
+            addCriterion("SPWJMC is not null");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcEqualTo(String value) {
-            addCriterion("WJMC =", value, "wjmc");
+        public Criteria andSpwjmcEqualTo(String value) {
+            addCriterion("SPWJMC =", value, "spwjmc");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcNotEqualTo(String value) {
-            addCriterion("WJMC <>", value, "wjmc");
+        public Criteria andSpwjmcNotEqualTo(String value) {
+            addCriterion("SPWJMC <>", value, "spwjmc");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcGreaterThan(String value) {
-            addCriterion("WJMC >", value, "wjmc");
+        public Criteria andSpwjmcGreaterThan(String value) {
+            addCriterion("SPWJMC >", value, "spwjmc");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcGreaterThanOrEqualTo(String value) {
-            addCriterion("WJMC >=", value, "wjmc");
+        public Criteria andSpwjmcGreaterThanOrEqualTo(String value) {
+            addCriterion("SPWJMC >=", value, "spwjmc");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcLessThan(String value) {
-            addCriterion("WJMC <", value, "wjmc");
+        public Criteria andSpwjmcLessThan(String value) {
+            addCriterion("SPWJMC <", value, "spwjmc");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcLessThanOrEqualTo(String value) {
-            addCriterion("WJMC <=", value, "wjmc");
+        public Criteria andSpwjmcLessThanOrEqualTo(String value) {
+            addCriterion("SPWJMC <=", value, "spwjmc");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcLike(String value) {
-            addCriterion("WJMC like", value, "wjmc");
+        public Criteria andSpwjmcLike(String value) {
+            addCriterion("SPWJMC like", value, "spwjmc");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcNotLike(String value) {
-            addCriterion("WJMC not like", value, "wjmc");
+        public Criteria andSpwjmcNotLike(String value) {
+            addCriterion("SPWJMC not like", value, "spwjmc");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcIn(List<String> values) {
-            addCriterion("WJMC in", values, "wjmc");
+        public Criteria andSpwjmcIn(List<String> values) {
+            addCriterion("SPWJMC in", values, "spwjmc");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcNotIn(List<String> values) {
-            addCriterion("WJMC not in", values, "wjmc");
+        public Criteria andSpwjmcNotIn(List<String> values) {
+            addCriterion("SPWJMC not in", values, "spwjmc");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcBetween(String value1, String value2) {
-            addCriterion("WJMC between", value1, value2, "wjmc");
+        public Criteria andSpwjmcBetween(String value1, String value2) {
+            addCriterion("SPWJMC between", value1, value2, "spwjmc");
             return (Criteria) this;
         }
 
-        public Criteria andWjmcNotBetween(String value1, String value2) {
-            addCriterion("WJMC not between", value1, value2, "wjmc");
+        public Criteria andSpwjmcNotBetween(String value1, String value2) {
+            addCriterion("SPWJMC not between", value1, value2, "spwjmc");
             return (Criteria) this;
         }
 

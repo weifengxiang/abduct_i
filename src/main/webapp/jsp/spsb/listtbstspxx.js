@@ -172,7 +172,7 @@ function delTbStSpTx(){
 		);
 	}
 }
-function getImg(id){	
+function getImg(id){
 	var url = basepath+'spsb/TbStSpTx/viewImg/'+id;
 	var rend = "";
 	$.ajax({

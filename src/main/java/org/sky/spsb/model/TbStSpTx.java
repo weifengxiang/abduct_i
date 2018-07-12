@@ -6,9 +6,11 @@ import java.util.Date;
 public class TbStSpTx {
     private String id;
 
+    private String wjmc;
+
     private String spbh;
 
-    private String wjmc;
+    private String spwjmc;
 
     private BigDecimal xsd;
 
@@ -28,6 +30,14 @@ public class TbStSpTx {
         this.id = id;
     }
 
+    public String getWjmc() {
+        return wjmc;
+    }
+
+    public void setWjmc(String wjmc) {
+        this.wjmc = wjmc;
+    }
+
     public String getSpbh() {
         return spbh;
     }
@@ -36,12 +46,12 @@ public class TbStSpTx {
         this.spbh = spbh;
     }
 
-    public String getWjmc() {
-        return wjmc;
+    public String getSpwjmc() {
+        return spwjmc;
     }
 
-    public void setWjmc(String wjmc) {
-        this.wjmc = wjmc;
+    public void setSpwjmc(String spwjmc) {
+        this.spwjmc = spwjmc;
     }
 
     public BigDecimal getXsd() {

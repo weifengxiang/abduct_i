@@ -65,12 +65,13 @@ public class VideoRecognitionJob implements Job {
 	 */
 	private void exeVideoRecognition(TbStSpTxWithBLOBs sptx) {
 		//图片存放目录
-		String dir = ConfUtils.getValue("TXTASK_DIR")+sptx.getSpbh()+File.separator+sptx.getId();
+		String dir = ConfUtils.getValue("TXTASK_DIR")+sptx.getSpbh();
 		File dirFile = new File(dir);
 		if(!dirFile.exists()) {
 			dirFile.mkdirs();
 		}
-		String filepath = dir+File.separator+sptx.getId()+".jpg";
+		String[] splits = sptx.getWjmc().split("\\.");
+		String filepath = dir+File.separator+sptx.getId()+"."+splits[splits.length-1];
 		File f = new File(filepath);
 		if(!f.getParentFile().exists()) {
 			f.getParentFile().mkdirs();

@@ -3,13 +3,14 @@
 <mapper namespace="org.sky.spsb.client.TbStSpTxMapper">
   <resultMap id="BaseResultMap" type="org.sky.spsb.model.TbStSpTx">
     <id column="ID" jdbcType="VARCHAR" property="id" />
-    <result column="SPBH" jdbcType="VARCHAR" property="spbh" />
     <result column="WJMC" jdbcType="VARCHAR" property="wjmc" />
+    <result column="SPBH" jdbcType="VARCHAR" property="spbh" />
+    <result column="SPWJMC" jdbcType="VARCHAR" property="spwjmc" />
     <result column="XSD" jdbcType="DECIMAL" property="xsd" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="ZT" jdbcType="VARCHAR" property="zt" />
-    <result column="SPLJ" jdbcType="VARCHAR" property="splj" />
+  	<result column="SPLJ" jdbcType="VARCHAR" property="splj" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.sky.spsb.model.TbStSpTxWithBLOBs">
     <result column="TXNR" jdbcType="LONGVARCHAR" property="txnr" />
@@ -74,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, SPBH, WJMC, XSD, CREATER, CREATE_TIME, ZT,
+    ID, WJMC, SPBH, SPWJMC, XSD, CREATER, CREATE_TIME, ZT,
     (SELECT SPLJ FROM TB_ST_SPXX SP WHERE SP.SPBH = TB_ST_SP_TX.SPBH) AS SPLJ
   </sql>
   <sql id="Blob_Column_List">
@@ -130,14 +131,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.sky.spsb.model.TbStSpTxWithBLOBs">
-    insert into tb_st_sp_tx (ID, SPBH, WJMC, 
-      XSD, CREATER, CREATE_TIME, 
-      ZT, TXNR, JT
-      )
-    values (#{id,jdbcType=VARCHAR}, #{spbh,jdbcType=VARCHAR}, #{wjmc,jdbcType=VARCHAR}, 
-      #{xsd,jdbcType=DECIMAL}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{zt,jdbcType=VARCHAR}, #{txnr,jdbcType=LONGVARCHAR}, #{jt,jdbcType=LONGVARCHAR}
-      )
+    insert into tb_st_sp_tx (ID, WJMC, SPBH, 
+      SPWJMC, XSD, CREATER, 
+      CREATE_TIME, ZT, TXNR, 
+      JT)
+    values (#{id,jdbcType=VARCHAR}, #{wjmc,jdbcType=VARCHAR}, #{spbh,jdbcType=VARCHAR}, 
+      #{spwjmc,jdbcType=VARCHAR}, #{xsd,jdbcType=DECIMAL}, #{creater,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{zt,jdbcType=VARCHAR}, #{txnr,jdbcType=LONGVARCHAR}, 
+      #{jt,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.spsb.model.TbStSpTxWithBLOBs">
     insert into tb_st_sp_tx
@@ -145,11 +146,14 @@
       <if test="id != null">
         ID,
       </if>
+      <if test="wjmc != null">
+        WJMC,
+      </if>
       <if test="spbh != null">
         SPBH,
       </if>
-      <if test="wjmc != null">
-        WJMC,
+      <if test="spwjmc != null">
+        SPWJMC,
       </if>
       <if test="xsd != null">
         XSD,
@@ -174,11 +178,14 @@
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
+      <if test="wjmc != null">
+        #{wjmc,jdbcType=VARCHAR},
+      </if>
       <if test="spbh != null">
         #{spbh,jdbcType=VARCHAR},
       </if>
-      <if test="wjmc != null">
-        #{wjmc,jdbcType=VARCHAR},
+      <if test="spwjmc != null">
+        #{spwjmc,jdbcType=VARCHAR},
       </if>
       <if test="xsd != null">
         #{xsd,jdbcType=DECIMAL},
@@ -212,11 +219,14 @@
       <if test="record.id != null">
         ID = #{record.id,jdbcType=VARCHAR},
       </if>
+      <if test="record.wjmc != null">
+        WJMC = #{record.wjmc,jdbcType=VARCHAR},
+      </if>
       <if test="record.spbh != null">
         SPBH = #{record.spbh,jdbcType=VARCHAR},
       </if>
-      <if test="record.wjmc != null">
-        WJMC = #{record.wjmc,jdbcType=VARCHAR},
+      <if test="record.spwjmc != null">
+        SPWJMC = #{record.spwjmc,jdbcType=VARCHAR},
       </if>
       <if test="record.xsd != null">
         XSD = #{record.xsd,jdbcType=DECIMAL},
@@ -244,8 +254,9 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update tb_st_sp_tx
     set ID = #{record.id,jdbcType=VARCHAR},
-      SPBH = #{record.spbh,jdbcType=VARCHAR},
       WJMC = #{record.wjmc,jdbcType=VARCHAR},
+      SPBH = #{record.spbh,jdbcType=VARCHAR},
+      SPWJMC = #{record.spwjmc,jdbcType=VARCHAR},
       XSD = #{record.xsd,jdbcType=DECIMAL},
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -259,8 +270,9 @@
   <update id="updateByExample" parameterType="map">
     update tb_st_sp_tx
     set ID = #{record.id,jdbcType=VARCHAR},
-      SPBH = #{record.spbh,jdbcType=VARCHAR},
       WJMC = #{record.wjmc,jdbcType=VARCHAR},
+      SPBH = #{record.spbh,jdbcType=VARCHAR},
+      SPWJMC = #{record.spwjmc,jdbcType=VARCHAR},
       XSD = #{record.xsd,jdbcType=DECIMAL},
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -272,11 +284,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="org.sky.spsb.model.TbStSpTxWithBLOBs">
     update tb_st_sp_tx
     <set>
+      <if test="wjmc != null">
+        WJMC = #{wjmc,jdbcType=VARCHAR},
+      </if>
       <if test="spbh != null">
         SPBH = #{spbh,jdbcType=VARCHAR},
       </if>
-      <if test="wjmc != null">
-        WJMC = #{wjmc,jdbcType=VARCHAR},
+      <if test="spwjmc != null">
+        SPWJMC = #{spwjmc,jdbcType=VARCHAR},
       </if>
       <if test="xsd != null">
         XSD = #{xsd,jdbcType=DECIMAL},
@@ -301,8 +316,9 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.sky.spsb.model.TbStSpTxWithBLOBs">
     update tb_st_sp_tx
-    set SPBH = #{spbh,jdbcType=VARCHAR},
-      WJMC = #{wjmc,jdbcType=VARCHAR},
+    set WJMC = #{wjmc,jdbcType=VARCHAR},
+      SPBH = #{spbh,jdbcType=VARCHAR},
+      SPWJMC = #{spwjmc,jdbcType=VARCHAR},
       XSD = #{xsd,jdbcType=DECIMAL},
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
@@ -313,8 +329,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="org.sky.spsb.model.TbStSpTx">
     update tb_st_sp_tx
-    set SPBH = #{spbh,jdbcType=VARCHAR},
-      WJMC = #{wjmc,jdbcType=VARCHAR},
+    set WJMC = #{wjmc,jdbcType=VARCHAR},
+      SPBH = #{spbh,jdbcType=VARCHAR},
+      SPWJMC = #{spwjmc,jdbcType=VARCHAR},
       XSD = #{xsd,jdbcType=DECIMAL},
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
