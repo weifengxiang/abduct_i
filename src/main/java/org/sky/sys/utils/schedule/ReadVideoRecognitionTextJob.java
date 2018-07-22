@@ -79,7 +79,7 @@ public class ReadVideoRecognitionTextJob implements Job {
 				    		TbStSpTxWithBLOBs bean = spxtMapper.selectByPrimaryKey(txid);
 				    		if(null!=bean) {
 				    			bean.setSpwjmc(spmc);
-				    			bean.setJt(Base64Img.GetImageStr(filePath));
+				    			bean.setJt("data:image/jpeg;base64,"+Base64Img.GetImageStr(filePath));
 				    			bean.setXsd(new BigDecimal(xsd));
 				    			bean.setZt("1");
 				    			spxtMapper.updateByPrimaryKeySelective(bean);

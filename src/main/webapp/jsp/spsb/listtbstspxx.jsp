@@ -120,7 +120,7 @@ $(function() {
 				formatter:function(value,row){
 						  	 return SKY.formatterDict(value,row,zt);
 						 }">状态</th>
-				<th data-options="field:'wjmc',width:180">文件名称</th>
+				<th data-options="field:'spwjmc',width:180">视频文件名称</th>
 				<th data-options="field:'jt',width:180,
 				formatter:function(value,row){
 						  	 if(0==value){
