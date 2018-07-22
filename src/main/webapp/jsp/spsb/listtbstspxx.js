@@ -173,37 +173,13 @@ function delTbStSpTx(){
 	}
 }
 function getImg(id){
-	var url = basepath+'spsb/TbStSpTx/viewImg/'+id;
-	var rend = "";
-	$.ajax({
-		url:SKY.urlCSRF(url),
-		type: "get",
-		dataType:'json',
-		async:false,
-		success:function(data){
-			if(!data){
-				return;
-			}
-			rend =  "<img style='width:150px;height:150px;' src='"+data+"'/>";
-		}
-	});
+	var url = basepath+'spsb/TbStSpTx/viewImg/txnr/'+id;
+	var rend = "<img style='width:150px;height:150px;' src="+url+"/>"
 	return rend;
 }
 function getImgJt(id){
-	var url = basepath+'spsb/TbStSpTx/viewImgJt/'+id;
-	var rend = "";
-	$.ajax({
-		url:SKY.urlCSRF(url),
-		type: "get",
-		dataType:'json',
-		async:false,
-		success:function(data){
-			if(!data){
-				return;
-			}
-			rend =  "<img style='width:150px;height:150px;' src='"+data+"'/>";
-		}
-	});
+	var url = basepath+'spsb/TbStSpTx/viewImg/jt/'+id;
+	var rend = "<img style='width:150px;height:150px;' src="+url+"/>"
 	return rend;
 }
 function loadSpTxList(spbh){

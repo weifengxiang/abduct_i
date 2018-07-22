@@ -1,5 +1,6 @@
 package org.sky.spsb.action;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,8 @@ import org.sky.spsb.model.TbStSpTxExample;
 import org.sky.spsb.model.TbStSpTxExample.Criteria;
 import org.sky.spsb.model.TbStSpTxWithBLOBs;
 import org.sky.spsb.service.TbStSpTxService;
+import org.sky.sys.utils.FileTypeUtil;
+import org.sky.sys.utils.FileTypeUtil.FileType;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
@@ -20,6 +23,7 @@ import org.sky.sys.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import sun.misc.BASE64Decoder;
 @Controller
 public class TbStSpTxController extends BaseController{
 	@Autowired
@@ -159,12 +164,30 @@ public class TbStSpTxController extends BaseController{
 		TbStSpTxWithBLOBs bean = tbstsptxService.getTbStSpTxById(id);
 		return "\""+bean.getTxnr()+"\"";
 	}
-	@RequestMapping(value = "/spsb/TbStSpTx/viewImgJt/{id}", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
-	public @ResponseBody String viewImgJt(
-			@PathVariable String id,
-			HttpServletRequest request, 
-			HttpServletResponse response){
+	 
+	@RequestMapping(value = "/spsb/TbStSpTx/viewImg/{type}/{id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]>
+		viewImg(HttpServletRequest request,HttpServletResponse response,
+			 @PathVariable String type,
+			 @PathVariable String id) {
+		HttpHeaders he = new HttpHeaders();
 		TbStSpTxWithBLOBs bean = tbstsptxService.getTbStSpTxById(id);
-		return "\""+bean.getJt()+"\"";
+		String imgBase64 ="";
+		if("txnr".equals(type)) {
+			imgBase64 = bean.getTxnr().replace("data:image/jpeg;base64,", "");
+		}else if("jt".equals(type)) {
+			imgBase64 = bean.getJt().replace("data:image/jpeg;base64,", "");
+		}	
+        BASE64Decoder d = new BASE64Decoder();
+		try {
+			byte[] data = d.decodeBuffer(imgBase64);
+			he.setContentType(MediaType.IMAGE_JPEG);
+			return new ResponseEntity<>(data,he,HttpStatus.OK);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResponseEntity<>(null,he,HttpStatus.OK);
+		}
+		
 	}
 }
