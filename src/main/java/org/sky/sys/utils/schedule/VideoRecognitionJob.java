@@ -80,6 +80,10 @@ public class VideoRecognitionJob implements Job {
 			Base64Img.GenerateImage(sptx.getTxnr(), filepath);
 			String path=ConfUtils.getValue("EXE");
 			String[] cmd = {path,"5",dir,sptx.getSplj()};
+			System.out.println("**************************");
+			System.out.println(dir);
+			System.out.println(sptx.getSplj());
+			System.out.println("**************************");
 			ProcessBuilder pb = new ProcessBuilder(cmd);
 			try {
 				Process proc = pb.start();

@@ -77,15 +77,19 @@
 		</filter>
 	</appender>
 
-	<!-- category 部分定义了特定包或者类的输出级别和方式，可以有多个 -->
-	<category name="org.apache">
+	<!-- category 部分定义了特定包或者类的输出级别和方式，可以有多个;
+		 category的属性additivity="false"表示在category中定义日志输在root中过滤掉 -->
+	<category name="org.apache" additivity="false">
 		<priority value="warn" />
 		<appender-ref ref="WARN" />
 	</category>
-
+	<category name="org.sky" additivity="false">
+		<priority value="INFO" />
+		<appender-ref ref="INFO" />
+	</category>
 	<!-- root部分定义了log4j的默认输出级别和方式 -->
 	<root>
-		<priority value="DEBUG" />
+		<priority value="ERROR" />
 		<appender-ref ref="DEBUG" />
 		<appender-ref ref="INFO" />
 		<appender-ref ref="WARN" />

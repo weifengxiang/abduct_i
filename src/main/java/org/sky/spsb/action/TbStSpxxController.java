@@ -139,7 +139,7 @@ public class TbStSpxxController extends BaseController{
 					List<MultipartFile> attachfiles = multiRequest.getFiles(iter.next());
 					if (attachfiles != null) {
 						// 定义上传路径
-						String filepath = ConfUtils.getValue("SP_DIR")+File.separator+spbh;
+						String filepath = ConfUtils.getValue("SP_DIR")+"//"+spbh;
 						File fileDir = new File(filepath);
 						if(!fileDir.exists()) {
 							fileDir.mkdirs();

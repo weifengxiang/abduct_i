@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.sky.sys.model.SysUser;
 import org.sky.sys.model.SysUserRole;
 import org.sky.sys.model.SysUserRoleExample;
@@ -24,6 +25,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class MyAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider implements Serializable  {
+	private final Logger logger=Logger.getLogger(MyAuthenticationProvider.class);
 	@Autowired
 	private SysUserService userService;
 	@Autowired
@@ -50,6 +52,7 @@ public class MyAuthenticationProvider extends AbstractUserDetailsAuthenticationP
 	 */
 	@Override
 	protected UserDetails retrieveUser(String loginCode,UsernamePasswordAuthenticationToken token)	throws AuthenticationException {
+		logger.info(loginCode+"进行登录...");
 		String client = BspUtils.getHttpRequest().getParameter("client");
 		UserDetails user = null; 
 		SysUser sysuser = userService.getSysUserByCode(loginCode);
