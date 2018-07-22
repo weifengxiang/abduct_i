@@ -22,6 +22,9 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.sky.msg.client.TbStMsgMapper;
+import org.sky.spsb.client.TbStSpTxMapper;
+import org.sky.spsb.model.TbStSpTxExample;
+import org.sky.spsb.model.TbStSpTxWithBLOBs;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.ConfUtils;
@@ -47,13 +50,14 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class ReadVideoRecognitionTextJob implements Job {
 	private final Logger logger=Logger.getLogger(ReadVideoRecognitionTextJob.class);
-
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		// TODO Auto-generated method stub
 		TbStTxsbMapper txsbMapper = BspUtils.getBean(TbStTxsbMapper.class);
 		TbStMsgMapper msgMapper = BspUtils.getBean(TbStMsgMapper.class);
+		TbStSpTxMapper spxtMapper = BspUtils.getBean(TbStSpTxMapper.class);
 		String dir = ConfUtils.getValue("VIDEO_RESULT_TEXT");
+		//0.99 14586fd2475cfba9453f35d357de1d68.jpg V3701000000002018070001_9504_2018722172134356.jpg 606 344 105 155
 		String resFormat="相似度 图片名称 视频截图 位置";
 		File dirFile = new File(dir);
 		File[] textFiles = dirFile.listFiles();
@@ -65,41 +69,23 @@ public class ReadVideoRecognitionTextJob implements Job {
 				    while((res = br.readLine())!=null){//使用readLine方法，一次读一行
 				        //System.out.println(s);
 				    	if(!StringUtils.isNull(res)) {
-				    		String[] resList = res.split(" ");
-				    		String xsd = resList[0];//相似度
-				    		String id = resList[2].split("\\.")[0];
-				    		String videoImgPath = "";
-				    		/**
-				    		TbStTxsbExample e = new TbStTxsbExample();
-				    		e.createCriteria().andYwbhEqualTo(ywbh);
-				    		long count = txsbMapper.countByExample(e);
-				    		if(count>0) {
-				    			continue;
+				    		String resArray[] = res.split(" ");
+				    		String xsd = resArray[0];//相似度
+				    		String txid = resArray[1].split("\\.")[0];//图片ID
+				    		String spbh = resArray[2].split("_")[0];//视频编号
+				    		String spmc = resArray[2].split("_")[1];//视频名称
+				    		String filePath = ConfUtils.getValue("VIDEO_RESULT_IMG")+File.separator+resArray[2];//视频路径
+				    		System.out.println("filePath:"+filePath);
+				    		TbStSpTxWithBLOBs bean = spxtMapper.selectByPrimaryKey(txid);
+				    		if(null!=bean) {
+				    			bean.setSpwjmc(spmc);
+				    			bean.setJt(Base64Img.GetImageStr(filePath));
+				    			bean.setXsd(new BigDecimal(xsd));
+				    			bean.setZt("1");
+				    			spxtMapper.updateByPrimaryKeySelective(bean);
 				    		}
-				    		TbStTxsb sb = new TbStTxsb();
-				    		sb.setId(CommonUtils.getUUID(32));
-				    		sb.setXsd(new BigDecimal(resList[0]));
-				    		sb.setAjbh(resList[1].split("_")[0]);
-				    		sb.setAjtxxh(new Integer(resList[1].split("_")[1].substring(0, 1)));
-				    		
-				    		sb.setYwbh(ywbh);
-				    		String ywlx="";
-				    		if(resList[2].split("_")[0].startsWith("X")) {
-				    			ywlx="XSXX";
-				    		}else {
-				    			ywlx="SJZQ";
-				    		}
-				    		sb.setYwlx(ywlx);
-				    		sb.setTxxh(new Integer(resList[2].split("_")[1].substring(0, 1)));
-				    		sb.setWz(resList[3]+" "+resList[4]+" "+resList[5]+" "+resList[6]);
-				    		sb.setSbsj(CommonUtils.getCurrentDbDate());
-				    		txsbMapper.insertSelective(sb);
-				    		if(sb.getXsd().floatValue()>=0.8) {
-				    			String ajbh = sb.getAjbh();
-				    			msgMapper.insertOrgMsg(ajbh.substring(1, 13),"案件匹配相似"+sb.getXsd().floatValue()+"请登陆查看");
-				    		}
-				    		**/
 				    	}
+					    break;
 				    }
 				    br.close();
 				    text.deleteOnExit();
@@ -111,5 +97,18 @@ public class ReadVideoRecognitionTextJob implements Job {
 			}
 		}
 	}
-	
+	public static void main(String[] args) {
+		String res = "0.99 14586fd2475cfba9453f35d357de1d68.jpg V3701000000002018070001_9504_2018722172134356.jpg 606 344 105 155";
+		String resArray[] = res.split(" ");
+		String xsd = resArray[0];//相似度
+		String txid = resArray[1].split("\\.")[0];//图片ID
+		String spbh = resArray[2].split("_")[0];//视频编号
+		String spmc = resArray[2].split("_")[1];//视频名称
+		String filePath = ConfUtils.getValue("VIDEO_RESULT_IMG")+File.separator+resArray[2];//视频路径
+		System.out.println(filePath);
+		for(String t:resArray) {
+			System.out.println(t);
+		}
+		System.out.println(new BigDecimal("0.99"));
+	}
 }

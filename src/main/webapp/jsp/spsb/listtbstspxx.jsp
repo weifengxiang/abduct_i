@@ -122,11 +122,13 @@ $(function() {
 						 }">状态</th>
 				<th data-options="field:'wjmc',width:180">文件名称</th>
 				<th data-options="field:'jt',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">截图</th>
+				formatter:function(value,row){
+						  	 if(0==value){
+						  	 	return '无';
+						  	 }else{
+						  	 	return getImgJt(row.id);
+						  	 }
+						 }">截图</th>
 				<th data-options="field:'xsd',width:180,
 				editor:{
 						type:'textbox',

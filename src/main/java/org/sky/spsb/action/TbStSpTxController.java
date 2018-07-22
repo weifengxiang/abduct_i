@@ -159,4 +159,12 @@ public class TbStSpTxController extends BaseController{
 		TbStSpTxWithBLOBs bean = tbstsptxService.getTbStSpTxById(id);
 		return "\""+bean.getTxnr()+"\"";
 	}
+	@RequestMapping(value = "/spsb/TbStSpTx/viewImgJt/{id}", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String viewImgJt(
+			@PathVariable String id,
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		TbStSpTxWithBLOBs bean = tbstsptxService.getTbStSpTxById(id);
+		return "\""+bean.getJt()+"\"";
+	}
 }

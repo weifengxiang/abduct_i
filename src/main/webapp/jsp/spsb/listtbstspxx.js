@@ -189,6 +189,23 @@ function getImg(id){
 	});
 	return rend;
 }
+function getImgJt(id){
+	var url = basepath+'spsb/TbStSpTx/viewImgJt/'+id;
+	var rend = "";
+	$.ajax({
+		url:SKY.urlCSRF(url),
+		type: "get",
+		dataType:'json',
+		async:false,
+		success:function(data){
+			if(!data){
+				return;
+			}
+			rend =  "<img style='width:150px;height:150px;' src='"+data+"'/>";
+		}
+	});
+	return rend;
+}
 function loadSpTxList(spbh){
 	$('#listtbstsptxdg').datagrid('options').url=SKY.urlCSRF(basepath+'spsb/TbStSpTx/getTbStSpTxByPage');
 	$('#listtbstsptxdg').datagrid('load', {
