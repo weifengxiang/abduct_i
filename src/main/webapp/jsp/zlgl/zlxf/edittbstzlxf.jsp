@@ -24,6 +24,7 @@ $(function() {
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
 			<input type='hidden' name='jsdw' id='jsdw'/>
+			<input type='hidden' name='txr' id='txr'/>
 			<input type='hidden' name='xfdw' id='xfdw'/>
 			<table style="width:100%">
 				  <tr>
@@ -54,6 +55,13 @@ $(function() {
 					<td colspan='3'><input class="easyui-textbox" name="jsdwName" id="jsdwName" style='width:400;height:50'
 						data-options="multiline:true,required:true"></input>
 						<a href="javascript:openOrganHelp()"class="easyui-linkbutton" plain="true" iconCls="icon-search">选择</a>
+						</td>
+				  </tr>
+				  <tr>
+					<th><label>提醒人:</label></th>
+					<td colspan='3'><input class="easyui-textbox" name="txrName" id="txrName" style='width:400;height:50'
+						data-options="multiline:true,required:true"></input>
+						<a href="javascript:openUserHelp()"class="easyui-linkbutton" plain="true" iconCls="icon-search">选择</a>
 						</td>
 				  </tr>
 				  <tr>

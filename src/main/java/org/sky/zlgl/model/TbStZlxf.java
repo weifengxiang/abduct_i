@@ -30,6 +30,10 @@ public class TbStZlxf {
     private String jsdw;
     
     private String jsdwName;
+    
+    private String txr;
+    
+    private String txrName;
 
     public String getId() {
         return id;
@@ -141,6 +145,22 @@ public class TbStZlxf {
 
 	public void setXfdwName(String xfdwName) {
 		this.xfdwName = xfdwName;
+	}
+
+	public String getTxr() {
+		return txr;
+	}
+
+	public void setTxr(String txr) {
+		this.txr = txr;
+	}
+
+	public String getTxrName() {
+		return txrName;
+	}
+
+	public void setTxrName(String txrName) {
+		this.txrName = txrName;
 	}
     
 }

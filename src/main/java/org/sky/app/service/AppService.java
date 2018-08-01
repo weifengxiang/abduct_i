@@ -13,6 +13,7 @@ import org.sky.hdjl.model.TbStHdjlFs;
 import org.sky.hdjl.model.TbStHdjlFsExample;
 import org.sky.hdjl.model.TbStHdjlJs;
 import org.sky.hdjl.model.TbStHdjlJsExample;
+import org.sky.msg.client.TbStMsgMapper;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.client.SysDictItemMapper;
 import org.sky.sys.client.SysOrganMapper;
@@ -39,6 +40,12 @@ import org.sky.ywbl.model.TbStTxxx;
 import org.sky.ywbl.model.TbStXsxx;
 import org.sky.ywbl.model.TbStXsxxExample;
 import org.sky.ywbl.service.ComService;
+import org.sky.zlgl.client.TbStZlfkMapper;
+import org.sky.zlgl.client.TbStZlxfMapper;
+import org.sky.zlgl.client.TbStZlxfTxrMapper;
+import org.sky.zlgl.model.TbStZlfk;
+import org.sky.zlgl.model.TbStZlxf;
+import org.sky.zlgl.model.TbStZlxfTxr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,7 +74,14 @@ public class AppService {
 	private TbStHdjlFsMapper fsMapper;
 	@Autowired
 	private TbStHdjlJsMapper jsMapper;
-	
+	@Autowired
+	private TbStZlxfMapper tbstzlxfmapper;
+	@Autowired
+	private TbStZlfkMapper tbstzlfkmapper;
+	@Autowired
+	private TbStZlxfTxrMapper txrMapper;
+	@Autowired
+	private TbStMsgMapper msgMapper;
 	public void register(SysUser user) {
 		Timestamp ts = syscommonmapper.queryTimestamp();
 		user.setId(CommonUtils.getUUID(32));
@@ -327,6 +341,58 @@ public class AppService {
 		SysOrganExample soe = new SysOrganExample();
 		soe.setOrderByClause("code asc");
 		return sysorganMapper.selectByExample(soe);
+	}
+	public void addzlxf(TbStZlxf edit,String usercode) {
+		try{
+			Timestamp ts = syscommonmapper.queryTimestamp();
+			if(StringUtils.isNull(edit.getId())){
+				//新增
+				edit.setId(CommonUtils.getUUID(32));
+				edit.setCreater(usercode);
+				edit.setCreateTime(ts);
+				edit.setUpdater(usercode);
+				edit.setUpdateTime(ts);
+				edit.setXfsj(ts);
+				String jsdw = edit.getJsdw();
+				String txr = edit.getTxr();
+				String[] jsdws = jsdw.split(",");
+				String[] txrs = txr.split(",");
+				for(String dwcode:jsdws) {
+					TbStZlfk fk = new TbStZlfk();
+					fk.setId(CommonUtils.getUUID(32));
+					fk.setJsdw(dwcode);
+					fk.setZlbh(edit.getZlbh());
+					fk.setZt("0");
+					fk.setCreater(usercode);
+					fk.setCreateTime(ts);
+					fk.setUpdater(usercode);
+					fk.setUpdateTime(ts);
+					tbstzlfkmapper.insert(fk);
+					
+				}
+				for(String txrCode:txrs) {
+					TbStZlxfTxr txrBean = new TbStZlxfTxr();
+					txrBean.setId(CommonUtils.getUUID(32));
+					txrBean.setTxr(txrCode);
+					txrBean.setZlbh(edit.getZlbh());
+					txrBean.setCreater(usercode);
+					txrBean.setCreateTime(ts);
+					txrBean.setUpdater(usercode);
+					txrBean.setUpdateTime(ts);
+					txrMapper.insert(txrBean);
+					msgMapper.insertUserMsg(txrCode,"您有新的指令，请登录系统查看");
+				}
+				tbstzlxfmapper.insertSelective(edit);
+			}else{
+				//修改
+				edit.setUpdater(usercode);
+				edit.setUpdateTime(ts);
+				tbstzlxfmapper.updateByPrimaryKeySelective(edit);
+			}
+		}catch(Exception e){
+			logger.error("保存新增/编辑单个对象执行失败",e);
+			throw new ServiceException(e.getMessage());
+		}
 	}
 	class Contact{
 		private String organCode;

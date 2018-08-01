@@ -29,4 +29,6 @@ public interface TbStMsgMapper {
     int updateByPrimaryKey(TbStMsg record);
     
     void insertOrgMsg(@Param("orgCode")String orgCode,@Param("content")String content);
+    
+    void insertUserMsg(@Param("userCode")String userCode,@Param("content")String content);
 }

@@ -85,13 +85,18 @@ $(function() {
 						options:{
 							required:true
 						}}">接收单位</th>
+				<th data-options="field:'txrName',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">提醒人</th>
 				<th data-options="field:'xfsj',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">下发时间</th>
-				<th data-options="field:'createTime',width:160">下发时间</th>
 		</tr>
 	</thead>
 </table>

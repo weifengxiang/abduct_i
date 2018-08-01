@@ -56,7 +56,7 @@ function submitAddEditTbStZlxfForm() {
 function openOrganHelp(){
 	var opts={
 			id:'chooseOrganWin',
-			title:'选择分流去向',
+			title:'选择下发单位',
 			width:600,
 			height:450,
 			modal:true,
@@ -89,6 +89,47 @@ function openOrganHelp(){
 	                	
 	                };
 	            	this.content.initOrganHelp(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+	            } 
+	        }
+		  };
+	SKY_EASYUI.open(opts);
+}
+function openUserHelp(){
+	var opts={
+			id:'chooseUserWin',
+			title:'选择提醒人',
+			width:600,
+			height:450,
+			modal:true,
+			content:'url:'+SKY.urlCSRF(basepath+'sys/common/help/userchoose'),
+			onLoad: function(dialog){ 
+	            if(this.content && this.content.initUserHelp){//判断弹出窗体iframe中的driveInit方法是否存在 
+	                var paramOpts=new Object();
+	                paramOpts.dialog=dialog;
+	                paramOpts.close=function(){
+	                	dialog.close();
+	                };
+	                paramOpts.ok=function(list){
+	                	if(list.length>0){
+	                		var txrs='';
+	                		var txrNames='';
+	                		$.each(list,function(i,node){
+	                			txrs=txrs+node.code;
+	                			txrNames=txrNames+node.name;
+	                			if(i!=list.length-1){
+	                				txrs=txrs+",";
+	                				txrNames=txrNames+',';
+	                			}
+	                		});
+	                		$('#txr').val(txrs);
+	                		$('#txrName').textbox('setValue',txrNames);
+	                		dialog.close();
+	                	}else{
+	                		$.messager.alert('提示','请选择提醒人','error');
+	                	}
+	                	
+	                };
+	            	this.content.initUserHelp(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 	            } 
 	        }
 		  };

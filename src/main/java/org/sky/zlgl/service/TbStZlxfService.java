@@ -7,10 +7,12 @@ import org.sky.msg.client.TbStMsgMapper;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.zlgl.client.TbStZlfkMapper;
 import org.sky.zlgl.client.TbStZlxfMapper;
+import org.sky.zlgl.client.TbStZlxfTxrMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.zlgl.model.TbStZlfk;
 import org.sky.zlgl.model.TbStZlxf;
 import org.sky.zlgl.model.TbStZlxfExample;
+import org.sky.zlgl.model.TbStZlxfTxr;
 import org.sky.sys.utils.PageListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ public class TbStZlxfService {
 	private TbStZlxfMapper tbstzlxfmapper;
 	@Autowired
 	private TbStZlfkMapper tbstzlfkmapper;
+	@Autowired
+	private TbStZlxfTxrMapper txrMapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
 	@Autowired
@@ -96,7 +100,9 @@ public class TbStZlxfService {
 				edit.setUpdater(BspUtils.getLoginUser().getCode());
 				edit.setUpdateTime(ts);
 				String jsdw = edit.getJsdw();
+				String txr = edit.getTxr();
 				String[] jsdws = jsdw.split(",");
+				String[] txrs = txr.split(",");
 				for(String dwcode:jsdws) {
 					TbStZlfk fk = new TbStZlfk();
 					fk.setId(CommonUtils.getUUID(32));
@@ -108,7 +114,19 @@ public class TbStZlxfService {
 					fk.setUpdater(BspUtils.getLoginUser().getCode());
 					fk.setUpdateTime(ts);
 					tbstzlfkmapper.insert(fk);
-					msgMapper.insertOrgMsg(dwcode,"您有新的指令，请登录系统查看");
+					
+				}
+				for(String txrCode:txrs) {
+					TbStZlxfTxr txrBean = new TbStZlxfTxr();
+					txrBean.setId(CommonUtils.getUUID(32));
+					txrBean.setTxr(txrCode);
+					txrBean.setZlbh(edit.getZlbh());
+					txrBean.setCreater(BspUtils.getLoginUser().getCode());
+					txrBean.setCreateTime(ts);
+					txrBean.setUpdater(BspUtils.getLoginUser().getCode());
+					txrBean.setUpdateTime(ts);
+					txrMapper.insert(txrBean);
+					msgMapper.insertUserMsg(txrCode,"您有新的指令，请登录系统查看");
 				}
 				tbstzlxfmapper.insertSelective(edit);
 			}else{

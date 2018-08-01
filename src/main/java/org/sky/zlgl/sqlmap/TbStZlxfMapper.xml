@@ -8,6 +8,8 @@
     <result column="ZLNR" jdbcType="VARCHAR" property="zlnr" />
     <result column="XFDW" jdbcType="VARCHAR" property="xfdw" />
     <result column="XFDW_NAME" jdbcType="VARCHAR" property="xfdwName" />
+    <result column="TXR" jdbcType="VARCHAR" property="txr" />
+    <result column="TXR_NAME" jdbcType="VARCHAR" property="txrName" />
     <result column="XFSJ" jdbcType="TIMESTAMP" property="xfsj" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
     <result column="JSDW_NAME" jdbcType="VARCHAR" property="jsdwName" />
@@ -77,7 +79,8 @@
   <sql id="Base_Column_List">
     ID, ZLBH, ZLMC, ZLNR, XFDW, XFSJ, BZ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
     (SELECT NAME FROM SYS_ORGAN O WHERE O.CODE=XFDW) AS XFDW_NAME,
-    (SELECT GROUP_CONCAT(SO.NAME) FROM TB_ST_ZLFK FK,SYS_ORGAN SO WHERE SO.CODE=FK.JSDW)AS JSDW_NAME
+    (SELECT GROUP_CONCAT(SO.NAME) FROM TB_ST_ZLFK FK,SYS_ORGAN SO WHERE SO.CODE=FK.JSDW AND FK.ZLBH=TB_ST_ZLXF.ZLBH)AS JSDW_NAME,
+    (SELECT GROUP_CONCAT(SU.NAME) FROM TB_ST_ZLXF_TXR TXR,SYS_USER SU WHERE SU.CODE=TXR.TXR AND TXR.ZLBH=TB_ST_ZLXF.ZLBH)AS TXR_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.zlgl.model.TbStZlxfExample" resultMap="BaseResultMap">
     select

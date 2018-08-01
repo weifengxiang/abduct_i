@@ -128,7 +128,7 @@ $(function() {
 						  	 }else{
 						  	 	return getImgJt(row.id);
 						  	 }
-						 }">截图</th>
+						 }">比中视频截图</th>
 				<th data-options="field:'xsd',width:180,
 				editor:{
 						type:'textbox',

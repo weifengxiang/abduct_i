@@ -22,6 +22,7 @@ import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.model.SysFile;
 import org.sky.sys.model.SysUser;
+import org.sky.sys.service.SysUserService;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.ConfUtils;
@@ -32,6 +33,8 @@ import org.sky.sys.utils.StringUtils;
 import org.sky.utils.Base64Img;
 import org.sky.ywbl.model.TbStAjdjxx;
 import org.sky.ywbl.model.TbStXsxx;
+import org.sky.ywbl.service.ComService;
+import org.sky.zlgl.model.TbStZlxf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +59,10 @@ import net.sf.json.JSONObject;
 public class AppController extends BaseController{
 	@Autowired
 	private AppService appService;
+	@Autowired
+	private ComService comService;
+	@Autowired
+	private SysUserService userService;
 	/**
 	 * 注册接口
 	 * @param request
@@ -422,6 +429,43 @@ public class AppController extends BaseController{
 	@RequestMapping(value="/app/AppController/selectSysOrgan",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	public @ResponseBody List selectSysOrgan(HttpServletRequest request, HttpServletResponse response) {
 		return appService.selectSysOrgan();
+	}
+	/**
+	 * 获取业务编号
+	 * @param szm
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/getYwbh/{szm}",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody String getYWBH(
+			@PathVariable String szm,
+			HttpServletRequest request, HttpServletResponse response) {
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		SysUser user = userService.getSysUserByCode(usercode);
+		String ywbh = comService.getYwbh(szm, user.getCode(), user.getOrganCode());
+		ResultData rd = new ResultData();
+		rd.setCode("1");
+		rd.setName("获取成功");
+		rd.setData(ywbh);
+		return JsonUtils.obj2json(rd);
+	}
+	@RequestMapping(value="/app/AppController/zlxf",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody ResultData zlxf(HttpServletRequest request, HttpServletResponse response) {
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		TbStZlxf zlxf = (TbStZlxf) this.getEntityBean(request, TbStZlxf.class);
+		ResultData rd = new ResultData();
+		SysUser user = userService.getSysUserByCode(usercode);
+		zlxf.setXfdw(user.getOrganCode());
+		try {
+			appService.addzlxf(zlxf,usercode);
+			rd.setCode("1");
+			rd.setName("发送成功");
+		}catch(Exception e) {
+			rd.setCode("0");
+			rd.setName(e.getMessage());
+		}
+		return rd;
 	}
 	/**
 	 * 生成登录返回值
