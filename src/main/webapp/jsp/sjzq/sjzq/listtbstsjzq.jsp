@@ -20,7 +20,11 @@ $(function() {
 		<th><label>寻亲编号:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入寻亲编号'" name="q_xqbh"  id="q_xqbh" ></input></td>				
 		<th><label>姓名:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入姓名'" name="q_xm"  id="q_xm" ></input></td>				
+		<td><input  class="easyui-textbox" data-options="prompt:'输入姓名'" name="q_xm"  id="q_xm" ></input></td>
+		<th><label>失踪人所在地:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入失踪人所在地'" name="q_szrszd"  id="q_szrszd" ></input></td>
+		<th><label>失踪地点:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入失踪地点'" name="q_szdd"  id="q_szdd" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>

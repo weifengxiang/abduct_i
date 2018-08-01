@@ -174,6 +174,14 @@ function searchButton(){
 			if(xm){
 				ft.put("xm@=", xm);
 			}
+			var szrszd=$('#q_szrszd').textbox('getValue');
+			if(szrszd){
+				ft.put("szrszd@like", "%"+szrszd+"%");
+			}
+			var szdd=$('#q_szdd').textbox('getValue');
+			if(szdd){
+				ft.put("szdd@like", "%"+szdd+"%");
+			}
 			return ft.getJSON();
 		}
 	});
