@@ -31,7 +31,10 @@ public class SendMessageUtil {
 		 * Huawei：短信猫生产厂商，不同的短信猫生产厂商smslib所封装的AT指令接口会不一致，必须设置正确.常见的有Huawei、wavecom等厂商
 		 * 最后一个参数表示设备的型号，可选
 		 */
-		SerialModemGateway gateway = new SerialModemGateway("modem.com1", "COM1", 9600, "Siemens", "TC35");
+		SerialModemGateway gateway = new SerialModemGateway("modem.com1", "COM3", 9600, "wavecom", "");
+		System.out.println("================");
+		System.out.println("COM3 11258");
+		System.out.println("================");
 		gateway.setInbound(true); // 设置true，表示该网关可以接收短信,根据需求修改
 		gateway.setOutbound(true);// 设置true，表示该网关可以发送短信,根据需求修改
 		gateway.setSimPin("0000");// sim卡锁，一般默认为0000或1234
@@ -86,7 +89,7 @@ public class SendMessageUtil {
 	public static void main(String args[]) {
 		SendMessageUtil app = new SendMessageUtil();
 		try {
-			//app.doIt();
+			app.doIt("15253182880","123");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

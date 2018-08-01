@@ -31,6 +31,11 @@ $(function() {
 	createWorkbench();
 	addTabMenuEventListener();
 	(new Clock()).display($('#clock')[0]);
+	//app下载
+	$("#appDownLoad").bind('click', function(){ 
+		var apppath='D://abduct//app//abduct.apk';
+		SKY_EASYUI.downLoad(apppath);
+    });    
 });
 
 function initThemes(){
@@ -91,6 +96,9 @@ function switchStyle(styleName){
 		<img alt="LOGO" src="${basepath}skin/images/58x58.png" style="position: absolute;top:0px;padding-left: 10px">
 		<div style="text-align: right;margin:0 auto;float:right;padding-top:0px">
 			<div style="overflow:hidden;">
+				<a id='appDownLoad' class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-phone'">
+		        	<STRONG><font color='#FFFFFF'>APP下载</font></STRONG>
+		        </a>
 		        <a class="easyui-menubutton" data-options="menu:'#mm3',iconCls:'icon-user'">
 		        	<STRONG><font color='#FFFFFF'>用户中心</font></STRONG>
 		        </a>
