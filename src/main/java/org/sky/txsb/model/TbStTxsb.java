@@ -24,6 +24,8 @@ public class TbStTxsb {
 
     private Date createTime;
 
+    private String state;
+
     public String getId() {
         return id;
     }
@@ -102,5 +104,13 @@ public class TbStTxsb {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

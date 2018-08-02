@@ -4,7 +4,7 @@ function init(){
 	$('#listtbsttxsbdg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();
-			ft.put("state@!=",'01');
+			ft.put("state@=",'01');
 			return ft.getJSON();
 		},
 		sortfield:"sbsj desc"
@@ -142,7 +142,7 @@ function searchButton(){
 	$('#listtbsttxsbdg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();
-			ft.put("state@!=",'01');
+			ft.put("state@=",'01');
 			var ywlx =$('#q_ywlx').textbox("getValue");
 			if(ywlx){
 				ft.put("ywlx@=", ywlx);
@@ -158,27 +158,5 @@ function searchButton(){
 			return ft.getJSON();
 		},
 		sortfield:"sbsj desc"
-	});
-}
-//添加比中
-function renderBtn(value,row){
-	return "<button onclick='addBz(\""+row.id+"\")'>比中</button>";
-}
-function addBz(id){
-	var url = SKY.urlCSRF(basepath+'txsb/TbStTxsb/addBz');
-	var params = {
-				"id":id
-			};
-	$.ajax({
-		url:url,
-		type: "POST",
-		data:params,
-		dataType:'json',
-		success:function(data){
-			$.messager.alert("提示",data.name,"info");
-			if(data.code != '0'){
-				$('#listtbsttxsbdg').datagrid('reload');
-			}
-		}
 	});
 }

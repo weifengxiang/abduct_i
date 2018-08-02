@@ -5,6 +5,8 @@
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="BH" jdbcType="VARCHAR" property="bh" />
     <result column="BKNR" jdbcType="VARCHAR" property="bknr" />
+    <result column="BKK" jdbcType="VARCHAR" property="bkk" />
+    <result column="TYZ" jdbcType="VARCHAR" property="tyz" />
     <result column="YXSJQ" jdbcType="TIMESTAMP" property="yxsjq" />
     <result column="YXSJZ" jdbcType="TIMESTAMP" property="yxsjz" />
     <result column="BJLX" jdbcType="VARCHAR" property="bjlx" />
@@ -78,8 +80,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, BH, BKNR, YXSJQ, YXSJZ, BJLX, ZRR, ZT, SPR, SPSJ, BZ, CREATER, CREATE_TIME, UPDATER, 
-    UPDATE_TIME,
+    ID, BH, BKNR, BKK, TYZ, YXSJQ, YXSJZ, BJLX, ZRR, ZT, SPR, SPSJ, BZ, CREATER, CREATE_TIME, 
+    UPDATER, UPDATE_TIME,
     (SELECT NAME FROM SYS_USER U WHERE U.CODE=ZRR) as ZRR_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.xxbk.model.TbStXxbkExample" resultMap="BaseResultMap">
@@ -115,15 +117,17 @@
   </delete>
   <insert id="insert" parameterType="org.sky.xxbk.model.TbStXxbk">
     insert into tb_st_xxbk (ID, BH, BKNR, 
-      YXSJQ, YXSJZ, BJLX, 
-      ZRR, ZT, SPR, SPSJ, 
-      BZ, CREATER, CREATE_TIME, 
-      UPDATER, UPDATE_TIME)
+      BKK, TYZ, YXSJQ, 
+      YXSJZ, BJLX, ZRR, 
+      ZT, SPR, SPSJ, BZ, 
+      CREATER, CREATE_TIME, UPDATER, 
+      UPDATE_TIME)
     values (#{id,jdbcType=VARCHAR}, #{bh,jdbcType=VARCHAR}, #{bknr,jdbcType=VARCHAR}, 
-      #{yxsjq,jdbcType=TIMESTAMP}, #{yxsjz,jdbcType=TIMESTAMP}, #{bjlx,jdbcType=VARCHAR}, 
-      #{zrr,jdbcType=VARCHAR}, #{zt,jdbcType=VARCHAR}, #{spr,jdbcType=VARCHAR}, #{spsj,jdbcType=TIMESTAMP}, 
-      #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+      #{bkk,jdbcType=VARCHAR}, #{tyz,jdbcType=VARCHAR}, #{yxsjq,jdbcType=TIMESTAMP}, 
+      #{yxsjz,jdbcType=TIMESTAMP}, #{bjlx,jdbcType=VARCHAR}, #{zrr,jdbcType=VARCHAR}, 
+      #{zt,jdbcType=VARCHAR}, #{spr,jdbcType=VARCHAR}, #{spsj,jdbcType=TIMESTAMP}, #{bz,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.xxbk.model.TbStXxbk">
     insert into tb_st_xxbk
@@ -136,6 +140,12 @@
       </if>
       <if test="bknr != null">
         BKNR,
+      </if>
+      <if test="bkk != null">
+        BKK,
+      </if>
+      <if test="tyz != null">
+        TYZ,
       </if>
       <if test="yxsjq != null">
         YXSJQ,
@@ -183,6 +193,12 @@
       </if>
       <if test="bknr != null">
         #{bknr,jdbcType=VARCHAR},
+      </if>
+      <if test="bkk != null">
+        #{bkk,jdbcType=VARCHAR},
+      </if>
+      <if test="tyz != null">
+        #{tyz,jdbcType=VARCHAR},
       </if>
       <if test="yxsjq != null">
         #{yxsjq,jdbcType=TIMESTAMP},
@@ -240,6 +256,12 @@
       <if test="record.bknr != null">
         BKNR = #{record.bknr,jdbcType=VARCHAR},
       </if>
+      <if test="record.bkk != null">
+        BKK = #{record.bkk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tyz != null">
+        TYZ = #{record.tyz,jdbcType=VARCHAR},
+      </if>
       <if test="record.yxsjq != null">
         YXSJQ = #{record.yxsjq,jdbcType=TIMESTAMP},
       </if>
@@ -286,6 +308,8 @@
     set ID = #{record.id,jdbcType=VARCHAR},
       BH = #{record.bh,jdbcType=VARCHAR},
       BKNR = #{record.bknr,jdbcType=VARCHAR},
+      BKK = #{record.bkk,jdbcType=VARCHAR},
+      TYZ = #{record.tyz,jdbcType=VARCHAR},
       YXSJQ = #{record.yxsjq,jdbcType=TIMESTAMP},
       YXSJZ = #{record.yxsjz,jdbcType=TIMESTAMP},
       BJLX = #{record.bjlx,jdbcType=VARCHAR},
@@ -310,6 +334,12 @@
       </if>
       <if test="bknr != null">
         BKNR = #{bknr,jdbcType=VARCHAR},
+      </if>
+      <if test="bkk != null">
+        BKK = #{bkk,jdbcType=VARCHAR},
+      </if>
+      <if test="tyz != null">
+        TYZ = #{tyz,jdbcType=VARCHAR},
       </if>
       <if test="yxsjq != null">
         YXSJQ = #{yxsjq,jdbcType=TIMESTAMP},
@@ -354,6 +384,8 @@
     update tb_st_xxbk
     set BH = #{bh,jdbcType=VARCHAR},
       BKNR = #{bknr,jdbcType=VARCHAR},
+      BKK = #{bkk,jdbcType=VARCHAR},
+      TYZ = #{tyz,jdbcType=VARCHAR},
       YXSJQ = #{yxsjq,jdbcType=TIMESTAMP},
       YXSJZ = #{yxsjz,jdbcType=TIMESTAMP},
       BJLX = #{bjlx,jdbcType=VARCHAR},

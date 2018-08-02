@@ -50,6 +50,14 @@ public class TbStTxsbController extends BaseController{
 		return "jsp/txsb/txsb/listtbsttxsb";
 	}
 	/**
+	*显示图像识别列表页面(必中记录)
+	**/
+	@RequestMapping(value = "/txsb/TbStTxsb/initTbStTxsbBZListPage", method = { RequestMethod.GET })
+	public String initTbStTxsbBZListPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/txsb/txsb/listtbsttxsbbz";
+	}
+	/**
 	 * 图像识别分页查询
 	 * @param request
 	 * @param response
@@ -152,5 +160,29 @@ public class TbStTxsbController extends BaseController{
 		String id = request.getParameter("id");
 		TbStTxsb bean = tbsttxsbService.getTbStTxsbById(id);
 		return JsonUtils.obj2json(bean);
+	}
+	/**
+	*添加到必中
+	**/
+	@RequestMapping(value = "/txsb/TbStTxsb/addBz", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String addBz(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		ResultData rd= new ResultData();
+		try {
+			String id=request.getParameter("id");
+			TbStTxsb bz = new TbStTxsb();
+			bz.setId(id);
+			bz.setState("01");
+			tbsttxsbService.saveAddEditTbStTxsb(bz);
+			rd.setCode(ResultData.code_success);
+			rd.setName("添加比中成功");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("添加比中失败<br>"+e.getMessage());
+		}
+		return JsonUtils.obj2json(rd);
 	}
 }

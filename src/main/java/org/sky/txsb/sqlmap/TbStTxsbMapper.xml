@@ -12,6 +12,7 @@
     <result column="AJBH" jdbcType="VARCHAR" property="ajbh" />
     <result column="AJTXXH" jdbcType="INTEGER" property="ajtxxh" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, YWLX, YWBH, TXXH, XSD, WZ, SBSJ, AJBH, AJTXXH, CREATE_TIME
+    ID, YWLX, YWBH, TXXH, XSD, WZ, SBSJ, AJBH, AJTXXH, CREATE_TIME, STATE
   </sql>
   <select id="selectByExample" parameterType="org.sky.txsb.model.TbStTxsbExample" resultMap="BaseResultMap">
     select
@@ -108,12 +109,12 @@
   <insert id="insert" parameterType="org.sky.txsb.model.TbStTxsb">
     insert into tb_st_txsb (ID, YWLX, YWBH, 
       TXXH, XSD, WZ, SBSJ, 
-      AJBH, AJTXXH, CREATE_TIME
-      )
+      AJBH, AJTXXH, CREATE_TIME, 
+      STATE)
     values (#{id,jdbcType=VARCHAR}, #{ywlx,jdbcType=VARCHAR}, #{ywbh,jdbcType=VARCHAR}, 
       #{txxh,jdbcType=INTEGER}, #{xsd,jdbcType=DECIMAL}, #{wz,jdbcType=VARCHAR}, #{sbsj,jdbcType=TIMESTAMP}, 
-      #{ajbh,jdbcType=VARCHAR}, #{ajtxxh,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
-      )
+      #{ajbh,jdbcType=VARCHAR}, #{ajtxxh,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.txsb.model.TbStTxsb">
     insert into tb_st_txsb
@@ -148,6 +149,9 @@
       <if test="createTime != null">
         CREATE_TIME,
       </if>
+      <if test="state != null">
+        STATE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -179,6 +183,9 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +228,9 @@
       <if test="record.createTime != null">
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.state != null">
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +247,8 @@
       SBSJ = #{record.sbsj,jdbcType=TIMESTAMP},
       AJBH = #{record.ajbh,jdbcType=VARCHAR},
       AJTXXH = #{record.ajtxxh,jdbcType=INTEGER},
-      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      STATE = #{record.state,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +283,9 @@
       <if test="createTime != null">
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -285,7 +299,8 @@
       SBSJ = #{sbsj,jdbcType=TIMESTAMP},
       AJBH = #{ajbh,jdbcType=VARCHAR},
       AJTXXH = #{ajtxxh,jdbcType=INTEGER},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">

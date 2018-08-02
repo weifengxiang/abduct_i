@@ -45,8 +45,10 @@ $(function() {
 				formatter:function(value,row){
 							 if('案件登记'==row.NAME){
 						  	 	return SKY.formatterDict(value,row,sjzt);
-						  	 }else{
+						  	 }else if('指令下发'==row.NAME){
 						  	 	return SKY.formatterDict(value,row,zlzt);
+						  	 }else{
+						  	 	return value;
 						  	 }
 						 }"">状态</th>
 			<th data-options="field:'NUM',width:200">数量</th>

@@ -24,6 +24,14 @@ function initEditTbStXxbkPage(paramOpts){
  * 保存添加/编辑信息布控
  */
 function submitAddEditTbStXxbkForm() {
+	var bkk = $("input[type=checkbox][name^='bkk']:checked");
+	$.each(bkk,function(i,node){
+		if(bkk.length==2){
+			$('#bkk').val('11');
+		}else{
+			$('#bkk').val(node.value);
+		}
+	});
 	var options = { 
 	   data:{
     	   "data":function(){

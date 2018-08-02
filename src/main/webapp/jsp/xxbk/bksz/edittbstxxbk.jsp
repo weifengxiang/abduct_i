@@ -23,6 +23,7 @@ $(function() {
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
 			<input type='hidden' name='zrr' id='zrr'/>
+			<input type='hidden' name='bkk' id='bkk'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>布控编号:</label></th>
@@ -33,6 +34,18 @@ $(function() {
 					<th><label>布控内容:</label></th>
 					<td colspan='3'><input class="easyui-textbox" name="bknr" style='width:400;height:50'
 						data-options="multiline:true,required:true"></input></td>
+				  </tr>
+				  <tr>
+					<th><label>布控库:</label></th>
+					<td>
+						<input type='checkbox' name='bkk1' value='10' checked>案件库</input>
+						<input type='checkbox' name='bkk2' value='01' checked>线索库库</input>
+					</td>
+					<th><label>是否同音字:</label></th>
+					<td>
+						<input type='radio' name='tyz' value='01' checked>是</input>
+						<input type='radio' name='tyz' value='00'>否</input>
+					</td>
 				  </tr>
 				  <tr>
 					<th><label>有效时间起:</label></th>

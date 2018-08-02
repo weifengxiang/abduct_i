@@ -9,6 +9,10 @@ public class TbStXxbk {
 
     private String bknr;
 
+    private String bkk;
+
+    private String tyz;
+
     private Date yxsjq;
 
     private Date yxsjz;
@@ -57,6 +61,22 @@ public class TbStXxbk {
 
     public void setBknr(String bknr) {
         this.bknr = bknr;
+    }
+
+    public String getBkk() {
+        return bkk;
+    }
+
+    public void setBkk(String bkk) {
+        this.bkk = bkk;
+    }
+
+    public String getTyz() {
+        return tyz;
+    }
+
+    public void setTyz(String tyz) {
+        this.tyz = tyz;
     }
 
     public Date getYxsjq() {

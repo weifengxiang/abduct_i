@@ -34,11 +34,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ZhcxController extends BaseController{
 	@Autowired
 	private ZhcxService zhcxServive;
-	
+	//案件查询
 	@RequestMapping(value = "/zhcx/ajcx/initAjcxPage", method = { RequestMethod.GET })
 	public String initAjcxPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/zhcx/ajcx/ajcx";
+	}
+	//线索查询
+	@RequestMapping(value = "/zhcx/xscx/initXscxPage", method = { RequestMethod.GET })
+	public String initXscxPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/zhcx/xscx/xscx";
+	}
+	//数据抓取
+	@RequestMapping(value = "/zhcx/sjzq/initZqcxPage", method = { RequestMethod.GET })
+	public String initZqcxPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/zhcx/sjzq/zqcx";
 	}
 	@SysControllerLog(desc = "案件登记信息分页查询")
 	@RequestMapping(value = "/zhcx/ajcx/getTbStAjdjxxByPage", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")

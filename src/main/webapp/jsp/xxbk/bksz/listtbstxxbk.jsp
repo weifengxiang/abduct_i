@@ -69,6 +69,24 @@ $(function() {
 						options:{
 							required:true
 						}}">布控内容</th>
+				<th data-options="field:'bkk',width:180,
+				formatter:function(value,row){
+						  	 if('10'==value){
+						  	 	return '案件库';
+						  	 }else if('01'==value){
+						  	 	return '线索库';
+						  	 }else if('11'==value){
+						  	 	return '案件库，线索库';
+						  	 }
+						 }">布控库</th>
+				<th data-options="field:'tyz',width:180,
+				formatter:function(value,row){
+						  	 if('00'==value){
+						  	 	return '否';
+						  	 }else if('01'==value){
+						  	 	return '是';
+						  	 }
+						 }">同音字</th>
 				<th data-options="field:'yxsjq',width:180,
 				editor:{
 						type:'textbox',

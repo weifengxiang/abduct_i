@@ -6,7 +6,7 @@
 <html>
 <head>
 <security:csrfMetaTags/>
-<script type="text/javascript" src='${basepath}jsp/txsb/txsb/listtbsttxsb.js'></script>
+<script type="text/javascript" src='${basepath}jsp/txsb/txsb/listtbsttxsbbz.js'></script>
 <script type="text/javascript">
 var ywlx=<%=EnumUtils.getEnums("YWBL.YWLX") %>;
 var xsdDegree=<%=ConfUtils.getValue("SIM_DEGREE") %>;
@@ -95,11 +95,6 @@ $(function() {
 						options:{
 							required:true
 						}}">识别时间</th>
-				<th data-options="field:'act',width:180,
-						formatter:function(value,row){
-						  	 return renderBtn(value,row);
-						 }
-				">操作</th>
 		</tr>
 	</thead>
 </table>

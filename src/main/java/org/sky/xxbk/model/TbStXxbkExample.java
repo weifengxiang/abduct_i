@@ -351,6 +351,146 @@ public class TbStXxbkExample {
             return (Criteria) this;
         }
 
+        public Criteria andBkkIsNull() {
+            addCriterion("BKK is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkIsNotNull() {
+            addCriterion("BKK is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkEqualTo(String value) {
+            addCriterion("BKK =", value, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkNotEqualTo(String value) {
+            addCriterion("BKK <>", value, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkGreaterThan(String value) {
+            addCriterion("BKK >", value, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkGreaterThanOrEqualTo(String value) {
+            addCriterion("BKK >=", value, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkLessThan(String value) {
+            addCriterion("BKK <", value, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkLessThanOrEqualTo(String value) {
+            addCriterion("BKK <=", value, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkLike(String value) {
+            addCriterion("BKK like", value, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkNotLike(String value) {
+            addCriterion("BKK not like", value, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkIn(List<String> values) {
+            addCriterion("BKK in", values, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkNotIn(List<String> values) {
+            addCriterion("BKK not in", values, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkBetween(String value1, String value2) {
+            addCriterion("BKK between", value1, value2, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andBkkNotBetween(String value1, String value2) {
+            addCriterion("BKK not between", value1, value2, "bkk");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzIsNull() {
+            addCriterion("TYZ is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzIsNotNull() {
+            addCriterion("TYZ is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzEqualTo(String value) {
+            addCriterion("TYZ =", value, "tyz");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzNotEqualTo(String value) {
+            addCriterion("TYZ <>", value, "tyz");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzGreaterThan(String value) {
+            addCriterion("TYZ >", value, "tyz");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzGreaterThanOrEqualTo(String value) {
+            addCriterion("TYZ >=", value, "tyz");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzLessThan(String value) {
+            addCriterion("TYZ <", value, "tyz");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzLessThanOrEqualTo(String value) {
+            addCriterion("TYZ <=", value, "tyz");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzLike(String value) {
+            addCriterion("TYZ like", value, "tyz");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzNotLike(String value) {
+            addCriterion("TYZ not like", value, "tyz");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzIn(List<String> values) {
+            addCriterion("TYZ in", values, "tyz");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzNotIn(List<String> values) {
+            addCriterion("TYZ not in", values, "tyz");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzBetween(String value1, String value2) {
+            addCriterion("TYZ between", value1, value2, "tyz");
+            return (Criteria) this;
+        }
+
+        public Criteria andTyzNotBetween(String value1, String value2) {
+            addCriterion("TYZ not between", value1, value2, "tyz");
+            return (Criteria) this;
+        }
+
         public Criteria andYxsjqIsNull() {
             addCriterion("YXSJQ is null");
             return (Criteria) this;

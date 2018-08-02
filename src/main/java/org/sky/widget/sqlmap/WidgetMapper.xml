@@ -24,6 +24,17 @@
 				AND FK.ZT IN('0','1')
 			GROUP BY 
 			FK.ZT
+			UNION 
+			SELECT '图像比中' AS NAME,
+					'比中' AS ZT,
+					COUNT(1) AS NUM 
+			FROM TB_ST_TXSB
+			WHERE STATE='01'
+			UNION 
+			SELECT '信息布控' AS NAME,
+					'比中' AS ZT,
+					COUNT(1) AS NUM 
+			FROM TB_ST_BKCX
 	</select>
 	<select id="selectBjfs" resultType="map">
 		SELECT BJFS AS CODE,
