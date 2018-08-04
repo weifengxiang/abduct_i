@@ -5,6 +5,7 @@
 <head>
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/txbk/edittbsttxbk.js'></script>
+<script type="text/javascript" src="${basepath}skin/js/utils.js"></script>
 <script type="text/javascript">
 var _callbacks = $.Callbacks();
 var txbh ='${txbh}';
@@ -12,6 +13,11 @@ $(function() {
 	
 });
 </script> 
+<style type="text/css">
+th{
+	width:100px
+}
+</style>
 </head>
 <body>
 <div class="easyui-panel"  style="width:100%;height:100%;text-align: center;"
@@ -19,27 +25,45 @@ $(function() {
 		<form id="addedittbsttxbkform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
+			<input type='hidden' name='bkk' id='bkk'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>视频编号:</label></th>
-					<td><input class="easyui-textbox" name="spbh" id='spbh' style='width:300px'
+					<td><input class="easyui-textbox" name="txbh" id='txbh' style='width:300px'
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>视频名称:</label></th>
-					<td><input class="easyui-textbox" name="spmc" style='width:300px'
+					<td><input class="easyui-textbox" name="txmc" style='width:300px'
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>布控库:</label></th>
-					<td><input class="easyui-textbox" name="bkk"
-						data-options="required:true"></input></td>
+					<td>
+						<input type='checkbox' name='bkk1' value='10' checked>案件库</input>
+						<input type='checkbox' name='bkk2' value='01' checked>线索库库</input>
+					</td>
 				  </tr>
 				  <tr>
 					<th><label>备注:</label></th>
 					<td><input class="easyui-textbox" name="bz"  
 						style='width:300;height:60'
 						data-options="multiline:true"></input></td>
+				  </tr>
+			</table>
+		</form>
+		<form class="easyui-form" method="post" 
+			data-options="novalidate:true">
+			<table style="width:100%">
+				  <tr>
+					<th><label>图片:</label></th>
+					<td>
+						<div style="text-align: center;width:200px">
+							<img id='picPreView' style="width:150px;height:150px;" src="${basepath}skin/images/timg.jpg"/>
+							<br/>
+							<input id='pic' name='pic' type="file" accept="image/*" name='选择照片' multiple="multiple"/>
+						</div>
+					</td>
 				  </tr>
 			</table>
 		</form>

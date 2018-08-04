@@ -26,7 +26,7 @@ public class TbStTxbkService {
 	**/
 	public PageListData getTbStTxbkByPage(TbStTxbkExample ep){
 		long totalCount = tbsttxbkmapper.countByExample(ep);
-		List list = tbsttxbkmapper.selectByExample(ep);
+		List list = tbsttxbkmapper.selectByExampleWithBLOBs(ep);
 		PageListData pld = new PageListData();
 		pld.setTotal(totalCount);
 		pld.setRows(list);

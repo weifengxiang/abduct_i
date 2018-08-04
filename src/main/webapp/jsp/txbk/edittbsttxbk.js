@@ -6,7 +6,8 @@ function initAddTbStTxbkPage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
-	$('#spbh').textbox('setValue',txbh);
+	$('#txbh').textbox('setValue',txbh);
+	initPicView();
 }
 /**
  * 初始化编辑图像布控页面
@@ -23,11 +24,15 @@ function initEditTbStTxbkPage(paramOpts){
  * 保存添加/编辑图像布控
  */
 function submitAddEditTbStTxbkForm() {
+	var getImgBase64=function(){
+		return $.compress($('#picPreView')[0]);
+	};
 	var options = { 
 	   data:{
-    	   "data":function(){
-    		   //return JSON.stringify();
-    	   }
+		   "data":function(){
+    		   return JSON.stringify(getImgBase64());
+    	   },
+    	   "ysmc":$('#pic').val()
        },   
        beforeSubmit:function(data){
 			return $('#addedittbsttxbkform').form('enableValidation').form('validate');
@@ -48,5 +53,16 @@ function submitAddEditTbStTxbkForm() {
        timeout:-1    
 	};  
 	$('#addedittbsttxbkform').ajaxSubmit(options);
-	
+}
+/**
+ * 初始化图片信息
+ * @returns
+ */
+function initPicView(){	
+	_currentDeg=0;
+	$("#pic").uploadPreview({ Img: 'picPreView', Width: 210, Height: 210 });
+	$('#picPreView').on('click',function(){           
+		_currentDeg = (_currentDeg+90)%360;
+        this.style.transform = 'rotate('+_currentDeg+'deg)';
+	});
 }

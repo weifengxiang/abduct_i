@@ -211,6 +211,76 @@ public class TbStTxbkjgExample {
             return (Criteria) this;
         }
 
+        public Criteria andTxbhIsNull() {
+            addCriterion("TXBH is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhIsNotNull() {
+            addCriterion("TXBH is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhEqualTo(String value) {
+            addCriterion("TXBH =", value, "txbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhNotEqualTo(String value) {
+            addCriterion("TXBH <>", value, "txbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhGreaterThan(String value) {
+            addCriterion("TXBH >", value, "txbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhGreaterThanOrEqualTo(String value) {
+            addCriterion("TXBH >=", value, "txbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhLessThan(String value) {
+            addCriterion("TXBH <", value, "txbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhLessThanOrEqualTo(String value) {
+            addCriterion("TXBH <=", value, "txbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhLike(String value) {
+            addCriterion("TXBH like", value, "txbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhNotLike(String value) {
+            addCriterion("TXBH not like", value, "txbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhIn(List<String> values) {
+            addCriterion("TXBH in", values, "txbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhNotIn(List<String> values) {
+            addCriterion("TXBH not in", values, "txbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhBetween(String value1, String value2) {
+            addCriterion("TXBH between", value1, value2, "txbh");
+            return (Criteria) this;
+        }
+
+        public Criteria andTxbhNotBetween(String value1, String value2) {
+            addCriterion("TXBH not between", value1, value2, "txbh");
+            return (Criteria) this;
+        }
+
         public Criteria andYwbhIsNull() {
             addCriterion("YWBH is null");
             return (Criteria) this;

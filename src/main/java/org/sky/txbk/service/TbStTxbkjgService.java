@@ -83,15 +83,10 @@ public class TbStTxbkjgService {
 			if(StringUtils.isNull(edit.getId())){
 				//新增
 				edit.setId(CommonUtils.getUUID(32));
-				edit.setCreater(BspUtils.getLoginUser().getCode());
 				edit.setCreateTime(ts);
-				edit.setUpdater(BspUtils.getLoginUser().getCode());
-				edit.setUpdateTime(ts);
 				tbsttxbkjgmapper.insertSelective(edit);
 			}else{
 				//修改
-				edit.setUpdater(BspUtils.getLoginUser().getCode());
-				edit.setUpdateTime(ts);
 				tbsttxbkjgmapper.updateByPrimaryKeySelective(edit);
 			}
 		}catch(Exception e){

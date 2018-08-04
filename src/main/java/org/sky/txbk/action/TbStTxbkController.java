@@ -106,6 +106,10 @@ public class TbStTxbkController extends BaseController{
 		ResultData rd= new ResultData();
 		try {
 			TbStTxbk edit = (TbStTxbk) getEntityBean(request,TbStTxbk.class);
+			String data = request.getParameter("data").replace("\"","");
+			String ysmc = request.getParameter("ysmc");
+			edit.setTxnr(data);
+			edit.setYsmc(ysmc);
 			tbsttxbkService.saveAddEditTbStTxbk(edit);
 			rd.setCode(ResultData.code_success);
 			rd.setName("保存成功");

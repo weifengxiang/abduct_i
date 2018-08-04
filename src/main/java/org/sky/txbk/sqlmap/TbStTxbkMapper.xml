@@ -3,14 +3,18 @@
 <mapper namespace="org.sky.txbk.client.TbStTxbkMapper">
   <resultMap id="BaseResultMap" type="org.sky.txbk.model.TbStTxbk">
     <id column="ID" jdbcType="VARCHAR" property="id" />
-    <result column="SPBH" jdbcType="VARCHAR" property="spbh" />
-    <result column="SPMC" jdbcType="VARCHAR" property="spmc" />
+    <result column="TXBH" jdbcType="VARCHAR" property="txbh" />
+    <result column="TXMC" jdbcType="VARCHAR" property="txmc" />
+    <result column="YSMC" jdbcType="VARCHAR" property="ysmc" />
     <result column="BKK" jdbcType="VARCHAR" property="bkk" />
     <result column="BZ" jdbcType="VARCHAR" property="bz" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.sky.txbk.model.TbStTxbk">
+    <result column="TXNR" jdbcType="LONGVARCHAR" property="txnr" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,8 +75,27 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, SPBH, SPMC, BKK, BZ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    ID, TXBH, TXMC, YSMC, BKK, BZ, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
   </sql>
+  <sql id="Blob_Column_List">
+    TXNR
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="org.sky.txbk.model.TbStTxbkExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_st_txbk
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="org.sky.txbk.model.TbStTxbkExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -88,9 +111,11 @@
     </if>
     <include refid="MySqlPaginationSuffix" />
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from tb_st_txbk
     where ID = #{id,jdbcType=VARCHAR}
   </select>
@@ -105,12 +130,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.sky.txbk.model.TbStTxbk">
-    insert into tb_st_txbk (ID, SPBH, SPMC, 
-      BKK, BZ, CREATER, CREATE_TIME, 
-      UPDATER, UPDATE_TIME)
-    values (#{id,jdbcType=VARCHAR}, #{spbh,jdbcType=VARCHAR}, #{spmc,jdbcType=VARCHAR}, 
-      #{bkk,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+    insert into tb_st_txbk (ID, TXBH, TXMC, 
+      YSMC, BKK, BZ, CREATER, 
+      CREATE_TIME, UPDATER, UPDATE_TIME, 
+      TXNR)
+    values (#{id,jdbcType=VARCHAR}, #{txbh,jdbcType=VARCHAR}, #{txmc,jdbcType=VARCHAR}, 
+      #{ysmc,jdbcType=VARCHAR}, #{bkk,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{txnr,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.txbk.model.TbStTxbk">
     insert into tb_st_txbk
@@ -118,11 +145,14 @@
       <if test="id != null">
         ID,
       </if>
-      <if test="spbh != null">
-        SPBH,
+      <if test="txbh != null">
+        TXBH,
       </if>
-      <if test="spmc != null">
-        SPMC,
+      <if test="txmc != null">
+        TXMC,
+      </if>
+      <if test="ysmc != null">
+        YSMC,
       </if>
       <if test="bkk != null">
         BKK,
@@ -142,16 +172,22 @@
       <if test="updateTime != null">
         UPDATE_TIME,
       </if>
+      <if test="txnr != null">
+        TXNR,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="spbh != null">
-        #{spbh,jdbcType=VARCHAR},
+      <if test="txbh != null">
+        #{txbh,jdbcType=VARCHAR},
       </if>
-      <if test="spmc != null">
-        #{spmc,jdbcType=VARCHAR},
+      <if test="txmc != null">
+        #{txmc,jdbcType=VARCHAR},
+      </if>
+      <if test="ysmc != null">
+        #{ysmc,jdbcType=VARCHAR},
       </if>
       <if test="bkk != null">
         #{bkk,jdbcType=VARCHAR},
@@ -171,6 +207,9 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="txnr != null">
+        #{txnr,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="org.sky.txbk.model.TbStTxbkExample" resultType="java.lang.Long">
@@ -185,11 +224,14 @@
       <if test="record.id != null">
         ID = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.spbh != null">
-        SPBH = #{record.spbh,jdbcType=VARCHAR},
+      <if test="record.txbh != null">
+        TXBH = #{record.txbh,jdbcType=VARCHAR},
       </if>
-      <if test="record.spmc != null">
-        SPMC = #{record.spmc,jdbcType=VARCHAR},
+      <if test="record.txmc != null">
+        TXMC = #{record.txmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ysmc != null">
+        YSMC = #{record.ysmc,jdbcType=VARCHAR},
       </if>
       <if test="record.bkk != null">
         BKK = #{record.bkk,jdbcType=VARCHAR},
@@ -209,7 +251,27 @@
       <if test="record.updateTime != null">
         UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.txnr != null">
+        TXNR = #{record.txnr,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update tb_st_txbk
+    set ID = #{record.id,jdbcType=VARCHAR},
+      TXBH = #{record.txbh,jdbcType=VARCHAR},
+      TXMC = #{record.txmc,jdbcType=VARCHAR},
+      YSMC = #{record.ysmc,jdbcType=VARCHAR},
+      BKK = #{record.bkk,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      CREATER = #{record.creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      TXNR = #{record.txnr,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -217,8 +279,9 @@
   <update id="updateByExample" parameterType="map">
     update tb_st_txbk
     set ID = #{record.id,jdbcType=VARCHAR},
-      SPBH = #{record.spbh,jdbcType=VARCHAR},
-      SPMC = #{record.spmc,jdbcType=VARCHAR},
+      TXBH = #{record.txbh,jdbcType=VARCHAR},
+      TXMC = #{record.txmc,jdbcType=VARCHAR},
+      YSMC = #{record.ysmc,jdbcType=VARCHAR},
       BKK = #{record.bkk,jdbcType=VARCHAR},
       BZ = #{record.bz,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
@@ -232,11 +295,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="org.sky.txbk.model.TbStTxbk">
     update tb_st_txbk
     <set>
-      <if test="spbh != null">
-        SPBH = #{spbh,jdbcType=VARCHAR},
+      <if test="txbh != null">
+        TXBH = #{txbh,jdbcType=VARCHAR},
       </if>
-      <if test="spmc != null">
-        SPMC = #{spmc,jdbcType=VARCHAR},
+      <if test="txmc != null">
+        TXMC = #{txmc,jdbcType=VARCHAR},
+      </if>
+      <if test="ysmc != null">
+        YSMC = #{ysmc,jdbcType=VARCHAR},
       </if>
       <if test="bkk != null">
         BKK = #{bkk,jdbcType=VARCHAR},
@@ -256,13 +322,31 @@
       <if test="updateTime != null">
         UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="txnr != null">
+        TXNR = #{txnr,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.sky.txbk.model.TbStTxbk">
+    update tb_st_txbk
+    set TXBH = #{txbh,jdbcType=VARCHAR},
+      TXMC = #{txmc,jdbcType=VARCHAR},
+      YSMC = #{ysmc,jdbcType=VARCHAR},
+      BKK = #{bkk,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      TXNR = #{txnr,jdbcType=LONGVARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.sky.txbk.model.TbStTxbk">
     update tb_st_txbk
-    set SPBH = #{spbh,jdbcType=VARCHAR},
-      SPMC = #{spmc,jdbcType=VARCHAR},
+    set TXBH = #{txbh,jdbcType=VARCHAR},
+      TXMC = #{txmc,jdbcType=VARCHAR},
+      YSMC = #{ysmc,jdbcType=VARCHAR},
       BKK = #{bkk,jdbcType=VARCHAR},
       BZ = #{bz,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},

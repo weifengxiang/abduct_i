@@ -160,3 +160,7 @@ function searchButton(){
 		}
 	});
 }
+function getImg(data){
+	var rend = "<img style='width:150px;height:150px;' src='"+data+"'/>"
+	return rend;
+}

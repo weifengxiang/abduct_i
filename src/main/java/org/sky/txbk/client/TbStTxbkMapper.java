@@ -16,15 +16,21 @@ public interface TbStTxbkMapper {
 
     int insertSelective(TbStTxbk record);
 
+    List<TbStTxbk> selectByExampleWithBLOBs(TbStTxbkExample example);
+
     List<TbStTxbk> selectByExample(TbStTxbkExample example);
 
     TbStTxbk selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") TbStTxbk record, @Param("example") TbStTxbkExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") TbStTxbk record, @Param("example") TbStTxbkExample example);
+
     int updateByExample(@Param("record") TbStTxbk record, @Param("example") TbStTxbkExample example);
 
     int updateByPrimaryKeySelective(TbStTxbk record);
+
+    int updateByPrimaryKeyWithBLOBs(TbStTxbk record);
 
     int updateByPrimaryKey(TbStTxbk record);
 }

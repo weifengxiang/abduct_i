@@ -5,6 +5,8 @@ import java.util.Date;
 public class TbStTxbkjg {
     private String id;
 
+    private String txbh;
+
     private String ywbh;
 
     private Integer xh;
@@ -23,6 +25,14 @@ public class TbStTxbkjg {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTxbh() {
+        return txbh;
+    }
+
+    public void setTxbh(String txbh) {
+        this.txbh = txbh;
     }
 
     public String getYwbh() {

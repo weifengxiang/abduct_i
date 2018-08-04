@@ -18,9 +18,9 @@ $(function() {
 <table class='noborder'>
 	<tr style="height: 34px">
 		<th><label>视频编号:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入视频编号'" name="q_spbh"  id="q_spbh" ></input></td>				
+		<td><input  class="easyui-textbox" data-options="prompt:'输入视频编号'" name="q_txbh"  id="q_spbh" ></input></td>				
 		<th><label>视频名称:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入视频名称'" name="q_spmc"  id="q_spmc" ></input></td>				
+		<td><input  class="easyui-textbox" data-options="prompt:'输入视频名称'" name="q_txmc"  id="q_spmc" ></input></td>				
 		<th><label>布控库:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入布控库'" name="q_bkk"  id="q_bkk" ></input></td>				
 		<th><label>备注:</label></th>
@@ -54,18 +54,26 @@ $(function() {
 	<thead>
 		<tr>
 			<th data-options="field: 'checked', checkbox:true"></th>
-				<th data-options="field:'spbh',width:180,
+				<th data-options="field:'txbh',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">视频编号</th>
-				<th data-options="field:'spmc',width:180,
+						}}">图像编号</th>
+				<th data-options="field:'txbh',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">视频名称</th>
+						}}">图像名称</th>
+				<th data-options="field:'txnr',width:180,
+				formatter:function(value,row){
+						  	 if(0==value){
+						  	 	return '无';
+						  	 }else{
+						  	 	return getImg(value);
+						  	 }
+						 }">图像</th>
 				<th data-options="field:'bkk',width:180,
 				editor:{
 						type:'textbox',

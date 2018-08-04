@@ -5,9 +5,11 @@ import java.util.Date;
 public class TbStTxbk {
     private String id;
 
-    private String spbh;
+    private String txbh;
 
-    private String spmc;
+    private String txmc;
+
+    private String ysmc;
 
     private String bkk;
 
@@ -21,6 +23,8 @@ public class TbStTxbk {
 
     private Date updateTime;
 
+    private String txnr;
+
     public String getId() {
         return id;
     }
@@ -29,20 +33,28 @@ public class TbStTxbk {
         this.id = id;
     }
 
-    public String getSpbh() {
-        return spbh;
+    public String getTxbh() {
+        return txbh;
     }
 
-    public void setSpbh(String spbh) {
-        this.spbh = spbh;
+    public void setTxbh(String txbh) {
+        this.txbh = txbh;
     }
 
-    public String getSpmc() {
-        return spmc;
+    public String getTxmc() {
+        return txmc;
     }
 
-    public void setSpmc(String spmc) {
-        this.spmc = spmc;
+    public void setTxmc(String txmc) {
+        this.txmc = txmc;
+    }
+
+    public String getYsmc() {
+        return ysmc;
+    }
+
+    public void setYsmc(String ysmc) {
+        this.ysmc = ysmc;
     }
 
     public String getBkk() {
@@ -91,5 +103,13 @@ public class TbStTxbk {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getTxnr() {
+        return txnr;
+    }
+
+    public void setTxnr(String txnr) {
+        this.txnr = txnr;
     }
 }

@@ -211,143 +211,213 @@ public class TbStTxbkExample {
             return (Criteria) this;
         }
 
-        public Criteria andSpbhIsNull() {
-            addCriterion("SPBH is null");
+        public Criteria andTxbhIsNull() {
+            addCriterion("TXBH is null");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhIsNotNull() {
-            addCriterion("SPBH is not null");
+        public Criteria andTxbhIsNotNull() {
+            addCriterion("TXBH is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhEqualTo(String value) {
-            addCriterion("SPBH =", value, "spbh");
+        public Criteria andTxbhEqualTo(String value) {
+            addCriterion("TXBH =", value, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhNotEqualTo(String value) {
-            addCriterion("SPBH <>", value, "spbh");
+        public Criteria andTxbhNotEqualTo(String value) {
+            addCriterion("TXBH <>", value, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhGreaterThan(String value) {
-            addCriterion("SPBH >", value, "spbh");
+        public Criteria andTxbhGreaterThan(String value) {
+            addCriterion("TXBH >", value, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhGreaterThanOrEqualTo(String value) {
-            addCriterion("SPBH >=", value, "spbh");
+        public Criteria andTxbhGreaterThanOrEqualTo(String value) {
+            addCriterion("TXBH >=", value, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhLessThan(String value) {
-            addCriterion("SPBH <", value, "spbh");
+        public Criteria andTxbhLessThan(String value) {
+            addCriterion("TXBH <", value, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhLessThanOrEqualTo(String value) {
-            addCriterion("SPBH <=", value, "spbh");
+        public Criteria andTxbhLessThanOrEqualTo(String value) {
+            addCriterion("TXBH <=", value, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhLike(String value) {
-            addCriterion("SPBH like", value, "spbh");
+        public Criteria andTxbhLike(String value) {
+            addCriterion("TXBH like", value, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhNotLike(String value) {
-            addCriterion("SPBH not like", value, "spbh");
+        public Criteria andTxbhNotLike(String value) {
+            addCriterion("TXBH not like", value, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhIn(List<String> values) {
-            addCriterion("SPBH in", values, "spbh");
+        public Criteria andTxbhIn(List<String> values) {
+            addCriterion("TXBH in", values, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhNotIn(List<String> values) {
-            addCriterion("SPBH not in", values, "spbh");
+        public Criteria andTxbhNotIn(List<String> values) {
+            addCriterion("TXBH not in", values, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhBetween(String value1, String value2) {
-            addCriterion("SPBH between", value1, value2, "spbh");
+        public Criteria andTxbhBetween(String value1, String value2) {
+            addCriterion("TXBH between", value1, value2, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpbhNotBetween(String value1, String value2) {
-            addCriterion("SPBH not between", value1, value2, "spbh");
+        public Criteria andTxbhNotBetween(String value1, String value2) {
+            addCriterion("TXBH not between", value1, value2, "txbh");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcIsNull() {
-            addCriterion("SPMC is null");
+        public Criteria andTxmcIsNull() {
+            addCriterion("TXMC is null");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcIsNotNull() {
-            addCriterion("SPMC is not null");
+        public Criteria andTxmcIsNotNull() {
+            addCriterion("TXMC is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcEqualTo(String value) {
-            addCriterion("SPMC =", value, "spmc");
+        public Criteria andTxmcEqualTo(String value) {
+            addCriterion("TXMC =", value, "txmc");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcNotEqualTo(String value) {
-            addCriterion("SPMC <>", value, "spmc");
+        public Criteria andTxmcNotEqualTo(String value) {
+            addCriterion("TXMC <>", value, "txmc");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcGreaterThan(String value) {
-            addCriterion("SPMC >", value, "spmc");
+        public Criteria andTxmcGreaterThan(String value) {
+            addCriterion("TXMC >", value, "txmc");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcGreaterThanOrEqualTo(String value) {
-            addCriterion("SPMC >=", value, "spmc");
+        public Criteria andTxmcGreaterThanOrEqualTo(String value) {
+            addCriterion("TXMC >=", value, "txmc");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcLessThan(String value) {
-            addCriterion("SPMC <", value, "spmc");
+        public Criteria andTxmcLessThan(String value) {
+            addCriterion("TXMC <", value, "txmc");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcLessThanOrEqualTo(String value) {
-            addCriterion("SPMC <=", value, "spmc");
+        public Criteria andTxmcLessThanOrEqualTo(String value) {
+            addCriterion("TXMC <=", value, "txmc");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcLike(String value) {
-            addCriterion("SPMC like", value, "spmc");
+        public Criteria andTxmcLike(String value) {
+            addCriterion("TXMC like", value, "txmc");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcNotLike(String value) {
-            addCriterion("SPMC not like", value, "spmc");
+        public Criteria andTxmcNotLike(String value) {
+            addCriterion("TXMC not like", value, "txmc");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcIn(List<String> values) {
-            addCriterion("SPMC in", values, "spmc");
+        public Criteria andTxmcIn(List<String> values) {
+            addCriterion("TXMC in", values, "txmc");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcNotIn(List<String> values) {
-            addCriterion("SPMC not in", values, "spmc");
+        public Criteria andTxmcNotIn(List<String> values) {
+            addCriterion("TXMC not in", values, "txmc");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcBetween(String value1, String value2) {
-            addCriterion("SPMC between", value1, value2, "spmc");
+        public Criteria andTxmcBetween(String value1, String value2) {
+            addCriterion("TXMC between", value1, value2, "txmc");
             return (Criteria) this;
         }
 
-        public Criteria andSpmcNotBetween(String value1, String value2) {
-            addCriterion("SPMC not between", value1, value2, "spmc");
+        public Criteria andTxmcNotBetween(String value1, String value2) {
+            addCriterion("TXMC not between", value1, value2, "txmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcIsNull() {
+            addCriterion("YSMC is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcIsNotNull() {
+            addCriterion("YSMC is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcEqualTo(String value) {
+            addCriterion("YSMC =", value, "ysmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcNotEqualTo(String value) {
+            addCriterion("YSMC <>", value, "ysmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcGreaterThan(String value) {
+            addCriterion("YSMC >", value, "ysmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcGreaterThanOrEqualTo(String value) {
+            addCriterion("YSMC >=", value, "ysmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcLessThan(String value) {
+            addCriterion("YSMC <", value, "ysmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcLessThanOrEqualTo(String value) {
+            addCriterion("YSMC <=", value, "ysmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcLike(String value) {
+            addCriterion("YSMC like", value, "ysmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcNotLike(String value) {
+            addCriterion("YSMC not like", value, "ysmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcIn(List<String> values) {
+            addCriterion("YSMC in", values, "ysmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcNotIn(List<String> values) {
+            addCriterion("YSMC not in", values, "ysmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcBetween(String value1, String value2) {
+            addCriterion("YSMC between", value1, value2, "ysmc");
+            return (Criteria) this;
+        }
+
+        public Criteria andYsmcNotBetween(String value1, String value2) {
+            addCriterion("YSMC not between", value1, value2, "ysmc");
             return (Criteria) this;
         }
 
