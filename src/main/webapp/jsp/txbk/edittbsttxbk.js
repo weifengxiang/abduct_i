@@ -24,6 +24,14 @@ function initEditTbStTxbkPage(paramOpts){
  * 保存添加/编辑图像布控
  */
 function submitAddEditTbStTxbkForm() {
+	var bkk = $("input[type=checkbox][name^='bkk']:checked");
+	$.each(bkk,function(i,node){
+		if(bkk.length==2){
+			$('#bkk').val('11');
+		}else{
+			$('#bkk').val(node.value);
+		}
+	});
 	var getImgBase64=function(){
 		return $.compress($('#picPreView')[0]);
 	};

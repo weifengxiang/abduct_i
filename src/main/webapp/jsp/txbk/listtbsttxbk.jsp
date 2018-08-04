@@ -46,6 +46,9 @@ $(function() {
 			onDblClickRow:function(rowIndex, rowData){
 								//SKY_EASYUI.beginEdit('listtbsttxbkdg',rowIndex);
 						  },
+			onClickRow:function(rowIndex, rowData){
+								loadJG(rowData);
+						  },
 			onLoadSuccess : function () {
         		$(this).datagrid('fixRownumber');
         		$(this).datagrid('doCellTip',{'max-width':'200px','delay':500});
@@ -60,7 +63,7 @@ $(function() {
 						options:{
 							required:true
 						}}">图像编号</th>
-				<th data-options="field:'txbh',width:180,
+				<th data-options="field:'txmc',width:80,
 				editor:{
 						type:'textbox',
 						options:{
@@ -75,11 +78,15 @@ $(function() {
 						  	 }
 						 }">图像</th>
 				<th data-options="field:'bkk',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">布控库</th>
+				formatter:function(value,row){
+						  	 if('10'==value){
+						  	 	return '案件库';
+						  	 }else if('01'==value){
+						  	 	return '线索库';
+						  	 }else if('11'==value){
+						  	 	return '案件库，线索库';
+						  	 }
+						 }">布控库</th>
 				<th data-options="field:'bz',width:180,
 				editor:{
 						type:'textbox',

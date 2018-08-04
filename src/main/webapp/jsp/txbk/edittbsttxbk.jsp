@@ -41,7 +41,7 @@ th{
 					<th><label>布控库:</label></th>
 					<td>
 						<input type='checkbox' name='bkk1' value='10' checked>案件库</input>
-						<input type='checkbox' name='bkk2' value='01' checked>线索库库</input>
+						<input type='checkbox' name='bkk2' value='01' checked>线索库</input>
 					</td>
 				  </tr>
 				  <tr>

@@ -164,3 +164,16 @@ function getImg(data){
 	var rend = "<img style='width:150px;height:150px;' src='"+data+"'/>"
 	return rend;
 }
+/**
+ * 查询按钮
+ */
+function loadJG(row){
+	$('#listtbsttxbkjgdg').datagrid('options').url=SKY.urlCSRF(basepath+'txbk/TbStTxbkjg/getTbStTxbkjgByPage');
+	$('#listtbsttxbkjgdg').datagrid('load', {
+		filter : function(){
+			var ft = new HashMap();
+			ft.put("txbh@=", row.txbh);
+			return ft.getJSON();
+		}
+	});
+}
