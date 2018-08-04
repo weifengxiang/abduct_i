@@ -29,7 +29,7 @@ $(function() {
 	</tr>
 </table>
 </div>
-<div data-options=" region:'center',iconCls: 'icon-table'" title="图像布控管理">
+<div data-options=" region:'west',iconCls: 'icon-table',split:true" title="图像布控管理" style='width:50%'>
 <table  id="listtbsttxbkdg" class="easyui-datagrid" style="width: 100%; height: 100%"
 	data-options="
 			region:'center',
@@ -78,6 +78,64 @@ $(function() {
 						options:{
 							required:true
 						}}">备注</th>
+		</tr>
+	</thead>
+</table>
+</div>
+<div data-options=" region:'center',iconCls: 'icon-table'" title="图像布控结果管理">
+<table  id="listtbsttxbkjgdg" class="easyui-datagrid" style="width: 100%; height: 100%"
+	data-options="
+			region:'center',
+			fit:true,
+			border:false,
+			remoteSort : false,
+			pagination:true,
+			rownumbers: true,
+			checkbox:true,
+			singleSelect:true,
+			selectOnCheck:false,
+			checkOnSelect:false,
+			onDblClickRow:function(rowIndex, rowData){
+								//SKY_EASYUI.beginEdit('listtbsttxbkjgdg',rowIndex);
+						  },
+			onLoadSuccess : function () {
+        		$(this).datagrid('fixRownumber');
+        		$(this).datagrid('doCellTip',{'max-width':'200px','delay':500});
+    		}
+		">
+	<thead>
+		<tr>
+			<th data-options="field: 'checked', checkbox:true"></th>
+				<th data-options="field:'ywbh',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">业务编号</th>
+				<th data-options="field:'xh',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">序号</th>
+				<th data-options="field:'xsd',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">相似度</th>
+				<th data-options="field:'bz',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">备注</th>
+				<th data-options="field:'state',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">状态(00:未比中;01:比中)</th>
 		</tr>
 	</thead>
 </table>

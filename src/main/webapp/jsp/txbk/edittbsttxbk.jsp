@@ -7,6 +7,7 @@
 <script type="text/javascript" src='${basepath}jsp/txbk/edittbsttxbk.js'></script>
 <script type="text/javascript">
 var _callbacks = $.Callbacks();
+var txbh ='${txbh}';
 $(function() {
 	
 });
@@ -21,12 +22,12 @@ $(function() {
 			<table style="width:100%">
 				  <tr>
 					<th><label>视频编号:</label></th>
-					<td><input class="easyui-textbox" name="spbh"
+					<td><input class="easyui-textbox" name="spbh" id='spbh' style='width:300px'
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>视频名称:</label></th>
-					<td><input class="easyui-textbox" name="spmc"
+					<td><input class="easyui-textbox" name="spmc" style='width:300px'
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
@@ -36,8 +37,9 @@ $(function() {
 				  </tr>
 				  <tr>
 					<th><label>备注:</label></th>
-					<td><input class="easyui-textbox" name="bz"
-						data-options="required:true"></input></td>
+					<td><input class="easyui-textbox" name="bz"  
+						style='width:300;height:60'
+						data-options="multiline:true"></input></td>
 				  </tr>
 			</table>
 		</form>

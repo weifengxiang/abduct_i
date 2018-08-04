@@ -37,7 +37,7 @@ $(function() {
 				  <tr>
 					<th><label>备注:</label></th>
 					<td colspan='3'><input class="easyui-textbox" name="bz"
-						 style='width:500;height:50'
+						style='width:500;height:50'
 						data-options="multiline:true"></input></td>
 				  </tr>
 			</table>

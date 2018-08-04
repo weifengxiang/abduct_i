@@ -6,6 +6,7 @@ function initAddTbStTxbkPage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
+	$('#spbh').textbox('setValue',txbh);
 }
 /**
  * 初始化编辑图像布控页面
