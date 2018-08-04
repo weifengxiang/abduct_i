@@ -14,9 +14,9 @@ public interface GeneratorConsts {
 	String DB_USER = "root"; // 用户名
 	String DB_PASS = "root"; // 密码
 	String DB_TABLE_PREFIX = ""; // 表前缀
-	String TABLE_NAME = "TB_ST_SP_TX"; // 表名
-	String TARGET_DIR = "jsp/spsb/"; // 生成代码存放目录
-	String URL_PREFIX="spsb";//请求前缀
+	String TABLE_NAME = "TB_ST_TXBKJG"; // 表名
+	String TARGET_DIR = "jsp/txbk/"; // 生成代码存放目录
+	String URL_PREFIX="txbk";//请求前缀
 	String BASE_FOLDER="src/main/java/";//maven目录
-	String BASE_PACKAGE="org.sky.spsb";//生成java基础包名
+	String BASE_PACKAGE="org.sky.txbk";//生成java基础包名
 }
