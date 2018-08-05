@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.sky.spsb.model.TbStSpTxWithBLOBs;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
 import org.sky.txbk.model.TbStTxbkjg;
@@ -141,5 +143,29 @@ public class TbStTxbkjgController extends BaseController{
 		String id = request.getParameter("id");
 		TbStTxbkjg bean = tbsttxbkjgService.getTbStTxbkjgById(id);
 		return JsonUtils.obj2json(bean);
+	}
+	/**
+	*添加到必中
+	**/
+	@RequestMapping(value = "/txbk/TbStTxbkjg/addBz", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String addBz(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		ResultData rd= new ResultData();
+		try {
+			String id=request.getParameter("id");
+			TbStTxbkjg bz = new TbStTxbkjg();
+			bz.setId(id);
+			bz.setState("01");
+			tbsttxbkjgService.saveAddEditTbStTxbkjg(bz);
+			rd.setCode(ResultData.code_success);
+			rd.setName("添加比中成功");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("添加比中失败<br>"+e.getMessage());
+		}
+		return JsonUtils.obj2json(rd);
 	}
 }

@@ -177,3 +177,25 @@ function loadJG(row){
 		}
 	});
 }
+//添加比中
+function renderBtn(value,row){
+	return "<button onclick='addBz(\""+row.id+"\")'>比中</button>";
+}
+function addBz(id){
+	var url = SKY.urlCSRF(basepath+'txbk/TbStTxbkjg/addBz');
+	var params = {
+				"id":id
+			};
+	$.ajax({
+		url:url,
+		type: "POST",
+		data:params,
+		dataType:'json',
+		success:function(data){
+			$.messager.alert("提示",data.name,"info");
+			if(data.code != '0'){
+				$('#listtbstsptxdg').datagrid('reload');
+			}
+		}
+	});
+}

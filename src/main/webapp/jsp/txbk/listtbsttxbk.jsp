@@ -150,7 +150,11 @@ $(function() {
 						type:'textbox',
 						options:{
 							required:true
-						}}">状态(00:未比中;01:比中)</th>
+						}}">状态</th>
+				<th data-options="field:'ope',width:180,
+				formatter:function(value,row){
+						  	 return renderBtn(value,row);
+						 }">操作</th>
 		</tr>
 	</thead>
 </table>

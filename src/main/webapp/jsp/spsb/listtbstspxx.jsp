@@ -135,6 +135,10 @@ $(function() {
 						options:{
 							required:true
 						}}">相似度</th>
+				<th data-options="field:'op',width:180,
+						formatter:function(value,row){
+						  	 return renderBtn(value,row);
+						 }">操作</th>
 		</tr>
 	</thead>
 	</table>
