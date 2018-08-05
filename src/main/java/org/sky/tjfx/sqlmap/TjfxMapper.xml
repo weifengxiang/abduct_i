@@ -47,4 +47,23 @@
 			GROUP BY AJBH,DQDW
 		) GZL GROUP BY DQDW
 	</select>
+	<select id="selectSzdd" parameterType="map" resultType="map">
+			SELECT 
+			COUNT(1) AS NUM,
+			(SELECT SA.NAME FROM SYS_AREA SA WHERE T.SZDD LIKE CONCAT('%',SA.NAME,'%') AND SA.PAR_CODE ='100000' LIMIT 0,1) AS NAME
+			FROM TB_ST_SJZQ T
+			WHERE 1=1
+			<if test="filter.szsjBegin != null and filter.szsjBegin != '' ">
+			<![CDATA[
+				AND T.SZSJ>=#{filter.szsjBegin,jdbcType=VARCHAR}
+			]]>
+			</if>
+			<if test="filter.szsjEnd != null and filter.szsjEnd != '' ">
+			<![CDATA[
+				AND T.SZSJ<=#{filter.szsjEnd,jdbcType=VARCHAR}
+			]]>
+			</if>
+			GROUP BY (SELECT SA.NAME FROM SYS_AREA SA WHERE T.SZDD LIKE CONCAT('%',SA.NAME,'%') LIMIT 0,1)
+			ORDER BY COUNT(1) DESC
+	</select>
 </mapper>

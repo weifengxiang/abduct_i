@@ -10,4 +10,5 @@ public interface TjfxMapper {
 	//工作量查询
 	public List<Map> selectGzl(@Param("filter")Map filter);
 
+	public List<Map> selectSzdd(@Param("filter")Map filter);
 }

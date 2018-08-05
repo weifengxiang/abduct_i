@@ -31,4 +31,14 @@ public class TjfxService {
 		list = tjfxMapper.selectGzl(filter);
 		return list;
 	}
+	/**
+	 * 失踪地点统计
+	 * @param filter
+	 * @return
+	 */
+	public List<Map> selectSzdd(Map filter){
+		List list = null;
+		list = tjfxMapper.selectSzdd(filter);
+		return list;
+	}
 }

@@ -37,13 +37,6 @@ public class TjfxController extends BaseController{
 	@RequestMapping(value = "/tjfx/TjfxController/initAfltjListPage", method = { RequestMethod.GET })
 	public String initAfltjListPage(
 			HttpServletRequest request, HttpServletResponse response) {
-		SendMessage sm = new SendMessage();
-		try {
-			sm.doIt();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return "jsp/tjfx/afltj/afltjlist";
 	}
 	/**
@@ -62,6 +55,32 @@ public class TjfxController extends BaseController{
 			ft = JsonUtils.json2map(filter);
 		}
 		List<Map> list = tjfxService.selectAfl(ft);
+		return list;
+	}
+	/**
+	*案发量统计
+	**/
+	@RequestMapping(value = "/tjfx/TjfxController/initSzddListPage", method = { RequestMethod.GET })
+	public String initSzddListPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/tjfx/szddtj/szddlist";
+	}
+	/**
+	 * 失踪地点
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/tjfx/TjfxController/selectSzdd", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<Map> selectSzdd(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		String filter = request.getParameter("filter");
+		Map ft = new HashMap();
+		if(!StringUtils.isNull(filter)) {
+			ft = JsonUtils.json2map(filter);
+		}
+		List<Map> list = tjfxService.selectSzdd(ft);
 		return list;
 	}
 	/**
