@@ -112,4 +112,19 @@ public class TjfxController extends BaseController{
 		List<Map> list = tjfxService.selectGzl(ft);
 		return list;
 	}
+	@RequestMapping(value = "/tjfx/TjfxController/initWzbktjListPage", method = { RequestMethod.GET })
+	public String initWzbktjListPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/tjfx/wzbktj/wzbktjlist";
+	}
+	@RequestMapping(value = "/tjfx/TjfxController/initTxbktjListPage", method = { RequestMethod.GET })
+	public String initTxbktjListPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/tjfx/txbktj/txbktjlist";
+	}
+	@RequestMapping(value = "/tjfx/TjfxController/initSpbktjListPage", method = { RequestMethod.GET })
+	public String initSpbktjListPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/tjfx/spbktj/spbktjlist";
+	}
 }
