@@ -17,16 +17,15 @@ $(function() {
 	   style="width:100%; height:63px; padding:0px;" cellpadding="0">
 <table class='noborder'>
 	<tr style="height: 34px">
-		<th><label>查询时间自:</label></th>
-		<td><input  class="easyui-datebox" data-options="prompt:'输入查询时间自',formatter:myformatter,parser:myparser" 
-										   name="q_szsjBegin"  id="q_szsjBegin" ></input></td>				
-		<th><label>查询时间至:</label></th>
-		<td><input  class="easyui-datebox" data-options="prompt:'输入查询时间至',formatter:myformatter,parser:myparser" name="q_szsjEnd"  id="q_szsjEnd" ></input></td>				
+		<th><label>登记时间自:</label></th>
+		<td><input  class="easyui-datebox" data-options="prompt:'输入登记时间自'" name="q_djsjBegin"  id="q_djsjBegin" ></input></td>				
+		<th><label>登记时间至:</label></th>
+		<td><input  class="easyui-datebox" data-options="prompt:'输入登记时间至'" name="q_djsjEnd"  id="q_djsjEnd" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>
 </div>
-<div data-options=" region:'center',iconCls: 'icon-table'" title="案发量统计">
+<div data-options=" region:'center',iconCls: 'icon-table'" title="统计">
 <table  id="listafl" class="easyui-datagrid" style="width: 100%; height: 100%"
 	data-options="
 			region:'center',
@@ -52,7 +51,8 @@ $(function() {
 		<tr>
 			<th data-options="field: 'checked', checkbox:true"></th>
 			<th data-options="field:'NAME',width:180">单位</th>
-			<th data-options="field:'NUM',width:180">工作量</th>
+			<th data-options="field:'BKNUM',width:180">布控数量</th>
+			<th data-options="field:'BZNUM',width:180">比中数量</th>
 		</tr>
 	</thead>
 </table>
@@ -66,10 +66,6 @@ $(function() {
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delTbStSjzq()">删除</a>
  -->
- 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="expExcel()">导出</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-06',plain:true" onclick="detailTbStSjzq()">查看明细</a>
-</div>
+ </div>
 </body>
 </html>

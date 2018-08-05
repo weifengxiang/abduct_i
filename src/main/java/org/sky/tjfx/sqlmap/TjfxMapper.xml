@@ -66,4 +66,76 @@
 			GROUP BY (SELECT SA.NAME FROM SYS_AREA SA WHERE T.SZDD LIKE CONCAT('%',SA.NAME,'%') LIMIT 0,1)
 			ORDER BY COUNT(1) DESC
 	</select>
+	<select id="selectWzbk" parameterType="map" resultType="map">
+		SELECT 
+		SUBSTR(TT.BH,2,12) AS CODE,
+		(SELECT NAME FROM SYS_ORGAN SO WHERE SO.CODE=SUBSTR(TT.BH,2,12)) AS NAME,
+		COUNT(1) AS BKNUM ,
+		SUM(TT.BZ) AS BZNUM
+		FROM(
+			SELECT 
+			T.BH,
+			(SELECT COUNT(1) FROM TB_ST_BKCX CX WHERE CX.BKBH=T.BH) AS BZ
+			FROM TB_ST_XXBK T
+			WHERE 1=1
+			<if test="filter.djsjBegin != null and filter.djsjBegin != '' ">
+			<![CDATA[
+				AND DATE_FORMAT(CREATE_TIME,'%Y-%m-%d')>=#{filter.djsjBegin,jdbcType=VARCHAR}
+			]]>
+			</if>
+			<if test="filter.djsjEnd != null and filter.djsjEnd != '' ">
+			<![CDATA[
+				AND DATE_FORMAT(CREATE_TIME,'%Y-%m-%d')<=#{filter.djsjEnd,jdbcType=VARCHAR}
+			]]>
+			</if>
+		) TT GROUP BY SUBSTR(TT.BH,2,12)
+	</select>
+	<select id="selectTxbk" parameterType="map" resultType="map">
+		SELECT 
+		SUBSTR(TT.TXBH,2,12) AS CODE,
+		(SELECT NAME FROM SYS_ORGAN SO WHERE SO.CODE=SUBSTR(TT.TXBH,2,12)) AS NAME,
+		COUNT(1) AS BKNUM ,
+		SUM(TT.BZ) AS BZNUM
+		FROM(
+		SELECT 
+		T.TXBH,
+		(SELECT COUNT(1) FROM TB_ST_TXBKJG JG WHERE JG.TXBH=T.TXBH AND JG.STATE='01') AS BZ
+		FROM TB_ST_TXBK T
+		WHERE 1=1
+			<if test="filter.djsjBegin != null and filter.djsjBegin != '' ">
+			<![CDATA[
+				AND DATE_FORMAT(CREATE_TIME,'%Y-%m-%d')>=#{filter.djsjBegin,jdbcType=VARCHAR}
+			]]>
+			</if>
+			<if test="filter.djsjEnd != null and filter.djsjEnd != '' ">
+			<![CDATA[
+				AND DATE_FORMAT(CREATE_TIME,'%Y-%m-%d')<=#{filter.djsjEnd,jdbcType=VARCHAR}
+			]]>
+			</if>
+		) TT GROUP BY SUBSTR(TT.TXBH,2,12);
+	</select>
+	<select id="selectSpbk" parameterType="map" resultType="map">
+		SELECT 
+		SUBSTR(TT.SPBH,2,12) AS CODE,
+		(SELECT NAME FROM SYS_ORGAN SO WHERE SO.CODE=SUBSTR(TT.SPBH,2,12)) AS NAME,
+		COUNT(1) AS BKNUM ,
+		SUM(TT.BZ) AS BZNUM
+		FROM(
+		SELECT 
+		T.SPBH,
+		(SELECT COUNT(1) FROM TB_ST_SP_TX TX WHERE TX.SPBH=T.SPBH AND TX.ZT='2') AS BZ
+		FROM TB_ST_SPXX T
+		WHERE 1=1
+			<if test="filter.djsjBegin != null and filter.djsjBegin != '' ">
+			<![CDATA[
+				AND DATE_FORMAT(CREATE_TIME,'%Y-%m-%d')>=#{filter.djsjBegin,jdbcType=VARCHAR}
+			]]>
+			</if>
+			<if test="filter.djsjEnd != null and filter.djsjEnd != '' ">
+			<![CDATA[
+				AND DATE_FORMAT(CREATE_TIME,'%Y-%m-%d')<=#{filter.djsjEnd,jdbcType=VARCHAR}
+			]]>
+			</if>
+		) TT GROUP BY SUBSTR(TT.SPBH,2,12);
+	</select>
 </mapper>

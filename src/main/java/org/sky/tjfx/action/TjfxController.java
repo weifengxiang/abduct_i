@@ -112,19 +112,59 @@ public class TjfxController extends BaseController{
 		List<Map> list = tjfxService.selectGzl(ft);
 		return list;
 	}
+	//文字布控
 	@RequestMapping(value = "/tjfx/TjfxController/initWzbktjListPage", method = { RequestMethod.GET })
 	public String initWzbktjListPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/tjfx/wzbktj/wzbktjlist";
 	}
+	@RequestMapping(value = "/tjfx/TjfxController/selectWzbk", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<Map> selectWzbk(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		String filter = request.getParameter("filter");
+		Map ft = new HashMap();
+		if(!StringUtils.isNull(filter)) {
+			ft = JsonUtils.json2map(filter);
+		}
+		List<Map> list = tjfxService.selectWzbk(ft);
+		return list;
+	}
+	//图像布控
 	@RequestMapping(value = "/tjfx/TjfxController/initTxbktjListPage", method = { RequestMethod.GET })
 	public String initTxbktjListPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/tjfx/txbktj/txbktjlist";
 	}
+	//图像布控查询
+	@RequestMapping(value = "/tjfx/TjfxController/selectTxbk", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<Map> selectTxbk(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		String filter = request.getParameter("filter");
+		Map ft = new HashMap();
+		if(!StringUtils.isNull(filter)) {
+			ft = JsonUtils.json2map(filter);
+		}
+		List<Map> list = tjfxService.selectTxbk(ft);
+		return list;
+	}
+	//视频布控
 	@RequestMapping(value = "/tjfx/TjfxController/initSpbktjListPage", method = { RequestMethod.GET })
 	public String initSpbktjListPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/tjfx/spbktj/spbktjlist";
+	}
+	@RequestMapping(value = "/tjfx/TjfxController/selectSpbk", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<Map> selectSpbk(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		String filter = request.getParameter("filter");
+		Map ft = new HashMap();
+		if(!StringUtils.isNull(filter)) {
+			ft = JsonUtils.json2map(filter);
+		}
+		List<Map> list = tjfxService.selectSpbk(ft);
+		return list;
 	}
 }

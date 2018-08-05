@@ -41,4 +41,34 @@ public class TjfxService {
 		list = tjfxMapper.selectSzdd(filter);
 		return list;
 	}
+	/**
+	 * 文字布控
+	 * @param filter
+	 * @return
+	 */
+	public List<Map> selectWzbk(Map filter){
+		List list = null;
+		list = tjfxMapper.selectWzbk(filter);
+		return list;
+	}
+	/**
+	 * 图像布控
+	 * @param filter
+	 * @return
+	 */
+	public List<Map> selectTxbk(Map filter){
+		List list = null;
+		list = tjfxMapper.selectTxbk(filter);
+		return list;
+	}
+	/**
+	 * 视频布控
+	 * @param filter
+	 * @return
+	 */
+	public List<Map> selectSpbk(Map filter){
+		List list = null;
+		list = tjfxMapper.selectSpbk(filter);
+		return list;
+	}
 }
