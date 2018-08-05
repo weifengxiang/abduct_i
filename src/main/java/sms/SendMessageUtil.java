@@ -33,7 +33,7 @@ public class SendMessageUtil {
 		 */
 		SerialModemGateway gateway = new SerialModemGateway("modem.com1", "COM3", 9600, "wavecom", "");
 		System.out.println("================");
-		System.out.println("COM3 11258");
+		System.out.println("COM1 11258");
 		System.out.println("================");
 		gateway.setInbound(true); // 设置true，表示该网关可以接收短信,根据需求修改
 		gateway.setOutbound(true);// 设置true，表示该网关可以发送短信,根据需求修改

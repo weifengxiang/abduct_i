@@ -28,12 +28,12 @@ th{
 			<input type='hidden' name='bkk' id='bkk'/>
 			<table style="width:100%">
 				  <tr>
-					<th><label>视频编号:</label></th>
+					<th><label>图像编号:</label></th>
 					<td><input class="easyui-textbox" name="txbh" id='txbh' style='width:300px'
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>视频名称:</label></th>
+					<th><label>图像名称:</label></th>
 					<td><input class="easyui-textbox" name="txmc" style='width:300px'
 						data-options="required:true"></input></td>
 				  </tr>

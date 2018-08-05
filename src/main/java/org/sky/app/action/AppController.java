@@ -30,6 +30,7 @@ import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.MD5Utils;
 import org.sky.sys.utils.ResultData;
 import org.sky.sys.utils.StringUtils;
+import org.sky.txbk.model.TbStTxbk;
 import org.sky.utils.Base64Img;
 import org.sky.ywbl.model.TbStAjdjxx;
 import org.sky.ywbl.model.TbStXsxx;
@@ -191,9 +192,9 @@ public class AppController extends BaseController{
 	 * @throws IllegalStateException
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/app/AppController/AddXsxx", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/app/AppController/addXsxx", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public @ResponseBody
-	ResultData AddXsxx(HttpServletRequest request, HttpServletResponse response)
+	ResultData addXsxx(HttpServletRequest request, HttpServletResponse response)
 			throws IllegalStateException, IOException {
 		ResultData rd = new ResultData();
 		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
@@ -248,7 +249,7 @@ public class AppController extends BaseController{
 					int finaltime = (int) System.currentTimeMillis();
 					System.out.println(finaltime - pre);
 				}
-				appService.AddXsxx(xs, tx, usercode);
+				appService.addXsxx(xs, tx, usercode);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -261,9 +262,9 @@ public class AppController extends BaseController{
 		rd.setName("上传成功");
 		return rd;
 	}
-	@RequestMapping(value = "/app/AppController/AddAjxx", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/app/AppController/addAjxx", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public @ResponseBody
-	ResultData AddAjxx(HttpServletRequest request, HttpServletResponse response)
+	ResultData addAjxx(HttpServletRequest request, HttpServletResponse response)
 			throws IllegalStateException, IOException {
 		ResultData rd = new ResultData();
 		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
@@ -318,7 +319,7 @@ public class AppController extends BaseController{
 					int finaltime = (int) System.currentTimeMillis();
 					System.out.println(finaltime - pre);
 				}
-				appService.AddAjxx(aj, tx, usercode);
+				appService.addAjxx(aj, tx, usercode);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -450,6 +451,12 @@ public class AppController extends BaseController{
 		rd.setData(ywbh);
 		return JsonUtils.obj2json(rd);
 	}
+	/**
+	 * 指令下发
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value="/app/AppController/zlxf",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	public @ResponseBody ResultData zlxf(HttpServletRequest request, HttpServletResponse response) {
 		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
@@ -465,6 +472,85 @@ public class AppController extends BaseController{
 			rd.setCode("0");
 			rd.setName(e.getMessage());
 		}
+		return rd;
+	}
+	/**
+	 * 图像布控
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/app/AppController/addTxbk", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody
+	ResultData addTxbk(HttpServletRequest request, HttpServletResponse response)
+			throws IllegalStateException, IOException {
+		ResultData rd = new ResultData();
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+		try {
+			// 创建一个通用的多部分解析器
+			CommonsMultipartResolver multipartResolver = (CommonsMultipartResolver)BspUtils.getBean("multipartResolver");
+			// 判断 request 是否有文件上传,即多部分请求
+			if (multipartResolver.isMultipart(request)) {
+				// 转换成多部分request
+				MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)multipartResolver.resolveMultipart(request);
+				List<SysFile> list = new ArrayList<SysFile>();
+				//图像布控信息
+				TbStTxbk tx = null;
+				List<Field> idField = new ArrayList();
+				idField=getAllField(idField, TbStTxbk.class);
+				JSONObject js= new JSONObject();
+				for (Field field : idField) {
+					String name = field.getName();
+					String str =  multiRequest.getParameter(name);
+					if(str != null){
+						js.put(name, str);
+					}
+				}
+				tx = JsonUtils.json2pojo(js.toString(), TbStTxbk.class);
+				List<String> img = new ArrayList();
+				// 取得request中的所有文件名
+				Iterator<String> iter = multiRequest.getFileNames();
+				while (iter.hasNext()) {
+					// 记录上传过程起始时的时间，用来计算上传时间
+					int pre = (int) System.currentTimeMillis();
+					// 取得上传文件
+					MultipartFile attachfile = multiRequest.getFile(iter.next());
+					if (attachfile != null) {
+						// 取得当前上传文件的文件名称
+						String fileName = attachfile.getOriginalFilename();
+						// 如果名称不为“”,说明该文件存在，否则说明该文件不存在
+						if (fileName.trim() != "") {
+							// 定义上传路径
+							String path = ConfUtils.getValue("ATTACHMENT_DIR")
+									+ "app" + File.separator
+									+ "xsxx" + fileName;
+							File localFile = new File(path);
+							if (!localFile.getParentFile().exists()) {
+								localFile.getParentFile().mkdirs();
+							}
+							attachfile.transferTo(localFile);
+							String base64 =Base64Img.GetImageStr(localFile);
+							img.add(base64);
+						}
+					}
+					// 记录上传该文件后的时间
+					int finaltime = (int) System.currentTimeMillis();
+					System.out.println(finaltime - pre);
+				}
+				tx.setTxnr("data:image/jpeg;base64,"+img.get(0));
+				appService.addTxbk(tx, usercode);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("上传失败<br>" + e.getMessage());
+			return rd;
+		}
+		rd.setCode(ResultData.code_success);
+		rd.setName("上传成功");
 		return rd;
 	}
 	/**

@@ -31,6 +31,8 @@ import org.sky.sys.utils.ConfUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.MD5Utils;
 import org.sky.sys.utils.StringUtils;
+import org.sky.txbk.client.TbStTxbkMapper;
+import org.sky.txbk.model.TbStTxbk;
 import org.sky.ywbl.client.TbStAjdjxxMapper;
 import org.sky.ywbl.client.TbStTxxxMapper;
 import org.sky.ywbl.client.TbStXsxxMapper;
@@ -80,6 +82,8 @@ public class AppService {
 	private TbStZlfkMapper tbstzlfkmapper;
 	@Autowired
 	private TbStZlxfTxrMapper txrMapper;
+	@Autowired
+	private TbStTxbkMapper txbkMapper;
 	@Autowired
 	private TbStMsgMapper msgMapper;
 	public void register(SysUser user) {
@@ -157,7 +161,7 @@ public class AppService {
 	 * @param tx
 	 * @param userCode
 	 */
-	public void AddXsxx(TbStXsxx xs,List<String> tx,String userCode) {
+	public void addXsxx(TbStXsxx xs,List<String> tx,String userCode) {
 		SysUserExample sue = new SysUserExample();
 		sue.createCriteria().andCodeEqualTo(userCode);
 		List<SysUser> list = sysuserMapper.selectByExample(sue);
@@ -189,7 +193,7 @@ public class AppService {
 	 * @param tx
 	 * @param userCode
 	 */
-	public void AddAjxx(TbStAjdjxx aj,List<String> tx,String userCode) {
+	public void addAjxx(TbStAjdjxx aj,List<String> tx,String userCode) {
 		SysUserExample sue = new SysUserExample();
 		sue.createCriteria().andCodeEqualTo(userCode);
 		List<SysUser> list = sysuserMapper.selectByExample(sue);
@@ -393,6 +397,19 @@ public class AppService {
 			logger.error("保存新增/编辑单个对象执行失败",e);
 			throw new ServiceException(e.getMessage());
 		}
+	}
+	//图像布控
+	public void addTxbk(TbStTxbk txbk,String userCode) {
+		SysUserExample sue = new SysUserExample();
+		sue.createCriteria().andCodeEqualTo(userCode);
+		List<SysUser> list = sysuserMapper.selectByExample(sue);
+		Timestamp ts = syscommonmapper.queryTimestamp();
+		txbk.setId(CommonUtils.getUUID(32));
+		txbk.setCreater(userCode);
+		txbk.setCreateTime(ts);
+		txbk.setUpdater(userCode);
+		txbk.setUpdateTime(ts);
+		txbkMapper.insert(txbk);
 	}
 	class Contact{
 		private String organCode;
