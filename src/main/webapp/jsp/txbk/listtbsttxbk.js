@@ -199,3 +199,25 @@ function addBz(id){
 		}
 	});
 }
+function dblClick(rowData){
+	var opts={
+			id:'detailTbStTxbk',
+			title:'图像布控明细',
+			width:600,
+			height:450,
+			modal:true,
+			content:'url:'+SKY.urlCSRF(basepath+'txbk/TbStTxbk/initEditTbStTxbkPage'),
+			onLoad: function(dialog){ 
+	            if(this.content && this.content.initDetailTbStTxbkPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+	                var paramOpts=new Object();
+	                paramOpts.dialog=dialog;
+	                paramOpts.data=rowData;
+	                paramOpts.callBack=function(){
+	                	dialog.close();
+	                };
+	            	this.content.initDetailTbStTxbkPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+	            } 
+	        }
+		  };
+	SKY_EASYUI.open(opts);
+}

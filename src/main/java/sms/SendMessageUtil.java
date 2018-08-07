@@ -31,7 +31,7 @@ public class SendMessageUtil {
 		 * Huawei：短信猫生产厂商，不同的短信猫生产厂商smslib所封装的AT指令接口会不一致，必须设置正确.常见的有Huawei、wavecom等厂商
 		 * 最后一个参数表示设备的型号，可选
 		 */
-		SerialModemGateway gateway = new SerialModemGateway("modem.com1", "COM3", 9600, "wavecom", "");
+		SerialModemGateway gateway = new SerialModemGateway("modem.com1", "COM3", 9600, "SIEMENS", "MC35");
 		System.out.println("================");
 		System.out.println("COM1 11258");
 		System.out.println("================");
@@ -40,7 +40,9 @@ public class SendMessageUtil {
 		gateway.setSimPin("0000");// sim卡锁，一般默认为0000或1234
 		// Explicit SMSC address set is required for some modems.
 		// Below is for VODAFONE GREECE - be sure to set your own!
-		//gateway.setSmscNumber("+8615253182880");// 短信服务中心号码
+		//江西省联通号码的短信中心号码是：+8613010720500。
+		gateway.setSmscNumber("+8613010720500");// 短信服务中心号码
+		System.out.println("短信服务中心号码：+8613010720500");
 		Service.getInstance().setOutboundMessageNotification(outboundNotification); // 发送短信成功后的回调函方法
 		Service.getInstance().addGateway(gateway); // 将网关添加到短信猫服务中
 		Service.getInstance().startService(); // 启动服务，进入短信发送就绪状态

@@ -46,6 +46,7 @@ $(function() {
 			selectOnCheck:false,
 			checkOnSelect:false,
 			onDblClickRow:function(rowIndex, rowData){
+								dblClick(rowData);
 								//SKY_EASYUI.beginEdit('listtbsttxsbdg',rowIndex);
 						  },
 			onLoadSuccess : function () {

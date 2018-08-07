@@ -156,3 +156,25 @@ function searchButton(){
 		}
 	});
 }
+function dblclickFun(rowData){
+	var opts={
+			id:'detailTbStXsxx',
+			title:'线索信息明细',
+			width:800,
+			height:600,
+			modal:true,
+			content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStXsxx/initDetailTbStXsxxPage'),
+			onLoad: function(dialog){ 
+	            if(this.content && this.content.initDetailTbStXsxxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+	                var paramOpts=new Object();
+	                paramOpts.dialog=dialog;
+	                paramOpts.data=rowData;
+	                paramOpts.callBack=function(){
+	                	dialog.close();
+	                };
+	            	this.content.initDetailTbStXsxxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+	            } 
+	        }
+		  };
+	SKY_EASYUI.open(opts);
+}

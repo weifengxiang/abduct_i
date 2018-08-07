@@ -204,3 +204,23 @@ function searchButton(){
 		}
 	});
 }
+function dblclickFun(rowData){
+	var gbButton = {
+			text: '关闭',  
+            iconCls: 'icon-cancel',  
+            handler:function(dialog){
+            	dialog.close();
+            }};
+	var buttons = new Array();
+	buttons.push(gbButton);
+	var opts={
+				id:'detailTbStAjdjxx',
+				title:'案件登记信息明细',
+				width:800,
+				height:600,
+				modal:true,
+				content:'url:'+SKY.urlCSRF(basepath+'ywbl/TbStAjdjxx/initAjxxmainPage?ajbh='+rowData.ajbh),
+				buttons:buttons
+			  };
+	SKY_EASYUI.open(opts);
+}

@@ -213,3 +213,25 @@ var xsdetail=function(ywbh){
 			  };
 		SKY_EASYUI.open(opts);
 };
+function dblClick(rowData){
+	var opts={
+			id:'detailTbStBkcx',
+			title:'布控查询明细',
+			width:600,
+			height:450,
+			modal:true,
+			content:'url:'+SKY.urlCSRF(basepath+'bkcx/TbStBkcx/initDetailTbStBkcxPage'),
+			onLoad: function(dialog){ 
+	            if(this.content && this.content.initDetailTbStBkcxPage){//判断弹出窗体iframe中的driveInit方法是否存在 
+	                var paramOpts=new Object();
+	                paramOpts.dialog=dialog;
+	                paramOpts.data=rowData;
+	                paramOpts.callBack=function(){
+	                	dialog.close();
+	                };
+	            	this.content.initDetailTbStBkcxPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+	            } 
+	        }
+		  };
+	SKY_EASYUI.open(opts);
+}
