@@ -18,6 +18,7 @@ import org.sky.ywbl.model.TbStTxxx;
 import org.sky.ywbl.model.TbStTxxxExample;
 
 import sms.SendMessageUtil;
+import sms.SendMessageUtil2;
 /**
  * 
  * @ClassName:  SendMsgJob   
@@ -37,10 +38,13 @@ public class SendMsgJob implements Job {
 		eam.createCriteria().andStateEqualTo("0");
 		List<TbStMsg> list = msgMapper.selectByExample(eam);
 		for(TbStMsg msg:list) {
-			SendMessageUtil app = new SendMessageUtil();
+			SendMessageUtil2 app = new SendMessageUtil2();
 			try {
 				app.doIt(msg.getReceiverTel(),msg.getContent());
 			} catch (Exception e) {
+				e.printStackTrace();
+				msg.setState("-1");
+			}catch(IllegalAccessError e) {
 				e.printStackTrace();
 				msg.setState("-1");
 			}

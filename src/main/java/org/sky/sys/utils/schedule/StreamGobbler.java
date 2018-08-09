@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 public class StreamGobbler extends Thread {
 	InputStream is;
 	String type;
-	StreamGobbler(InputStream is, String type) {
+	public StreamGobbler(InputStream is, String type) {
 		this.is = is;
 		this.type = type;
 	}
