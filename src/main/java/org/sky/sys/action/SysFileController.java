@@ -256,6 +256,7 @@ public class SysFileController extends BaseController{
 		OutputStream fos = null;
 		InputStream fis = null;
 		String filerealpath = request.getParameter("filerealpath");
+		String delFile = request.getParameter("delFile");
 		String zipfile = getFileNameNoEx(filerealpath) + ".zip";
 		ZipUtils.zip(zipfile, "", filerealpath);
 		File downFiles = new File(zipfile);
@@ -281,8 +282,12 @@ public class SysFileController extends BaseController{
 			bos.close();
 			// 删除文件
 			downFiles.delete();
-			File f = new File(filerealpath);
-			f.delete();
+			if(!StringUtils.isNull(delFile)) {
+				if(Boolean.parseBoolean(delFile)) {
+					File f = new File(filerealpath);
+					f.delete();
+				}
+			}
 		}
 
 	}

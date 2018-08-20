@@ -34,7 +34,7 @@ $(function() {
 	//app下载
 	$("#appDownLoad").bind('click', function(){ 
 		var apppath='D://abduct//app//abduct.apk';
-		SKY_EASYUI.downLoad(apppath);
+		SKY_EASYUI.downLoad(apppath,false);
     });    
 });
 

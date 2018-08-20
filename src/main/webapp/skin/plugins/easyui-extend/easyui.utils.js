@@ -164,7 +164,7 @@
 	/**
 	 * 附件下载
 	 */
-	SKY_EASYUI.downLoad=function(filename){
+	SKY_EASYUI.downLoad=function(filename,delFile){
 		var url = basepath+'sys/SysFile/downzip';
 		url=SKY.urlCSRF(url);
 		var form=$("<form>");//定义一个form表单
@@ -178,6 +178,13 @@
 		input1.attr("value",filename);
 		$("body").append(form);//将表单放置在web中
 		form.append(input1);
+		if(delFile){
+			var input2=$("<input>");
+			input2.attr("type","hidden");
+			input2.attr("name","delFile");
+			input2.attr("value",delFile);
+			form.append(input2);
+		}
 		form.submit();//表单提交 
 	};
 })(jQuery);
