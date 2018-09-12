@@ -23,6 +23,7 @@
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="IDCARD_NO" jdbcType="VARCHAR" property="idcardNo" />
     <result column="POLICE_NO" jdbcType="VARCHAR" property="policeNo" />
+    <result column="MAC" jdbcType="VARCHAR" property="mac" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -85,7 +86,7 @@
   <sql id="Base_Column_List">
     ID, CODE, NAME, PASSWORD, STATUS, IS_SYS, SEX, LOCK_TIME, EXPIRED_TIME, ORGAN_CODE, 
     MOBELTEL, WORKTEL, EMAIL, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME, IDCARD_NO, 
-    POLICE_NO,
+    POLICE_NO, MAC,
     (SELECT NAME FROM SYS_ORGAN WHERE SYS_ORGAN.CODE=ORGAN_CODE) AS ORGAN_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.sys.model.SysUserExample" resultMap="BaseResultMap">
@@ -126,14 +127,16 @@
       ORGAN_CODE, MOBELTEL, WORKTEL, 
       EMAIL, NOTE, CREATER, 
       CREATE_TIME, UPDATER, UPDATE_TIME, 
-      IDCARD_NO, POLICE_NO)
+      IDCARD_NO, POLICE_NO, MAC
+      )
     values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{isSys,jdbcType=CHAR}, 
       #{sex,jdbcType=CHAR}, #{lockTime,jdbcType=TIMESTAMP}, #{expiredTime,jdbcType=TIMESTAMP}, 
       #{organCode,jdbcType=VARCHAR}, #{mobeltel,jdbcType=VARCHAR}, #{worktel,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{idcardNo,jdbcType=VARCHAR}, #{policeNo,jdbcType=VARCHAR})
+      #{idcardNo,jdbcType=VARCHAR}, #{policeNo,jdbcType=VARCHAR}, #{mac,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.sky.sys.model.SysUser">
     insert into sys_user
@@ -198,6 +201,9 @@
       <if test="policeNo != null">
         POLICE_NO,
       </if>
+      <if test="mac != null">
+        MAC,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -259,6 +265,9 @@
       </if>
       <if test="policeNo != null">
         #{policeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null">
+        #{mac,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -331,6 +340,9 @@
       <if test="record.policeNo != null">
         POLICE_NO = #{record.policeNo,jdbcType=VARCHAR},
       </if>
+      <if test="record.mac != null">
+        MAC = #{record.mac,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -357,7 +369,8 @@
       UPDATER = #{record.updater,jdbcType=VARCHAR},
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       IDCARD_NO = #{record.idcardNo,jdbcType=VARCHAR},
-      POLICE_NO = #{record.policeNo,jdbcType=VARCHAR}
+      POLICE_NO = #{record.policeNo,jdbcType=VARCHAR},
+      MAC = #{record.mac,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -422,6 +435,9 @@
       <if test="policeNo != null">
         POLICE_NO = #{policeNo,jdbcType=VARCHAR},
       </if>
+      <if test="mac != null">
+        MAC = #{mac,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -445,7 +461,8 @@
       UPDATER = #{updater,jdbcType=VARCHAR},
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       IDCARD_NO = #{idcardNo,jdbcType=VARCHAR},
-      POLICE_NO = #{policeNo,jdbcType=VARCHAR}
+      POLICE_NO = #{policeNo,jdbcType=VARCHAR},
+      MAC = #{mac,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <sql id="MySqlPaginationSuffix">

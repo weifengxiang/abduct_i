@@ -104,6 +104,12 @@ $(function() {
 						options:{
 							required:true
 						}}">移动电话</th>
+				<th data-options="field:'mac',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">限制MAC地址</th>
 				<th data-options="field:'worktel',width:180,
 				editor:{
 						type:'textbox',

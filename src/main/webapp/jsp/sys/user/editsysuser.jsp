@@ -77,6 +77,11 @@ $(function() {
 					<td><input class="easyui-textbox" name="policeNo"
 						data-options=""></input></td>
 				  </tr>
+				  <tr>
+					<th><label>绑定MAC地址:</label></th>
+					<td colspan='3'><input class="easyui-textbox" name="mac"
+						data-options=""></input><font color='red'>设置mac地址后，该用户只能在特定手机登录</font></td>
+				  </tr>
 				  
 				  <tr>
 					<th><label>备注:</label></th>

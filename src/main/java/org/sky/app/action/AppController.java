@@ -37,6 +37,7 @@ import org.sky.ywbl.model.TbStXsxx;
 import org.sky.ywbl.service.ComService;
 import org.sky.zlgl.model.TbStZlxf;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -80,10 +81,10 @@ public class AppController extends BaseController{
 			appService.register(su);
 			rd.setCode("1");
 			rd.setName("注册成功,请等待审核");
-		} catch (Exception e) {
+		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			rd.setCode("0");
-			rd.setName("注册失败"+e.getMessage());
+			rd.setName("注册失败,"+e.getMessage());
 		}
 		return rd;
 	}
@@ -136,6 +137,7 @@ public class AppController extends BaseController{
 		ResultData rd = new ResultData();
 		String usercode = request.getParameter("usercode");
 		String password = request.getParameter("password");
+		String mac = request.getParameter("mac");
 		if(StringUtils.isNull(usercode)) {
 			rd.setCode("0");
 			rd.setName("登录失败,用户名不能为空");
@@ -147,6 +149,13 @@ public class AppController extends BaseController{
 		}
 		try {
 			SysUser su = appService.login(usercode, password);
+			if(!StringUtils.isNull(su.getMac())) {
+				if(!mac.equals(su.getMac())) {
+					rd.setCode("0");
+					rd.setName("当前用户MAC地址不正确");
+					return rd;
+				}
+			}
 			loginSuccessResult(rd,su);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -1,5 +1,7 @@
 package org.sky.app.service;
 
+import java.sql.SQLException;
+import java.sql.SQLNonTransientException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +51,7 @@ import org.sky.zlgl.model.TbStZlfk;
 import org.sky.zlgl.model.TbStZlxf;
 import org.sky.zlgl.model.TbStZlxfTxr;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -86,7 +89,13 @@ public class AppService {
 	private TbStTxbkMapper txbkMapper;
 	@Autowired
 	private TbStMsgMapper msgMapper;
-	public void register(SysUser user) {
+	public void register(SysUser user) throws ServiceException{
+		SysUserExample se = new SysUserExample();
+		se.createCriteria().andCodeEqualTo(user.getCode());
+		long count = sysuserMapper.countByExample(se);
+		if(count>0) {
+			throw new ServiceException("账号已存在");
+		}
 		Timestamp ts = syscommonmapper.queryTimestamp();
 		user.setId(CommonUtils.getUUID(32));
 		//user.setCreater(BspUtils.getLoginUser().getCode());

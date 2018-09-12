@@ -45,6 +45,8 @@ public class SysUser {
 
     private String policeNo;
 
+    private String mac;
+
     public String getId() {
         return id;
     }
@@ -203,6 +205,14 @@ public class SysUser {
 
     public void setPoliceNo(String policeNo) {
         this.policeNo = policeNo;
+    }
+
+    public String getMac() {
+        return mac;
+    }
+
+    public void setMac(String mac) {
+        this.mac = mac;
     }
 
 	public String getOrganName() {

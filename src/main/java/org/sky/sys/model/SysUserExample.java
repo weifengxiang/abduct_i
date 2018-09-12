@@ -1500,6 +1500,76 @@ public class SysUserExample {
             addCriterion("POLICE_NO not between", value1, value2, "policeNo");
             return (Criteria) this;
         }
+
+        public Criteria andMacIsNull() {
+            addCriterion("MAC is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacIsNotNull() {
+            addCriterion("MAC is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacEqualTo(String value) {
+            addCriterion("MAC =", value, "mac");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacNotEqualTo(String value) {
+            addCriterion("MAC <>", value, "mac");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacGreaterThan(String value) {
+            addCriterion("MAC >", value, "mac");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacGreaterThanOrEqualTo(String value) {
+            addCriterion("MAC >=", value, "mac");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacLessThan(String value) {
+            addCriterion("MAC <", value, "mac");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacLessThanOrEqualTo(String value) {
+            addCriterion("MAC <=", value, "mac");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacLike(String value) {
+            addCriterion("MAC like", value, "mac");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacNotLike(String value) {
+            addCriterion("MAC not like", value, "mac");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacIn(List<String> values) {
+            addCriterion("MAC in", values, "mac");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacNotIn(List<String> values) {
+            addCriterion("MAC not in", values, "mac");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacBetween(String value1, String value2) {
+            addCriterion("MAC between", value1, value2, "mac");
+            return (Criteria) this;
+        }
+
+        public Criteria andMacNotBetween(String value1, String value2) {
+            addCriterion("MAC not between", value1, value2, "mac");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
