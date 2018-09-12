@@ -90,20 +90,18 @@ public class AppService {
 	@Autowired
 	private TbStMsgMapper msgMapper;
 	public void register(SysUser user) throws ServiceException{
-		SysUserExample se = new SysUserExample();
-		se.createCriteria().andCodeEqualTo(user.getCode());
-		long count = sysuserMapper.countByExample(se);
-		if(count>0) {
+		try {
+			Timestamp ts = syscommonmapper.queryTimestamp();
+			user.setId(CommonUtils.getUUID(32));
+			//user.setCreater(BspUtils.getLoginUser().getCode());
+			user.setCreateTime(ts);
+			//user.setUpdater(BspUtils.getLoginUser().getCode());
+			user.setUpdateTime(ts);
+			user.setStatus("R");
+			sysuserMapper.insert(user);
+		}catch(Exception e) {
 			throw new ServiceException("账号已存在");
 		}
-		Timestamp ts = syscommonmapper.queryTimestamp();
-		user.setId(CommonUtils.getUUID(32));
-		//user.setCreater(BspUtils.getLoginUser().getCode());
-		user.setCreateTime(ts);
-		//user.setUpdater(BspUtils.getLoginUser().getCode());
-		user.setUpdateTime(ts);
-		user.setStatus("R");
-		sysuserMapper.insert(user);
 	}
 	/**
 	 * 登录
