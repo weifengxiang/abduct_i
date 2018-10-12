@@ -52,126 +52,53 @@
 </head>
 <title><%=ConfUtils.getValue("procuctName")%></title>
 <body ontouchstart style="background-color: #f8f8f8;">
-
-	<div class="weui_cells_title" style="height: 45px;">&nbsp;</div>
-	<div class="weui_tab tab-bottom">
-		<div class="weui_tab_bd">
-			<div class="weui_tab_bd_item">
-				 <div class="weui_cells_title"><span class='f-green'>隐患登记</span></div>
-			        <div class="weui_cells weui_cells_form">
-				        <form id="dangerCheckform" method="post">
-				        <input type='hidden' name='id' id='id'/>
-				        <input type='hidden' name='proCode' id='proCode'/>
-				        <div class="weui_cell">
-			                <div class="weui_cell_hd"><label class="weui_label">工程名称</label></div>
-			                <div class="weui_cell_bd weui_cell_primary">
-			                    <input id="proName" name="proName" class="weui_input" type="text" placeholder="请选择工程"/>
-			                </div>
-			            </div>
-			            <div class="weui_cell">
-			                <div class="weui_cell_hd"><label class="weui_label">日期</label></div>
-			                <div class="weui_cell_bd weui_cell_primary">
-			                    <input id='checkDate' name="checkDate" class="weui_input" type="text"  placeholder="请输入日期"/>
-			                </div>
-			            </div>
-			            <div class="weui_cell">
-			                <div class="weui_cell_hd"><label class="weui_label">存在问题</label></div>
-			                <div class="weui_cell_bd weui_cell_primary">
-			                   <textarea name="problem" id="problem" class="weui_textarea" placeholder="请输入存在问题" rows="3"></textarea>
-			                </div>
-			            </div>
-			            <div class="weui_cell">
-			                <div class="weui_cell_hd"><label class="weui_label">限时</label></div>
-			                <div class="weui_cell_bd weui_cell_primary">
-			                    <input id="timeLimit" name="timeLimit" class="weui_input" type="text" placeholder="请输入日期"/>
-			                </div>
-			            </div>
-			            <div class="weui_cell">
-			                <div class="weui_cell_hd"><label class="weui_label">整改措施</label></div>
-			                <div class="weui_cell_bd weui_cell_primary">
-			                    <textarea name="measures" id="measures" class="weui_textarea" placeholder="请输入整改措施" rows="3"></textarea>
-			                </div>
-			            </div>
-			            <div class="weui_cell">
-			                <div class="weui_cell_hd"><label class="weui_label">罚款金额</label></div>
-			                <div class="weui_cell_bd weui_cell_primary">
-			                    <input name="penalty" id="penalty" class="weui_input" type="number" pattern="[0-9]*" placeholder="罚款金额"/>
-			                </div>
-			            </div>
-			            <div class="weui_cell">
-			                <div class="weui_cell_hd"><label class="weui_label">项目责任人</label></div>
-			                <div class="weui_cell_bd weui_cell_primary">
-			                    <input name="dutyer" class="weui_input" type="text" placeholder="请输入项目责任人"/>
-			                </div>
-			            </div>
-			            <div class="weui_cell">
-			                <div class="weui_cell_hd"><label class="weui_label">责任单位</label></div>
-			                <div class="weui_cell_bd weui_cell_primary">
-			                    <input name="dutyOrgan" class="weui_input" type="text" placeholder="请输入责任单位"/>
-			                </div>
-			            </div>
-			            <div class="weui_cell">
-			                <div class="weui_cell_hd"><label class="weui_label">隐患整改人</label></div>
-			                <div class="weui_cell_bd weui_cell_primary">
-			                    <input name="reformer" class="weui_input" type="text" placeholder="请输入隐患整改人"/>
-			                </div>
-			            </div>
-			            <div class="weui_cell">
-			                <div class="weui_cell_hd"><label class="weui_label">整改时间</label></div>
-			                <div class="weui_cell_bd weui_cell_primary">
-			                    <input id="reformTime" name="reformTime" class="weui_input" type="text" placeholder="请输入整改时间"/>
-			                </div>
-			            </div>
-						</form>
-						<form  id="dangerCheckPic" method="post" enctype="multipart/form-data">
-						 	<div class="weui_cell">
-								<img id='dangerPicPreView' style="width:210px;height:210px;" src="${basepath}skin/images/dimg.jpg"/>
-							</div>
-							<div class="weui_cell">
-								<input id='dangerPic' name='dangerPic' type="file" accept="image/*" capture="camera" name='拍照'/>
-							</div>
-						</form>
-						<div class="weui_btn_area weui_btn_area_inline">
-					    	<a id="formSubmitBtn" href="javascript:" class="weui_btn weui_btn_primary">提交</a>
-					    	<a id="formResetBtn" href="javascript:" class="weui_btn bg-orange">重置</a>
-					    </div>   
-			         </div>
-			</div>
-			
-			<div class="weui_tab_bd_item">
-				<div class="weui_cells_title"><span class='f-green'>隐患查询</span></div>
-			</div>
-			
-			<div class="weui_tab_bd_item">
-				<div class="weui_cells_title"><span class='f-green'>我</span></div>
-			</div>
-		</div>
-		<div class="weui_tabbar ">
-			<a href="javascript:;" class="weui_tabbar_item weui_bar_item_on">
-				<div class="weui_tabbar_icon">
-					<img
-						src="${basepath}skin/plugins/weui-master/images/icon_nav_button.png"
-						alt="">
+		<div class="weui_cells_title"><span class='f-green'>线索举报</span></div>
+        <div class="weui_cells weui_cells_form">
+	        <form id="xsxxform" method="post">
+	        <input type='hidden' name='id' id='id'/>
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id='sfsj' name="sfsj" class="weui_input" type="text"  placeholder="请输入日期"/>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">事发地</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                   <textarea name="sfd" id="sfd" class="weui_textarea" placeholder="请输入事发地" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">事件详情</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <textarea name="sjxq" id="sjxq" class="weui_textarea" placeholder="请输入事件详情" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">联系人</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="jbr" class="weui_input" type="text" placeholder="请输入联系人"/>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">联系电话</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="dh" class="weui_input" type="text" placeholder="请输入联系电话"/>
+                </div>
+            </div>
+			</form>
+			<form  id="dangerCheckPic" method="post" enctype="multipart/form-data">
+			 	<div class="weui_cell">
+					<img id='dangerPicPreView' style="width:210px;height:210px;" src="${basepath}skin/images/timg.jpg"/>
 				</div>
-				<p class="weui_tabbar_label">隐患登记</p>
-			</a> 
-			<a href="javascript:;"  class="weui_tabbar_item">
-				<div class="weui_tabbar_icon">
-					<img
-						src="${basepath}skin/plugins/weui-master/images/icon_nav_search_bar.png"
-						alt="">
+				<div class="weui_cell">
+					<input id='dangerPic' name='dangerPic' type="file" accept="image/*" multiple name='拍照'/>
 				</div>
-				<p class="weui_tabbar_label">隐患查询</p>
-			</a> 
-			<a href="javascript:;" class="weui_tabbar_item">
-				<div class="weui_tabbar_icon">
-					<img
-						src="${basepath}skin/plugins/weui-master/images/icon_nav_cell.png"
-						alt="">
-				</div>
-				<p class="weui_tabbar_label">我</p>
-			</a>
-		</div>
+			</form>
+			<div class="weui_btn_area weui_btn_area_inline">
+		    	<a id="formSubmitBtn" href="javascript:" class="weui_btn weui_btn_primary">提交</a>
+		    	<a id="formResetBtn" href="javascript:" class="weui_btn bg-orange">重置</a>
+		    </div>   
 	</div>
 </body>
 <script type="text/javascript">

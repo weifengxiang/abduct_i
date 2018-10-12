@@ -13,21 +13,47 @@ var mainReg=(function(){
 		$('#formResetBtn').on('click',function(){
 			resetForm();
 		});
-		$("#checkDate").datetimePicker({title:"选择日期",m:1});
-		$("#timeLimit").datetimePicker({title:"选择日期",m:1});
-		$("#reformTime").datetimePicker({title:"选择日期",m:1});
+		$("#sfsj").datetimePicker({title:"选择日期",
+								   format: 'yyyy-mm-dd hh:ii:ss',
+								   autoclose: true,
+								   minView: 0,
+								   minuteStep:1});
 		$("#dangerPic").uploadPreview({ Img: 'dangerPicPreView', Width: 210, Height: 210 });
 		$('#dangerPicPreView').on('click',function(){           
 			_currentDeg = (_currentDeg+90)%360;
             this.style.transform = 'rotate('+_currentDeg+'deg)';
 		});
-		//初始化项目
-		initProSelect();
-		//初始化整改措施
-		initMeasuresSelect();
 	};
 	
 	var submitForm=function(){
+		var sfsj = $("input[name=sfsj]").val();
+		if(!sfsj){
+			$.toast("保存失败:请填写事发时间", "forbidden");
+			return;
+		}else{
+			if(sfsj.length==16){
+				$("input[name=sfsj]").val(sfsj+":00");
+			}
+		}
+		var sfd = $("textarea[name=sfd]").val();
+		if(!sfd){
+			$.toast("保存失败:请填写事发地", "forbidden");
+			return;
+		}
+		var jbr = $("input[name=jbr]").val();
+		if(!jbr){
+			$.toast("保存失败:请填写联系人", "forbidden");
+			return;
+		}
+		var dh = $("input[name=dh]").val();
+		if(!dh){
+			$.toast("保存失败:请填写联系电话", "forbidden");
+			return;
+		}
+		if($("#dangerPicPreView").attr("src").indexOf("skin/images/timg.jpg")!=-1){
+			$.toast("保存失败:请选择照片或拍照", "forbidden");
+			return;
+		}
 		$.showLoading("正在保存数据,请稍等...");
 		var options = { 
 			       beforeSubmit:function(data){
@@ -39,31 +65,25 @@ var mainReg=(function(){
 			       success:function(data){
 			    	   $.hideLoading();
 		    		   if(data.code=='1'){
-		    			   $("#dangerCheckform input[id='id']").val(data.data.id);
-		    			   $.confirm("照片已上传成功,是否继续添加?", "继续添加?", 
-		 	        			  function() {
-		 	        				continueAdd();
-		 	              		  }, 
-		 	              		  function() {
-		 	              			//取消操作
-		 	              		  }
-		 	              		  );
+		    			   $.confirm("照片已上传成功");
+		    			   resetForm();
 		    		   }     	 
 			       },
 			       error:function(e){
 			    	   $.hideLoading();
-			    	   $.toast("数据保存失败:"+JSON.stringify(e), "forbidden");
+			    	   $.toast("保存失败:"+JSON.stringify(e), "forbidden");
 			       },
-			       url:SKY.urlCSRF(basepath+'base/BaseDangerCheck/saveAddEditBaseDangerCheck'), 
+			       url:SKY.urlCSRF(basepath+'wx/xsxx/addXsxx'), 
 			       type:'post',   
 			       dataType:'json',   
 			       timeout:-1    
 				};  
-				$('#dangerCheckform').ajaxSubmit(options);
+				$('#xsxxform').ajaxSubmit(options);
 	};
 	var resetForm=function(){
-		$('#dangerCheckform').resetForm();
+		$('#xsxxform').resetForm();
 		$('#dangerCheckPic').resetForm();
+		$("#dangerPicPreView").attr("src",basepath+"skin/images/timg.jpg");
 	};
 	//原始大小太大
 	var uploadImg=function (param){
@@ -80,7 +100,7 @@ var mainReg=(function(){
 	        	$.hideLoading();
 	        	$.confirm("照片已上传成功,是否继续添加?", "继续添加?", 
 	        			  function() {
-	        				continueAdd();
+	        				//continueAdd();
 	              		  }, 
 	              		  function() {
 	              			//取消操作
@@ -97,54 +117,6 @@ var mainReg=(function(){
 	        timeout:-1    
 		};  
 		$('#dangerCheckPic').ajaxSubmit(options); 
-	};
-	var continueAdd=function (){
-		$('#problem').val('');
-		$('#measures').val('');
-		$('#id').val('');
-		$('#dangerPicPreView').attr('src',basepath+"skin/images/dimg.jpg");
-		$('#dangerPic').val('');
-	};
-	/**
-	 * 初始化项目下来选项
-	 */
-	var initProSelect=function(){
-		$.ajax({
-    		url:SKY.urlCSRF(basepath+'base/BaseProject/getBuildBaseProject'),
-    		type: "POST",
-    		dataType:'json',
-    		success:function(data){
-    			$("#proName").select({   
-					title : "选择项目",
-					items : data.selData,
-					onChange : function(d) {
-						//$.alert("你选择了" + d.values + d.titles);
-						$('#proCode').val(d.values);
-					}
-    			});
-    			var defData = data.defData;
-    			if(defData){
-    				$('#proCode').val(defData.code);
-    				$('#proName').val(defData.name);
-    			}
-    		}
-		});
-	};
-	//整改措施
-	var initMeasuresSelect=function(){
-		$.ajax({
-    		url:SKY.urlCSRF(basepath+'base/BaseHelp/getHelpSelect/MEASURES'),
-    		type: "POST",
-    		dataType:'json',
-    		success:function(data){
-    			$("#measures").select({   
-					title : "请选择",
-					items : data,
-					onChange : function(d) {
-					}
-    			});
-    		}
-		});
 	};
 	var compress = function (img) {
          var width = img.width;    //图片resize宽度
