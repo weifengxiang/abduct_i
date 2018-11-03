@@ -580,5 +580,54 @@ public class AppController extends BaseController{
 		rd.setData(resultMap);
 		return rd;
 	}
-	
+	/**
+	 * 加载数据抓取
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/loadSjzq",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody List loadSjzq(HttpServletRequest request, HttpServletResponse response) {
+		String params = request.getParameter("filter");
+		Map filter = null;
+		if(!StringUtils.isNull(params)) {
+			filter = JsonUtils.json2map(params);
+		}
+		return appService.selectSjzq(filter);
+	}
+	/**
+	 * 加载指令信息
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/loadZlxf",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody List loadZlxf(HttpServletRequest request, HttpServletResponse response) {
+		String usercode = (String) request.getAttribute(AppConst.REQUEST_LOGIN_MSG);
+
+		return appService.selectZlxf(usercode);
+	}
+	/**
+	 * 修改密码
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/app/AppController/updatePwd",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody ResultData updatePwd(HttpServletRequest request, HttpServletResponse response){
+		ResultData rd = new ResultData();
+		String user = request.getParameter("user");
+		Map su = JsonUtils.json2map(user);
+		
+		try {
+			appService.updatePwd(su);
+			rd.setCode("1");
+			rd.setName("修改成功");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			rd.setCode("0");
+			rd.setName("注册失败,"+e.getMessage());
+		}
+		return rd;
+	}
 }

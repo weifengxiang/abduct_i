@@ -16,6 +16,9 @@ import org.sky.hdjl.model.TbStHdjlFsExample;
 import org.sky.hdjl.model.TbStHdjlJs;
 import org.sky.hdjl.model.TbStHdjlJsExample;
 import org.sky.msg.client.TbStMsgMapper;
+import org.sky.sjzq.client.TbStSjzqMapper;
+import org.sky.sjzq.model.TbStSjzq;
+import org.sky.sjzq.model.TbStSjzqExample;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.client.SysDictItemMapper;
 import org.sky.sys.client.SysOrganMapper;
@@ -49,6 +52,7 @@ import org.sky.zlgl.client.TbStZlxfMapper;
 import org.sky.zlgl.client.TbStZlxfTxrMapper;
 import org.sky.zlgl.model.TbStZlfk;
 import org.sky.zlgl.model.TbStZlxf;
+import org.sky.zlgl.model.TbStZlxfExample;
 import org.sky.zlgl.model.TbStZlxfTxr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -89,6 +93,10 @@ public class AppService {
 	private TbStTxbkMapper txbkMapper;
 	@Autowired
 	private TbStMsgMapper msgMapper;
+	@Autowired
+	private TbStSjzqMapper sjzqMapper;
+	@Autowired
+	private TbStZlxfMapper zlxfMapper;
 	public void register(SysUser user) throws ServiceException{
 		try {
 			Timestamp ts = syscommonmapper.queryTimestamp();
@@ -418,6 +426,60 @@ public class AppService {
 		txbk.setUpdateTime(ts);
 		txbkMapper.insert(txbk);
 	}
+	/**
+	 * 查询数据抓取信息
+	 * @param filter
+	 * @return
+	 */
+	public List<TbStSjzq> selectSjzq(Map filter) {
+		List<TbStSjzq> list = null;
+		TbStSjzqExample e = new TbStSjzqExample();
+		if(null!=filter) {
+			e.integratedQuery(filter);
+		}
+		list = sjzqMapper.selectByExample(e);
+		return list;
+	}
+	public List<TbStZlxf> selectZlxf(String usrCode){
+		TbStZlxfExample e = new TbStZlxfExample();
+		e.createCriteria().andCreaterEqualTo(usrCode);
+		List<TbStZlxf> list = zlxfMapper.selectByExample(e);
+		return list;
+	}
+	/**
+	 * 修改密码
+	 * @param user
+	 */
+	public void updatePwd(Map user) {
+		String code = (String)user.get("code");
+		String password = (String)user.get("password");
+		String newPassword = (String)user.get("newPassword");
+		String rePassword = (String)user.get("rePassword");
+		if(!newPassword.equals(rePassword)) {
+			throw new ServiceException("两次密码不一致");
+		}
+		SysUserExample e = new SysUserExample();
+		e.createCriteria().andCodeEqualTo(code);
+		List<SysUser> list = sysuserMapper.selectByExample(e);
+		if(null ==list || list.isEmpty()) {
+			throw new ServiceException("用户不存在");
+		}
+		SysUser su = list.get(0);
+		if(!su.getPassword().equals(MD5Utils.MD5LOWER(password))){
+			throw new ServiceException("旧密码不正确");
+		}
+		su.setPassword(MD5Utils.MD5LOWER(newPassword));
+		sysuserMapper.updateByPrimaryKeySelective(su);
+	}
+	/**
+	 * 联系人
+	 * @ClassName:  Contact   
+	 * @Description:TODO(这里用一句话描述这个类的作用)   
+	 * @author: weifx 
+	 * @date:   2018年11月3日 上午10:15:28   
+	 * @version V1.0    
+	 * @Copyright: 2018 XXX. All rights reserved.
+	 */
 	class Contact{
 		private String organCode;
 		private String organName;
