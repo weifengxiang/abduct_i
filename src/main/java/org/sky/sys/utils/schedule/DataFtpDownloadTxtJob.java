@@ -45,7 +45,7 @@ public class DataFtpDownloadTxtJob implements Job {
 	private final static int ftpPort = 21;
 	private final static String ftpUserName = "ftp";
 	private final static String ftpPassword = "ysdss123";
-	private final static String ftpPath = "input";
+	private final static String ftpPath = "";
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		// TODO Auto-generated method stub
